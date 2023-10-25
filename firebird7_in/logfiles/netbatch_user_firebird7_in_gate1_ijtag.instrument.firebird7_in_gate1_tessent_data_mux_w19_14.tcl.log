@@ -1,0 +1,21 @@
++-----------------------------------------------------------------------------+
+| Logfile        : netbatch_user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_14.tcl.log|
+| Job id         : 7945267513320419           Class: (SLES12&&32G&&2C) && (!HIGHMEM) Qslot: /XNE/IRW|
+| User           : khiremat                   Full Id: zsc14_tiers2_vp.7945267513320419|
+| Class Reservation : cores=2,general_ramp=1:duration=60s,memory=32           |
+| Executed on    : sccf060705                 Pool : zsc14_nb2_ppm            |
+| Queueing time  : Mon Oct 23 13:02:03 2023                                   |
+| Starting time  : Mon Oct 23 13:02:05 2023          Qwait:   0h:00m:02s      |
+| Command        : dc_shell -64 -f ./user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_14.tcl |
++-----------------------------------------------------------------------------+
++-----------------------------------------------------------------------------+
+| Exit Status    : 0                                                          |
+| Finishing time : Mon Oct 23 13:03:08 2023                                   |
+| CPU time       : Usr 18.442s Sys 0.828s  WC  0h:01m:03s                     |
+| Rusage Stats   : Mem:2131   PF:  556931/0  CSv/f:  0/0     Swaps:0          |
+|                :           Msg:    0/0     IOops:  48/1440 Sigs :0          |
+| User Groups    : soc, socenv, ipx_general_user, arborcrest_soc, ncsg76,     |
+|                : i1278proc, i1278, intelall, ncsg78, irw, powdermill,       |
+|                : soc73, gdlusers, srvr10nm                                  |
+| Actual Class Reservation : cores=2,general_ramp=1:duration=60s,memory=32    |
++-----------------------------------------------------------------------------+

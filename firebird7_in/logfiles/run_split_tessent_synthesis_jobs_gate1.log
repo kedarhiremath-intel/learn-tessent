@@ -1,0 +1,745 @@
+***I: Start time is Mon Oct 23 13:00:33 2023
+***I: Starting split synthesis runs for components.  Process ID: 42379
+***I: Block working directory is /nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in
+***I: Synthesis directory is synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell
+***I: Using maximum queued netbatch jobs of 500
+***I: Using netbatch class environment variable NBCLASS SLES12&&32G&&2C
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_1.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_10.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_11.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_12.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_13.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_14.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_15.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_16.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_17.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_18.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_19.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_2.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_20.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_21.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_22.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_23.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_24.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_25.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_26.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_27.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_28.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_29.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_3.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_30.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_31.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_32.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_33.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_34.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_35.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_36.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_37.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_38.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_39.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_4.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_40.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_5.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_6.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_7.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_8.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_9.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_1.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_10.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_11.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_12.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_13.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_14.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_15.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_16.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_17.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_18.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_19.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_2.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_20.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_21.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_22.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_23.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_24.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_25.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_26.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_27.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_28.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_29.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_3.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_30.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_31.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_32.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_33.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_34.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_35.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_36.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_37.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_38.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_39.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_4.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_40.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_5.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_6.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_7.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_8.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_9.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_green_sec_mux.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_insysbist_sec_mux.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_orange_sec_mux.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_red_sec_mux.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_array_pwrmgmt.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_array_trim_fuse_override.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_mbist.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_spare.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_spare_green.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_spare_insysbist.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_spare_orange.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_spare_red.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_sti.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_tdr_array_pwrmgmt_ctrl_hdspsr.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_tdr_array_trim_fuse_override_ctrl_hdspsr.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_tdr_spare_green_tdr.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_tdr_spare_insysbist_tdr.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_tdr_spare_orange_tdr.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_tdr_spare_red_tdr.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_tdr_sti_ctrl.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_mbisr.instrument.firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_mbisr.instrument.firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_mbisr.instrument.firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_mbist.instrument.firebird7_in_gate1_tessent_mbist_bap.tcl
+***I: Found split synthesis script: synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_mbist.instrument.firebird7_in_gate1_tessent_mbist_c1_controller_assembly.tcl
+***I: Number of remaining jobs is 105. Launching 105 jobs...
+***I: Parent process PID (42379) has forked child process PID (42381)
+***I: Parent process PID (42379) has forked child process PID (42382)
+***I: Child process PID (42381) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_mbist.instrument.firebird7_in_gate1_tessent_mbist_c1_controller_assembly.tcl has started...
+***I: Child process PID (42381) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42381) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_mbist.instrument.firebird7_in_gate1_tessent_mbist_c1_controller_assembly.tcl...
+***I: Parent process PID (42379) has forked child process PID (42383)
+***I: Child process PID (42382) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_mbist.instrument.firebird7_in_gate1_tessent_mbist_bap.tcl has started...
+***I: Child process PID (42382) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42382) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_mbist.instrument.firebird7_in_gate1_tessent_mbist_bap.tcl...
+***I: Parent process PID (42379) has forked child process PID (42385)
+***I: Child process PID (42383) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_mbisr.instrument.firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper.tcl has started...
+***I: Child process PID (42383) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42383) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_mbisr.instrument.firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper.tcl...
+***I: Parent process PID (42379) has forked child process PID (42387)
+***I: Child process PID (42385) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_mbisr.instrument.firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper.tcl has started...
+***I: Child process PID (42385) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42385) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_mbisr.instrument.firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper.tcl...
+***I: Child process PID (42387) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_mbisr.instrument.firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper.tcl has started...
+***I: Child process PID (42387) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42387) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_mbisr.instrument.firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper.tcl...
+***I: Parent process PID (42379) has forked child process PID (42389)
+***I: Child process PID (42389) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_tdr_sti_ctrl.tcl has started...
+***I: Child process PID (42389) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42389) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_tdr_sti_ctrl.tcl...
+***I: Parent process PID (42379) has forked child process PID (42391)
+***I: Parent process PID (42379) has forked child process PID (42393)
+***I: Child process PID (42391) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_tdr_spare_red_tdr.tcl has started...
+***I: Child process PID (42391) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42391) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_tdr_spare_red_tdr.tcl...
+***I: Child process PID (42393) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_tdr_spare_orange_tdr.tcl has started...
+***I: Child process PID (42393) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42393) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_tdr_spare_orange_tdr.tcl...
+***I: Parent process PID (42379) has forked child process PID (42395)
+***I: Parent process PID (42379) has forked child process PID (42398)
+***I: Child process PID (42395) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_tdr_spare_insysbist_tdr.tcl has started...
+***I: Child process PID (42395) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42395) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_tdr_spare_insysbist_tdr.tcl...
+***I: Child process PID (42398) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_tdr_spare_green_tdr.tcl has started...
+***I: Child process PID (42398) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42398) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_tdr_spare_green_tdr.tcl...
+***I: Parent process PID (42379) has forked child process PID (42399)
+***I: Parent process PID (42379) has forked child process PID (42401)
+***I: Child process PID (42399) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_tdr_array_trim_fuse_override_ctrl_hdspsr.tcl has started...
+***I: Child process PID (42399) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42399) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_tdr_array_trim_fuse_override_ctrl_hdspsr.tcl...
+***I: Child process PID (42401) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_tdr_array_pwrmgmt_ctrl_hdspsr.tcl has started...
+***I: Child process PID (42401) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42401) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_tdr_array_pwrmgmt_ctrl_hdspsr.tcl...
+***I: Parent process PID (42379) has forked child process PID (42403)
+***I: Child process PID (42403) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_sti.tcl has started...
+***I: Child process PID (42403) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42403) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_sti.tcl...
+***I: Parent process PID (42379) has forked child process PID (42404)
+***I: Parent process PID (42379) has forked child process PID (42408)
+***I: Child process PID (42408) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_spare_orange.tcl has started...
+***I: Child process PID (42408) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42408) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_spare_orange.tcl...
+***I: Parent process PID (42379) has forked child process PID (42409)
+***I: Child process PID (42409) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_spare_insysbist.tcl has started...
+***I: Child process PID (42409) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42409) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_spare_insysbist.tcl...
+***I: Child process PID (42404) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_spare_red.tcl has started...
+***I: Child process PID (42404) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42404) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_spare_red.tcl...
+***I: Parent process PID (42379) has forked child process PID (42411)
+***I: Parent process PID (42379) has forked child process PID (42414)
+***I: Child process PID (42411) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_spare_green.tcl has started...
+***I: Child process PID (42411) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42411) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_spare_green.tcl...
+***I: Child process PID (42414) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_spare.tcl has started...
+***I: Child process PID (42414) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42414) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_spare.tcl...
+***I: Parent process PID (42379) has forked child process PID (42415)
+***I: Child process PID (42415) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_mbist.tcl has started...
+***I: Child process PID (42415) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42415) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_mbist.tcl...
+***I: Parent process PID (42379) has forked child process PID (42418)
+***I: Child process PID (42418) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_array_trim_fuse_override.tcl has started...
+***I: Child process PID (42418) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42418) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_array_trim_fuse_override.tcl...
+***I: Parent process PID (42379) has forked child process PID (42420)
+***I: Child process PID (42420) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_array_pwrmgmt.tcl has started...
+***I: Child process PID (42420) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42420) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_array_pwrmgmt.tcl...
+***I: Parent process PID (42379) has forked child process PID (42422)
+***I: Child process PID (42422) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_red_sec_mux.tcl has started...
+***I: Child process PID (42422) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42422) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_red_sec_mux.tcl...
+***I: Parent process PID (42379) has forked child process PID (42424)
+***I: Child process PID (42424) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_orange_sec_mux.tcl has started...
+***I: Child process PID (42424) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42424) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_orange_sec_mux.tcl...
+***I: Parent process PID (42379) has forked child process PID (42426)
+***I: Child process PID (42426) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_insysbist_sec_mux.tcl has started...
+***I: Child process PID (42426) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42426) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_insysbist_sec_mux.tcl...
+***I: Parent process PID (42379) has forked child process PID (42428)
+***I: Parent process PID (42379) has forked child process PID (42430)
+***I: Child process PID (42430) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_9.tcl has started...
+***I: Child process PID (42430) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42430) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_9.tcl...
+***I: Parent process PID (42379) has forked child process PID (42431)
+***I: Child process PID (42431) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_8.tcl has started...
+***I: Child process PID (42431) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42431) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_8.tcl...
+***I: Parent process PID (42379) has forked child process PID (42433)
+***I: Parent process PID (42379) has forked child process PID (42449)
+***I: Parent process PID (42379) has forked child process PID (42452)
+***I: Child process PID (42433) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_7.tcl has started...
+***I: Child process PID (42433) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42433) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_7.tcl...
+***I: Parent process PID (42379) has forked child process PID (42454)
+***I: Child process PID (42452) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_5.tcl has started...
+***I: Child process PID (42452) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42452) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_5.tcl...
+***I: Parent process PID (42379) has forked child process PID (42456)
+***I: Child process PID (42428) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_green_sec_mux.tcl has started...
+***I: Child process PID (42428) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42428) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_green_sec_mux.tcl...
+***I: Parent process PID (42379) has forked child process PID (42459)
+***I: Child process PID (42449) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_6.tcl has started...
+***I: Child process PID (42449) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42449) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_6.tcl...
+***I: Parent process PID (42379) has forked child process PID (42463)
+***I: Child process PID (42463) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_38.tcl has started...
+***I: Child process PID (42463) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42463) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_38.tcl...
+***I: Child process PID (42454) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_40.tcl has started...
+***I: Child process PID (42454) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42454) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_40.tcl...
+***I: Parent process PID (42379) has forked child process PID (42466)
+***I: Parent process PID (42379) has forked child process PID (42469)
+***I: Parent process PID (42379) has forked child process PID (42471)
+***I: Child process PID (42471) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_35.tcl has started...
+***I: Child process PID (42471) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42471) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_35.tcl...
+***I: Parent process PID (42379) has forked child process PID (42473)
+***I: Parent process PID (42379) has forked child process PID (42475)
+***I: Parent process PID (42379) has forked child process PID (42476)
+***I: Child process PID (42476) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_32.tcl has started...
+***I: Child process PID (42476) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42476) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_32.tcl...
+***I: Parent process PID (42379) has forked child process PID (42478)
+***I: Parent process PID (42379) has forked child process PID (42481)
+***I: Child process PID (42478) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_31.tcl has started...
+***I: Child process PID (42478) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42478) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_31.tcl...
+***I: Parent process PID (42379) has forked child process PID (42483)
+***I: Parent process PID (42379) has forked child process PID (42487)
+***I: Child process PID (42456) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_4.tcl has started...
+***I: Child process PID (42456) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42456) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_4.tcl...
+***I: Parent process PID (42379) has forked child process PID (42488)
+***I: Parent process PID (42379) has forked child process PID (42491)
+***I: Child process PID (42491) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_27.tcl has started...
+***I: Child process PID (42491) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42491) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_27.tcl...
+***I: Parent process PID (42379) has forked child process PID (42492)
+***I: Parent process PID (42379) has forked child process PID (42494)
+***I: Child process PID (42494) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_25.tcl has started...
+***I: Child process PID (42494) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42494) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_25.tcl...
+***I: Child process PID (42492) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_26.tcl has started...
+***I: Child process PID (42492) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42492) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_26.tcl...
+***I: Parent process PID (42379) has forked child process PID (42495)
+***I: Parent process PID (42379) has forked child process PID (42498)
+***I: Child process PID (42495) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_24.tcl has started...
+***I: Child process PID (42495) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42495) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_24.tcl...
+***I: Parent process PID (42379) has forked child process PID (42500)
+***I: Parent process PID (42379) has forked child process PID (42502)
+***I: Child process PID (42498) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_23.tcl has started...
+***I: Child process PID (42498) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42498) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_23.tcl...
+***I: Parent process PID (42379) has forked child process PID (42505)
+***I: Child process PID (42502) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_21.tcl has started...
+***I: Child process PID (42502) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42502) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_21.tcl...
+***I: Parent process PID (42379) has forked child process PID (42507)
+***I: Parent process PID (42379) has forked child process PID (42509)
+***I: Child process PID (42505) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_20.tcl has started...
+***I: Child process PID (42505) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42505) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_20.tcl...
+***I: Child process PID (42500) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_22.tcl has started...
+***I: Child process PID (42500) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42500) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_22.tcl...
+***I: Parent process PID (42379) has forked child process PID (42511)
+***I: Child process PID (42511) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_18.tcl has started...
+***I: Child process PID (42511) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42511) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_18.tcl...
+***I: Parent process PID (42379) has forked child process PID (42514)
+***I: Child process PID (42509) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_19.tcl has started...
+***I: Child process PID (42509) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42509) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_19.tcl...
+***I: Child process PID (42507) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_2.tcl has started...
+***I: Child process PID (42507) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42507) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_2.tcl...
+***I: Child process PID (42514) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_17.tcl has started...
+***I: Child process PID (42514) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42514) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_17.tcl...
+***I: Parent process PID (42379) has forked child process PID (42518)
+***I: Child process PID (42518) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_16.tcl has started...
+***I: Child process PID (42518) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42518) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_16.tcl...
+***I: Parent process PID (42379) has forked child process PID (42523)
+***I: Parent process PID (42379) has forked child process PID (42524)
+***I: Child process PID (42524) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_14.tcl has started...
+***I: Child process PID (42524) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42524) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_14.tcl...
+***I: Child process PID (42523) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_15.tcl has started...
+***I: Child process PID (42523) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42523) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_15.tcl...
+***I: Parent process PID (42379) has forked child process PID (42527)
+***I: Parent process PID (42379) has forked child process PID (42529)
+***I: Child process PID (42529) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_12.tcl has started...
+***I: Child process PID (42529) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42529) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_12.tcl...
+***I: Parent process PID (42379) has forked child process PID (42532)
+***I: Child process PID (42532) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_11.tcl has started...
+***I: Child process PID (42532) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42532) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_11.tcl...
+***I: Parent process PID (42379) has forked child process PID (42533)
+***I: Child process PID (42527) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_13.tcl has started...
+***I: Child process PID (42527) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42527) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_13.tcl...
+***I: Parent process PID (42379) has forked child process PID (42538)
+***I: Child process PID (42533) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_10.tcl has started...
+***I: Child process PID (42533) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42533) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_10.tcl...
+***I: Child process PID (42538) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_1.tcl has started...
+***I: Child process PID (42538) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42538) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_1.tcl...
+***I: Parent process PID (42379) has forked child process PID (42542)
+***I: Child process PID (42542) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_9.tcl has started...
+***I: Child process PID (42542) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42542) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_9.tcl...
+***I: Parent process PID (42379) has forked child process PID (42544)
+***I: Child process PID (42544) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_8.tcl has started...
+***I: Child process PID (42544) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42544) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_8.tcl...
+***I: Parent process PID (42379) has forked child process PID (42549)
+***I: Child process PID (42549) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_7.tcl has started...
+***I: Child process PID (42549) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42549) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_7.tcl...
+***I: Parent process PID (42379) has forked child process PID (42550)
+***I: Child process PID (42550) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_6.tcl has started...
+***I: Child process PID (42550) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42550) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_6.tcl...
+***I: Parent process PID (42379) has forked child process PID (42553)
+***I: Child process PID (42553) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_5.tcl has started...
+***I: Child process PID (42553) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42553) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_5.tcl...
+***I: Parent process PID (42379) has forked child process PID (42555)
+***I: Parent process PID (42379) has forked child process PID (42558)
+***I: Child process PID (42555) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_40.tcl has started...
+***I: Child process PID (42555) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42555) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_40.tcl...
+***I: Child process PID (42558) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_4.tcl has started...
+***I: Child process PID (42558) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42558) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_4.tcl...
+***I: Parent process PID (42379) has forked child process PID (42561)
+***I: Child process PID (42561) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_39.tcl has started...
+***I: Child process PID (42561) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42561) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_39.tcl...
+***I: Parent process PID (42379) has forked child process PID (42565)
+***I: Child process PID (42565) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_38.tcl has started...
+***I: Child process PID (42565) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42565) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_38.tcl...
+***I: Parent process PID (42379) has forked child process PID (42567)
+***I: Child process PID (42567) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_37.tcl has started...
+***I: Child process PID (42567) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42567) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_37.tcl...
+***I: Parent process PID (42379) has forked child process PID (42572)
+***I: Parent process PID (42379) has forked child process PID (42575)
+***I: Child process PID (42572) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_36.tcl has started...
+***I: Child process PID (42572) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42572) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_36.tcl...
+***I: Child process PID (42575) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_35.tcl has started...
+***I: Child process PID (42575) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42575) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_35.tcl...
+***I: Parent process PID (42379) has forked child process PID (42578)
+***I: Parent process PID (42379) has forked child process PID (42583)
+***I: Child process PID (42578) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_34.tcl has started...
+***I: Child process PID (42578) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42578) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_34.tcl...
+***I: Child process PID (42583) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_33.tcl has started...
+***I: Child process PID (42583) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42583) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_33.tcl...
+***I: Parent process PID (42379) has forked child process PID (42584)
+***I: Child process PID (42459) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_39.tcl has started...
+***I: Child process PID (42459) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42459) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_39.tcl...
+***I: Parent process PID (42379) has forked child process PID (42590)
+***I: Parent process PID (42379) has forked child process PID (42594)
+***I: Child process PID (42466) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_37.tcl has started...
+***I: Child process PID (42466) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42466) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_37.tcl...
+***I: Parent process PID (42379) has forked child process PID (42596)
+***I: Child process PID (42594) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_30.tcl has started...
+***I: Child process PID (42594) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42594) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_30.tcl...
+***I: Parent process PID (42379) has forked child process PID (42599)
+***I: Child process PID (42469) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_36.tcl has started...
+***I: Child process PID (42469) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42469) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_36.tcl...
+***I: Parent process PID (42379) has forked child process PID (42602)
+***I: Child process PID (42596) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_3.tcl has started...
+***I: Child process PID (42596) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42596) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_3.tcl...
+***I: Parent process PID (42379) has forked child process PID (42606)
+***I: Child process PID (42473) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_34.tcl has started...
+***I: Child process PID (42473) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42473) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_34.tcl...
+***I: Parent process PID (42379) has forked child process PID (42610)
+***I: Child process PID (42610) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_26.tcl has started...
+***I: Child process PID (42610) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42610) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_26.tcl...
+***I: Parent process PID (42379) has forked child process PID (42615)
+***I: Child process PID (42475) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_33.tcl has started...
+***I: Child process PID (42475) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42475) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_33.tcl...
+***I: Parent process PID (42379) has forked child process PID (42618)
+***I: Child process PID (42584) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_32.tcl has started...
+***I: Child process PID (42584) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42584) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_32.tcl...
+***I: Child process PID (42590) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_31.tcl has started...
+***I: Child process PID (42590) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42590) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_31.tcl...
+***I: Parent process PID (42379) has forked child process PID (42620)
+***I: Child process PID (42481) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_30.tcl has started...
+***I: Child process PID (42481) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42481) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_30.tcl...
+***I: Parent process PID (42379) has forked child process PID (42623)
+***I: Parent process PID (42379) has forked child process PID (42627)
+***I: Child process PID (42483) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_3.tcl has started...
+***I: Child process PID (42483) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42483) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_3.tcl...
+***I: Child process PID (42599) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_29.tcl has started...
+***I: Child process PID (42599) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42599) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_29.tcl...
+***I: Parent process PID (42379) has forked child process PID (42629)
+***I: Parent process PID (42379) has forked child process PID (42633)
+***I: Child process PID (42602) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_28.tcl has started...
+***I: Child process PID (42602) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42602) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_28.tcl...
+***I: Child process PID (42487) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_29.tcl has started...
+***I: Child process PID (42487) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42487) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_29.tcl...
+***I: Parent process PID (42379) has forked child process PID (42636)
+***I: Parent process PID (42379) has forked child process PID (42639)
+***I: Child process PID (42606) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_27.tcl has started...
+***I: Child process PID (42606) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42606) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_27.tcl...
+***I: Child process PID (42488) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_28.tcl has started...
+***I: Child process PID (42488) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42488) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_28.tcl...
+***I: Child process PID (42639) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_18.tcl has started...
+***I: Child process PID (42639) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42639) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_18.tcl...
+***I: Parent process PID (42379) has forked child process PID (42643)
+***I: Parent process PID (42379) has forked child process PID (42650)
+***I: Child process PID (42643) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_17.tcl has started...
+***I: Child process PID (42643) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42643) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_17.tcl...
+***I: Child process PID (42650) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_16.tcl has started...
+***I: Child process PID (42650) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42650) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_16.tcl...
+***I: Parent process PID (42379) has forked child process PID (42651)
+***I: Child process PID (42651) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_15.tcl has started...
+***I: Child process PID (42651) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42651) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_15.tcl...
+***I: Parent process PID (42379) has forked child process PID (42654)
+***I: Parent process PID (42379) has forked child process PID (42658)
+***I: Parent process PID (42379) has forked child process PID (42660)
+***I: Child process PID (42660) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_12.tcl has started...
+***I: Child process PID (42660) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42660) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_12.tcl...
+***I: Parent process PID (42379) has forked child process PID (42662)
+***I: Child process PID (42662) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_11.tcl has started...
+***I: Child process PID (42662) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42662) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_11.tcl...
+***I: Parent process PID (42379) has forked child process PID (42664)
+***I: Child process PID (42636) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_19.tcl has started...
+***I: Child process PID (42636) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42636) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_19.tcl...
+***I: Child process PID (42615) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_25.tcl has started...
+***I: Child process PID (42615) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42615) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_25.tcl...
+***I: Child process PID (42664) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_10.tcl has started...
+***I: Child process PID (42664) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42664) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_10.tcl...
+***I: Child process PID (42618) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_24.tcl has started...
+***I: Child process PID (42618) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42618) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_24.tcl...
+***I: Child process PID (42620) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_23.tcl has started...
+***I: Child process PID (42620) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42620) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_23.tcl...
+***I: Child process PID (42668) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_1.tcl has started...
+***I: Child process PID (42668) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42668) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_1.tcl...
+***I: Child process PID (42623) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_22.tcl has started...
+***I: Child process PID (42623) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42623) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_22.tcl...
+***I: Child process PID (42627) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_21.tcl has started...
+***I: Child process PID (42627) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42627) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_21.tcl...
+***I: Child process PID (42629) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_20.tcl has started...
+***I: Child process PID (42629) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42629) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_20.tcl...
+***I: Child process PID (42633) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_2.tcl has started...
+***I: Child process PID (42633) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42633) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_2.tcl...
+***I: Child process PID (42654) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_14.tcl has started...
+***I: Child process PID (42654) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42654) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_14.tcl...
+***I: Child process PID (42658) for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_13.tcl has started...
+***I: Child process PID (42658) successfully changed to directory synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/
+***I: Child process PID (42658) launching synthesis job for synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w19_13.tcl...
+***I: Child process PID (42426) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42428) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42387) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42565) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42385) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42409) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42509) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42623) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42411) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42602) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42418) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42583) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42498) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42618) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42542) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42487) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42469) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42533) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42610) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42495) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42494) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42620) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42538) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42430) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42502) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42639) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42383) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42633) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42389) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42527) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42422) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42629) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42500) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42594) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42408) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42660) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42658) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42529) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42488) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42636) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42561) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42403) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42459) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42478) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42476) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42475) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42544) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42575) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42431) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42615) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42518) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42401) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42553) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42505) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42483) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42399) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42433) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42463) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42590) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42654) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42415) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42555) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42471) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42454) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42492) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42650) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42456) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42651) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42523) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42550) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42599) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42481) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42627) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42514) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42449) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42420) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42452) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42664) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42532) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42507) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42391) synthesis job completed with return code 0.  Child process exiting.
+***I: Parent process PID (42379) has forked child process PID (42668)
+***I: Parent process launched 105 child synthesis processes.   Waiting for them to complete...
+***I: Parent saw child process PID (42426) exit.  Waiting on 104 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42387) exit.  Waiting on 103 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42428) exit.  Waiting on 102 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42565) exit.  Waiting on 101 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42385) exit.  Waiting on 100 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42409) exit.  Waiting on 99 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42509) exit.  Waiting on 98 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42623) exit.  Waiting on 97 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42411) exit.  Waiting on 96 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42602) exit.  Waiting on 95 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42418) exit.  Waiting on 94 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42583) exit.  Waiting on 93 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42618) exit.  Waiting on 92 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42542) exit.  Waiting on 91 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42498) exit.  Waiting on 90 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42469) exit.  Waiting on 89 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42487) exit.  Waiting on 88 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42533) exit.  Waiting on 87 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42610) exit.  Waiting on 86 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42495) exit.  Waiting on 85 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42494) exit.  Waiting on 84 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42620) exit.  Waiting on 83 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42538) exit.  Waiting on 82 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42430) exit.  Waiting on 81 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42502) exit.  Waiting on 80 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42633) exit.  Waiting on 79 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42389) exit.  Waiting on 78 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42383) exit.  Waiting on 77 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42639) exit.  Waiting on 76 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42629) exit.  Waiting on 75 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42500) exit.  Waiting on 74 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42422) exit.  Waiting on 73 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42527) exit.  Waiting on 72 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42594) exit.  Waiting on 71 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42408) exit.  Waiting on 70 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42660) exit.  Waiting on 69 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42658) exit.  Waiting on 68 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42488) exit.  Waiting on 67 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42529) exit.  Waiting on 66 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42636) exit.  Waiting on 65 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42403) exit.  Waiting on 64 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42561) exit.  Waiting on 63 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42459) exit.  Waiting on 62 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42478) exit.  Waiting on 61 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42476) exit.  Waiting on 60 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42475) exit.  Waiting on 59 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42544) exit.  Waiting on 58 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42575) exit.  Waiting on 57 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42431) exit.  Waiting on 56 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42615) exit.  Waiting on 55 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42518) exit.  Waiting on 54 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42401) exit.  Waiting on 53 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42553) exit.  Waiting on 52 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42505) exit.  Waiting on 51 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42483) exit.  Waiting on 50 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42399) exit.  Waiting on 49 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42433) exit.  Waiting on 48 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42463) exit.  Waiting on 47 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42590) exit.  Waiting on 46 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42654) exit.  Waiting on 45 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42555) exit.  Waiting on 44 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42415) exit.  Waiting on 43 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42471) exit.  Waiting on 42 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42454) exit.  Waiting on 41 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42492) exit.  Waiting on 40 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42650) exit.  Waiting on 39 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42456) exit.  Waiting on 38 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42523) exit.  Waiting on 37 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42651) exit.  Waiting on 36 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42550) exit.  Waiting on 35 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42599) exit.  Waiting on 34 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42481) exit.  Waiting on 33 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42514) exit.  Waiting on 32 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42627) exit.  Waiting on 31 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42449) exit.  Waiting on 30 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42420) exit.  Waiting on 29 with 0 s***I: Child process PID (42578) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42414) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42398) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42584) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42491) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42511) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42567) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42662) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42395) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42473) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42558) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42466) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42643) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42424) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42606) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42572) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42404) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42382) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42393) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42549) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42596) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42668) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42524) synthesis job completed with return code 0.  Child process exiting.
+***I: Child process PID (42381) synthesis job completed with return code 0.  Child process exiting.
+till to launch in the next passes
+***I: Parent saw child process PID (42452) exit.  Waiting on 28 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42664) exit.  Waiting on 27 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42532) exit.  Waiting on 26 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42507) exit.  Waiting on 25 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42391) exit.  Waiting on 24 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42578) exit.  Waiting on 23 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42414) exit.  Waiting on 22 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42398) exit.  Waiting on 21 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42584) exit.  Waiting on 20 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42491) exit.  Waiting on 19 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42662) exit.  Waiting on 18 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42395) exit.  Waiting on 17 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42511) exit.  Waiting on 16 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42473) exit.  Waiting on 15 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42567) exit.  Waiting on 14 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42558) exit.  Waiting on 13 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42466) exit.  Waiting on 12 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42643) exit.  Waiting on 11 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42424) exit.  Waiting on 10 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42606) exit.  Waiting on 9 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42572) exit.  Waiting on 8 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42404) exit.  Waiting on 7 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42382) exit.  Waiting on 6 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42393) exit.  Waiting on 5 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42549) exit.  Waiting on 4 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42596) exit.  Waiting on 3 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42668) exit.  Waiting on 2 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42524) exit.  Waiting on 1 with 0 still to launch in the next passes
+***I: Parent saw child process PID (42381) exit.  Waiting on 0 with 0 still to launch in the next passes
+***I: Parent process exiting.
+***I: Finish time is Mon Oct 23 13:11:00 2023

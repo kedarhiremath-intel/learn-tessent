@@ -1,0 +1,153 @@
+/////////////////////////////////////////////////////////////
+// Created by: Synopsys DC Expert(TM) in wire load mode
+// Version   : Q-2019.12-SP5-1
+// Date      : Mon Oct 23 13:02:04 2023
+/////////////////////////////////////////////////////////////
+
+
+module firebird7_in_gate1_tessent_sib_sti ( ijtag_reset, ijtag_sel, ijtag_si, 
+        ijtag_ce, ijtag_se, ijtag_ue, ijtag_tck, ijtag_so, ijtag_from_so, 
+        ltest_si, ltest_scan_en, ltest_en, ltest_clk, ltest_mem_bypass_en, 
+        ltest_mcp_bounding_en, ltest_occ_en, 
+        ltest_async_set_reset_static_disable, ltest_static_clock_control_mode, 
+        ltest_clock_sequence, ijtag_to_tck, ijtag_to_reset, ijtag_to_si, 
+        ijtag_to_ce, ijtag_to_se, ijtag_to_ue, ltest_so, ltest_to_en, 
+        ltest_to_mem_bypass_en, ltest_to_mcp_bounding_en, ltest_to_scan_en, 
+        ijtag_to_sel );
+  input [1:0] ltest_clock_sequence;
+  input ijtag_reset, ijtag_sel, ijtag_si, ijtag_ce, ijtag_se, ijtag_ue,
+         ijtag_tck, ijtag_from_so, ltest_si, ltest_scan_en, ltest_en,
+         ltest_clk, ltest_mem_bypass_en, ltest_mcp_bounding_en, ltest_occ_en,
+         ltest_async_set_reset_static_disable, ltest_static_clock_control_mode;
+  output ijtag_so, ijtag_to_tck, ijtag_to_reset, ijtag_to_si, ijtag_to_ce,
+         ijtag_to_se, ijtag_to_ue, ltest_so, ltest_to_en,
+         ltest_to_mem_bypass_en, ltest_to_mcp_bounding_en, ltest_to_scan_en,
+         ijtag_to_sel;
+  wire   ltest_to_en, ltest_to_sel, to_enable_int, sib_latch, n_0_net_0,
+         ltest_to_reset, retiming_ltest_to_si, ltest_ce_se_ue_1_,
+         ltest_ce_se_ue_0_, ltest_to_si, occ_ctrl_so, N51,
+         ltest_scan_en_buf_out, static_clock_control_mode_buf_out,
+         clock_sequence_buf_out_1_, clock_sequence_buf_out_0_,
+         ltest_scan_in_buf_out, ltest_clk_buf, occ_ctrl_1_, occ_ctrl_0_, N58,
+         occ_ctrl_so_retimed, occ_clock_out, n_1_net_0, n3, n4, n5, n7, n8, n9,
+         n10, n11, n15, n16, n17, n18, n19, n43, n42, n46, n47, n48, net776,
+         net777, net783, n49, n50, n510, n52, n53, n54, n55, n56,
+         SYNOPSYS_UNCONNECTED_1, SYNOPSYS_UNCONNECTED_2,
+         SYNOPSYS_UNCONNECTED_3, SYNOPSYS_UNCONNECTED_4,
+         SYNOPSYS_UNCONNECTED_5, SYNOPSYS_UNCONNECTED_6,
+         SYNOPSYS_UNCONNECTED_7, SYNOPSYS_UNCONNECTED_8;
+  assign ltest_to_en = ltest_en;
+
+  i0smbn022ab1n02x5 tessent_persistent_cell_ltest_reset_mux ( .b(ijtag_reset), 
+        .a(n_0_net_0), .sa(ltest_to_en), .o(ijtag_to_reset) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_ltest_scan_en_buf ( .a(
+        ltest_scan_en), .o(ltest_scan_en_buf_out) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_static_clock_control_mode_buf ( 
+        .a(ltest_static_clock_control_mode), .o(
+        static_clock_control_mode_buf_out) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_clock_sequence_buf_0 ( .a(
+        ltest_clock_sequence[0]), .o(clock_sequence_buf_out_0_) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_clock_sequence_buf_1 ( .a(
+        ltest_clock_sequence[1]), .o(clock_sequence_buf_out_1_) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_ltest_scan_in_buf ( .a(ltest_si), 
+        .o(ltest_scan_in_buf_out) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_occ_ctrl_so_buf ( .a(n47), .o(
+        occ_ctrl_so) );
+  i0scbf000ab1n02x5 tessent_persistent_cell_cts_stop_buf ( .clk(ltest_clk), 
+        .clkout(ltest_clk_buf) );
+  i0scilb01ab1n02x5 tessent_persistent_cell_occ_clock_gate ( .clk(ltest_clk), 
+        .en(n_1_net_0), .te(ltest_scan_en_buf_out), .clkout(occ_clock_out) );
+  i0scmbn22ab1n02x5 tessent_persistent_cell_ltest_clock_mux ( .clk2(ijtag_tck), 
+        .clk1(occ_clock_out), .s(ltest_to_en), .clkout(ijtag_to_tck) );
+  i0sfuz080ab1d03x5 occ_ctrl_so_retimed_reg ( .si(n54), .d(occ_ctrl_0_), .ssb(
+        n43), .clkb(ltest_clk_buf), .o(occ_ctrl_so_retimed), .so(
+        SYNOPSYS_UNCONNECTED_1) );
+  i0slsn080ab1n02x5 retiming_ltest_to_si_reg ( .clkb(ijtag_to_tck), .d(
+        ltest_to_si), .o(retiming_ltest_to_si) );
+  i0slsn080ab1n02x5 ltest_so_retiming_reg ( .clkb(ijtag_to_tck), .d(
+        ltest_to_sel), .o(ltest_so) );
+  i0sinv000ab1n02x5 U6 ( .a(n3), .o1(ijtag_to_ce) );
+  i0soa0023ab1n02x5 U7 ( .c(n4), .d(ltest_ce_se_ue_1_), .e(n5), .a(n56), .b(
+        ltest_to_en), .o(n3) );
+  i0sinv000ab1n02x5 U8 ( .a(n7), .o1(n46) );
+  i0saboi22ab1n02x5 U9 ( .c(clock_sequence_buf_out_0_), .d(n8), .a(n8), .b(
+        occ_ctrl_1_), .out0(n7) );
+  i0snor002ab1n02x5 U10 ( .a(n9), .b(n10), .o1(n8) );
+  i0sobai22ab1n02x5 U11 ( .a(occ_ctrl_so_retimed), .b(
+        static_clock_control_mode_buf_out), .c(n9), .d(n11), .out0(n47) );
+  i0sinv000ab1n02x5 U12 ( .a(static_clock_control_mode_buf_out), .o1(n9) );
+  i0snor002ab1n02x5 U18 ( .a(n5), .b(n17), .o1(ltest_to_scan_en) );
+  i0snorb02ab1n02x5 U19 ( .a(ltest_mem_bypass_en), .b(n5), .out0(
+        ltest_to_mem_bypass_en) );
+  i0snorb02ab1n02x5 U20 ( .a(ltest_mcp_bounding_en), .b(n5), .out0(
+        ltest_to_mcp_bounding_en) );
+  i0sao0023ab1n02x5 U21 ( .c(ltest_to_en), .d(ltest_ce_se_ue_0_), .e(
+        ltest_ce_se_ue_1_), .a(ijtag_ue), .b(n5), .o(ijtag_to_ue) );
+  i0sobai22ab1n02x5 U22 ( .a(retiming_ltest_to_si), .b(n5), .c(ltest_to_en), 
+        .d(n16), .out0(ijtag_to_si) );
+  i0sao0023ab1n02x5 U25 ( .c(ltest_to_en), .d(n4), .e(ltest_ce_se_ue_1_), .a(
+        ijtag_se), .b(n5), .o(ijtag_to_se) );
+  i0sinv000ab1n02x5 U26 ( .a(ltest_to_en), .o1(n5) );
+  i0sinv000ab1n02x5 U27 ( .a(ltest_ce_se_ue_0_), .o1(n4) );
+  i0sand002ab1n02x5 U28 ( .a(occ_ctrl_0_), .b(ltest_occ_en), .o(n_1_net_0) );
+  i0snanb03ab1n02x5 U29 ( .a(ltest_async_set_reset_static_disable), .b(n17), 
+        .c(n18), .out0(n_0_net_0) );
+  i0soaoi13ab1n02x5 U30 ( .c(static_clock_control_mode_buf_out), .d(n11), .b(
+        n19), .a(n10), .o1(N58) );
+  i0sinv000ab1n02x5 U31 ( .a(ltest_scan_en_buf_out), .o1(n10) );
+  i0snand02ab1n02x5 U32 ( .a(clock_sequence_buf_out_1_), .b(
+        static_clock_control_mode_buf_out), .o1(n19) );
+  i0sinv000ab1n02x5 U33 ( .a(ltest_scan_in_buf_out), .o1(n11) );
+  i0soai022ab1n02x5 U34 ( .a(n17), .b(n18), .c(ltest_scan_en), .d(n15), .o1(
+        N51) );
+  i0sinv000ab1n02x5 U36 ( .a(ltest_to_reset), .o1(n18) );
+  i0sinv000ab1n02x5 U37 ( .a(ltest_scan_en), .o1(n17) );
+  i0slsn080ab1n02x5 retiming_so_reg ( .clkb(ijtag_tck), .d(net783), .o(
+        ijtag_so) );
+  i0sfuq000ab1d02x5 occ_ctrl_reg_1 ( .si(n54), .d(N58), .ssb(n43), .clk(
+        ltest_clk_buf), .o(occ_ctrl_1_) );
+  i0sfuq000ab1d02x5 occ_ctrl_reg_0 ( .si(n54), .d(n46), .ssb(n43), .clk(
+        ltest_clk_buf), .o(occ_ctrl_0_) );
+  i0sfuz040ab1d02x5 ltest_ce_se_ue_reg_0 ( .si(n54), .d(retiming_ltest_to_si), 
+        .den(ltest_scan_en), .ssb(n43), .clk(ijtag_to_tck), .o(
+        ltest_ce_se_ue_0_), .so(SYNOPSYS_UNCONNECTED_2) );
+  i0sfuz040ab1d02x5 ltest_ce_se_ue_reg_1 ( .si(n54), .d(ltest_ce_se_ue_0_), 
+        .den(ltest_scan_en), .ssb(n43), .clk(ijtag_to_tck), .o(
+        ltest_ce_se_ue_1_), .so(SYNOPSYS_UNCONNECTED_3) );
+  i0sfuz040ab1d02x5 ltest_to_reset_reg ( .si(n54), .d(occ_ctrl_so), .den(
+        ltest_scan_en), .ssb(n43), .clk(ijtag_to_tck), .o(ltest_to_reset), 
+        .so(SYNOPSYS_UNCONNECTED_4) );
+  i0sfuz040ab1d02x5 ltest_to_sel_reg ( .si(n54), .d(ltest_ce_se_ue_1_), .den(
+        ltest_scan_en), .ssb(n43), .clk(ijtag_to_tck), .o(ltest_to_sel), .so(
+        SYNOPSYS_UNCONNECTED_5) );
+  i0sfuq000ab1d02x5 ltest_to_si_reg ( .si(n54), .d(N51), .ssb(n43), .clk(
+        ijtag_to_tck), .o(ltest_to_si) );
+  i0sfhz000ab1d03f5 sib_reg ( .si(n54), .d(n48), .ssb(n43), .clk(ijtag_tck), 
+        .o(net783), .so(SYNOPSYS_UNCONNECTED_6) );
+  i0sfvz08bab1d12x5 sib_latch_reg ( .si(n54), .d(n42), .ssb(n43), .clkb(
+        ijtag_tck), .rb(ijtag_reset), .s(n54), .o(sib_latch), .so(
+        SYNOPSYS_UNCONNECTED_7) );
+  i0sfvz08bab1d03x6 to_enable_int_reg ( .si(n54), .d(sib_latch), .ssb(n43), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n54), .o(to_enable_int), .so(
+        SYNOPSYS_UNCONNECTED_8) );
+  i0stilo00ab1n02x5 U62 ( .o(n54) );
+  i0snor042ab1n03x5 U63 ( .a(n49), .b(n50), .o1(n510) );
+  i0smdn022ab1n03x4 U64 ( .b(n52), .a(net776), .sa(net777), .o1(n48) );
+  i0smdn022ab1n03x4 U65 ( .b(n53), .a(n52), .sa(n510), .o1(n42) );
+  i0sinv030ab1n04x5 U66 ( .a(net783), .o1(n52) );
+  i0sinv030ab1n04x5 U67 ( .a(sib_latch), .o1(n53) );
+  i0sinv030ab1d32x5 U68 ( .a(ijtag_sel), .o1(n49) );
+  i0sinv030ab1d32x5 U69 ( .a(ijtag_ue), .o1(n50) );
+  i0snanp03ab1n03x5 U70 ( .a(to_enable_int), .b(ijtag_sel), .c(n5), .o1(n55)
+         );
+  i0sinv000ab1n03x5 U71 ( .a(ijtag_si), .o1(n16) );
+  i0sinv000ab1n03x5 U72 ( .a(ijtag_ce), .o1(n56) );
+  i0sinv000ab1n03x5 U73 ( .a(ijtag_from_so), .o1(n15) );
+  i0stihi00ab1n02x5 U74 ( .o(n43) );
+  i0smd2na2ab1n03x5 U75 ( .c(n56), .b(n16), .a(n15), .sa(sib_latch), .out0(
+        net776) );
+  i0soa0012ab1n03x5 U76 ( .b(ijtag_se), .c(ijtag_ce), .a(ijtag_sel), .o(net777) );
+  i0saob012ab1n03x5 U77 ( .b(ltest_to_sel), .c(ltest_to_en), .a(n55), .out0(
+        ijtag_to_sel) );
+endmodule
+

@@ -1,0 +1,266 @@
+/////////////////////////////////////////////////////////////
+// Created by: Synopsys DC Expert(TM) in wire load mode
+// Version   : Q-2019.12-SP5-1
+// Date      : Fri Jul 28 05:53:13 2023
+/////////////////////////////////////////////////////////////
+
+
+
+    module firebird7_in_intest_edt_scan_bi_sol_NUM_SOL_INPUTS2_SOLCTR_SIZE15_DW01_inc_0_0 ( 
+        A, SUM );
+  input [14:0] A;
+  output [14:0] SUM;
+  wire   carry_14_, carry_13_, carry_12_, carry_11_, carry_10_, carry_9_,
+         carry_8_, carry_7_, carry_6_, carry_5_, carry_4_, carry_3_, carry_2_;
+
+  i0src0022ab1n03x5 U1_1_12 ( .a(A[12]), .b(carry_12_), .carry(carry_13_), 
+        .sum(SUM[12]) );
+  i0src0022ab1n03x5 U1_1_6 ( .a(A[6]), .b(carry_6_), .carry(carry_7_), .sum(
+        SUM[6]) );
+  i0src0022ab1n03x5 U1_1_10 ( .a(A[10]), .b(carry_10_), .carry(carry_11_), 
+        .sum(SUM[10]) );
+  i0src0022ab1n03x5 U1_1_8 ( .a(A[8]), .b(carry_8_), .carry(carry_9_), .sum(
+        SUM[8]) );
+  i0src0022ab1n03x5 U1_1_4 ( .a(A[4]), .b(carry_4_), .carry(carry_5_), .sum(
+        SUM[4]) );
+  i0src0022ab1n03x5 U1_1_2 ( .a(A[2]), .b(carry_2_), .carry(carry_3_), .sum(
+        SUM[2]) );
+  i0src0022ab1n03x5 U1_1_11 ( .a(A[11]), .b(carry_11_), .carry(carry_12_), 
+        .sum(SUM[11]) );
+  i0src0022ab1n03x5 U1_1_1 ( .a(A[1]), .b(A[0]), .carry(carry_2_), .sum(SUM[1]) );
+  i0src0022ab1n03x5 U1_1_9 ( .a(A[9]), .b(carry_9_), .carry(carry_10_), .sum(
+        SUM[9]) );
+  i0src0022ab1n03x5 U1_1_7 ( .a(A[7]), .b(carry_7_), .carry(carry_8_), .sum(
+        SUM[7]) );
+  i0src0022ab1n03x5 U1_1_5 ( .a(A[5]), .b(carry_5_), .carry(carry_6_), .sum(
+        SUM[5]) );
+  i0src0022ab1n03x5 U1_1_3 ( .a(A[3]), .b(carry_3_), .carry(carry_4_), .sum(
+        SUM[3]) );
+  i0src0022ab1n03x5 U1_1_13 ( .a(A[13]), .b(carry_13_), .carry(carry_14_), 
+        .sum(SUM[13]) );
+  i0sinv000ab1n03x5 U1 ( .a(A[0]), .o1(SUM[0]) );
+  i0sxor002ab1n02x5 U2 ( .a(carry_14_), .b(A[14]), .out0(SUM[14]) );
+endmodule
+
+
+module firebird7_in_intest_edt_scan_bi_sol_NUM_SOL_INPUTS2_SOLCTR_SIZE15 ( 
+        reset_b, sol_init, tog_clk, sol_in, sol_mode, sol_mask, sol_thresh, 
+        sol_out, sol_tog_status, sol_cnt_status );
+  input [1:0] sol_in;
+  input [1:0] sol_mask;
+  input [14:0] sol_thresh;
+  output [1:0] sol_tog_status;
+  output [14:0] sol_cnt_status;
+  input reset_b, sol_init, tog_clk, sol_mode;
+  output sol_out;
+  wire   sol_in_dly_rst, sol_in_dly_1_, sol_in_dly_0_, togdet_rise_1_,
+         togdet_rise_0_, togdet_rise_in_1_, togdet_rise_in_0_, togdet_fall_1_,
+         togdet_fall_0_, togdet_fall_in_1_, togdet_fall_in_0_, sol_tog_all,
+         sol_tog_all_in, sol_watchdog, sol_watchdog_in, N17, N18, N19, N20,
+         N21, N22, N23, N24, N25, N26, N27, N28, N29, N30, N31, N32, n200,
+         n210, n220, n230, n240, n250, n260, n270, n280, n290, n300, n310,
+         n320, n33, n34, n35, n36, n37, n38, n39, n40, n41, n42, n43, n44, n45,
+         n46, n47, n48, n49, n50, n51, n52, n53, n54, n55, n56, n57, n58, n59,
+         n60, n61, n62, n63, n64, n65, n66, n67, n68, n69, n70, n71, n72, n73,
+         n74, n75, n76, n77, n78, n79, n80, n81, n82, n83, n84, n85, n86, n87,
+         n88, n89, n90, n91, n92, n93, n94, n95, n96, n97, n98, n99, n100,
+         n101, n102, n103, n104, n105, n106, n107, n108, n109;
+
+  i0snanb02ab1n03x5 U19 ( .a(sol_init), .b(reset_b), .out0(sol_in_dly_rst) );
+  i0sao0122ab1n03x5 U20 ( .b(N31), .c(n55), .d(n300), .e(sol_cnt_status[14]), 
+        .a(n310), .o(n40) );
+  i0sao0122ab1n03x5 U21 ( .b(N30), .c(n55), .d(n300), .e(sol_cnt_status[13]), 
+        .a(n310), .o(n41) );
+  i0sao0122ab1n03x5 U22 ( .b(N29), .c(n55), .d(n300), .e(sol_cnt_status[12]), 
+        .a(n310), .o(n42) );
+  i0sao0122ab1n03x5 U23 ( .b(N28), .c(n55), .d(n300), .e(sol_cnt_status[11]), 
+        .a(n310), .o(n43) );
+  i0sao0122ab1n03x5 U24 ( .b(N27), .c(n55), .d(n300), .e(sol_cnt_status[10]), 
+        .a(n310), .o(n44) );
+  i0sao0122ab1n03x5 U25 ( .b(N26), .c(n55), .d(n300), .e(sol_cnt_status[9]), 
+        .a(n310), .o(n45) );
+  i0sao0122ab1n03x5 U26 ( .b(N25), .c(n55), .d(n300), .e(sol_cnt_status[8]), 
+        .a(n310), .o(n46) );
+  i0sao0122ab1n03x5 U27 ( .b(N24), .c(n55), .d(n300), .e(sol_cnt_status[7]), 
+        .a(n310), .o(n47) );
+  i0sao0122ab1n03x5 U28 ( .b(N23), .c(n55), .d(n300), .e(sol_cnt_status[6]), 
+        .a(n310), .o(n48) );
+  i0sao0122ab1n03x5 U29 ( .b(N22), .c(n55), .d(n300), .e(sol_cnt_status[5]), 
+        .a(n310), .o(n49) );
+  i0sao0122ab1n03x5 U30 ( .b(N21), .c(n55), .d(n300), .e(sol_cnt_status[4]), 
+        .a(n310), .o(n50) );
+  i0sao0122ab1n03x5 U31 ( .b(N20), .c(n55), .d(n300), .e(sol_cnt_status[3]), 
+        .a(n310), .o(n51) );
+  i0sao0122ab1n03x5 U32 ( .b(N19), .c(n55), .d(n300), .e(sol_cnt_status[2]), 
+        .a(n310), .o(n52) );
+  i0sao0122ab1n03x5 U33 ( .b(N18), .c(n55), .d(n300), .e(sol_cnt_status[1]), 
+        .a(n310), .o(n53) );
+  i0sao0122ab1n03x5 U34 ( .b(N17), .c(n55), .d(n300), .e(sol_cnt_status[0]), 
+        .a(n310), .o(n54) );
+  i0sorn002ab1n03x5 U43 ( .a(sol_mode), .b(n103), .o(n270) );
+  firebird7_in_intest_edt_scan_bi_sol_NUM_SOL_INPUTS2_SOLCTR_SIZE15_DW01_inc_0_0 add_152 ( 
+        .A(sol_cnt_status), .SUM({N31, N30, N29, N28, N27, N26, N25, N24, N23, 
+        N22, N21, N20, N19, N18, N17}) );
+  i0sfan013ab1d03x5 sol_in_dly_reg_0 ( .d(n98), .clk(tog_clk), .rb(n97), .ob(
+        sol_in_dly_0_) );
+  i0sfvn003ab1d03x5 sol_in_dly_reg_1 ( .d(sol_in[1]), .clk(tog_clk), .rb(n97), 
+        .o(sol_in_dly_1_) );
+  i0sfvn003ab1d03x5 sol_tog_all_reg ( .d(sol_tog_all_in), .clk(tog_clk), .rb(
+        n97), .o(sol_tog_all) );
+  i0sfvn003ab1d03x5 sol_watchdog_reg ( .d(sol_watchdog_in), .clk(tog_clk), 
+        .rb(n97), .o(sol_watchdog) );
+  i0sfvn003ab1d03x5 togdet_fall_reg_0 ( .d(togdet_fall_in_0_), .clk(tog_clk), 
+        .rb(n97), .o(togdet_fall_0_) );
+  i0sfvn003ab1d03x5 togdet_rise_reg_1 ( .d(togdet_rise_in_1_), .clk(tog_clk), 
+        .rb(n97), .o(togdet_rise_1_) );
+  i0sfvn003ab1d03x5 togdet_rise_reg_0 ( .d(togdet_rise_in_0_), .clk(tog_clk), 
+        .rb(n97), .o(togdet_rise_0_) );
+  i0sfvn003ab1d03x5 togdet_fall_reg_1 ( .d(togdet_fall_in_1_), .clk(tog_clk), 
+        .rb(n97), .o(togdet_fall_1_) );
+  i0sfvn003ab1d03x5 threshcnt_reg_4 ( .d(n50), .clk(tog_clk), .rb(n97), .o(
+        sol_cnt_status[4]) );
+  i0sfvn003ab1d03x5 threshcnt_reg_6 ( .d(n48), .clk(tog_clk), .rb(n97), .o(
+        sol_cnt_status[6]) );
+  i0sfvn003ab1d03x5 threshcnt_reg_0 ( .d(n54), .clk(tog_clk), .rb(n97), .o(
+        sol_cnt_status[0]) );
+  i0sfvn003ab1d03x5 threshcnt_reg_5 ( .d(n49), .clk(tog_clk), .rb(n97), .o(
+        sol_cnt_status[5]) );
+  i0sfvn003ab1d03x5 threshcnt_reg_12 ( .d(n42), .clk(tog_clk), .rb(n97), .o(
+        sol_cnt_status[12]) );
+  i0sfvn003ab1d03x5 threshcnt_reg_14 ( .d(n40), .clk(tog_clk), .rb(n97), .o(
+        sol_cnt_status[14]) );
+  i0sfvn003ab1d03x5 threshcnt_reg_2 ( .d(n52), .clk(tog_clk), .rb(n97), .o(
+        sol_cnt_status[2]) );
+  i0sfvn003ab1d03x5 threshcnt_reg_8 ( .d(n46), .clk(tog_clk), .rb(n97), .o(
+        sol_cnt_status[8]) );
+  i0sfvn003ab1d03x5 threshcnt_reg_1 ( .d(n53), .clk(tog_clk), .rb(n97), .o(
+        sol_cnt_status[1]) );
+  i0sfvn003ab1d03x5 threshcnt_reg_10 ( .d(n44), .clk(tog_clk), .rb(n97), .o(
+        sol_cnt_status[10]) );
+  i0sfvn003ab1d03x5 threshcnt_reg_13 ( .d(n41), .clk(tog_clk), .rb(n97), .o(
+        sol_cnt_status[13]) );
+  i0sfvn003ab1d03x5 threshcnt_reg_7 ( .d(n47), .clk(tog_clk), .rb(n97), .o(
+        sol_cnt_status[7]) );
+  i0sfvn003ab1d03x5 threshcnt_reg_3 ( .d(n51), .clk(tog_clk), .rb(n97), .o(
+        sol_cnt_status[3]) );
+  i0sfvn003ab1d03x5 threshcnt_reg_9 ( .d(n45), .clk(tog_clk), .rb(n97), .o(
+        sol_cnt_status[9]) );
+  i0sfvn003ab1d03x5 threshcnt_reg_11 ( .d(n43), .clk(tog_clk), .rb(n97), .o(
+        sol_cnt_status[11]) );
+  i0sinv000ab1n03x5 U63 ( .a(n200), .o1(n100) );
+  i0sinv000ab1n03x5 U64 ( .a(n69), .o1(n96) );
+  i0sinv000ab1n03x5 U65 ( .a(n250), .o1(n103) );
+  i0sinv000ab1n03x5 U66 ( .a(n62), .o1(n92) );
+  i0soai022ab1n03x5 U67 ( .a(n230), .b(n103), .c(n240), .d(n250), .o1(
+        sol_tog_status[0]) );
+  i0saobi12ab1n03x5 U68 ( .b(n250), .c(n200), .a(n260), .out0(n300) );
+  i0sbff000ab1n02x5 U69 ( .a(n290), .o(n55) );
+  i0soaoi13ab1n03x5 U70 ( .c(n108), .d(n200), .b(n270), .a(n300), .o1(n290) );
+  i0soaoi13ab1n03x5 U71 ( .c(n105), .d(n107), .b(n101), .a(n230), .o1(n200) );
+  i0snanp02ab1n03x5 U72 ( .a(n108), .b(n100), .o1(sol_tog_all_in) );
+  i0soai122ab1n03x5 U73 ( .b(n109), .c(n260), .d(n102), .e(n270), .a(n280), 
+        .o1(sol_out) );
+  i0soai112ab1n03x5 U74 ( .c(sol_in[1]), .d(sol_mask[1]), .a(n99), .b(n103), 
+        .o1(n280) );
+  i0sinv000ab1n03x5 U75 ( .a(N32), .o1(n102) );
+  i0sinv000ab1n03x5 U76 ( .a(n240), .o1(n99) );
+  i0sinv000ab1n03x5 U77 ( .a(sol_thresh[9]), .o1(n94) );
+  i0sinv000ab1n03x5 U78 ( .a(sol_cnt_status[1]), .o1(n87) );
+  i0sinv000ab1n03x5 U79 ( .a(sol_thresh[3]), .o1(n89) );
+  i0sinv000ab1n03x5 U80 ( .a(sol_thresh[14]), .o1(n95) );
+  i0sinv000ab1n03x5 U81 ( .a(sol_thresh[8]), .o1(n93) );
+  i0sinv000ab1n03x5 U82 ( .a(sol_thresh[2]), .o1(n88) );
+  i0sinv000ab1n03x5 U83 ( .a(sol_thresh[5]), .o1(n91) );
+  i0sinv000ab1n03x5 U84 ( .a(sol_thresh[4]), .o1(n90) );
+  i0snanp04ab1n03x5 U85 ( .a(n36), .b(n37), .c(n38), .d(n39), .o1(n250) );
+  i0snorp03ab1n03x5 U86 ( .a(sol_thresh[0]), .b(sol_thresh[11]), .c(
+        sol_thresh[10]), .o1(n36) );
+  i0snorp04ab1n03x5 U87 ( .a(sol_thresh[1]), .b(sol_thresh[14]), .c(
+        sol_thresh[13]), .d(sol_thresh[12]), .o1(n37) );
+  i0snorp04ab1n03x5 U88 ( .a(sol_thresh[5]), .b(sol_thresh[4]), .c(
+        sol_thresh[3]), .d(sol_thresh[2]), .o1(n38) );
+  i0snorp04ab1n03x5 U89 ( .a(sol_thresh[9]), .b(sol_thresh[8]), .c(
+        sol_thresh[7]), .d(sol_thresh[6]), .o1(n39) );
+  i0soai113ab1n03x5 U90 ( .c(n105), .d(n103), .e(n107), .a(n101), .b(n220), 
+        .o1(sol_tog_status[1]) );
+  i0snanp02ab1n03x5 U91 ( .a(n103), .b(sol_in[1]), .o1(n220) );
+  i0snanp02ab1n03x5 U92 ( .a(sol_mode), .b(n250), .o1(n260) );
+  i0snorp02ab1n03x5 U93 ( .a(sol_mask[0]), .b(sol_in[0]), .o1(n240) );
+  i0saoi012ab1n03x5 U94 ( .b(togdet_fall_0_), .c(togdet_rise_0_), .a(
+        sol_mask[0]), .o1(n230) );
+  i0sinv000ab1n03x5 U95 ( .a(sol_mask[1]), .o1(n101) );
+  i0sand004ab1n03x7 U96 ( .a(n320), .b(n33), .c(n34), .d(n35), .o(n310) );
+  i0sand004ab1n03x7 U97 ( .a(sol_cnt_status[6]), .b(sol_cnt_status[7]), .c(
+        sol_cnt_status[8]), .d(sol_cnt_status[9]), .o(n320) );
+  i0sand004ab1n03x7 U98 ( .a(sol_cnt_status[2]), .b(sol_cnt_status[3]), .c(
+        sol_cnt_status[4]), .d(sol_cnt_status[5]), .o(n33) );
+  i0sand004ab1n03x7 U99 ( .a(sol_cnt_status[12]), .b(sol_cnt_status[13]), .c(
+        sol_cnt_status[14]), .d(sol_cnt_status[1]), .o(n34) );
+  i0sand004ab1n03x7 U100 ( .a(n55), .b(sol_cnt_status[0]), .c(
+        sol_cnt_status[10]), .d(sol_cnt_status[11]), .o(n35) );
+  i0saoai13ab1n03x5 U101 ( .c(sol_tog_all), .d(N32), .b(n109), .a(n210), .o1(
+        sol_watchdog_in) );
+  i0snanp02ab1n03x5 U102 ( .a(n200), .b(n108), .o1(n210) );
+  i0saoa112ab1n03x5 U103 ( .c(n104), .d(sol_in[1]), .b(togdet_rise_1_), .a(
+        n100), .o(togdet_rise_in_1_) );
+  i0saoa112ab1n03x5 U104 ( .c(n98), .d(sol_in_dly_0_), .b(togdet_fall_0_), .a(
+        n100), .o(togdet_fall_in_0_) );
+  i0soaoi13ab1n03x5 U105 ( .c(sol_in[1]), .d(n104), .b(n107), .a(n200), .o1(
+        togdet_fall_in_1_) );
+  i0soaoi13ab1n03x5 U106 ( .c(sol_in_dly_0_), .d(n98), .b(n106), .a(n200), 
+        .o1(togdet_rise_in_0_) );
+  i0sinv000ab1n03x5 U107 ( .a(togdet_rise_0_), .o1(n106) );
+  i0sinv000ab1n03x5 U108 ( .a(sol_in[0]), .o1(n98) );
+  i0sinv000ab1n03x5 U109 ( .a(sol_cnt_status[11]), .o1(n83) );
+  i0sinv000ab1n03x5 U110 ( .a(sol_cnt_status[7]), .o1(n85) );
+  i0sinv000ab1n03x5 U111 ( .a(sol_cnt_status[13]), .o1(n81) );
+  i0sinv000ab1n03x5 U112 ( .a(sol_cnt_status[10]), .o1(n84) );
+  i0sinv000ab1n03x5 U113 ( .a(sol_cnt_status[12]), .o1(n82) );
+  i0sinv000ab1n03x5 U114 ( .a(sol_cnt_status[6]), .o1(n86) );
+  i0sinv000ab1n03x5 U115 ( .a(togdet_fall_1_), .o1(n107) );
+  i0sinv000ab1n03x5 U116 ( .a(togdet_rise_1_), .o1(n105) );
+  i0sinv000ab1n03x5 U117 ( .a(sol_watchdog), .o1(n109) );
+  i0sinv000ab1n03x5 U118 ( .a(sol_tog_all), .o1(n108) );
+  i0sinv000ab1n03x5 U119 ( .a(sol_in_dly_1_), .o1(n104) );
+  i0sinv000ab1n03x5 U120 ( .a(sol_in_dly_rst), .o1(n97) );
+  i0sorn002ab1n02x5 U121 ( .a(sol_thresh[7]), .b(n85), .o(n61) );
+  i0soai012ab1n02x5 U122 ( .b(sol_thresh[6]), .c(n86), .a(n61), .o1(n62) );
+  i0sand002ab1n02x5 U123 ( .a(sol_cnt_status[3]), .b(n89), .o(n56) );
+  i0soa0023ab1n02x5 U124 ( .c(n56), .d(sol_cnt_status[2]), .e(n88), .a(n89), 
+        .b(sol_cnt_status[3]), .o(n58) );
+  i0saoai13ab1n02x5 U125 ( .c(sol_cnt_status[2]), .d(n88), .b(n56), .a(n58), 
+        .o1(n67) );
+  i0soab012ab1n02x4 U126 ( .b(n87), .c(sol_thresh[1]), .a(sol_cnt_status[0]), 
+        .out0(n57) );
+  i0saoi022ab1n02x5 U127 ( .a(sol_thresh[1]), .b(n87), .c(n57), .d(
+        sol_thresh[0]), .o1(n59) );
+  i0sand002ab1n02x5 U128 ( .a(sol_cnt_status[5]), .b(n91), .o(n60) );
+  i0saoi122ab1n02x5 U129 ( .b(n59), .c(n58), .d(sol_cnt_status[4]), .e(n90), 
+        .a(n60), .o1(n66) );
+  i0soa0023ab1n02x5 U130 ( .c(n60), .d(sol_cnt_status[4]), .e(n90), .a(n91), 
+        .b(sol_cnt_status[5]), .o(n64) );
+  i0saoi023ab1n02x5 U131 ( .c(n61), .d(n86), .e(sol_thresh[6]), .a(
+        sol_thresh[7]), .b(n85), .o1(n63) );
+  i0saoi022ab1n02x5 U132 ( .a(n64), .b(n63), .c(n63), .d(n62), .o1(n65) );
+  i0saoi013ab1n02x4 U133 ( .b(n92), .c(n67), .d(n66), .a(n65), .o1(n80) );
+  i0sorn002ab1n02x5 U134 ( .a(sol_thresh[13]), .b(n81), .o(n70) );
+  i0saoi023ab1n02x5 U135 ( .c(n70), .d(n82), .e(sol_thresh[12]), .a(
+        sol_thresh[13]), .b(n81), .o1(n74) );
+  i0snand02ab1n02x5 U136 ( .a(sol_cnt_status[14]), .b(n95), .o1(n69) );
+  i0sorn002ab1n02x5 U137 ( .a(sol_thresh[11]), .b(n83), .o(n68) );
+  i0saoi023ab1n02x5 U138 ( .c(n68), .d(n84), .e(sol_thresh[10]), .a(
+        sol_thresh[11]), .b(n83), .o1(n72) );
+  i0sand002ab1n02x5 U139 ( .a(sol_cnt_status[9]), .b(n94), .o(n75) );
+  i0soa0023ab1n02x5 U140 ( .c(n75), .d(sol_cnt_status[8]), .e(n93), .a(n94), 
+        .b(sol_cnt_status[9]), .o(n71) );
+  i0soai012ab1n02x5 U141 ( .b(sol_thresh[10]), .c(n84), .a(n68), .o1(n76) );
+  i0soai112ab1n02x5 U142 ( .c(sol_thresh[12]), .d(n82), .a(n70), .b(n69), .o1(
+        n77) );
+  i0sao0122ab1n02x5 U143 ( .b(n72), .c(n71), .d(n76), .e(n72), .a(n77), .o(n73) );
+  i0soaoi15ab1n02x5 U144 ( .d(sol_cnt_status[14]), .e(n95), .c(n74), .b(n96), 
+        .a(n73), .o1(n79) );
+  i0saoi302ab1n02x4 U145 ( .d(sol_cnt_status[8]), .e(n93), .a(n77), .b(n76), 
+        .c(n75), .o1(n78) );
+  i0sobai22ab1n02x5 U146 ( .a(n80), .b(n79), .c(n78), .d(n79), .out0(N32) );
+endmodule
+

@@ -1,0 +1,332 @@
+/////////////////////////////////////////////////////////////
+// Created by: Synopsys DC Expert(TM) in wire load mode
+// Version   : Q-2019.12-SP5-1
+// Date      : Tue Oct 24 19:31:06 2023
+/////////////////////////////////////////////////////////////
+
+
+module firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_control ( 
+        ijtag_reset, ijtag_sel, ijtag_si, ijtag_ce, ijtag_se, ijtag_ue, 
+        ijtag_tck, sol_mask, sol_thresh, sol_init, sol_mode, reset_b, 
+        jam_edt_channels_in, ijtag_so );
+  output [1:0] sol_mask;
+  output [14:0] sol_thresh;
+  input ijtag_reset, ijtag_sel, ijtag_si, ijtag_ce, ijtag_se, ijtag_ue,
+         ijtag_tck;
+  output sol_init, sol_mode, reset_b, jam_edt_channels_in, ijtag_so;
+  wire   tdr_20_, tdr_19_, tdr_18_, tdr_17_, tdr_16_, tdr_15_, tdr_14_,
+         tdr_13_, tdr_12_, tdr_11_, tdr_10_, tdr_9_, tdr_8_, tdr_7_, tdr_6_,
+         tdr_5_, tdr_4_, tdr_3_, tdr_2_, tdr_1_, tdr_0_, n172, n54, n60, n66,
+         n72, n78, n84, n90, n96, n102, n108, n114, n120, n126, n132, n138,
+         n144, n150, n156, n162, n168, n174, n175, n176, n177, n178, n179,
+         n180, n181, n182, n183, n184, n185, n186, n187, n188, n189, n190,
+         n191, n192, n193, n194, n195, net1305, net1307, net1309, net1314,
+         net1316, net1317, net1319, net1329, net1336, net1338, net1341,
+         net1355, net1392, net1791, net1857, n_cell_2223_net2075,
+         n_cell_2232_net2208, n_cell_2232_net2183, net1833, net2477, net3389,
+         n196, n197, n198, n199, n200, n201, n202, n203, n204, n205, n206,
+         n207, n208, n209, n210, n211, n212, n213, n214, n215, n216, n217,
+         n218, n219, n220, n221, n222, n223, n224, n225, n226, n227, n228,
+         n229, n230, n231, n232, n233, n234, n235, n236, n237, n238, n239,
+         n240, n241, n242, n243, n244, n245, n246, n247, n248, n249, n250,
+         n251, n252, n253, n254, n255, n256, n257, n258, n259, n260, n261,
+         n262, n263, n264, n265, n266, n267, n268, n269, n270, n271, n272,
+         n273, n274, n275, n276, n277, n278, n279, n280,
+         SYNOPSYS_UNCONNECTED_1, SYNOPSYS_UNCONNECTED_2,
+         SYNOPSYS_UNCONNECTED_3, SYNOPSYS_UNCONNECTED_4,
+         SYNOPSYS_UNCONNECTED_5, SYNOPSYS_UNCONNECTED_6,
+         SYNOPSYS_UNCONNECTED_7, SYNOPSYS_UNCONNECTED_8,
+         SYNOPSYS_UNCONNECTED_9, SYNOPSYS_UNCONNECTED_10,
+         SYNOPSYS_UNCONNECTED_11, SYNOPSYS_UNCONNECTED_12,
+         SYNOPSYS_UNCONNECTED_13, SYNOPSYS_UNCONNECTED_14,
+         SYNOPSYS_UNCONNECTED_15, SYNOPSYS_UNCONNECTED_16,
+         SYNOPSYS_UNCONNECTED_17, SYNOPSYS_UNCONNECTED_18,
+         SYNOPSYS_UNCONNECTED_19, SYNOPSYS_UNCONNECTED_20,
+         SYNOPSYS_UNCONNECTED_21, SYNOPSYS_UNCONNECTED_22,
+         SYNOPSYS_UNCONNECTED_23, SYNOPSYS_UNCONNECTED_24,
+         SYNOPSYS_UNCONNECTED_25, SYNOPSYS_UNCONNECTED_26,
+         SYNOPSYS_UNCONNECTED_27, SYNOPSYS_UNCONNECTED_28,
+         SYNOPSYS_UNCONNECTED_29, SYNOPSYS_UNCONNECTED_30;
+
+  i0sfuq000ab1d24x5 tdr_reg_17 ( .si(n206), .d(n178), .ssb(n172), .clk(
+        ijtag_tck), .o(tdr_17_) );
+  i0sfuq000ab1d24x5 tdr_reg_13 ( .si(n206), .d(n182), .ssb(n172), .clk(
+        ijtag_tck), .o(tdr_13_) );
+  i0sfuq000ab1d24x5 tdr_reg_12 ( .si(n206), .d(n183), .ssb(n172), .clk(
+        ijtag_tck), .o(tdr_12_) );
+  i0sfuq000ab1d24x5 tdr_reg_8 ( .si(n206), .d(n187), .ssb(n172), .clk(
+        ijtag_tck), .o(tdr_8_) );
+  i0sfuq000ab1d24x5 tdr_reg_4 ( .si(n206), .d(n191), .ssb(n172), .clk(
+        ijtag_tck), .o(tdr_4_) );
+  i0sfuq000ab1d24x5 tdr_reg_2 ( .si(n206), .d(n193), .ssb(n172), .clk(
+        ijtag_tck), .o(tdr_2_) );
+  i0sfuq000ab1d24x5 tdr_reg_1 ( .si(n206), .d(n194), .ssb(n172), .clk(
+        ijtag_tck), .o(tdr_1_) );
+  i0sfuq000ab1d24x5 tdr_reg_0 ( .si(n206), .d(n195), .ssb(n172), .clk(
+        ijtag_tck), .o(tdr_0_) );
+  i0slsn080ab1n02x5 retiming_so_reg ( .clkb(ijtag_tck), .d(n232), .o(ijtag_so)
+         );
+  i0sfuq000ab1d24x5 tdr_reg_14 ( .si(n206), .d(n181), .ssb(n172), .clk(
+        ijtag_tck), .o(tdr_14_) );
+  i0sfuq000ab1d24x5 tdr_reg_18 ( .si(n206), .d(n177), .ssb(n172), .clk(
+        ijtag_tck), .o(tdr_18_) );
+  i0sfhz000ab1d12f5 tdr_reg_16 ( .si(n206), .d(n179), .ssb(n172), .clk(
+        ijtag_tck), .o(tdr_16_), .so(SYNOPSYS_UNCONNECTED_1) );
+  i0sfvz08bab1d03x6 jam_edt_channels_in_latch_reg ( .si(n206), .d(n54), .ssb(
+        n172), .clkb(ijtag_tck), .rb(ijtag_reset), .s(n206), .o(
+        jam_edt_channels_in), .so(SYNOPSYS_UNCONNECTED_2) );
+  i0sfvz08bab1d02x5 sol_thresh_14_latch_reg ( .si(n206), .d(n162), .ssb(n172), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n206), .o(sol_thresh[14]), .so(
+        SYNOPSYS_UNCONNECTED_3) );
+  i0sfvz08bab1d02x5 sol_thresh_10_latch_reg ( .si(n206), .d(n138), .ssb(n172), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n206), .o(sol_thresh[10]), .so(
+        SYNOPSYS_UNCONNECTED_4) );
+  i0sfhz000ab1d24f5 tdr_reg_20 ( .si(n206), .d(n175), .ssb(n172), .clk(
+        ijtag_tck), .o(tdr_20_), .so(SYNOPSYS_UNCONNECTED_5) );
+  i0sfhz000ab1d24f5 tdr_reg_19 ( .si(n206), .d(n176), .ssb(n172), .clk(
+        ijtag_tck), .o(tdr_19_), .so(SYNOPSYS_UNCONNECTED_6) );
+  i0sfuq000ab1d24x5 tdr_reg_15 ( .si(n206), .d(n180), .ssb(n172), .clk(
+        ijtag_tck), .o(tdr_15_) );
+  i0sfvz08bab1d02x5 sol_thresh_9_latch_reg ( .si(n206), .d(n132), .ssb(n172), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n206), .o(sol_thresh[9]), .so(
+        SYNOPSYS_UNCONNECTED_7) );
+  i0sfuq000ab1d06x5 tdr_reg_10 ( .si(n206), .d(n185), .ssb(n172), .clk(
+        ijtag_tck), .o(tdr_10_) );
+  i0sfvz08bab1d03x6 sol_thresh_4_latch_reg ( .si(n206), .d(n102), .ssb(n172), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n206), .o(sol_thresh[4]), .so(
+        SYNOPSYS_UNCONNECTED_8) );
+  i0sfhz000ab1d06f5 tdr_reg_3 ( .si(n206), .d(n192), .ssb(n172), .clk(
+        ijtag_tck), .o(tdr_3_), .so(SYNOPSYS_UNCONNECTED_9) );
+  i0sfhz000ab1d06f5 tdr_reg_11 ( .si(n206), .d(n184), .ssb(n172), .clk(
+        ijtag_tck), .o(tdr_11_), .so(SYNOPSYS_UNCONNECTED_10) );
+  i0sfhz000ab1d12f5 tdr_reg_7 ( .si(n206), .d(n188), .ssb(n172), .clk(
+        ijtag_tck), .o(tdr_7_), .so(SYNOPSYS_UNCONNECTED_11) );
+  i0sfhz000ab1d12f5 tdr_reg_5 ( .si(n206), .d(n190), .ssb(n172), .clk(
+        ijtag_tck), .o(tdr_5_), .so(SYNOPSYS_UNCONNECTED_12) );
+  i0sfvp08bab1d03x5 sol_init_latch_reg ( .si(n206), .d(n72), .ssb(n172), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n206), .o(sol_init), .so(
+        SYNOPSYS_UNCONNECTED_13) );
+  i0sfhz000ab1d12x5 tdr_reg_6 ( .si(n206), .d(n189), .ssb(n172), .clk(
+        ijtag_tck), .o(tdr_6_), .so(SYNOPSYS_UNCONNECTED_14) );
+  i0sfvz08bab1d03x6 sol_thresh_3_latch_reg ( .si(n206), .d(n96), .ssb(n172), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n206), .o(sol_thresh[3]), .so(
+        SYNOPSYS_UNCONNECTED_15) );
+  i0sfvz08bab1d03x6 sol_thresh_1_latch_reg ( .si(n206), .d(n84), .ssb(n172), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n206), .o(sol_thresh[1]), .so(
+        SYNOPSYS_UNCONNECTED_16) );
+  i0sfvz08bab1d03x6 sol_thresh_2_latch_reg ( .si(n206), .d(n90), .ssb(n172), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n206), .o(sol_thresh[2]), .so(
+        SYNOPSYS_UNCONNECTED_17) );
+  i0sfvz08bab1d03x6 sol_mask_0_latch_reg ( .si(n206), .d(n168), .ssb(n172), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n206), .o(sol_mask[0]), .so(
+        SYNOPSYS_UNCONNECTED_18) );
+  i0sfvz08bab1d03x6 sol_thresh_12_latch_reg ( .si(n206), .d(n150), .ssb(n172), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n206), .o(sol_thresh[12]), .so(
+        SYNOPSYS_UNCONNECTED_19) );
+  i0sfvz08bab1d03x6 sol_mode_latch_reg ( .si(n206), .d(n66), .ssb(n172), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n206), .o(sol_mode), .so(
+        SYNOPSYS_UNCONNECTED_20) );
+  i0sfvz08bab1d03x6 sol_thresh_5_latch_reg ( .si(n206), .d(n108), .ssb(n172), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n206), .o(sol_thresh[5]), .so(
+        SYNOPSYS_UNCONNECTED_21) );
+  i0sfvz08bab1d06x5 sol_thresh_11_latch_reg ( .si(n206), .d(n144), .ssb(n172), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n206), .o(sol_thresh[11]), .so(
+        SYNOPSYS_UNCONNECTED_22) );
+  i0sfvz08bab1d06x5 sol_thresh_6_latch_reg ( .si(n206), .d(n114), .ssb(n172), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n206), .o(sol_thresh[6]), .so(
+        SYNOPSYS_UNCONNECTED_23) );
+  i0sfvz08bab1d06x5 sol_thresh_0_latch_reg ( .si(n206), .d(n78), .ssb(n172), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n206), .o(sol_thresh[0]), .so(
+        SYNOPSYS_UNCONNECTED_24) );
+  i0sfvz08bab1d03x6 sol_thresh_7_latch_reg ( .si(n206), .d(n120), .ssb(n172), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n206), .o(sol_thresh[7]), .so(
+        SYNOPSYS_UNCONNECTED_25) );
+  i0sfvz08bab1d03x6 sol_mask_1_latch_reg ( .si(n206), .d(n174), .ssb(n172), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n206), .o(sol_mask[1]), .so(
+        SYNOPSYS_UNCONNECTED_26) );
+  i0sfhz000ab1d12f5 tdr_reg_9 ( .si(n206), .d(n186), .ssb(n172), .clk(
+        ijtag_tck), .o(tdr_9_), .so(SYNOPSYS_UNCONNECTED_27) );
+  i0sfvz08bab1d03x5 sol_thresh_13_latch_reg ( .si(n206), .d(n156), .ssb(n172), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n206), .o(sol_thresh[13]), .so(
+        SYNOPSYS_UNCONNECTED_28) );
+  i0sfvz08bab1d02x5 sol_thresh_8_latch_reg ( .si(n206), .d(n126), .ssb(n172), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n206), .o(sol_thresh[8]), .so(
+        SYNOPSYS_UNCONNECTED_29) );
+  i0sfvz08bab1d02x5 reset_b_latch_reg ( .si(n206), .d(n60), .ssb(n172), .clkb(
+        ijtag_tck), .rb(ijtag_reset), .s(n206), .o(reset_b), .so(
+        SYNOPSYS_UNCONNECTED_30) );
+  i0stilo00ab1n02x5 U198 ( .o(n206) );
+  i0sinv000ab1n02x5 U199 ( .a(net1341), .o1(n196) );
+  i0sinv000ab1n02x5 U200 ( .a(net1319), .o1(n197) );
+  i0sinv040ab1n03x5 U201 ( .a(reset_b), .o1(n276) );
+  i0soai222ab1n03x5 U202 ( .a(n254), .b(n237), .c(net1307), .d(net1316), .e(
+        net1319), .f(net1309), .o1(n191) );
+  i0smdn022ab1n03x4 U203 ( .b(n277), .a(n275), .sa(n_cell_2223_net2075), .o1(
+        n66) );
+  i0sinv030ab1n04x5 U204 ( .a(tdr_8_), .o1(n233) );
+  i0sinv030ab1n04x5 U205 ( .a(tdr_0_), .o1(n279) );
+  i0sinv030ab1n04x5 U206 ( .a(tdr_2_), .o1(n277) );
+  i0sinv040ab1n06x5 U207 ( .a(tdr_6_), .o1(n210) );
+  i0snanb02ab1n03x5 U208 ( .a(net1307), .b(tdr_3_), .out0(n221) );
+  i0sinv000ab1n02x5 U209 ( .a(tdr_11_), .o1(n268) );
+  i0snanb02ab1n02x5 U210 ( .a(net1307), .b(tdr_13_), .out0(n227) );
+  i0sinv000ab1n03x5 U211 ( .a(n227), .o1(n229) );
+  i0sinv000ab1n03x5 U212 ( .a(n266), .o1(n205) );
+  i0sinv000ab1n03x5 U213 ( .a(sol_thresh[5]), .o1(net1329) );
+  i0sinv000ab1n03x5 U214 ( .a(n221), .o1(n224) );
+  i0snona22ab1n02x5 U215 ( .b(ijtag_ce), .c(n219), .a(ijtag_sel), .out0(
+        net1305) );
+  i0sinv000ab1n03x5 U216 ( .a(ijtag_se), .o1(n219) );
+  i0sinv000ab1n03x5 U217 ( .a(net1305), .o1(n_cell_2232_net2208) );
+  i0snanp02ab1n03x5 U218 ( .a(ijtag_ce), .b(ijtag_sel), .o1(net1309) );
+  i0sinv030ab1n04x5 U219 ( .a(tdr_18_), .o1(n260) );
+  i0snanp02ab1n03x5 U220 ( .a(ijtag_se), .b(ijtag_sel), .o1(
+        n_cell_2232_net2183) );
+  i0soai222ab1n02x5 U221 ( .a(net1305), .b(n269), .c(net1307), .d(n230), .e(
+        net1355), .f(net1329), .o1(n186) );
+  i0smdn022ab1n02x4 U222 ( .b(n273), .a(n210), .sa(net1791), .o1(n90) );
+  i0sinv000ab1n03x5 U223 ( .a(sol_init), .o1(net1317) );
+  i0snor022ab1n02x5 U224 ( .a(n253), .b(n265), .o1(n248) );
+  i0soai122ab1n02x5 U225 ( .b(net1307), .c(n257), .d(net1355), .e(n256), .a(
+        n255), .o1(n175) );
+  i0sorn002ab1n02x5 U226 ( .a(n254), .b(n230), .o(n214) );
+  i0sorn002ab1n02x7 U227 ( .a(net1307), .b(n272), .o(n213) );
+  i0saoi013ab1n02x5 U228 ( .b(n225), .c(n226), .d(n227), .a(n228), .o1(n182)
+         );
+  i0snano22ab1n02x5 U229 ( .b(net1309), .c(n225), .a(n229), .out0(n228) );
+  i0snanp02ab1n02x5 U230 ( .a(tdr_14_), .b(n_cell_2232_net2208), .o1(n225) );
+  i0snand42ab1n04x5 U231 ( .a(n198), .b(n199), .o1(n144) );
+  i0snand22ab1n06x5 U232 ( .a(tdr_15_), .b(net1791), .o1(n198) );
+  i0sinv000ab1n03x5 U233 ( .a(n_cell_2223_net2075), .o1(net1791) );
+  i0snanp02ab1n02x5 U234 ( .a(n196), .b(n_cell_2223_net2075), .o1(n199) );
+  i0snanp02ab1n03x5 U235 ( .a(ijtag_ue), .b(ijtag_sel), .o1(
+        n_cell_2223_net2075) );
+  i0sinv000ab1n03x5 U236 ( .a(net1338), .o1(net3389) );
+  i0soai222ab1n03x5 U237 ( .a(n254), .b(n263), .c(net1307), .d(net1338), .e(
+        net1341), .f(net1355), .o1(n180) );
+  i0smbc003ab1n03x5 U238 ( .a(n251), .sa(net3389), .b(net1392), .sb(tdr_14_), 
+        .c(n252), .sc(sol_thresh[10]), .o(n181) );
+  i0sinv000ab1n03x5 U239 ( .a(net1791), .o1(net1833) );
+  i0sorn002ab1n02x7 U240 ( .a(net1307), .b(n204), .o(n200) );
+  i0sorn002ab1n02x7 U241 ( .a(net1307), .b(n234), .o(n201) );
+  i0sorn002ab1n02x7 U242 ( .a(net1305), .b(n234), .o(n202) );
+  i0sinv030ab1n02x5 U243 ( .a(sol_mode), .o1(n275) );
+  i0sorn002ab1n02x7 U244 ( .a(net1307), .b(n235), .o(n203) );
+  i0sinv000ab1n06x5 U245 ( .a(tdr_5_), .o1(n237) );
+  i0sinv000ab1n06x5 U246 ( .a(tdr_7_), .o1(n236) );
+  i0snanp02ab1n03x5 U247 ( .a(ijtag_ce), .b(ijtag_sel), .o1(net1355) );
+  i0snanp02ab1n03x5 U248 ( .a(net1309), .b(n_cell_2232_net2183), .o1(net1307)
+         );
+  i0smdn022ab1n03x4 U249 ( .b(n270), .a(n233), .sa(net1791), .o1(n102) );
+  i0sinv000ab1n02x5 U250 ( .a(tdr_17_), .o1(n204) );
+  i0soai222ab1n02x7 U251 ( .a(n254), .b(n204), .c(net1307), .d(n263), .e(
+        net1355), .f(n261), .o1(n179) );
+  i0snor022ab1n04x5 U252 ( .a(n267), .b(net1309), .o1(n249) );
+  i0sinv000ab1n06x5 U253 ( .a(tdr_1_), .o1(n280) );
+  i0smdn022ab1n06x5 U254 ( .b(n262), .a(n212), .sa(net1857), .o1(n156) );
+  i0smbn022ab1n03x5 U255 ( .b(sol_thresh[9]), .a(tdr_13_), .sa(net1791), .o(
+        n132) );
+  i0sinv040ab1n03x5 U256 ( .a(sol_thresh[9]), .o1(n226) );
+  i0smbc003ab1n03x7 U257 ( .a(n251), .sa(tdr_13_), .b(net1392), .sb(n205), .c(
+        n252), .sc(sol_thresh[8]), .o(n183) );
+  i0snanb02ab1n03x5 U258 ( .a(net1305), .b(n218), .out0(n223) );
+  i0sinv030ab1n04x5 U259 ( .a(tdr_9_), .o1(n230) );
+  i0smbn022ab1n03x5 U260 ( .b(tdr_11_), .a(sol_thresh[7]), .sa(
+        n_cell_2223_net2075), .o(n120) );
+  i0soai222ab1n06x5 U261 ( .a(n236), .b(n254), .c(n210), .d(net1307), .e(n273), 
+        .f(net1355), .o1(n189) );
+  i0sinv040ab1n03x5 U262 ( .a(sol_thresh[2]), .o1(n273) );
+  i0soai112ab1n03x5 U263 ( .c(n276), .d(net1309), .a(n203), .b(n202), .o1(n194) );
+  i0soai113ab1n03x5 U264 ( .c(net2477), .d(n207), .e(n259), .a(n200), .b(n208), 
+        .o1(n178) );
+  i0sinv000ab1n03x5 U265 ( .a(ijtag_ce), .o1(n207) );
+  i0sinv000ab1n03x5 U266 ( .a(n245), .o1(n208) );
+  i0soai113ab1n03x5 U267 ( .c(net2477), .d(n207), .e(n275), .a(n201), .b(n209), 
+        .o1(n193) );
+  i0sinv000ab1n03x5 U268 ( .a(ijtag_sel), .o1(net2477) );
+  i0sinv000ab1n03x5 U269 ( .a(n250), .o1(n209) );
+  i0sinv000ab1n02x5 U270 ( .a(n259), .o1(n211) );
+  i0sinv000ab1n03x5 U271 ( .a(n211), .o1(n212) );
+  i0snanb03ab1n06x5 U272 ( .a(n244), .b(n213), .c(n214), .out0(n187) );
+  i0soai222ab1n02x7 U273 ( .a(net1305), .b(n210), .c(net1307), .d(n237), .e(
+        n253), .f(n274), .o1(n190) );
+  i0smbn022ab1n03x5 U274 ( .b(tdr_12_), .a(sol_thresh[8]), .sa(net1857), .o(
+        n126) );
+  i0snanb03ab1n03x5 U275 ( .a(n249), .b(n215), .c(n216), .out0(n185) );
+  i0sorn002ab1n09x5 U276 ( .a(net1307), .b(n269), .o(n215) );
+  i0sorn002ab1n09x5 U277 ( .a(n254), .b(n268), .o(n216) );
+  i0sinv000ab1n02x5 U278 ( .a(n267), .o1(n217) );
+  i0snorb02ab1n03x4 U279 ( .a(n252), .b(n270), .out0(n244) );
+  i0sinv000ab1n03x5 U280 ( .a(net1316), .o1(n218) );
+  i0sinv000ab1n02x5 U281 ( .a(tdr_4_), .o1(net1316) );
+  i0smbn022ab1n03x5 U282 ( .b(tdr_4_), .a(n197), .sa(net1833), .o(n78) );
+  i0saobi23ab1n06x5 U283 ( .c(n220), .d(n221), .e(net1355), .a(n222), .b(n223), 
+        .o1(n192) );
+  i0snor042ab1n03x5 U284 ( .a(sol_init), .b(n224), .o1(n222) );
+  i0sinv030ab1n04x5 U285 ( .a(n223), .o1(n220) );
+  i0sinv000ab1n06x5 U286 ( .a(tdr_3_), .o1(net1314) );
+  i0sinv000ab1n06x5 U287 ( .a(tdr_14_), .o1(net1336) );
+  i0smdn022ab1n03x4 U288 ( .b(net1329), .a(n230), .sa(net1791), .o1(n108) );
+  i0smdn022ab1n02x5 U289 ( .b(n271), .a(n236), .sa(net1791), .o1(n96) );
+  i0smdn022ab1n02x5 U290 ( .b(n274), .a(n237), .sa(net1791), .o1(n84) );
+  i0sinv000ab1n02x5 U291 ( .a(tdr_0_), .o1(n231) );
+  i0sinv000ab1n03x5 U292 ( .a(n231), .o1(n232) );
+  i0sinv000ab1n02x5 U293 ( .a(tdr_8_), .o1(n272) );
+  i0soai222ab1n02x7 U294 ( .a(net1305), .b(n272), .c(net1307), .d(n236), .e(
+        net1309), .f(n271), .o1(n188) );
+  i0sinv000ab1n02x5 U295 ( .a(tdr_2_), .o1(n234) );
+  i0sinv000ab1n02x5 U296 ( .a(tdr_1_), .o1(n235) );
+  i0sinv040ab1n08x5 U297 ( .a(tdr_17_), .o1(n262) );
+  i0sorn002ab1n03x5 U298 ( .a(n241), .b(n242), .o(n238) );
+  i0sorn002ab1n03x5 U299 ( .a(n238), .b(n243), .o(n195) );
+  i0sinv000ab1n02x5 U300 ( .a(n278), .o1(n239) );
+  i0sinv000ab1n03x5 U301 ( .a(n239), .o1(n240) );
+  i0smdn022ab1n02x4 U302 ( .b(net1317), .a(net1314), .sa(net1791), .o1(n72) );
+  i0sinv000ab1n02x5 U303 ( .a(tdr_10_), .o1(n269) );
+  i0smbn022ab1n03x5 U304 ( .b(tdr_10_), .a(n217), .sa(net1833), .o(n114) );
+  i0sinv000ab1n03x5 U305 ( .a(net1791), .o1(net1857) );
+  i0sinv030ab1n02x5 U306 ( .a(sol_thresh[12]), .o1(n261) );
+  i0snanp02ab1n03x5 U307 ( .a(ijtag_ce), .b(ijtag_sel), .o1(n253) );
+  i0snanp03ab1n03x5 U308 ( .a(ijtag_se), .b(ijtag_sel), .c(n253), .o1(n254) );
+  i0snorp02ab1n02x5 U309 ( .a(n254), .b(n235), .o1(n241) );
+  i0snorp02ab1n02x5 U310 ( .a(net1307), .b(n231), .o1(n242) );
+  i0snor022ab1n03x5 U311 ( .a(net1355), .b(n278), .o1(n243) );
+  i0snorp02ab1n02x5 U312 ( .a(n254), .b(n260), .o1(n245) );
+  i0sinv000ab1n02x5 U313 ( .a(tdr_12_), .o1(n266) );
+  i0sinv030ab1n02x5 U314 ( .a(sol_mask[1]), .o1(n256) );
+  i0snorp02ab1n02x5 U315 ( .a(net1305), .b(n266), .o1(n246) );
+  i0snorp02ab1n02x5 U316 ( .a(net1307), .b(n268), .o1(n247) );
+  i0sorn003ab1n03x7 U317 ( .a(n246), .b(n247), .c(n248), .o(n184) );
+  i0sinv000ab1n02x5 U318 ( .a(tdr_15_), .o1(net1338) );
+  i0snorp02ab1n02x5 U319 ( .a(n254), .b(net1314), .o1(n250) );
+  i0sinv000ab1n02x5 U320 ( .a(sol_thresh[14]), .o1(n258) );
+  i0smkn022ab1n02x5 U321 ( .b(sol_mask[0]), .a(tdr_19_), .sa(net1791), .o(n168) );
+  i0sinv000ab1n03x5 U322 ( .a(net1307), .o1(net1392) );
+  i0smdn022ab1n03x4 U323 ( .b(n256), .a(n257), .sa(net1791), .o1(n174) );
+  i0sinv000ab1n03x5 U324 ( .a(n254), .o1(n251) );
+  i0sinv000ab1n03x5 U325 ( .a(n253), .o1(n252) );
+  i0sinv000ab1n03x5 U326 ( .a(sol_thresh[10]), .o1(n264) );
+  i0smbc003ab1n02x5 U327 ( .a(n251), .sa(tdr_19_), .b(net1392), .sb(tdr_18_), 
+        .c(n252), .sc(sol_thresh[14]), .o(n177) );
+  i0stihi00ab1n02x5 U328 ( .o(n172) );
+  i0smdn022ab1n02x4 U329 ( .b(n261), .a(n263), .sa(net1791), .o1(n150) );
+  i0smdn022ab1n02x5 U330 ( .b(n258), .a(n260), .sa(net1791), .o1(n162) );
+  i0smdn022ab1n02x5 U331 ( .b(n264), .a(net1336), .sa(net1791), .o1(n138) );
+  i0sinv000ab1n04x5 U332 ( .a(tdr_16_), .o1(n263) );
+  i0smbc003ab1n02x5 U333 ( .a(n251), .sa(tdr_20_), .b(net1392), .sb(tdr_19_), 
+        .c(n252), .sc(sol_mask[0]), .o(n176) );
+  i0sinv020ab1n04x5 U334 ( .a(tdr_20_), .o1(n257) );
+  i0sinv040ab1n03x5 U335 ( .a(sol_thresh[13]), .o1(n259) );
+  i0sinv040ab1n03x5 U336 ( .a(sol_thresh[11]), .o1(net1341) );
+  i0sinv040ab1n03x5 U337 ( .a(sol_thresh[7]), .o1(n265) );
+  i0sinv040ab1n03x5 U338 ( .a(sol_thresh[6]), .o1(n267) );
+  i0sinv040ab1n03x5 U339 ( .a(sol_thresh[4]), .o1(n270) );
+  i0sinv040ab1n03x5 U340 ( .a(sol_thresh[3]), .o1(n271) );
+  i0sinv040ab1n03x5 U341 ( .a(sol_thresh[1]), .o1(n274) );
+  i0sinv040ab1n03x5 U342 ( .a(sol_thresh[0]), .o1(net1319) );
+  i0sinv040ab1n03x5 U343 ( .a(jam_edt_channels_in), .o1(n278) );
+  i0snanb02ab1n03x5 U344 ( .a(net1305), .b(ijtag_si), .out0(n255) );
+  i0smdn022ab1n03x4 U345 ( .b(n276), .a(n280), .sa(net1791), .o1(n60) );
+  i0smdn022ab1n03x4 U346 ( .b(n240), .a(n279), .sa(net1791), .o1(n54) );
+endmodule
+

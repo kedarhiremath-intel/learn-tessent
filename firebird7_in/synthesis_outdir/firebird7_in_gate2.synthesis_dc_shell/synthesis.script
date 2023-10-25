@@ -1,0 +1,44 @@
+#!/bin/sh
+unset noclobber
+echo "Synthesis script"
+
+if [ -f ./setup.script ] ; then
+  . ./setup.script
+fi
+
+echo ""
+echo "Removing sub-directories that will receive the synthesized files"
+rm -rf firebird7_in_gate2_cells.instrument/
+rm -rf firebird7_in_gate2_edt.instrument/
+rm -rf firebird7_in_gate2_ijtag.instrument/
+rm -rf firebird7_in_gate2_occ.instrument/
+rm -rf firebird7_in_gate2_ssn.instrument/
+
+echo "Starting synthesis"
+dc_shell -wait 600 -f dc_shell.synthesis_tcl
+
+echo ""
+echo "Checking that synthesized files all exist"
+totalFiles=0
+actualFiles=0
+while read c p f ; do
+  if [ "$c" = "synth" ] ; then
+    totalFiles=`expr $totalFiles + 1`
+    if [ -s $f ] ; then
+      actualFiles=`expr $actualFiles + 1`
+    else
+      echo "Error: Synthesized file '$f' is missing."
+    fi
+  fi
+done < file_list
+
+if [ $actualFiles -ne $totalFiles ] ; then
+  echo ""
+  echo "Error: Synthesis failed - `expr $totalFiles - $actualFiles` files were not written out."
+  exit 1
+fi
+
+echo ""
+echo "Synthesis completed!"
+
+exit 0

@@ -1,0 +1,23 @@
+/////////////////////////////////////////////////////////////
+// Created by: Synopsys DC Expert(TM) in wire load mode
+// Version   : Q-2019.12-SP5-1
+// Date      : Mon Oct 23 13:02:04 2023
+/////////////////////////////////////////////////////////////
+
+
+module firebird7_in_gate1_tessent_data_mux_w3_32 ( ijtag_select, 
+        functional_data_in, ijtag_data_in, data_out );
+  input [2:0] functional_data_in;
+  input [2:0] ijtag_data_in;
+  output [2:0] data_out;
+  input ijtag_select;
+
+
+  i0smbn022ab1n02x5 U5 ( .b(functional_data_in[2]), .a(ijtag_data_in[2]), .sa(
+        ijtag_select), .o(data_out[2]) );
+  i0smbn022ab1n02x5 U6 ( .b(functional_data_in[1]), .a(ijtag_data_in[1]), .sa(
+        ijtag_select), .o(data_out[1]) );
+  i0smbn022ab1n02x5 U7 ( .b(functional_data_in[0]), .a(ijtag_data_in[0]), .sa(
+        ijtag_select), .o(data_out[0]) );
+endmodule
+

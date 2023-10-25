@@ -1,0 +1,39 @@
+/////////////////////////////////////////////////////////////
+// Created by: Synopsys DC Expert(TM) in wire load mode
+// Version   : Q-2019.12-SP5-1
+// Date      : Mon Oct 23 13:02:03 2023
+/////////////////////////////////////////////////////////////
+
+
+module firebird7_in_gate1_tessent_tdr_sti_ctrl ( ijtag_reset, ijtag_sel, 
+        ijtag_si, ijtag_ce, ijtag_se, ijtag_ue, ijtag_tck, nonscan_test, 
+        ijtag_so );
+  input ijtag_reset, ijtag_sel, ijtag_si, ijtag_ce, ijtag_se, ijtag_ue,
+         ijtag_tck;
+  output nonscan_test, ijtag_so;
+  wire   nonscan_test_latch, tdr_0_, n10, n9, n8, n11, n12, n13, n14, n15, n16,
+         SYNOPSYS_UNCONNECTED_1, SYNOPSYS_UNCONNECTED_2;
+
+  i0sbfn000ab1n02x5 tessent_persistent_cell_nonscan_test ( .a(
+        nonscan_test_latch), .o(nonscan_test) );
+  i0slsn080ab1n02x5 retiming_so_reg ( .clkb(ijtag_tck), .d(n13), .o(ijtag_so)
+         );
+  i0sfuz000ab1d03x5 tdr_reg_0 ( .si(n10), .d(n11), .ssb(n9), .clk(ijtag_tck), 
+        .o(tdr_0_), .so(SYNOPSYS_UNCONNECTED_1) );
+  i0sfvz08bab1d02x5 nonscan_test_latch_reg ( .si(n10), .d(n8), .ssb(n9), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n10), .o(nonscan_test_latch), 
+        .so(SYNOPSYS_UNCONNECTED_2) );
+  i0smbn022ab1n03x5 U14 ( .b(nonscan_test_latch), .a(tdr_0_), .sa(n16), .o(n8)
+         );
+  i0soai012ab1n03x5 U15 ( .b(ijtag_se), .c(ijtag_ce), .a(ijtag_sel), .o1(n15)
+         );
+  i0snanb04ab1n03x5 U16 ( .a(ijtag_ce), .b(ijtag_se), .c(ijtag_si), .d(
+        ijtag_sel), .out0(n14) );
+  i0sand002ab1n03x5 U17 ( .a(ijtag_ue), .b(ijtag_sel), .o(n16) );
+  i0stilo00ab1n02x5 U18 ( .o(n10) );
+  i0stihi00ab1n02x5 U19 ( .o(n9) );
+  i0sinv000ab1n02x5 U20 ( .a(tdr_0_), .o1(n12) );
+  i0sinv000ab1n03x5 U21 ( .a(n12), .o1(n13) );
+  i0saob012ab1n03x5 U22 ( .b(n13), .c(n15), .a(n14), .out0(n11) );
+endmodule
+

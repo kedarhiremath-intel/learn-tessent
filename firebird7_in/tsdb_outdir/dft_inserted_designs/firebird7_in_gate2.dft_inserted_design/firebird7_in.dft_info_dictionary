@@ -1,0 +1,1811 @@
+#-------------------------------------------------
+#  File created by: Tessent Shell
+#          Version: 2022.4
+#       Created on: Tue Oct 24 19:30:12 PDT 2023
+#-------------------------------------------------
+
+ 
+set tessent_dft_info_dict {
+  version 1
+  dft_signals {
+    all_test {
+      connection_node_name firebird7_in_gate2_tessent_tdr_sri_ctrl_inst/all_test
+      connection_node_type pin
+      forced_value_in_pre_scan_drc 1
+    }
+    async_set_reset_dynamic_disable {
+      connection_node_name tessent_persistent_cell_async_set_reset_dynamic_disable/o
+      connection_node_type pin
+    }
+    async_set_reset_static_disable {
+      connection_node_name firebird7_in_gate2_tessent_tdr_sri_ctrl_inst/async_set_reset_static_disable
+      connection_node_type pin
+      forced_value_in_pre_scan_drc 0
+    }
+    edt_clock {
+      connection_node_name firebird7_in_gate2_tessent_ssn_scan_host_ssh_inst/edt_clock
+      connection_node_type pin
+    }
+    edt_update {
+      connection_node_name firebird7_in_gate2_tessent_ssn_scan_host_ssh_inst/edt_update
+      connection_node_type pin
+    }
+    ext_edt_mode {
+      connection_node_name firebird7_in_gate2_tessent_tdr_sri_ctrl_inst/ext_edt_mode
+      connection_node_type pin
+    }
+    ext_ltest_en {
+      connection_node_name firebird7_in_gate2_tessent_tdr_sri_ctrl_inst/ext_ltest_en
+      connection_node_type pin
+    }
+    ext_mode {
+      connection_node_name firebird7_in_gate2_tessent_tdr_sri_ctrl_inst/ext_mode
+      connection_node_type pin
+    }
+    fscan_clkungate {
+      connection_node_name firebird7_in_gate2_tessent_tdr_sri_ctrl_inst/fscan_clkungate
+      connection_node_type pin
+      forced_value_in_pre_scan_drc 0
+    }
+    int_edt_mode {
+      connection_node_name firebird7_in_gate2_tessent_tdr_sri_ctrl_inst/int_edt_mode
+      connection_node_type pin
+    }
+    int_ltest_en {
+      connection_node_name firebird7_in_gate2_tessent_tdr_sri_ctrl_inst/int_ltest_en
+      connection_node_type pin
+    }
+    int_mode {
+      connection_node_name firebird7_in_gate2_tessent_tdr_sri_ctrl_inst/int_mode
+      connection_node_type pin
+    }
+    ltest_en {
+      connection_node_name firebird7_in_gate2_tessent_tdr_sri_ctrl_inst/ltest_en
+      connection_node_type pin
+      forced_value_in_pre_scan_drc 1
+    }
+    memory_bypass_en {
+      connection_node_name firebird7_in_gate2_tessent_tdr_sri_ctrl_inst/memory_bypass_en
+      connection_node_type pin
+      forced_value_in_pre_scan_drc 1
+    }
+    occ_kill_clock_en {
+      connection_node_name firebird7_in_gate2_tessent_tdr_sri_ctrl_inst/occ_kill_clock_en
+      connection_node_type pin
+      forced_value_in_pre_scan_drc 0
+    }
+    scan_en {
+      connection_node_name firebird7_in_gate2_tessent_ssn_scan_host_ssh_inst/scan_en
+      connection_node_type pin
+    }
+    se_pipeline_en {
+      connection_node_name firebird7_in_gate2_tessent_tdr_sri_ctrl_inst/se_pipeline_en
+      connection_node_type pin
+      forced_value_in_pre_scan_drc 0
+    }
+    shift_capture_clock {
+      connection_node_name firebird7_in_gate2_tessent_ssn_scan_host_ssh_inst/shift_capture_clock
+      connection_node_type pin
+    }
+    tck_occ_en {
+      connection_node_name firebird7_in_gate2_tessent_tdr_sri_ctrl_inst/tck_occ_en
+      connection_node_type pin
+      forced_value_in_pre_scan_drc 0
+    }
+  }
+  modules_with_chains {
+    firebird7_in_gate1_tessent_sib_sti {
+      pre_scan_drc_on_boundary_only 0
+      module_type occ
+      is_hard_module 1
+      internal_scan_only 0
+      allow_scan_out_retiming 0
+      instance_list firebird7_in_gate1_tessent_sib_sti_inst
+      scan_en_ports {
+        ltest_scan_en {
+          active_polarity 1
+        }
+      }
+      clock_ports {
+        ltest_clk {
+          off_state 0
+        }
+      }
+      clock_out_ports_or_pins {
+        tessent_persistent_cell_ltest_clock_mux/clkout {}
+      }
+      ltest_en_ports {
+        ltest_en {
+          active_polarity 1
+        }
+      }
+      scan_chains {
+        scan_chain0 {
+          length 7
+          mux_si_functional_source 0
+          no_si_pipelining 0
+          is_non_scan_stitchable 0
+          scan_in_port ltest_si
+          scan_in_clock_name ltest_clk
+          scan_in_clock_inversion 0
+          scan_in_clock_unbalanced 0
+          scan_out_port ltest_so
+          scan_out_clock_name ltest_clk
+          scan_out_clock_inversion 1
+          scan_out_clock_unbalanced 0
+        }
+      }
+    }
+    firebird7_in_gate2_tessent_occ_clk {
+      pre_scan_drc_on_boundary_only 0
+      module_type occ
+      is_hard_module 1
+      internal_scan_only 0
+      allow_scan_out_retiming 0
+      instance_list firebird7_in_gate2_tessent_occ_clk_inst
+      scan_en_ports {
+        scan_en {
+          active_polarity 1
+        }
+      }
+      clock_ports {
+        slow_clock {
+          off_state 0
+        }
+      }
+      scan_chains {
+        scan_chain0 {
+          length 5
+          mux_si_functional_source 0
+          no_si_pipelining 0
+          is_non_scan_stitchable 0
+          scan_in_port scan_in
+          scan_in_clock_name slow_clock
+          scan_in_clock_inversion 0
+          scan_in_clock_unbalanced 0
+          scan_out_port scan_out
+          scan_out_clock_name slow_clock
+          scan_out_clock_inversion 1
+          scan_out_clock_unbalanced 0
+        }
+      }
+    }
+  }
+  modules_with_chains_not_active_by_default {}
+  non_scannable_instance_list {
+    firebird7_in_gate1_tessent_scanmux_green_sec_mux_inst
+    firebird7_in_gate1_tessent_scanmux_insysbist_sec_mux_inst
+    firebird7_in_gate1_tessent_scanmux_orange_sec_mux_inst
+    firebird7_in_gate1_tessent_scanmux_red_sec_mux_inst
+    firebird7_in_gate1_tessent_sib_array_pwrmgmt_inst
+    firebird7_in_gate1_tessent_sib_array_trim_fuse_override_inst
+    firebird7_in_gate1_tessent_sib_spare_green_inst
+    firebird7_in_gate1_tessent_sib_spare_inst
+    firebird7_in_gate1_tessent_sib_spare_insysbist_inst
+    firebird7_in_gate1_tessent_sib_spare_orange_inst
+    firebird7_in_gate1_tessent_sib_spare_red_inst
+    firebird7_in_gate1_tessent_tdr_spare_green_tdr_inst
+    firebird7_in_gate1_tessent_tdr_spare_insysbist_tdr_inst
+    firebird7_in_gate1_tessent_tdr_spare_orange_tdr_inst
+    firebird7_in_gate1_tessent_tdr_spare_red_tdr_inst
+    firebird7_in_gate2_tessent_edt_extest_edt_inst
+    firebird7_in_gate2_tessent_edt_extest_edt_tdr_inst
+    firebird7_in_gate2_tessent_edt_intest_edt_inst
+    firebird7_in_gate2_tessent_edt_intest_edt_tdr_inst
+    firebird7_in_gate2_tessent_sib_edt_inst
+    firebird7_in_gate2_tessent_sib_extest_edt_scan_bi_sol_inst
+    firebird7_in_gate2_tessent_sib_intest_edt_scan_bi_sol_inst
+    firebird7_in_gate2_tessent_sib_occ_inst
+    firebird7_in_gate2_tessent_sib_sri_ctrl_inst
+    firebird7_in_gate2_tessent_sib_sri_inst
+    firebird7_in_gate2_tessent_sib_ssn_inst
+    firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe_inst
+    firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe_inst
+    firebird7_in_gate2_tessent_ssn_scan_host_ssh_inst
+    firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_control_inst
+    firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_status_inst
+    firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_control_inst
+    firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_status_inst
+    firebird7_in_gate2_tessent_tdr_sri_ctrl_inst
+    ph0/i/d/m/g0_b0/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g0_b0/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g10_b10/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g10_b10/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g11_b11/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g11_b11/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g12_b12/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g12_b12/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g13_b13/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g13_b13/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g14_b14/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g14_b14/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g15_b15/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g15_b15/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g16_b16/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g16_b16/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g17_b17/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g17_b17/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g18_b18/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g18_b18/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g19_b19/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g19_b19/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g1_b1/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g1_b1/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g20_b20/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g20_b20/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g21_b21/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g21_b21/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g22_b22/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g22_b22/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g23_b23/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g23_b23/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g24_b24/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g24_b24/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g25_b25/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g25_b25/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g26_b26/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g26_b26/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g27_b27/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g27_b27/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g28_b28/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g28_b28/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g29_b29/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g29_b29/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g2_b2/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g2_b2/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g30_b30/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g30_b30/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g31_b31/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g31_b31/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g3_b3/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g3_b3/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g4_b4/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g4_b4/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g5_b5/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g5_b5/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g6_b6/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g6_b6/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g7_b7/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g7_b7/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g8_b8/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g8_b8/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g9_b9/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g9_b9/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/firebird7_in_gate1_tessent_tdr_array_pwrmgmt_ctrl_hdspsr_inst
+    ph0/i/firebird7_in_gate1_tessent_tdr_array_trim_fuse_override_ctrl_hdspsr_inst
+    ph0/i/p/f/m/ram0/gen_100_pRam/mem0_i
+    ph0/i/p/f/m/ram0/gen_100_pRam/mem0_i_bisr_inst
+    ph0/i/p/f/m/ram1/gen_100_pRam/mem0_i
+    ph0/i/p/f/m/ram1/gen_100_pRam/mem0_i_bisr_inst
+    ph0/i/p/f/m/ram2/gen_100_pRam/mem0_i
+    ph0/i/p/f/m/ram2/gen_100_pRam/mem0_i_bisr_inst
+    ph0/i/p/f/m/ram3/gen_100_pRam/mem0_i
+    ph0/i/p/f/m/ram3/gen_100_pRam/mem0_i_bisr_inst
+    ph0/i/p/gb1_b/m0/mem0_i
+    ph0/i/p/gb1_b/m0/mem0_i_bisr_inst
+    ph0/i/p/gb1_b/m1/mem0_i
+    ph0/i/p/gb1_b/m1/mem0_i_bisr_inst
+    ph0/i/p/gs1_s/m0/mem0_i
+    ph0/i/p/gs1_s/m0/mem0_i_bisr_inst
+    ph0/i/p/gs1_s/m1/mem0_i
+    ph0/i/p/gs1_s/m1/mem0_i_bisr_inst
+    u_extest_edt_scan_bi_sol_0
+    u_intest_edt_scan_bi_sol_0
+  }
+  edt_instances {
+    firebird7_in_gate2_tessent_edt_extest_edt_inst {
+      edt_module_name firebird7_in_gate2_tessent_edt_extest_edt
+      scan_chains {
+        scan_chain0 {
+          scan_in_port {edt_scan_in[0]}
+          scan_out_port {edt_scan_out[0]}
+        }
+        scan_chain1 {
+          scan_in_port {edt_scan_in[1]}
+          scan_out_port {edt_scan_out[1]}
+        }
+        scan_chain2 {
+          scan_in_port {edt_scan_in[2]}
+          scan_out_port {edt_scan_out[2]}
+        }
+        scan_chain3 {
+          scan_in_port {edt_scan_in[3]}
+          scan_out_port {edt_scan_out[3]}
+        }
+        scan_chain4 {
+          scan_in_port {edt_scan_in[4]}
+          scan_out_port {edt_scan_out[4]}
+        }
+      }
+    }
+    firebird7_in_gate2_tessent_edt_intest_edt_inst {
+      edt_module_name firebird7_in_gate2_tessent_edt_intest_edt
+      scan_chains {
+        scan_chain0 {
+          scan_in_port {edt_scan_in[0]}
+          scan_out_port {edt_scan_out[0]}
+        }
+        scan_chain1 {
+          scan_in_port {edt_scan_in[1]}
+          scan_out_port {edt_scan_out[1]}
+        }
+        scan_chain2 {
+          scan_in_port {edt_scan_in[2]}
+          scan_out_port {edt_scan_out[2]}
+        }
+        scan_chain3 {
+          scan_in_port {edt_scan_in[3]}
+          scan_out_port {edt_scan_out[3]}
+        }
+        scan_chain4 {
+          scan_in_port {edt_scan_in[4]}
+          scan_out_port {edt_scan_out[4]}
+        }
+        scan_chain5 {
+          scan_in_port {edt_scan_in[5]}
+          scan_out_port {edt_scan_out[5]}
+        }
+        scan_chain6 {
+          scan_in_port {edt_scan_in[6]}
+          scan_out_port {edt_scan_out[6]}
+        }
+        scan_chain7 {
+          scan_in_port {edt_scan_in[7]}
+          scan_out_port {edt_scan_out[7]}
+        }
+        scan_chain8 {
+          scan_in_port {edt_scan_in[8]}
+          scan_out_port {edt_scan_out[8]}
+        }
+        scan_chain9 {
+          scan_in_port {edt_scan_in[9]}
+          scan_out_port {edt_scan_out[9]}
+        }
+        scan_chain10 {
+          scan_in_port {edt_scan_in[10]}
+          scan_out_port {edt_scan_out[10]}
+        }
+        scan_chain11 {
+          scan_in_port {edt_scan_in[11]}
+          scan_out_port {edt_scan_out[11]}
+        }
+        scan_chain12 {
+          scan_in_port {edt_scan_in[12]}
+          scan_out_port {edt_scan_out[12]}
+        }
+        scan_chain13 {
+          scan_in_port {edt_scan_in[13]}
+          scan_out_port {edt_scan_out[13]}
+        }
+        scan_chain14 {
+          scan_in_port {edt_scan_in[14]}
+          scan_out_port {edt_scan_out[14]}
+        }
+        scan_chain15 {
+          scan_in_port {edt_scan_in[15]}
+          scan_out_port {edt_scan_out[15]}
+        }
+        scan_chain16 {
+          scan_in_port {edt_scan_in[16]}
+          scan_out_port {edt_scan_out[16]}
+        }
+        scan_chain17 {
+          scan_in_port {edt_scan_in[17]}
+          scan_out_port {edt_scan_out[17]}
+        }
+        scan_chain18 {
+          scan_in_port {edt_scan_in[18]}
+          scan_out_port {edt_scan_out[18]}
+        }
+        scan_chain19 {
+          scan_in_port {edt_scan_in[19]}
+          scan_out_port {edt_scan_out[19]}
+        }
+        scan_chain20 {
+          scan_in_port {edt_scan_in[20]}
+          scan_out_port {edt_scan_out[20]}
+        }
+        scan_chain21 {
+          scan_in_port {edt_scan_in[21]}
+          scan_out_port {edt_scan_out[21]}
+        }
+        scan_chain22 {
+          scan_in_port {edt_scan_in[22]}
+          scan_out_port {edt_scan_out[22]}
+        }
+        scan_chain23 {
+          scan_in_port {edt_scan_in[23]}
+          scan_out_port {edt_scan_out[23]}
+        }
+        scan_chain24 {
+          scan_in_port {edt_scan_in[24]}
+          scan_out_port {edt_scan_out[24]}
+        }
+        scan_chain25 {
+          scan_in_port {edt_scan_in[25]}
+          scan_out_port {edt_scan_out[25]}
+        }
+        scan_chain26 {
+          scan_in_port {edt_scan_in[26]}
+          scan_out_port {edt_scan_out[26]}
+        }
+        scan_chain27 {
+          scan_in_port {edt_scan_in[27]}
+          scan_out_port {edt_scan_out[27]}
+        }
+        scan_chain28 {
+          scan_in_port {edt_scan_in[28]}
+          scan_out_port {edt_scan_out[28]}
+        }
+        scan_chain29 {
+          scan_in_port {edt_scan_in[29]}
+          scan_out_port {edt_scan_out[29]}
+        }
+        scan_chain30 {
+          scan_in_port {edt_scan_in[30]}
+          scan_out_port {edt_scan_out[30]}
+        }
+        scan_chain31 {
+          scan_in_port {edt_scan_in[31]}
+          scan_out_port {edt_scan_out[31]}
+        }
+        scan_chain32 {
+          scan_in_port {edt_scan_in[32]}
+          scan_out_port {edt_scan_out[32]}
+        }
+        scan_chain33 {
+          scan_in_port {edt_scan_in[33]}
+          scan_out_port {edt_scan_out[33]}
+        }
+        scan_chain34 {
+          scan_in_port {edt_scan_in[34]}
+          scan_out_port {edt_scan_out[34]}
+        }
+        scan_chain35 {
+          scan_in_port {edt_scan_in[35]}
+          scan_out_port {edt_scan_out[35]}
+        }
+        scan_chain36 {
+          scan_in_port {edt_scan_in[36]}
+          scan_out_port {edt_scan_out[36]}
+        }
+        scan_chain37 {
+          scan_in_port {edt_scan_in[37]}
+          scan_out_port {edt_scan_out[37]}
+        }
+        scan_chain38 {
+          scan_in_port {edt_scan_in[38]}
+          scan_out_port {edt_scan_out[38]}
+        }
+        scan_chain39 {
+          scan_in_port {edt_scan_in[39]}
+          scan_out_port {edt_scan_out[39]}
+        }
+        scan_chain40 {
+          scan_in_port {edt_scan_in[40]}
+          scan_out_port {edt_scan_out[40]}
+        }
+        scan_chain41 {
+          scan_in_port {edt_scan_in[41]}
+          scan_out_port {edt_scan_out[41]}
+        }
+        scan_chain42 {
+          scan_in_port {edt_scan_in[42]}
+          scan_out_port {edt_scan_out[42]}
+        }
+        scan_chain43 {
+          scan_in_port {edt_scan_in[43]}
+          scan_out_port {edt_scan_out[43]}
+        }
+        scan_chain44 {
+          scan_in_port {edt_scan_in[44]}
+          scan_out_port {edt_scan_out[44]}
+        }
+        scan_chain45 {
+          scan_in_port {edt_scan_in[45]}
+          scan_out_port {edt_scan_out[45]}
+        }
+        scan_chain46 {
+          scan_in_port {edt_scan_in[46]}
+          scan_out_port {edt_scan_out[46]}
+        }
+        scan_chain47 {
+          scan_in_port {edt_scan_in[47]}
+          scan_out_port {edt_scan_out[47]}
+        }
+        scan_chain48 {
+          scan_in_port {edt_scan_in[48]}
+          scan_out_port {edt_scan_out[48]}
+        }
+        scan_chain49 {
+          scan_in_port {edt_scan_in[49]}
+          scan_out_port {edt_scan_out[49]}
+        }
+        scan_chain50 {
+          scan_in_port {edt_scan_in[50]}
+          scan_out_port {edt_scan_out[50]}
+        }
+        scan_chain51 {
+          scan_in_port {edt_scan_in[51]}
+          scan_out_port {edt_scan_out[51]}
+        }
+        scan_chain52 {
+          scan_in_port {edt_scan_in[52]}
+          scan_out_port {edt_scan_out[52]}
+        }
+        scan_chain53 {
+          scan_in_port {edt_scan_in[53]}
+          scan_out_port {edt_scan_out[53]}
+        }
+        scan_chain54 {
+          scan_in_port {edt_scan_in[54]}
+          scan_out_port {edt_scan_out[54]}
+        }
+        scan_chain55 {
+          scan_in_port {edt_scan_in[55]}
+          scan_out_port {edt_scan_out[55]}
+        }
+        scan_chain56 {
+          scan_in_port {edt_scan_in[56]}
+          scan_out_port {edt_scan_out[56]}
+        }
+        scan_chain57 {
+          scan_in_port {edt_scan_in[57]}
+          scan_out_port {edt_scan_out[57]}
+        }
+        scan_chain58 {
+          scan_in_port {edt_scan_in[58]}
+          scan_out_port {edt_scan_out[58]}
+        }
+        scan_chain59 {
+          scan_in_port {edt_scan_in[59]}
+          scan_out_port {edt_scan_out[59]}
+        }
+        scan_chain60 {
+          scan_in_port {edt_scan_in[60]}
+          scan_out_port {edt_scan_out[60]}
+        }
+        scan_chain61 {
+          scan_in_port {edt_scan_in[61]}
+          scan_out_port {edt_scan_out[61]}
+        }
+        scan_chain62 {
+          scan_in_port {edt_scan_in[62]}
+          scan_out_port {edt_scan_out[62]}
+        }
+        scan_chain63 {
+          scan_in_port {edt_scan_in[63]}
+          scan_out_port {edt_scan_out[63]}
+        }
+        scan_chain64 {
+          scan_in_port {edt_scan_in[64]}
+          scan_out_port {edt_scan_out[64]}
+        }
+        scan_chain65 {
+          scan_in_port {edt_scan_in[65]}
+          scan_out_port {edt_scan_out[65]}
+        }
+        scan_chain66 {
+          scan_in_port {edt_scan_in[66]}
+          scan_out_port {edt_scan_out[66]}
+        }
+        scan_chain67 {
+          scan_in_port {edt_scan_in[67]}
+          scan_out_port {edt_scan_out[67]}
+        }
+        scan_chain68 {
+          scan_in_port {edt_scan_in[68]}
+          scan_out_port {edt_scan_out[68]}
+        }
+        scan_chain69 {
+          scan_in_port {edt_scan_in[69]}
+          scan_out_port {edt_scan_out[69]}
+        }
+        scan_chain70 {
+          scan_in_port {edt_scan_in[70]}
+          scan_out_port {edt_scan_out[70]}
+        }
+        scan_chain71 {
+          scan_in_port {edt_scan_in[71]}
+          scan_out_port {edt_scan_out[71]}
+        }
+        scan_chain72 {
+          scan_in_port {edt_scan_in[72]}
+          scan_out_port {edt_scan_out[72]}
+        }
+        scan_chain73 {
+          scan_in_port {edt_scan_in[73]}
+          scan_out_port {edt_scan_out[73]}
+        }
+        scan_chain74 {
+          scan_in_port {edt_scan_in[74]}
+          scan_out_port {edt_scan_out[74]}
+        }
+        scan_chain75 {
+          scan_in_port {edt_scan_in[75]}
+          scan_out_port {edt_scan_out[75]}
+        }
+        scan_chain76 {
+          scan_in_port {edt_scan_in[76]}
+          scan_out_port {edt_scan_out[76]}
+        }
+        scan_chain77 {
+          scan_in_port {edt_scan_in[77]}
+          scan_out_port {edt_scan_out[77]}
+        }
+        scan_chain78 {
+          scan_in_port {edt_scan_in[78]}
+          scan_out_port {edt_scan_out[78]}
+        }
+        scan_chain79 {
+          scan_in_port {edt_scan_in[79]}
+          scan_out_port {edt_scan_out[79]}
+        }
+        scan_chain80 {
+          scan_in_port {edt_scan_in[80]}
+          scan_out_port {edt_scan_out[80]}
+        }
+        scan_chain81 {
+          scan_in_port {edt_scan_in[81]}
+          scan_out_port {edt_scan_out[81]}
+        }
+        scan_chain82 {
+          scan_in_port {edt_scan_in[82]}
+          scan_out_port {edt_scan_out[82]}
+        }
+        scan_chain83 {
+          scan_in_port {edt_scan_in[83]}
+          scan_out_port {edt_scan_out[83]}
+        }
+        scan_chain84 {
+          scan_in_port {edt_scan_in[84]}
+          scan_out_port {edt_scan_out[84]}
+        }
+        scan_chain85 {
+          scan_in_port {edt_scan_in[85]}
+          scan_out_port {edt_scan_out[85]}
+        }
+        scan_chain86 {
+          scan_in_port {edt_scan_in[86]}
+          scan_out_port {edt_scan_out[86]}
+        }
+        scan_chain87 {
+          scan_in_port {edt_scan_in[87]}
+          scan_out_port {edt_scan_out[87]}
+        }
+        scan_chain88 {
+          scan_in_port {edt_scan_in[88]}
+          scan_out_port {edt_scan_out[88]}
+        }
+        scan_chain89 {
+          scan_in_port {edt_scan_in[89]}
+          scan_out_port {edt_scan_out[89]}
+        }
+        scan_chain90 {
+          scan_in_port {edt_scan_in[90]}
+          scan_out_port {edt_scan_out[90]}
+        }
+        scan_chain91 {
+          scan_in_port {edt_scan_in[91]}
+          scan_out_port {edt_scan_out[91]}
+        }
+        scan_chain92 {
+          scan_in_port {edt_scan_in[92]}
+          scan_out_port {edt_scan_out[92]}
+        }
+        scan_chain93 {
+          scan_in_port {edt_scan_in[93]}
+          scan_out_port {edt_scan_out[93]}
+        }
+        scan_chain94 {
+          scan_in_port {edt_scan_in[94]}
+          scan_out_port {edt_scan_out[94]}
+        }
+        scan_chain95 {
+          scan_in_port {edt_scan_in[95]}
+          scan_out_port {edt_scan_out[95]}
+        }
+        scan_chain96 {
+          scan_in_port {edt_scan_in[96]}
+          scan_out_port {edt_scan_out[96]}
+        }
+        scan_chain97 {
+          scan_in_port {edt_scan_in[97]}
+          scan_out_port {edt_scan_out[97]}
+        }
+        scan_chain98 {
+          scan_in_port {edt_scan_in[98]}
+          scan_out_port {edt_scan_out[98]}
+        }
+        scan_chain99 {
+          scan_in_port {edt_scan_in[99]}
+          scan_out_port {edt_scan_out[99]}
+        }
+        scan_chain100 {
+          scan_in_port {edt_scan_in[100]}
+          scan_out_port {edt_scan_out[100]}
+        }
+        scan_chain101 {
+          scan_in_port {edt_scan_in[101]}
+          scan_out_port {edt_scan_out[101]}
+        }
+        scan_chain102 {
+          scan_in_port {edt_scan_in[102]}
+          scan_out_port {edt_scan_out[102]}
+        }
+        scan_chain103 {
+          scan_in_port {edt_scan_in[103]}
+          scan_out_port {edt_scan_out[103]}
+        }
+        scan_chain104 {
+          scan_in_port {edt_scan_in[104]}
+          scan_out_port {edt_scan_out[104]}
+        }
+        scan_chain105 {
+          scan_in_port {edt_scan_in[105]}
+          scan_out_port {edt_scan_out[105]}
+        }
+        scan_chain106 {
+          scan_in_port {edt_scan_in[106]}
+          scan_out_port {edt_scan_out[106]}
+        }
+        scan_chain107 {
+          scan_in_port {edt_scan_in[107]}
+          scan_out_port {edt_scan_out[107]}
+        }
+        scan_chain108 {
+          scan_in_port {edt_scan_in[108]}
+          scan_out_port {edt_scan_out[108]}
+        }
+        scan_chain109 {
+          scan_in_port {edt_scan_in[109]}
+          scan_out_port {edt_scan_out[109]}
+        }
+        scan_chain110 {
+          scan_in_port {edt_scan_in[110]}
+          scan_out_port {edt_scan_out[110]}
+        }
+        scan_chain111 {
+          scan_in_port {edt_scan_in[111]}
+          scan_out_port {edt_scan_out[111]}
+        }
+        scan_chain112 {
+          scan_in_port {edt_scan_in[112]}
+          scan_out_port {edt_scan_out[112]}
+        }
+        scan_chain113 {
+          scan_in_port {edt_scan_in[113]}
+          scan_out_port {edt_scan_out[113]}
+        }
+        scan_chain114 {
+          scan_in_port {edt_scan_in[114]}
+          scan_out_port {edt_scan_out[114]}
+        }
+        scan_chain115 {
+          scan_in_port {edt_scan_in[115]}
+          scan_out_port {edt_scan_out[115]}
+        }
+        scan_chain116 {
+          scan_in_port {edt_scan_in[116]}
+          scan_out_port {edt_scan_out[116]}
+        }
+        scan_chain117 {
+          scan_in_port {edt_scan_in[117]}
+          scan_out_port {edt_scan_out[117]}
+        }
+        scan_chain118 {
+          scan_in_port {edt_scan_in[118]}
+          scan_out_port {edt_scan_out[118]}
+        }
+        scan_chain119 {
+          scan_in_port {edt_scan_in[119]}
+          scan_out_port {edt_scan_out[119]}
+        }
+        scan_chain120 {
+          scan_in_port {edt_scan_in[120]}
+          scan_out_port {edt_scan_out[120]}
+        }
+        scan_chain121 {
+          scan_in_port {edt_scan_in[121]}
+          scan_out_port {edt_scan_out[121]}
+        }
+        scan_chain122 {
+          scan_in_port {edt_scan_in[122]}
+          scan_out_port {edt_scan_out[122]}
+        }
+        scan_chain123 {
+          scan_in_port {edt_scan_in[123]}
+          scan_out_port {edt_scan_out[123]}
+        }
+        scan_chain124 {
+          scan_in_port {edt_scan_in[124]}
+          scan_out_port {edt_scan_out[124]}
+        }
+        scan_chain125 {
+          scan_in_port {edt_scan_in[125]}
+          scan_out_port {edt_scan_out[125]}
+        }
+        scan_chain126 {
+          scan_in_port {edt_scan_in[126]}
+          scan_out_port {edt_scan_out[126]}
+        }
+        scan_chain127 {
+          scan_in_port {edt_scan_in[127]}
+          scan_out_port {edt_scan_out[127]}
+        }
+        scan_chain128 {
+          scan_in_port {edt_scan_in[128]}
+          scan_out_port {edt_scan_out[128]}
+        }
+        scan_chain129 {
+          scan_in_port {edt_scan_in[129]}
+          scan_out_port {edt_scan_out[129]}
+        }
+        scan_chain130 {
+          scan_in_port {edt_scan_in[130]}
+          scan_out_port {edt_scan_out[130]}
+        }
+        scan_chain131 {
+          scan_in_port {edt_scan_in[131]}
+          scan_out_port {edt_scan_out[131]}
+        }
+        scan_chain132 {
+          scan_in_port {edt_scan_in[132]}
+          scan_out_port {edt_scan_out[132]}
+        }
+        scan_chain133 {
+          scan_in_port {edt_scan_in[133]}
+          scan_out_port {edt_scan_out[133]}
+        }
+        scan_chain134 {
+          scan_in_port {edt_scan_in[134]}
+          scan_out_port {edt_scan_out[134]}
+        }
+        scan_chain135 {
+          scan_in_port {edt_scan_in[135]}
+          scan_out_port {edt_scan_out[135]}
+        }
+        scan_chain136 {
+          scan_in_port {edt_scan_in[136]}
+          scan_out_port {edt_scan_out[136]}
+        }
+        scan_chain137 {
+          scan_in_port {edt_scan_in[137]}
+          scan_out_port {edt_scan_out[137]}
+        }
+        scan_chain138 {
+          scan_in_port {edt_scan_in[138]}
+          scan_out_port {edt_scan_out[138]}
+        }
+        scan_chain139 {
+          scan_in_port {edt_scan_in[139]}
+          scan_out_port {edt_scan_out[139]}
+        }
+        scan_chain140 {
+          scan_in_port {edt_scan_in[140]}
+          scan_out_port {edt_scan_out[140]}
+        }
+        scan_chain141 {
+          scan_in_port {edt_scan_in[141]}
+          scan_out_port {edt_scan_out[141]}
+        }
+        scan_chain142 {
+          scan_in_port {edt_scan_in[142]}
+          scan_out_port {edt_scan_out[142]}
+        }
+        scan_chain143 {
+          scan_in_port {edt_scan_in[143]}
+          scan_out_port {edt_scan_out[143]}
+        }
+        scan_chain144 {
+          scan_in_port {edt_scan_in[144]}
+          scan_out_port {edt_scan_out[144]}
+        }
+        scan_chain145 {
+          scan_in_port {edt_scan_in[145]}
+          scan_out_port {edt_scan_out[145]}
+        }
+        scan_chain146 {
+          scan_in_port {edt_scan_in[146]}
+          scan_out_port {edt_scan_out[146]}
+        }
+        scan_chain147 {
+          scan_in_port {edt_scan_in[147]}
+          scan_out_port {edt_scan_out[147]}
+        }
+        scan_chain148 {
+          scan_in_port {edt_scan_in[148]}
+          scan_out_port {edt_scan_out[148]}
+        }
+        scan_chain149 {
+          scan_in_port {edt_scan_in[149]}
+          scan_out_port {edt_scan_out[149]}
+        }
+        scan_chain150 {
+          scan_in_port {edt_scan_in[150]}
+          scan_out_port {edt_scan_out[150]}
+        }
+        scan_chain151 {
+          scan_in_port {edt_scan_in[151]}
+          scan_out_port {edt_scan_out[151]}
+        }
+        scan_chain152 {
+          scan_in_port {edt_scan_in[152]}
+          scan_out_port {edt_scan_out[152]}
+        }
+        scan_chain153 {
+          scan_in_port {edt_scan_in[153]}
+          scan_out_port {edt_scan_out[153]}
+        }
+        scan_chain154 {
+          scan_in_port {edt_scan_in[154]}
+          scan_out_port {edt_scan_out[154]}
+        }
+        scan_chain155 {
+          scan_in_port {edt_scan_in[155]}
+          scan_out_port {edt_scan_out[155]}
+        }
+        scan_chain156 {
+          scan_in_port {edt_scan_in[156]}
+          scan_out_port {edt_scan_out[156]}
+        }
+        scan_chain157 {
+          scan_in_port {edt_scan_in[157]}
+          scan_out_port {edt_scan_out[157]}
+        }
+        scan_chain158 {
+          scan_in_port {edt_scan_in[158]}
+          scan_out_port {edt_scan_out[158]}
+        }
+        scan_chain159 {
+          scan_in_port {edt_scan_in[159]}
+          scan_out_port {edt_scan_out[159]}
+        }
+        scan_chain160 {
+          scan_in_port {edt_scan_in[160]}
+          scan_out_port {edt_scan_out[160]}
+        }
+        scan_chain161 {
+          scan_in_port {edt_scan_in[161]}
+          scan_out_port {edt_scan_out[161]}
+        }
+        scan_chain162 {
+          scan_in_port {edt_scan_in[162]}
+          scan_out_port {edt_scan_out[162]}
+        }
+        scan_chain163 {
+          scan_in_port {edt_scan_in[163]}
+          scan_out_port {edt_scan_out[163]}
+        }
+        scan_chain164 {
+          scan_in_port {edt_scan_in[164]}
+          scan_out_port {edt_scan_out[164]}
+        }
+        scan_chain165 {
+          scan_in_port {edt_scan_in[165]}
+          scan_out_port {edt_scan_out[165]}
+        }
+        scan_chain166 {
+          scan_in_port {edt_scan_in[166]}
+          scan_out_port {edt_scan_out[166]}
+        }
+        scan_chain167 {
+          scan_in_port {edt_scan_in[167]}
+          scan_out_port {edt_scan_out[167]}
+        }
+        scan_chain168 {
+          scan_in_port {edt_scan_in[168]}
+          scan_out_port {edt_scan_out[168]}
+        }
+        scan_chain169 {
+          scan_in_port {edt_scan_in[169]}
+          scan_out_port {edt_scan_out[169]}
+        }
+        scan_chain170 {
+          scan_in_port {edt_scan_in[170]}
+          scan_out_port {edt_scan_out[170]}
+        }
+        scan_chain171 {
+          scan_in_port {edt_scan_in[171]}
+          scan_out_port {edt_scan_out[171]}
+        }
+        scan_chain172 {
+          scan_in_port {edt_scan_in[172]}
+          scan_out_port {edt_scan_out[172]}
+        }
+        scan_chain173 {
+          scan_in_port {edt_scan_in[173]}
+          scan_out_port {edt_scan_out[173]}
+        }
+        scan_chain174 {
+          scan_in_port {edt_scan_in[174]}
+          scan_out_port {edt_scan_out[174]}
+        }
+        scan_chain175 {
+          scan_in_port {edt_scan_in[175]}
+          scan_out_port {edt_scan_out[175]}
+        }
+        scan_chain176 {
+          scan_in_port {edt_scan_in[176]}
+          scan_out_port {edt_scan_out[176]}
+        }
+        scan_chain177 {
+          scan_in_port {edt_scan_in[177]}
+          scan_out_port {edt_scan_out[177]}
+        }
+        scan_chain178 {
+          scan_in_port {edt_scan_in[178]}
+          scan_out_port {edt_scan_out[178]}
+        }
+        scan_chain179 {
+          scan_in_port {edt_scan_in[179]}
+          scan_out_port {edt_scan_out[179]}
+        }
+        scan_chain180 {
+          scan_in_port {edt_scan_in[180]}
+          scan_out_port {edt_scan_out[180]}
+        }
+        scan_chain181 {
+          scan_in_port {edt_scan_in[181]}
+          scan_out_port {edt_scan_out[181]}
+        }
+        scan_chain182 {
+          scan_in_port {edt_scan_in[182]}
+          scan_out_port {edt_scan_out[182]}
+        }
+        scan_chain183 {
+          scan_in_port {edt_scan_in[183]}
+          scan_out_port {edt_scan_out[183]}
+        }
+        scan_chain184 {
+          scan_in_port {edt_scan_in[184]}
+          scan_out_port {edt_scan_out[184]}
+        }
+        scan_chain185 {
+          scan_in_port {edt_scan_in[185]}
+          scan_out_port {edt_scan_out[185]}
+        }
+        scan_chain186 {
+          scan_in_port {edt_scan_in[186]}
+          scan_out_port {edt_scan_out[186]}
+        }
+        scan_chain187 {
+          scan_in_port {edt_scan_in[187]}
+          scan_out_port {edt_scan_out[187]}
+        }
+        scan_chain188 {
+          scan_in_port {edt_scan_in[188]}
+          scan_out_port {edt_scan_out[188]}
+        }
+        scan_chain189 {
+          scan_in_port {edt_scan_in[189]}
+          scan_out_port {edt_scan_out[189]}
+        }
+        scan_chain190 {
+          scan_in_port {edt_scan_in[190]}
+          scan_out_port {edt_scan_out[190]}
+        }
+        scan_chain191 {
+          scan_in_port {edt_scan_in[191]}
+          scan_out_port {edt_scan_out[191]}
+        }
+        scan_chain192 {
+          scan_in_port {edt_scan_in[192]}
+          scan_out_port {edt_scan_out[192]}
+        }
+        scan_chain193 {
+          scan_in_port {edt_scan_in[193]}
+          scan_out_port {edt_scan_out[193]}
+        }
+        scan_chain194 {
+          scan_in_port {edt_scan_in[194]}
+          scan_out_port {edt_scan_out[194]}
+        }
+        scan_chain195 {
+          scan_in_port {edt_scan_in[195]}
+          scan_out_port {edt_scan_out[195]}
+        }
+        scan_chain196 {
+          scan_in_port {edt_scan_in[196]}
+          scan_out_port {edt_scan_out[196]}
+        }
+        scan_chain197 {
+          scan_in_port {edt_scan_in[197]}
+          scan_out_port {edt_scan_out[197]}
+        }
+        scan_chain198 {
+          scan_in_port {edt_scan_in[198]}
+          scan_out_port {edt_scan_out[198]}
+        }
+        scan_chain199 {
+          scan_in_port {edt_scan_in[199]}
+          scan_out_port {edt_scan_out[199]}
+        }
+        scan_chain200 {
+          scan_in_port {edt_scan_in[200]}
+          scan_out_port {edt_scan_out[200]}
+        }
+        scan_chain201 {
+          scan_in_port {edt_scan_in[201]}
+          scan_out_port {edt_scan_out[201]}
+        }
+        scan_chain202 {
+          scan_in_port {edt_scan_in[202]}
+          scan_out_port {edt_scan_out[202]}
+        }
+        scan_chain203 {
+          scan_in_port {edt_scan_in[203]}
+          scan_out_port {edt_scan_out[203]}
+        }
+        scan_chain204 {
+          scan_in_port {edt_scan_in[204]}
+          scan_out_port {edt_scan_out[204]}
+        }
+        scan_chain205 {
+          scan_in_port {edt_scan_in[205]}
+          scan_out_port {edt_scan_out[205]}
+        }
+        scan_chain206 {
+          scan_in_port {edt_scan_in[206]}
+          scan_out_port {edt_scan_out[206]}
+        }
+        scan_chain207 {
+          scan_in_port {edt_scan_in[207]}
+          scan_out_port {edt_scan_out[207]}
+        }
+        scan_chain208 {
+          scan_in_port {edt_scan_in[208]}
+          scan_out_port {edt_scan_out[208]}
+        }
+        scan_chain209 {
+          scan_in_port {edt_scan_in[209]}
+          scan_out_port {edt_scan_out[209]}
+        }
+        scan_chain210 {
+          scan_in_port {edt_scan_in[210]}
+          scan_out_port {edt_scan_out[210]}
+        }
+        scan_chain211 {
+          scan_in_port {edt_scan_in[211]}
+          scan_out_port {edt_scan_out[211]}
+        }
+        scan_chain212 {
+          scan_in_port {edt_scan_in[212]}
+          scan_out_port {edt_scan_out[212]}
+        }
+        scan_chain213 {
+          scan_in_port {edt_scan_in[213]}
+          scan_out_port {edt_scan_out[213]}
+        }
+        scan_chain214 {
+          scan_in_port {edt_scan_in[214]}
+          scan_out_port {edt_scan_out[214]}
+        }
+        scan_chain215 {
+          scan_in_port {edt_scan_in[215]}
+          scan_out_port {edt_scan_out[215]}
+        }
+        scan_chain216 {
+          scan_in_port {edt_scan_in[216]}
+          scan_out_port {edt_scan_out[216]}
+        }
+        scan_chain217 {
+          scan_in_port {edt_scan_in[217]}
+          scan_out_port {edt_scan_out[217]}
+        }
+        scan_chain218 {
+          scan_in_port {edt_scan_in[218]}
+          scan_out_port {edt_scan_out[218]}
+        }
+        scan_chain219 {
+          scan_in_port {edt_scan_in[219]}
+          scan_out_port {edt_scan_out[219]}
+        }
+        scan_chain220 {
+          scan_in_port {edt_scan_in[220]}
+          scan_out_port {edt_scan_out[220]}
+        }
+        scan_chain221 {
+          scan_in_port {edt_scan_in[221]}
+          scan_out_port {edt_scan_out[221]}
+        }
+        scan_chain222 {
+          scan_in_port {edt_scan_in[222]}
+          scan_out_port {edt_scan_out[222]}
+        }
+        scan_chain223 {
+          scan_in_port {edt_scan_in[223]}
+          scan_out_port {edt_scan_out[223]}
+        }
+        scan_chain224 {
+          scan_in_port {edt_scan_in[224]}
+          scan_out_port {edt_scan_out[224]}
+        }
+        scan_chain225 {
+          scan_in_port {edt_scan_in[225]}
+          scan_out_port {edt_scan_out[225]}
+        }
+        scan_chain226 {
+          scan_in_port {edt_scan_in[226]}
+          scan_out_port {edt_scan_out[226]}
+        }
+        scan_chain227 {
+          scan_in_port {edt_scan_in[227]}
+          scan_out_port {edt_scan_out[227]}
+        }
+        scan_chain228 {
+          scan_in_port {edt_scan_in[228]}
+          scan_out_port {edt_scan_out[228]}
+        }
+        scan_chain229 {
+          scan_in_port {edt_scan_in[229]}
+          scan_out_port {edt_scan_out[229]}
+        }
+        scan_chain230 {
+          scan_in_port {edt_scan_in[230]}
+          scan_out_port {edt_scan_out[230]}
+        }
+        scan_chain231 {
+          scan_in_port {edt_scan_in[231]}
+          scan_out_port {edt_scan_out[231]}
+        }
+        scan_chain232 {
+          scan_in_port {edt_scan_in[232]}
+          scan_out_port {edt_scan_out[232]}
+        }
+        scan_chain233 {
+          scan_in_port {edt_scan_in[233]}
+          scan_out_port {edt_scan_out[233]}
+        }
+        scan_chain234 {
+          scan_in_port {edt_scan_in[234]}
+          scan_out_port {edt_scan_out[234]}
+        }
+        scan_chain235 {
+          scan_in_port {edt_scan_in[235]}
+          scan_out_port {edt_scan_out[235]}
+        }
+        scan_chain236 {
+          scan_in_port {edt_scan_in[236]}
+          scan_out_port {edt_scan_out[236]}
+        }
+        scan_chain237 {
+          scan_in_port {edt_scan_in[237]}
+          scan_out_port {edt_scan_out[237]}
+        }
+        scan_chain238 {
+          scan_in_port {edt_scan_in[238]}
+          scan_out_port {edt_scan_out[238]}
+        }
+        scan_chain239 {
+          scan_in_port {edt_scan_in[239]}
+          scan_out_port {edt_scan_out[239]}
+        }
+        scan_chain240 {
+          scan_in_port {edt_scan_in[240]}
+          scan_out_port {edt_scan_out[240]}
+        }
+        scan_chain241 {
+          scan_in_port {edt_scan_in[241]}
+          scan_out_port {edt_scan_out[241]}
+        }
+        scan_chain242 {
+          scan_in_port {edt_scan_in[242]}
+          scan_out_port {edt_scan_out[242]}
+        }
+        scan_chain243 {
+          scan_in_port {edt_scan_in[243]}
+          scan_out_port {edt_scan_out[243]}
+        }
+        scan_chain244 {
+          scan_in_port {edt_scan_in[244]}
+          scan_out_port {edt_scan_out[244]}
+        }
+        scan_chain245 {
+          scan_in_port {edt_scan_in[245]}
+          scan_out_port {edt_scan_out[245]}
+        }
+        scan_chain246 {
+          scan_in_port {edt_scan_in[246]}
+          scan_out_port {edt_scan_out[246]}
+        }
+        scan_chain247 {
+          scan_in_port {edt_scan_in[247]}
+          scan_out_port {edt_scan_out[247]}
+        }
+        scan_chain248 {
+          scan_in_port {edt_scan_in[248]}
+          scan_out_port {edt_scan_out[248]}
+        }
+        scan_chain249 {
+          scan_in_port {edt_scan_in[249]}
+          scan_out_port {edt_scan_out[249]}
+        }
+        scan_chain250 {
+          scan_in_port {edt_scan_in[250]}
+          scan_out_port {edt_scan_out[250]}
+        }
+        scan_chain251 {
+          scan_in_port {edt_scan_in[251]}
+          scan_out_port {edt_scan_out[251]}
+        }
+        scan_chain252 {
+          scan_in_port {edt_scan_in[252]}
+          scan_out_port {edt_scan_out[252]}
+        }
+        scan_chain253 {
+          scan_in_port {edt_scan_in[253]}
+          scan_out_port {edt_scan_out[253]}
+        }
+        scan_chain254 {
+          scan_in_port {edt_scan_in[254]}
+          scan_out_port {edt_scan_out[254]}
+        }
+        scan_chain255 {
+          scan_in_port {edt_scan_in[255]}
+          scan_out_port {edt_scan_out[255]}
+        }
+        scan_chain256 {
+          scan_in_port {edt_scan_in[256]}
+          scan_out_port {edt_scan_out[256]}
+        }
+        scan_chain257 {
+          scan_in_port {edt_scan_in[257]}
+          scan_out_port {edt_scan_out[257]}
+        }
+        scan_chain258 {
+          scan_in_port {edt_scan_in[258]}
+          scan_out_port {edt_scan_out[258]}
+        }
+        scan_chain259 {
+          scan_in_port {edt_scan_in[259]}
+          scan_out_port {edt_scan_out[259]}
+        }
+        scan_chain260 {
+          scan_in_port {edt_scan_in[260]}
+          scan_out_port {edt_scan_out[260]}
+        }
+        scan_chain261 {
+          scan_in_port {edt_scan_in[261]}
+          scan_out_port {edt_scan_out[261]}
+        }
+        scan_chain262 {
+          scan_in_port {edt_scan_in[262]}
+          scan_out_port {edt_scan_out[262]}
+        }
+        scan_chain263 {
+          scan_in_port {edt_scan_in[263]}
+          scan_out_port {edt_scan_out[263]}
+        }
+        scan_chain264 {
+          scan_in_port {edt_scan_in[264]}
+          scan_out_port {edt_scan_out[264]}
+        }
+        scan_chain265 {
+          scan_in_port {edt_scan_in[265]}
+          scan_out_port {edt_scan_out[265]}
+        }
+        scan_chain266 {
+          scan_in_port {edt_scan_in[266]}
+          scan_out_port {edt_scan_out[266]}
+        }
+        scan_chain267 {
+          scan_in_port {edt_scan_in[267]}
+          scan_out_port {edt_scan_out[267]}
+        }
+        scan_chain268 {
+          scan_in_port {edt_scan_in[268]}
+          scan_out_port {edt_scan_out[268]}
+        }
+        scan_chain269 {
+          scan_in_port {edt_scan_in[269]}
+          scan_out_port {edt_scan_out[269]}
+        }
+        scan_chain270 {
+          scan_in_port {edt_scan_in[270]}
+          scan_out_port {edt_scan_out[270]}
+        }
+        scan_chain271 {
+          scan_in_port {edt_scan_in[271]}
+          scan_out_port {edt_scan_out[271]}
+        }
+        scan_chain272 {
+          scan_in_port {edt_scan_in[272]}
+          scan_out_port {edt_scan_out[272]}
+        }
+        scan_chain273 {
+          scan_in_port {edt_scan_in[273]}
+          scan_out_port {edt_scan_out[273]}
+        }
+        scan_chain274 {
+          scan_in_port {edt_scan_in[274]}
+          scan_out_port {edt_scan_out[274]}
+        }
+        scan_chain275 {
+          scan_in_port {edt_scan_in[275]}
+          scan_out_port {edt_scan_out[275]}
+        }
+        scan_chain276 {
+          scan_in_port {edt_scan_in[276]}
+          scan_out_port {edt_scan_out[276]}
+        }
+        scan_chain277 {
+          scan_in_port {edt_scan_in[277]}
+          scan_out_port {edt_scan_out[277]}
+        }
+        scan_chain278 {
+          scan_in_port {edt_scan_in[278]}
+          scan_out_port {edt_scan_out[278]}
+        }
+        scan_chain279 {
+          scan_in_port {edt_scan_in[279]}
+          scan_out_port {edt_scan_out[279]}
+        }
+        scan_chain280 {
+          scan_in_port {edt_scan_in[280]}
+          scan_out_port {edt_scan_out[280]}
+        }
+        scan_chain281 {
+          scan_in_port {edt_scan_in[281]}
+          scan_out_port {edt_scan_out[281]}
+        }
+        scan_chain282 {
+          scan_in_port {edt_scan_in[282]}
+          scan_out_port {edt_scan_out[282]}
+        }
+        scan_chain283 {
+          scan_in_port {edt_scan_in[283]}
+          scan_out_port {edt_scan_out[283]}
+        }
+        scan_chain284 {
+          scan_in_port {edt_scan_in[284]}
+          scan_out_port {edt_scan_out[284]}
+        }
+        scan_chain285 {
+          scan_in_port {edt_scan_in[285]}
+          scan_out_port {edt_scan_out[285]}
+        }
+        scan_chain286 {
+          scan_in_port {edt_scan_in[286]}
+          scan_out_port {edt_scan_out[286]}
+        }
+        scan_chain287 {
+          scan_in_port {edt_scan_in[287]}
+          scan_out_port {edt_scan_out[287]}
+        }
+        scan_chain288 {
+          scan_in_port {edt_scan_in[288]}
+          scan_out_port {edt_scan_out[288]}
+        }
+        scan_chain289 {
+          scan_in_port {edt_scan_in[289]}
+          scan_out_port {edt_scan_out[289]}
+        }
+        scan_chain290 {
+          scan_in_port {edt_scan_in[290]}
+          scan_out_port {edt_scan_out[290]}
+        }
+        scan_chain291 {
+          scan_in_port {edt_scan_in[291]}
+          scan_out_port {edt_scan_out[291]}
+        }
+        scan_chain292 {
+          scan_in_port {edt_scan_in[292]}
+          scan_out_port {edt_scan_out[292]}
+        }
+        scan_chain293 {
+          scan_in_port {edt_scan_in[293]}
+          scan_out_port {edt_scan_out[293]}
+        }
+        scan_chain294 {
+          scan_in_port {edt_scan_in[294]}
+          scan_out_port {edt_scan_out[294]}
+        }
+        scan_chain295 {
+          scan_in_port {edt_scan_in[295]}
+          scan_out_port {edt_scan_out[295]}
+        }
+        scan_chain296 {
+          scan_in_port {edt_scan_in[296]}
+          scan_out_port {edt_scan_out[296]}
+        }
+        scan_chain297 {
+          scan_in_port {edt_scan_in[297]}
+          scan_out_port {edt_scan_out[297]}
+        }
+        scan_chain298 {
+          scan_in_port {edt_scan_in[298]}
+          scan_out_port {edt_scan_out[298]}
+        }
+        scan_chain299 {
+          scan_in_port {edt_scan_in[299]}
+          scan_out_port {edt_scan_out[299]}
+        }
+        scan_chain300 {
+          scan_in_port {edt_scan_in[300]}
+          scan_out_port {edt_scan_out[300]}
+        }
+        scan_chain301 {
+          scan_in_port {edt_scan_in[301]}
+          scan_out_port {edt_scan_out[301]}
+        }
+        scan_chain302 {
+          scan_in_port {edt_scan_in[302]}
+          scan_out_port {edt_scan_out[302]}
+        }
+        scan_chain303 {
+          scan_in_port {edt_scan_in[303]}
+          scan_out_port {edt_scan_out[303]}
+        }
+        scan_chain304 {
+          scan_in_port {edt_scan_in[304]}
+          scan_out_port {edt_scan_out[304]}
+        }
+        scan_chain305 {
+          scan_in_port {edt_scan_in[305]}
+          scan_out_port {edt_scan_out[305]}
+        }
+        scan_chain306 {
+          scan_in_port {edt_scan_in[306]}
+          scan_out_port {edt_scan_out[306]}
+        }
+        scan_chain307 {
+          scan_in_port {edt_scan_in[307]}
+          scan_out_port {edt_scan_out[307]}
+        }
+        scan_chain308 {
+          scan_in_port {edt_scan_in[308]}
+          scan_out_port {edt_scan_out[308]}
+        }
+        scan_chain309 {
+          scan_in_port {edt_scan_in[309]}
+          scan_out_port {edt_scan_out[309]}
+        }
+        scan_chain310 {
+          scan_in_port {edt_scan_in[310]}
+          scan_out_port {edt_scan_out[310]}
+        }
+        scan_chain311 {
+          scan_in_port {edt_scan_in[311]}
+          scan_out_port {edt_scan_out[311]}
+        }
+        scan_chain312 {
+          scan_in_port {edt_scan_in[312]}
+          scan_out_port {edt_scan_out[312]}
+        }
+        scan_chain313 {
+          scan_in_port {edt_scan_in[313]}
+          scan_out_port {edt_scan_out[313]}
+        }
+        scan_chain314 {
+          scan_in_port {edt_scan_in[314]}
+          scan_out_port {edt_scan_out[314]}
+        }
+        scan_chain315 {
+          scan_in_port {edt_scan_in[315]}
+          scan_out_port {edt_scan_out[315]}
+        }
+        scan_chain316 {
+          scan_in_port {edt_scan_in[316]}
+          scan_out_port {edt_scan_out[316]}
+        }
+        scan_chain317 {
+          scan_in_port {edt_scan_in[317]}
+          scan_out_port {edt_scan_out[317]}
+        }
+        scan_chain318 {
+          scan_in_port {edt_scan_in[318]}
+          scan_out_port {edt_scan_out[318]}
+        }
+        scan_chain319 {
+          scan_in_port {edt_scan_in[319]}
+          scan_out_port {edt_scan_out[319]}
+        }
+        scan_chain320 {
+          scan_in_port {edt_scan_in[320]}
+          scan_out_port {edt_scan_out[320]}
+        }
+        scan_chain321 {
+          scan_in_port {edt_scan_in[321]}
+          scan_out_port {edt_scan_out[321]}
+        }
+        scan_chain322 {
+          scan_in_port {edt_scan_in[322]}
+          scan_out_port {edt_scan_out[322]}
+        }
+        scan_chain323 {
+          scan_in_port {edt_scan_in[323]}
+          scan_out_port {edt_scan_out[323]}
+        }
+        scan_chain324 {
+          scan_in_port {edt_scan_in[324]}
+          scan_out_port {edt_scan_out[324]}
+        }
+        scan_chain325 {
+          scan_in_port {edt_scan_in[325]}
+          scan_out_port {edt_scan_out[325]}
+        }
+        scan_chain326 {
+          scan_in_port {edt_scan_in[326]}
+          scan_out_port {edt_scan_out[326]}
+        }
+        scan_chain327 {
+          scan_in_port {edt_scan_in[327]}
+          scan_out_port {edt_scan_out[327]}
+        }
+        scan_chain328 {
+          scan_in_port {edt_scan_in[328]}
+          scan_out_port {edt_scan_out[328]}
+        }
+        scan_chain329 {
+          scan_in_port {edt_scan_in[329]}
+          scan_out_port {edt_scan_out[329]}
+        }
+        scan_chain330 {
+          scan_in_port {edt_scan_in[330]}
+          scan_out_port {edt_scan_out[330]}
+        }
+        scan_chain331 {
+          scan_in_port {edt_scan_in[331]}
+          scan_out_port {edt_scan_out[331]}
+        }
+        scan_chain332 {
+          scan_in_port {edt_scan_in[332]}
+          scan_out_port {edt_scan_out[332]}
+        }
+        scan_chain333 {
+          scan_in_port {edt_scan_in[333]}
+          scan_out_port {edt_scan_out[333]}
+        }
+        scan_chain334 {
+          scan_in_port {edt_scan_in[334]}
+          scan_out_port {edt_scan_out[334]}
+        }
+        scan_chain335 {
+          scan_in_port {edt_scan_in[335]}
+          scan_out_port {edt_scan_out[335]}
+        }
+        scan_chain336 {
+          scan_in_port {edt_scan_in[336]}
+          scan_out_port {edt_scan_out[336]}
+        }
+        scan_chain337 {
+          scan_in_port {edt_scan_in[337]}
+          scan_out_port {edt_scan_out[337]}
+        }
+        scan_chain338 {
+          scan_in_port {edt_scan_in[338]}
+          scan_out_port {edt_scan_out[338]}
+        }
+        scan_chain339 {
+          scan_in_port {edt_scan_in[339]}
+          scan_out_port {edt_scan_out[339]}
+        }
+        scan_chain340 {
+          scan_in_port {edt_scan_in[340]}
+          scan_out_port {edt_scan_out[340]}
+        }
+        scan_chain341 {
+          scan_in_port {edt_scan_in[341]}
+          scan_out_port {edt_scan_out[341]}
+        }
+        scan_chain342 {
+          scan_in_port {edt_scan_in[342]}
+          scan_out_port {edt_scan_out[342]}
+        }
+        scan_chain343 {
+          scan_in_port {edt_scan_in[343]}
+          scan_out_port {edt_scan_out[343]}
+        }
+        scan_chain344 {
+          scan_in_port {edt_scan_in[344]}
+          scan_out_port {edt_scan_out[344]}
+        }
+        scan_chain345 {
+          scan_in_port {edt_scan_in[345]}
+          scan_out_port {edt_scan_out[345]}
+        }
+        scan_chain346 {
+          scan_in_port {edt_scan_in[346]}
+          scan_out_port {edt_scan_out[346]}
+        }
+        scan_chain347 {
+          scan_in_port {edt_scan_in[347]}
+          scan_out_port {edt_scan_out[347]}
+        }
+        scan_chain348 {
+          scan_in_port {edt_scan_in[348]}
+          scan_out_port {edt_scan_out[348]}
+        }
+        scan_chain349 {
+          scan_in_port {edt_scan_in[349]}
+          scan_out_port {edt_scan_out[349]}
+        }
+        scan_chain350 {
+          scan_in_port {edt_scan_in[350]}
+          scan_out_port {edt_scan_out[350]}
+        }
+        scan_chain351 {
+          scan_in_port {edt_scan_in[351]}
+          scan_out_port {edt_scan_out[351]}
+        }
+        scan_chain352 {
+          scan_in_port {edt_scan_in[352]}
+          scan_out_port {edt_scan_out[352]}
+        }
+        scan_chain353 {
+          scan_in_port {edt_scan_in[353]}
+          scan_out_port {edt_scan_out[353]}
+        }
+        scan_chain354 {
+          scan_in_port {edt_scan_in[354]}
+          scan_out_port {edt_scan_out[354]}
+        }
+        scan_chain355 {
+          scan_in_port {edt_scan_in[355]}
+          scan_out_port {edt_scan_out[355]}
+        }
+        scan_chain356 {
+          scan_in_port {edt_scan_in[356]}
+          scan_out_port {edt_scan_out[356]}
+        }
+        scan_chain357 {
+          scan_in_port {edt_scan_in[357]}
+          scan_out_port {edt_scan_out[357]}
+        }
+        scan_chain358 {
+          scan_in_port {edt_scan_in[358]}
+          scan_out_port {edt_scan_out[358]}
+        }
+        scan_chain359 {
+          scan_in_port {edt_scan_in[359]}
+          scan_out_port {edt_scan_out[359]}
+        }
+        scan_chain360 {
+          scan_in_port {edt_scan_in[360]}
+          scan_out_port {edt_scan_out[360]}
+        }
+        scan_chain361 {
+          scan_in_port {edt_scan_in[361]}
+          scan_out_port {edt_scan_out[361]}
+        }
+        scan_chain362 {
+          scan_in_port {edt_scan_in[362]}
+          scan_out_port {edt_scan_out[362]}
+        }
+        scan_chain363 {
+          scan_in_port {edt_scan_in[363]}
+          scan_out_port {edt_scan_out[363]}
+        }
+        scan_chain364 {
+          scan_in_port {edt_scan_in[364]}
+          scan_out_port {edt_scan_out[364]}
+        }
+        scan_chain365 {
+          scan_in_port {edt_scan_in[365]}
+          scan_out_port {edt_scan_out[365]}
+        }
+        scan_chain366 {
+          scan_in_port {edt_scan_in[366]}
+          scan_out_port {edt_scan_out[366]}
+        }
+        scan_chain367 {
+          scan_in_port {edt_scan_in[367]}
+          scan_out_port {edt_scan_out[367]}
+        }
+        scan_chain368 {
+          scan_in_port {edt_scan_in[368]}
+          scan_out_port {edt_scan_out[368]}
+        }
+        scan_chain369 {
+          scan_in_port {edt_scan_in[369]}
+          scan_out_port {edt_scan_out[369]}
+        }
+        scan_chain370 {
+          scan_in_port {edt_scan_in[370]}
+          scan_out_port {edt_scan_out[370]}
+        }
+      }
+    }
+  }
+}

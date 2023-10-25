@@ -1,0 +1,119 @@
+/////////////////////////////////////////////////////////////
+// Created by: Synopsys DC Expert(TM) in wire load mode
+// Version   : Q-2019.12-SP5-1
+// Date      : Tue Oct 24 19:31:01 2023
+/////////////////////////////////////////////////////////////
+
+
+module firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe_fsm ( clock, 
+        bus_enable_sync_reset, bus_sync_reset_pulse );
+  input clock, bus_enable_sync_reset;
+  output bus_sync_reset_pulse;
+  wire   n3, n2, SYNOPSYS_UNCONNECTED_1;
+
+  i0sfvz00bab1d06x5 bus_sync_reset_ff_reg ( .si(n3), .d(n3), .ssb(n2), .clk(
+        clock), .rb(n2), .s(bus_enable_sync_reset), .o(bus_sync_reset_pulse), 
+        .so(SYNOPSYS_UNCONNECTED_1) );
+  i0stilo00ab1n02x5 U3 ( .o(n3) );
+  i0stihi00ab1n02x5 U4 ( .o(n2) );
+endmodule
+
+
+module firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe_datapath ( clock, 
+        bus_data_in, bus_sync_reset_pulse, bus_data_out );
+  input [19:0] bus_data_in;
+  output [19:0] bus_data_out;
+  input clock, bus_sync_reset_pulse;
+  wire   n40, n41, n39, SYNOPSYS_UNCONNECTED_1, SYNOPSYS_UNCONNECTED_2,
+         SYNOPSYS_UNCONNECTED_3, SYNOPSYS_UNCONNECTED_4,
+         SYNOPSYS_UNCONNECTED_5, SYNOPSYS_UNCONNECTED_6,
+         SYNOPSYS_UNCONNECTED_7, SYNOPSYS_UNCONNECTED_8,
+         SYNOPSYS_UNCONNECTED_9, SYNOPSYS_UNCONNECTED_10,
+         SYNOPSYS_UNCONNECTED_11, SYNOPSYS_UNCONNECTED_12,
+         SYNOPSYS_UNCONNECTED_13, SYNOPSYS_UNCONNECTED_14,
+         SYNOPSYS_UNCONNECTED_15, SYNOPSYS_UNCONNECTED_16,
+         SYNOPSYS_UNCONNECTED_17, SYNOPSYS_UNCONNECTED_18,
+         SYNOPSYS_UNCONNECTED_19, SYNOPSYS_UNCONNECTED_20;
+
+  i0sfhz003ab1d03f5 r0_reg_19 ( .si(n41), .rb(n39), .d(bus_data_in[19]), .ssb(
+        n40), .clk(clock), .o(bus_data_out[19]), .so(SYNOPSYS_UNCONNECTED_1)
+         );
+  i0sfhz003ab1d03f5 r0_reg_18 ( .si(n41), .rb(n39), .d(bus_data_in[18]), .ssb(
+        n40), .clk(clock), .o(bus_data_out[18]), .so(SYNOPSYS_UNCONNECTED_2)
+         );
+  i0sfhz003ab1d03f5 r0_reg_17 ( .si(n41), .rb(n39), .d(bus_data_in[17]), .ssb(
+        n40), .clk(clock), .o(bus_data_out[17]), .so(SYNOPSYS_UNCONNECTED_3)
+         );
+  i0sfhz003ab1d03f5 r0_reg_16 ( .si(n41), .rb(n39), .d(bus_data_in[16]), .ssb(
+        n40), .clk(clock), .o(bus_data_out[16]), .so(SYNOPSYS_UNCONNECTED_4)
+         );
+  i0sfhz003ab1d03f5 r0_reg_15 ( .si(n41), .rb(n39), .d(bus_data_in[15]), .ssb(
+        n40), .clk(clock), .o(bus_data_out[15]), .so(SYNOPSYS_UNCONNECTED_5)
+         );
+  i0sfhz003ab1d03f5 r0_reg_14 ( .si(n41), .rb(n39), .d(bus_data_in[14]), .ssb(
+        n40), .clk(clock), .o(bus_data_out[14]), .so(SYNOPSYS_UNCONNECTED_6)
+         );
+  i0sfhz003ab1d03f5 r0_reg_13 ( .si(n41), .rb(n39), .d(bus_data_in[13]), .ssb(
+        n40), .clk(clock), .o(bus_data_out[13]), .so(SYNOPSYS_UNCONNECTED_7)
+         );
+  i0sfhz003ab1d03f5 r0_reg_12 ( .si(n41), .rb(n39), .d(bus_data_in[12]), .ssb(
+        n40), .clk(clock), .o(bus_data_out[12]), .so(SYNOPSYS_UNCONNECTED_8)
+         );
+  i0sfhz003ab1d03f5 r0_reg_11 ( .si(n41), .rb(n39), .d(bus_data_in[11]), .ssb(
+        n40), .clk(clock), .o(bus_data_out[11]), .so(SYNOPSYS_UNCONNECTED_9)
+         );
+  i0sfhz003ab1d03f5 r0_reg_10 ( .si(n41), .rb(n39), .d(bus_data_in[10]), .ssb(
+        n40), .clk(clock), .o(bus_data_out[10]), .so(SYNOPSYS_UNCONNECTED_10)
+         );
+  i0sfhz003ab1d03f5 r0_reg_9 ( .si(n41), .rb(n39), .d(bus_data_in[9]), .ssb(
+        n40), .clk(clock), .o(bus_data_out[9]), .so(SYNOPSYS_UNCONNECTED_11)
+         );
+  i0sfhz003ab1d03f5 r0_reg_8 ( .si(n41), .rb(n39), .d(bus_data_in[8]), .ssb(
+        n40), .clk(clock), .o(bus_data_out[8]), .so(SYNOPSYS_UNCONNECTED_12)
+         );
+  i0sfhz003ab1d03f5 r0_reg_7 ( .si(n41), .rb(n39), .d(bus_data_in[7]), .ssb(
+        n40), .clk(clock), .o(bus_data_out[7]), .so(SYNOPSYS_UNCONNECTED_13)
+         );
+  i0sfhz003ab1d03f5 r0_reg_6 ( .si(n41), .rb(n39), .d(bus_data_in[6]), .ssb(
+        n40), .clk(clock), .o(bus_data_out[6]), .so(SYNOPSYS_UNCONNECTED_14)
+         );
+  i0sfhz003ab1d03f5 r0_reg_5 ( .si(n41), .rb(n39), .d(bus_data_in[5]), .ssb(
+        n40), .clk(clock), .o(bus_data_out[5]), .so(SYNOPSYS_UNCONNECTED_15)
+         );
+  i0sfhz003ab1d03f5 r0_reg_4 ( .si(n41), .rb(n39), .d(bus_data_in[4]), .ssb(
+        n40), .clk(clock), .o(bus_data_out[4]), .so(SYNOPSYS_UNCONNECTED_16)
+         );
+  i0sfhz003ab1d03f5 r0_reg_3 ( .si(n41), .rb(n39), .d(bus_data_in[3]), .ssb(
+        n40), .clk(clock), .o(bus_data_out[3]), .so(SYNOPSYS_UNCONNECTED_17)
+         );
+  i0sfhz003ab1d03f5 r0_reg_2 ( .si(n41), .rb(n39), .d(bus_data_in[2]), .ssb(
+        n40), .clk(clock), .o(bus_data_out[2]), .so(SYNOPSYS_UNCONNECTED_18)
+         );
+  i0sfhz003ab1d03f5 r0_reg_1 ( .si(n41), .rb(n39), .d(bus_data_in[1]), .ssb(
+        n40), .clk(clock), .o(bus_data_out[1]), .so(SYNOPSYS_UNCONNECTED_19)
+         );
+  i0sfhz003ab1d03f5 r0_reg_0 ( .si(n41), .rb(n39), .d(bus_data_in[0]), .ssb(
+        n40), .clk(clock), .o(bus_data_out[0]), .so(SYNOPSYS_UNCONNECTED_20)
+         );
+  i0stihi00ab1n02x5 U3 ( .o(n40) );
+  i0stilo00ab1n02x5 U4 ( .o(n41) );
+  i0sinv040ab1n08x5 U5 ( .a(bus_sync_reset_pulse), .o1(n39) );
+endmodule
+
+
+module firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe ( bus_clock, 
+        bus_data_in, bus_data_out, ijtag_reset );
+  input [19:0] bus_data_in;
+  output [19:0] bus_data_out;
+  input bus_clock, ijtag_reset;
+  wire   bus_sync_reset_pulse, n1;
+
+  firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe_fsm fsm ( .clock(
+        bus_clock), .bus_enable_sync_reset(n1), .bus_sync_reset_pulse(
+        bus_sync_reset_pulse) );
+  firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe_datapath datapath ( 
+        .clock(bus_clock), .bus_data_in(bus_data_in), .bus_sync_reset_pulse(
+        bus_sync_reset_pulse), .bus_data_out(bus_data_out) );
+  i0sinv000ab1n03x5 U2 ( .a(ijtag_reset), .o1(n1) );
+endmodule
+

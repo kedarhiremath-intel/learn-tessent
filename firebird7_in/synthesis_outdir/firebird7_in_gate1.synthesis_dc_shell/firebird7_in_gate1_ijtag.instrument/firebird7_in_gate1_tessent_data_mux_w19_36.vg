@@ -1,0 +1,55 @@
+/////////////////////////////////////////////////////////////
+// Created by: Synopsys DC Expert(TM) in wire load mode
+// Version   : Q-2019.12-SP5-1
+// Date      : Mon Oct 23 13:03:15 2023
+/////////////////////////////////////////////////////////////
+
+
+module firebird7_in_gate1_tessent_data_mux_w19_36 ( ijtag_select, 
+        functional_data_in, ijtag_data_in, data_out );
+  input [18:0] functional_data_in;
+  input [18:0] ijtag_data_in;
+  output [18:0] data_out;
+  input ijtag_select;
+
+
+  i0smbn022ab1n02x5 U21 ( .b(functional_data_in[9]), .a(ijtag_data_in[9]), 
+        .sa(ijtag_select), .o(data_out[9]) );
+  i0smbn022ab1n02x5 U22 ( .b(functional_data_in[8]), .a(ijtag_data_in[8]), 
+        .sa(ijtag_select), .o(data_out[8]) );
+  i0smbn022ab1n02x5 U23 ( .b(functional_data_in[7]), .a(ijtag_data_in[7]), 
+        .sa(ijtag_select), .o(data_out[7]) );
+  i0smbn022ab1n02x5 U24 ( .b(functional_data_in[6]), .a(ijtag_data_in[6]), 
+        .sa(ijtag_select), .o(data_out[6]) );
+  i0smbn022ab1n02x5 U25 ( .b(functional_data_in[5]), .a(ijtag_data_in[5]), 
+        .sa(ijtag_select), .o(data_out[5]) );
+  i0smbn022ab1n02x5 U26 ( .b(functional_data_in[4]), .a(ijtag_data_in[4]), 
+        .sa(ijtag_select), .o(data_out[4]) );
+  i0smbn022ab1n02x5 U27 ( .b(functional_data_in[3]), .a(ijtag_data_in[3]), 
+        .sa(ijtag_select), .o(data_out[3]) );
+  i0smbn022ab1n02x5 U28 ( .b(functional_data_in[2]), .a(ijtag_data_in[2]), 
+        .sa(ijtag_select), .o(data_out[2]) );
+  i0smbn022ab1n02x5 U29 ( .b(functional_data_in[1]), .a(ijtag_data_in[1]), 
+        .sa(ijtag_select), .o(data_out[1]) );
+  i0smbn022ab1n02x5 U30 ( .b(functional_data_in[18]), .a(ijtag_data_in[18]), 
+        .sa(ijtag_select), .o(data_out[18]) );
+  i0smbn022ab1n02x5 U31 ( .b(functional_data_in[17]), .a(ijtag_data_in[17]), 
+        .sa(ijtag_select), .o(data_out[17]) );
+  i0smbn022ab1n02x5 U32 ( .b(functional_data_in[16]), .a(ijtag_data_in[16]), 
+        .sa(ijtag_select), .o(data_out[16]) );
+  i0smbn022ab1n02x5 U33 ( .b(functional_data_in[15]), .a(ijtag_data_in[15]), 
+        .sa(ijtag_select), .o(data_out[15]) );
+  i0smbn022ab1n02x5 U34 ( .b(functional_data_in[14]), .a(ijtag_data_in[14]), 
+        .sa(ijtag_select), .o(data_out[14]) );
+  i0smbn022ab1n02x5 U35 ( .b(functional_data_in[13]), .a(ijtag_data_in[13]), 
+        .sa(ijtag_select), .o(data_out[13]) );
+  i0smbn022ab1n02x5 U36 ( .b(functional_data_in[12]), .a(ijtag_data_in[12]), 
+        .sa(ijtag_select), .o(data_out[12]) );
+  i0smbn022ab1n02x5 U37 ( .b(functional_data_in[11]), .a(ijtag_data_in[11]), 
+        .sa(ijtag_select), .o(data_out[11]) );
+  i0smbn022ab1n02x5 U38 ( .b(functional_data_in[10]), .a(ijtag_data_in[10]), 
+        .sa(ijtag_select), .o(data_out[10]) );
+  i0smbn022ab1n02x5 U39 ( .b(functional_data_in[0]), .a(ijtag_data_in[0]), 
+        .sa(ijtag_select), .o(data_out[0]) );
+endmodule
+

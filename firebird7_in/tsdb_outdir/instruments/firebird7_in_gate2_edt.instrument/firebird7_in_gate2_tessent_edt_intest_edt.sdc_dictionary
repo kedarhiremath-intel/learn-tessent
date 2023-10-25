@@ -1,0 +1,97 @@
+#-------------------------------------------------
+#  File created by: Tessent Shell
+#          Version: 2022.4
+#       Created on: Tue Oct 24 19:29:03 PDT 2023
+#-------------------------------------------------
+
+set sdc_dictionary(firebird7_in_gate2_tessent_edt_intest_edt) {
+  edt_bypass_logic on
+  insertion_done 1
+  low_power_hold_reg firebird7_in_gate2_tessent_edt_intest_edt_controller_i/low_power_shift_controller_i/low_power_hold_reg*
+  edt_clock_persistent_pin tessent_persistent_cell_edt_clock_buf/clkout
+  edt_update_persistent_pin tessent_persistent_cell_edt_update_buf/o
+  edt_bypass_persistent_pin tessent_persistent_cell_edt_bypass_buf/o
+  edt_low_power_shift_en_persistent_pin tessent_persistent_cell_edt_low_power_shift_en_buf/o
+  edt_channels_in_persistent_pins tessent_persistent_cell_edt_channels_in_*_buf/o
+  edt_channels_out_persistent_pins tessent_persistent_cell_edt_channels_out_*_buf/o
+  edt_scan_in_persistent_pins tessent_persistent_cell_edt_scan_in_*_buf/o
+  edt_scan_out_persistent_pins tessent_persistent_cell_edt_scan_out_*_buf/o
+  edt_ports {
+    edt_clock {
+      type edt_clock
+      direction input
+      on_state 1
+      port OptionalDftSignal(edt_clock)
+    }
+    edt_update {
+      type edt_update
+      direction input
+      on_state 1
+      port OptionalDftSignal(edt_update)
+    }
+    edt_bypass {
+      type edt_bypass
+      direction input
+      on_state 1
+      port {$firebird7_in_gate2_tessent_edt_intest_edt_tdr/edt_bypass}
+    }
+    edt_low_power_shift_en {
+      type edt_low_power_shift_en
+      direction input
+      on_state 1
+      port {$firebird7_in_gate2_tessent_edt_intest_edt_tdr/edt_low_power_shift_en}
+    }
+    {edt_channels_in[0]} {
+      type channel_input0
+      direction input
+      on_state 1
+      port {}
+    }
+    {edt_channels_out[0]} {
+      type channel_output0
+      direction output
+      on_state 1
+      port {}
+    }
+    {edt_channels_in[1]} {
+      type channel_input1
+      direction input
+      on_state 1
+      port {}
+    }
+    {edt_channels_out[1]} {
+      type channel_output1
+      direction output
+      on_state 1
+      port {}
+    }
+    {edt_channels_in[2]} {
+      type channel_input2
+      direction input
+      on_state 1
+      port {}
+    }
+    {edt_channels_in[3]} {
+      type channel_input3
+      direction input
+      on_state 1
+      port {}
+    }
+  }
+  non_modal {
+    mcp0 {
+      comment {Relax hold time check from low power hold registers}
+      from {
+        cells {$tessent_controller_instance/firebird7_in_gate2_tessent_edt_intest_edt_controller_i/low_power_shift_controller_i/low_power_hold_reg*}
+      }
+      hold 1
+    }
+  }
+  modal {
+    edt_shift {
+    }
+    edt_fast_capture {
+    }
+  }
+  tdr_persistent_buffers 1
+}

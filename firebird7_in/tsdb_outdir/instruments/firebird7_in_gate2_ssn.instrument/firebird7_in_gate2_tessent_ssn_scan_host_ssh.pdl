@@ -1,0 +1,149 @@
+#--------------------------------------------------------------------------
+#
+#  Unpublished work. Copyright 2022 Siemens
+#
+#  This material contains trade secrets or otherwise confidential 
+#  information owned by Siemens Industry Software Inc. or its affiliates 
+#  (collectively, SISW), or its licensors. Access to and use of this 
+#  information is strictly limited as set forth in the Customer's 
+#  applicable agreements with SISW.
+#
+#--------------------------------------------------------------------------
+#  File created by: Tessent Shell
+#          Version: 2022.4
+#       Created on: Tue Oct 24 19:28:51 PDT 2023
+#--------------------------------------------------------------------------
+
+iProcsForModule firebird7_in_gate2_tessent_ssn_scan_host_ssh
+iProc setup {args} {
+  set param_list {
+    packet_size 
+    force_suppress_capture
+    bus_width
+    min_shift_clock_low_width 
+    min_capture_clock_low_width 
+    enable   
+    loop_back_en 
+    streaming_through_ijtag_en
+    initial_bit0_position 
+    initial_offset
+    relative_initial_offset_enable
+    bits_per_packet
+    extra_shift_packets
+    scan_en_transition_packets
+    scan_en_launch_packet
+    edt_update_falling_transition_words
+    edt_update_falling_launch_word
+    total_shift_cnt_minus_one
+    init_scan_load_used
+    disable_first_scan_load_masking
+    capture_packets
+    packets_per_capture_clock_minus_one
+    infinite_shift_mode
+    on_chip_compare_enable
+    disable_on_chip_compare_contribution
+    on_chip_compare_group_count
+    on_chip_compare_group
+  }
+  lappend param_list to_scan_in_bits
+  lappend param_list from_scan_out_bits
+  lappend param_list from_scan_out_le_strobe_en
+  array set PARAM {
+    enable                               0
+    force_suppress_capture               0
+    min_shift_clock_low_width            0 
+    min_capture_clock_low_width          0 
+    loop_back_en                         0 
+    streaming_through_ijtag_en           0
+    relative_initial_offset_enable       0
+    init_scan_load_used                  0
+    disable_first_scan_load_masking      0
+    packets_per_capture_clock_minus_one  0
+    extra_shift_packets                  0
+    scan_en_transition_packets           0
+    edt_update_falling_transition_words  0
+    infinite_shift_mode                  0
+    on_chip_compare_enable               0 
+    disable_on_chip_compare_contribution 0
+    on_chip_compare_group_count          1
+    on_chip_compare_group                0
+    from_scan_out_le_strobe_en 0
+  }
+  array set PARAM $args
+  if {[getenv INIT_SCAN_LOAD_USED -default 0] eq "1"} {
+    set PARAM(init_scan_load_used) 1
+  }
+  if {[getenv INFINITE_SHIFT_MODE -default 0] eq "1"} {
+    set PARAM(infinite_shift_mode) 1
+  }
+  foreach {param value} $args {
+    if {$param ni $param_list} {
+      display_message -warning "Unknown argument '$param' passed to the setup iProc of module firebird7_in_gate2_tessent_ssn_scan_host_ssh. It is ignored."
+    }
+  }
+  set missing_param 0
+  if {[info exists PARAM(enable)] && $PARAM(enable) in {1 0b1}} {
+    if {$PARAM(on_chip_compare_enable) in {1 0b1}} {
+      iNote "tessent_pragma iWriteVar disable_on_chip_compare_contribution inner.disable_on_chip_compare_contribution"
+    }
+    if {![info exists PARAM(streaming_through_ijtag_en)] || $PARAM(streaming_through_ijtag_en) in {0 0b0}} {
+      iNote "tessent_pragma patchable_iwrite enable inner.enable"
+    }
+    foreach param $param_list {
+      if {$PARAM(infinite_shift_mode)} {
+        if {$param eq "total_shift_cnt_minus_one"} {
+          continue
+        }
+      } else {
+        if {$param eq "infinite_shift_mode"} {
+          continue
+        }
+      }
+      if {$param eq "scan_en_launch_packet" && ![info exists PARAM(scan_en_launch_packet)] && [info exists PARAM(scan_en_transition_packets)]} {
+        set PARAM(scan_en_launch_packet) [expr {int(ceil($PARAM(scan_en_transition_packets)/2))}]
+      }
+      if {$param eq "edt_update_falling_launch_word" && ![info exists PARAM(edt_update_falling_launch_word)] && [info exists PARAM(edt_update_falling_transition_words)]} {
+        set PARAM(edt_update_falling_launch_word) [expr {int(ceil($PARAM(edt_update_falling_transition_words)/2))}]
+      }
+      if {![info exists PARAM($param)]} {
+        display_message "Mandatory argument '$param' passed to the setup iProc of module firebird7_in_gate2_tessent_ssn_scan_host_ssh is missing."
+        set missing_param 1
+      } else {
+        if {$param eq "disable_on_chip_compare_contribution" && \
+            [info exists ::ssh_disable_contribution_icl_instance_name_list] && \
+            [get_icl_scope -icall] in $::ssh_disable_contribution_icl_instance_name_list} {
+          puts "Setting $param to 1 for ICL Instance '[get_icl_scope -icall]'."
+          iWrite inner.${param} 0b1
+        } elseif {$param ne "enable" || $PARAM(streaming_through_ijtag_en) in {0 0b0}} {
+          iWrite inner.${param} $PARAM($param)
+        }
+      }
+    }
+ 
+    if {$missing_param} {
+      return -code error
+    }
+ 
+    if {1.0*$PARAM(packet_size)/$PARAM(bus_width) < 2} {
+      iWrite inner.packet_width_is_less_than_two_bus_clock 0b1
+    } else {
+      iWrite inner.packet_width_is_less_than_two_bus_clock 0b0
+    }
+ 
+    iWrite inner.config_sib_shift_reg 0b0
+    iApply
+  }
+}
+iProc end {args} {
+  array set ARGS {sticky_status_global 1 expect pass}
+  array set ARGS $args
+  if {$ARGS(expect) ni {pass fail}} {
+    display_message "The iProc [get_icl_scope -icall].end was called with expect value '$ARGS(expect)' which is not one of 'pass' or 'fail'."
+    return -code error
+  }
+  if {$ARGS(sticky_status_global) in {0b1 1}} {
+    iNote "TESSENT_PRAGMA iReadVar sticky_status inner.sticky_status"
+    iRead inner.sticky_status $ARGS(expect)
+  }
+  iApply
+}

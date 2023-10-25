@@ -1,0 +1,115 @@
+set firebird7_in_gate2_ssn {
+  base_names {
+    persistent_clock_cell_prefix tessent_persistent_cell_
+    persistent_cells {
+      multiplexer {
+        input0 clk2
+        input1 clk1
+        output clkout
+      }
+    }
+    pipeline {
+      module_names {
+        firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe {
+          bus_input {
+            data_registers datapath/r0*
+            phases {
+              1 1
+            }
+          }
+          bus_output {
+            data_registers datapath/r0*
+            phases {
+              1 1
+            }
+          }
+        }
+      }
+    }
+    receiver1xpipeline {
+      module_names {
+        firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe {
+          bus_input {
+            data_registers datapath/r0_n*
+            phases {
+              0.5 1
+            }
+          }
+          bus_output {
+            data_registers datapath/r0*
+            phases {
+              1 1
+            }
+          }
+        }
+      }
+    }
+    scanhost {
+      module_names {
+        firebird7_in_gate2_tessent_ssn_scan_host_ssh {
+          ssn_bus_clock_mux {
+            instance tessent_persistent_cell_ssn_bus_clock_mux
+          }
+          bus_input {
+            data_registers datapath/bus_register_in*
+          }
+          bus_output {
+            data_registers datapath/bus_register_out*
+          }
+          scan_signals_bypass off
+          use_ssn_bus_clock_as_test_clock_bypass off
+          channels_bypass off
+          special_flops {
+            enable_sync {fsm/enable_sync*}
+          }
+          enable_sync_buf_output fsm/tessent_persistent_cell_enable_sync_buf/o
+          tck_clock_gater_output tessent_persistent_cell_tck_clock_gater/clkout
+          use_clock_shaper_cell 0
+          use_clock_dff_cell 1
+          scan_host_signals {
+            edt_clock {
+              source_merged clock_gen/clock_signals/tessent_persistent_cell_edt_clock_buf/clkout
+              source_when_divided clock_gen/clock_signals/tessent_persistent_cell_edt_clock_div/q
+              divided_enable_pin clock_gen/clock_signals/tessent_persistent_cell_edt_clock_div/rn
+              source_when_gated clock_gen/clock_signals/tessent_persistent_cell_edt_clock_cg/clkout
+            }
+            shift_capture_clock {
+              source_merged clock_gen/clock_signals/tessent_persistent_cell_shift_capture_clock_buf/clkout
+              source_when_divided clock_gen/clock_signals/tessent_persistent_cell_shift_capture_clock_div/q
+              divided_enable_pin clock_gen/clock_signals/tessent_persistent_cell_shift_capture_clock_div/rn
+              source_when_gated clock_gen/clock_signals/tessent_persistent_cell_shift_capture_clock_cg/clkout
+            }
+            ijtag_clock {
+              source clock_gen/clock_signals/tessent_persistent_cell_ijtag_clock_cg/clkout
+              stop_point clock_gen/clock_signals/tessent_persistent_cell_*_or2/b
+            }
+            edt_update {
+              source_merged clock_gen/tessent_persistent_cell_edt_update_mux/o
+              source_for_divided_clock {clock_gen/edt_update_delayed*}
+              source_for_gated_clock {clock_gen/edt_update_ret*}
+              persistent_pin_for_divided_clock clock_gen/tessent_persistent_cell_edt_update_mux/b
+              persistent_pin_for_gated_clock clock_gen/tessent_persistent_cell_edt_update_mux/a
+            }
+            scan_en {
+              source_merged tessent_persistent_cell_scan_en_buf/o
+              source_flops {
+                clock_gen/scan_en_delayed* fsm/scan_en_ff*
+              }
+            }
+            from_scan_out {
+              source_at_and_gate {tessent_persistent_cell_from_scan_out*_and/a}
+              destination_for_le_strobe {datapath/from_scan_out*_ret_p*}
+              destination_for_gated_clock {datapath/from_scan_out*_ret_n*}
+              destination_merged datapath/tessent_persistent_cell_from_scan_out*_mux*/o
+            }
+            to_scan_in {
+              source_merged tessent_persistent_cell_to_scan_in*_buf/o
+              source_for_divided_clock {datapath/to_scan_in*_ret_for_div*}
+              source_for_gated_clock {datapath/to_scan_in*_ret_not_for_div*}
+            }
+          }
+        }
+      }
+    }
+  }
+}

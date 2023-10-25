@@ -1,0 +1,33 @@
+//============================================================================================
+// TEAMaker DFT - Preferred Library Cells for dft_cell_selection Intel p1278d3 (18A)
+//
+// Derived from CTECH assignments made by Intel CAD at:
+//    /nfs/site/disks/xne_00057/xne_ip/intel_1278d3/stdcells/pdk030_r2v0p0_uv2/i0s_160h_50pp/
+//       ctech/source/p1278/160h_i0s_50pp/lvt/
+//============================================================================================
+
+library_format_version = 9;
+
+array_delimiter = "[]";
+
+dft_cell_selection ( ctech_lib ) (
+  selection_source = cell;
+  cell_library_name = ctech_lib;
+  clock_buffer = i0scbf000ab1n02x5 ;
+  clock_inverter = i0scinv00ab1n02x5 ;
+  clock_mux = i0scmbn22ab1n02x5 ;
+  clock_and = i0sclb0a2ab1n02x5 ;
+  clock_or  = i0sorn002ab1n02x5;
+  clock_gating_and = i0scilb01ab1n02x5 ;
+  buffer   = i0sbfn000ab1n02x5 ;
+  inverter = i0sinv000ab1n02x5 ;
+  and = i0sand002ab1n02x5 ;
+  or  = i0sorn002ab1n02x5 ;
+  mux = i0smbn022ab1n02x5 ;
+  posedge_synchronizer_cell = i0sfmn203ab1d03x5 ;
+  active_high_latch         = i0slsn000ab1n02x5 ;
+  active_low_latch          = i0slsn080ab1d02x5 ;
+  posedge_dff               = i0sfun000ab1d02x5 ;
+  negedge_dff               = i0sfun080aa1d02x5 ; 
+) // end dft_cell_selection
+

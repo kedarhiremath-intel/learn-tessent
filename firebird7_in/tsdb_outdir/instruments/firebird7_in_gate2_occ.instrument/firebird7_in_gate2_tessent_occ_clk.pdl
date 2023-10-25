@@ -1,0 +1,81 @@
+#--------------------------------------------------------------------------
+#
+#  Unpublished work. Copyright 2022 Siemens
+#
+#  This material contains trade secrets or otherwise confidential 
+#  information owned by Siemens Industry Software Inc. or its affiliates 
+#  (collectively, SISW), or its licensors. Access to and use of this 
+#  information is strictly limited as set forth in the Customer's 
+#  applicable agreements with SISW.
+#
+#--------------------------------------------------------------------------
+#  File created by: Tessent Shell
+#          Version: 2022.4
+#       Created on: Tue Oct 24 19:28:52 PDT 2023
+#--------------------------------------------------------------------------
+
+iProcsForModule firebird7_in_gate2_tessent_occ_clk
+iProc setup {args} {
+   if {[expr [llength $args]%2 != 0]} {
+      display_message -error "Odd number of arguments. Expecting parameter and value pairs."
+      return -code error
+   }
+   set fast_capture_mode 0
+   set parent_mode 0
+   set capture_window_size 5
+   set inject_tck 0
+   set active_upstream_parent_occ 0
+   foreach {param value} $args {
+      set param [string tolower $param]
+      if {$param eq "capture_window_size"} {
+         set capture_window_size $value
+      } elseif {$param eq "fast_capture_mode"} {
+         set fast_capture_mode $value
+      } elseif {$param eq "active_upstream_parent_occ"} {
+         set active_upstream_parent_occ $value
+      } elseif {$param eq "inject_tck"} {
+         set inject_tck $value
+      } else {
+         display_message -error "Invalid parameter '$param'. Valid parameters are 'fast_capture_mode', 'capture_window_size' and 'inject_tck'."
+         return -code error
+      }
+   }
+ 
+   if {![string is boolean -strict $fast_capture_mode]} {
+      display_message -error "Invalid non-boolean value '$fast_capture_mode' for parameter 'fast_capture_mode'."
+      return -code error
+   }
+   if {![string is boolean -strict $active_upstream_parent_occ]} {
+      display_message -error "Invalid non-boolean value '$active_upstream_parent_occ' for parameter 'active_upstream_parent_occ'."
+      return -code error
+   }
+   if {![string is boolean -strict $parent_mode]} {
+      display_message -error "Invalid non-boolean value '$parent_mode' for parameter 'parent_mode'."
+      return -code error
+   } elseif {$parent_mode} {
+      display_message -error "Parameter 'parent_mode' cannot be set to 1 as the controller type is not 'parent'."
+      return -code error
+   }
+   if {![string is integer -strict $capture_window_size]} {
+      display_message -error "Invalid non-integer value '$capture_window_size' for parameter 'capture_window_size'."
+      return -code error
+   }
+   if {$capture_window_size < 1 || $capture_window_size > 5} {
+      display_message -error "Invalid value '$capture_window_size' for parameter 'capture_window_size'. Must be 1 to 5."
+      return -code error
+   }
+   if {![string is boolean -strict $inject_tck]} {
+      display_message -error "Invalid non-boolean value '$inject_tck' for parameter 'inject_tck'."
+      return -code error
+   }
+  
+   iWrite test_mode 1;
+   iWrite fast_capture_mode [string is true $fast_capture_mode];
+   iWrite capture_cycle_width [expr {$capture_window_size - 1}];
+   iWrite active_upstream_parent_occ  [string is true $active_upstream_parent_occ]
+   iWrite inject_tck [string is true $inject_tck];
+  
+   iApply;
+}
+ 
+  

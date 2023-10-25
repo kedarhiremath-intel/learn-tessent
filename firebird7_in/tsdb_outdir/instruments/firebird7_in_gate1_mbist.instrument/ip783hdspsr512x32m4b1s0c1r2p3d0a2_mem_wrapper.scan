@@ -1,0 +1,387 @@
+/*
+----------------------------------------------------------------------------------
+-                                                                                -
+-  Unpublished work. Copyright 2022 Siemens                                      -
+-                                                                                -
+-  This material contains trade secrets or otherwise confidential                -
+-  information owned by Siemens Industry Software Inc. or its affiliates         -
+-  (collectively, SISW), or its licensors. Access to and use of this             -
+-  information is strictly limited as set forth in the Customer's                -
+-  applicable agreements with SISW.                                              -
+-                                                                                -
+----------------------------------------------------------------------------------
+-  File created by: Tessent Shell                                                -
+-          Version: 2022.4                                                       -
+-       Created on: Mon Oct 23 12:52:07 PDT 2023                                 -
+----------------------------------------------------------------------------------
+
+
+*/
+`ifdef MGC_INHIBIT_MEM_SCAN_MODEL
+`else
+
+`celldefine
+module ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper (
+    row_repair_in, 
+    col_repair_in, 
+    
+    clk,
+    wen,
+    ren,
+    async_rst,
+    fastsleep,
+    deepsleep,
+    sbc,
+    shutoff,
+    mce,
+    stbyp,
+    rmce,
+    wmce,
+    wpulse,
+    wa_disable,
+    wa,
+    ra,
+    global_rrow_en_in,
+    isolation_control_in,
+    dpslp_or_shutoffout,
+    shutoffout,
+    adr,
+    din,
+    q
+
+);
+input           clk;
+input           wen;
+input           ren;
+input           async_rst;
+input           fastsleep;
+input           deepsleep;
+input   [1:0]   sbc;
+input           shutoff;
+input           mce;
+input           stbyp;
+input   [3:0]   rmce;
+input   [1:0]   wmce;
+input   [1:0]   wpulse;
+input           wa_disable;
+input   [2:0]   wa;
+input   [1:0]   ra;
+input   [1:0]   global_rrow_en_in;
+input           isolation_control_in;
+output          dpslp_or_shutoffout;
+output          shutoffout;
+input  [8:0]    adr;
+input  [31:0]   din;
+output [31:0]   q;
+input [25:0]    row_repair_in;
+input [12:0]    col_repair_in;
+
+
+//------------
+//-- Wires  --
+//------------
+// {{{
+wire clk_BIT0_MUXED;
+wire adr_BIT8_MUXED;
+wire adr_BIT7_MUXED;
+wire adr_BIT6_MUXED;
+wire adr_BIT5_MUXED;
+wire adr_BIT4_MUXED;
+wire adr_BIT3_MUXED;
+wire adr_BIT2_MUXED;
+wire adr_BIT1_MUXED;
+wire adr_BIT0_MUXED;
+wire wen_BIT0_MUXED;
+wire ren_BIT0_MUXED;
+wire din_BIT31_MUXED;
+wire din_BIT30_MUXED;
+wire din_BIT29_MUXED;
+wire din_BIT28_MUXED;
+wire din_BIT27_MUXED;
+wire din_BIT26_MUXED;
+wire din_BIT25_MUXED;
+wire din_BIT24_MUXED;
+wire din_BIT23_MUXED;
+wire din_BIT22_MUXED;
+wire din_BIT21_MUXED;
+wire din_BIT20_MUXED;
+wire din_BIT19_MUXED;
+wire din_BIT18_MUXED;
+wire din_BIT17_MUXED;
+wire din_BIT16_MUXED;
+wire din_BIT15_MUXED;
+wire din_BIT14_MUXED;
+wire din_BIT13_MUXED;
+wire din_BIT12_MUXED;
+wire din_BIT11_MUXED;
+wire din_BIT10_MUXED;
+wire din_BIT9_MUXED;
+wire din_BIT8_MUXED;
+wire din_BIT7_MUXED;
+wire din_BIT6_MUXED;
+wire din_BIT5_MUXED;
+wire din_BIT4_MUXED;
+wire din_BIT3_MUXED;
+wire din_BIT2_MUXED;
+wire din_BIT1_MUXED;
+wire din_BIT0_MUXED;
+wire q_BIT31_DRIVER;
+wire q_BIT30_DRIVER;
+wire q_BIT29_DRIVER;
+wire q_BIT28_DRIVER;
+wire q_BIT27_DRIVER;
+wire q_BIT26_DRIVER;
+wire q_BIT25_DRIVER;
+wire q_BIT24_DRIVER;
+wire q_BIT23_DRIVER;
+wire q_BIT22_DRIVER;
+wire q_BIT21_DRIVER;
+wire q_BIT20_DRIVER;
+wire q_BIT19_DRIVER;
+wire q_BIT18_DRIVER;
+wire q_BIT17_DRIVER;
+wire q_BIT16_DRIVER;
+wire q_BIT15_DRIVER;
+wire q_BIT14_DRIVER;
+wire q_BIT13_DRIVER;
+wire q_BIT12_DRIVER;
+wire q_BIT11_DRIVER;
+wire q_BIT10_DRIVER;
+wire q_BIT9_DRIVER;
+wire q_BIT8_DRIVER;
+wire q_BIT7_DRIVER;
+wire q_BIT6_DRIVER;
+wire q_BIT5_DRIVER;
+wire q_BIT4_DRIVER;
+wire q_BIT3_DRIVER;
+wire q_BIT2_DRIVER;
+wire q_BIT1_DRIVER;
+wire q_BIT0_DRIVER;
+// }}}
+
+//---------------
+//-- Main Code --
+//---------------
+
+//-----------------
+//-- Clock ports --
+//-----------------
+// {{{
+assign clk_BIT0_MUXED  = clk;
+// }}}
+
+//-------------------
+//-- Address ports --
+//-------------------
+// {{{
+assign adr_BIT8_MUXED  = adr[8];
+assign adr_BIT7_MUXED  = adr[7];
+assign adr_BIT6_MUXED  = adr[6];
+assign adr_BIT5_MUXED  = adr[5];
+assign adr_BIT4_MUXED  = adr[4];
+assign adr_BIT3_MUXED  = adr[3];
+assign adr_BIT2_MUXED  = adr[2];
+assign adr_BIT1_MUXED  = adr[1];
+assign adr_BIT0_MUXED  = adr[0];
+// }}}
+
+//-------------------
+//-- Control ports --
+//-------------------
+// {{{
+assign wen_BIT0_MUXED  = wen;
+assign ren_BIT0_MUXED  = ren;
+// }}}
+
+//----------------------
+//-- Data input ports --
+//----------------------
+// {{{
+assign din_BIT31_MUXED  = din[31];
+assign din_BIT30_MUXED  = din[30];
+assign din_BIT29_MUXED  = din[29];
+assign din_BIT28_MUXED  = din[28];
+assign din_BIT27_MUXED  = din[27];
+assign din_BIT26_MUXED  = din[26];
+assign din_BIT25_MUXED  = din[25];
+assign din_BIT24_MUXED  = din[24];
+assign din_BIT23_MUXED  = din[23];
+assign din_BIT22_MUXED  = din[22];
+assign din_BIT21_MUXED  = din[21];
+assign din_BIT20_MUXED  = din[20];
+assign din_BIT19_MUXED  = din[19];
+assign din_BIT18_MUXED  = din[18];
+assign din_BIT17_MUXED  = din[17];
+assign din_BIT16_MUXED  = din[16];
+assign din_BIT15_MUXED  = din[15];
+assign din_BIT14_MUXED  = din[14];
+assign din_BIT13_MUXED  = din[13];
+assign din_BIT12_MUXED  = din[12];
+assign din_BIT11_MUXED  = din[11];
+assign din_BIT10_MUXED  = din[10];
+assign din_BIT9_MUXED  = din[9];
+assign din_BIT8_MUXED  = din[8];
+assign din_BIT7_MUXED  = din[7];
+assign din_BIT6_MUXED  = din[6];
+assign din_BIT5_MUXED  = din[5];
+assign din_BIT4_MUXED  = din[4];
+assign din_BIT3_MUXED  = din[3];
+assign din_BIT2_MUXED  = din[2];
+assign din_BIT1_MUXED  = din[1];
+assign din_BIT0_MUXED  = din[0];
+// }}}
+
+//-----------------------
+//-- Data output ports --
+//-----------------------
+// {{{
+assign q_BIT31_DRIVER  = 1'bz;
+assign q_BIT30_DRIVER  = 1'bz;
+assign q_BIT29_DRIVER  = 1'bz;
+assign q_BIT28_DRIVER  = 1'bz;
+assign q_BIT27_DRIVER  = 1'bz;
+assign q_BIT26_DRIVER  = 1'bz;
+assign q_BIT25_DRIVER  = 1'bz;
+assign q_BIT24_DRIVER  = 1'bz;
+assign q_BIT23_DRIVER  = 1'bz;
+assign q_BIT22_DRIVER  = 1'bz;
+assign q_BIT21_DRIVER  = 1'bz;
+assign q_BIT20_DRIVER  = 1'bz;
+assign q_BIT19_DRIVER  = 1'bz;
+assign q_BIT18_DRIVER  = 1'bz;
+assign q_BIT17_DRIVER  = 1'bz;
+assign q_BIT16_DRIVER  = 1'bz;
+assign q_BIT15_DRIVER  = 1'bz;
+assign q_BIT14_DRIVER  = 1'bz;
+assign q_BIT13_DRIVER  = 1'bz;
+assign q_BIT12_DRIVER  = 1'bz;
+assign q_BIT11_DRIVER  = 1'bz;
+assign q_BIT10_DRIVER  = 1'bz;
+assign q_BIT9_DRIVER  = 1'bz;
+assign q_BIT8_DRIVER  = 1'bz;
+assign q_BIT7_DRIVER  = 1'bz;
+assign q_BIT6_DRIVER  = 1'bz;
+assign q_BIT5_DRIVER  = 1'bz;
+assign q_BIT4_DRIVER  = 1'bz;
+assign q_BIT3_DRIVER  = 1'bz;
+assign q_BIT2_DRIVER  = 1'bz;
+assign q_BIT1_DRIVER  = 1'bz;
+assign q_BIT0_DRIVER  = 1'bz;
+assign q[31]    = q_BIT31_DRIVER;
+assign q[30]    = q_BIT30_DRIVER;
+assign q[29]    = q_BIT29_DRIVER;
+assign q[28]    = q_BIT28_DRIVER;
+assign q[27]    = q_BIT27_DRIVER;
+assign q[26]    = q_BIT26_DRIVER;
+assign q[25]    = q_BIT25_DRIVER;
+assign q[24]    = q_BIT24_DRIVER;
+assign q[23]    = q_BIT23_DRIVER;
+assign q[22]    = q_BIT22_DRIVER;
+assign q[21]    = q_BIT21_DRIVER;
+assign q[20]    = q_BIT20_DRIVER;
+assign q[19]    = q_BIT19_DRIVER;
+assign q[18]    = q_BIT18_DRIVER;
+assign q[17]    = q_BIT17_DRIVER;
+assign q[16]    = q_BIT16_DRIVER;
+assign q[15]    = q_BIT15_DRIVER;
+assign q[14]    = q_BIT14_DRIVER;
+assign q[13]    = q_BIT13_DRIVER;
+assign q[12]    = q_BIT12_DRIVER;
+assign q[11]    = q_BIT11_DRIVER;
+assign q[10]    = q_BIT10_DRIVER;
+assign q[9]     = q_BIT9_DRIVER;
+assign q[8]     = q_BIT8_DRIVER;
+assign q[7]     = q_BIT7_DRIVER;
+assign q[6]     = q_BIT6_DRIVER;
+assign q[5]     = q_BIT5_DRIVER;
+assign q[4]     = q_BIT4_DRIVER;
+assign q[3]     = q_BIT3_DRIVER;
+assign q[2]     = q_BIT2_DRIVER;
+assign q[1]     = q_BIT1_DRIVER;
+assign q[0]     = q_BIT0_DRIVER;
+// }}}
+
+`ifdef LV_scanmodel
+// {{{
+lv_assumed_mbist_mem_in( adr_BIT8_MUXED );
+lv_assumed_mbist_mem_in( adr_BIT7_MUXED );
+lv_assumed_mbist_mem_in( adr_BIT6_MUXED );
+lv_assumed_mbist_mem_in( adr_BIT5_MUXED );
+lv_assumed_mbist_mem_in( adr_BIT4_MUXED );
+lv_assumed_mbist_mem_in( adr_BIT3_MUXED );
+lv_assumed_mbist_mem_in( adr_BIT2_MUXED );
+lv_assumed_mbist_mem_in( adr_BIT1_MUXED );
+lv_assumed_mbist_mem_in( adr_BIT0_MUXED );
+lv_assumed_mbist_mem_in( wen_BIT0_MUXED );
+lv_assumed_mbist_mem_in( ren_BIT0_MUXED );
+lv_assumed_mbist_mem_in( din_BIT31_MUXED );
+lv_assumed_mbist_mem_in( din_BIT30_MUXED );
+lv_assumed_mbist_mem_in( din_BIT29_MUXED );
+lv_assumed_mbist_mem_in( din_BIT28_MUXED );
+lv_assumed_mbist_mem_in( din_BIT27_MUXED );
+lv_assumed_mbist_mem_in( din_BIT26_MUXED );
+lv_assumed_mbist_mem_in( din_BIT25_MUXED );
+lv_assumed_mbist_mem_in( din_BIT24_MUXED );
+lv_assumed_mbist_mem_in( din_BIT23_MUXED );
+lv_assumed_mbist_mem_in( din_BIT22_MUXED );
+lv_assumed_mbist_mem_in( din_BIT21_MUXED );
+lv_assumed_mbist_mem_in( din_BIT20_MUXED );
+lv_assumed_mbist_mem_in( din_BIT19_MUXED );
+lv_assumed_mbist_mem_in( din_BIT18_MUXED );
+lv_assumed_mbist_mem_in( din_BIT17_MUXED );
+lv_assumed_mbist_mem_in( din_BIT16_MUXED );
+lv_assumed_mbist_mem_in( din_BIT15_MUXED );
+lv_assumed_mbist_mem_in( din_BIT14_MUXED );
+lv_assumed_mbist_mem_in( din_BIT13_MUXED );
+lv_assumed_mbist_mem_in( din_BIT12_MUXED );
+lv_assumed_mbist_mem_in( din_BIT11_MUXED );
+lv_assumed_mbist_mem_in( din_BIT10_MUXED );
+lv_assumed_mbist_mem_in( din_BIT9_MUXED );
+lv_assumed_mbist_mem_in( din_BIT8_MUXED );
+lv_assumed_mbist_mem_in( din_BIT7_MUXED );
+lv_assumed_mbist_mem_in( din_BIT6_MUXED );
+lv_assumed_mbist_mem_in( din_BIT5_MUXED );
+lv_assumed_mbist_mem_in( din_BIT4_MUXED );
+lv_assumed_mbist_mem_in( din_BIT3_MUXED );
+lv_assumed_mbist_mem_in( din_BIT2_MUXED );
+lv_assumed_mbist_mem_in( din_BIT1_MUXED );
+lv_assumed_mbist_mem_in( din_BIT0_MUXED );
+lv_assumed_mbist_mem_out( q_BIT31_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT30_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT29_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT28_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT27_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT26_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT25_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT24_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT23_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT22_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT21_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT20_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT19_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT18_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT17_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT16_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT15_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT14_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT13_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT12_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT11_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT10_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT9_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT8_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT7_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT6_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT5_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT4_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT3_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT2_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT1_DRIVER );
+lv_assumed_mbist_mem_out( q_BIT0_DRIVER );
+// }}}
+`endif
+
+endmodule
+`endcelldefine
+
+`endif

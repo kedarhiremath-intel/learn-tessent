@@ -1,0 +1,778 @@
+puts "" 
+puts "===========" 
+puts " Important " 
+puts "===========" 
+puts "The dft_summary_dictionary file will be retired in a future release." 
+puts "A new tool command will be implemented to generate the same information." 
+puts "" 
+
+set dft_summary {
+  firebird7_in {
+    mentor::memory_bist::DftSpecification {
+      SummaryInfo {
+        version 1
+        current_design firebird7_in
+        DesignInstance {
+          - {
+            DesignId {
+              gate1 {
+                Controller {
+                  ph0/i/firebird7_in_gate1_tessent_mbist_c1_controller_inst {
+                    bist_clock_period_ns 783.0
+                    bist_clock_connection clk
+                    module_name firebird7_in_gate1_tessent_mbist_c1_controller
+                    design_instance ph0/i/firebird7_in_gate1_tessent_mbist_c1_controller_inst
+                    bap_module_name firebird7_in_gate1_tessent_mbist_bap
+                    bap_design_instance firebird7_in_gate1_tessent_mbist_bap_inst
+                    bist_port {firebird7_in_gate1_tessent_mbist_bap_inst/bistEn[0]}
+                    Step {
+                      0 {
+                        StepInfo {
+                          power_mw 0.16
+                          run_time_ns 25694928.0
+                          test_cycles 32816
+                          comparator_location per_interface
+                        }
+                        MemoryInstance {
+                          ph0/i/d/m/g0_b0/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m1
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:25
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g0_b0/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m1
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g10_b10/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m2
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:14
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g10_b10/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m2
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g11_b11/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m3
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:13
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g11_b11/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m3
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g12_b12/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m4
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:11
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g12_b12/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m4
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g13_b13/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m5
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:10
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g13_b13/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m5
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g14_b14/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m6
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:9
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g14_b14/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m6
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g15_b15/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m7
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:8
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g15_b15/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m7
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g16_b16/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m8
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:7
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g16_b16/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m8
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g17_b17/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m9
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:6
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g17_b17/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m9
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g18_b18/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m10
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:5
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g18_b18/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m10
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g19_b19/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m11
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:4
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g19_b19/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m11
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g1_b1/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m12
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:24
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g1_b1/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m12
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g20_b20/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m13
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:3
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g20_b20/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m13
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g21_b21/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m14
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:2
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g21_b21/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m14
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g22_b22/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m15
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:31
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g22_b22/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m15
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g23_b23/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m16
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:30
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g23_b23/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m16
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g24_b24/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m17
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:29
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g24_b24/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m17
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g25_b25/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m18
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:28
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g25_b25/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m18
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g26_b26/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m19
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:27
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g26_b26/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m19
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g27_b27/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m20
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:26
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g27_b27/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m20
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g28_b28/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m21
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:23
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g28_b28/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m21
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g29_b29/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m22
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:12
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g29_b29/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m22
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g2_b2/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m23
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:22
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g2_b2/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m23
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g30_b30/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m24
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:1
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g30_b30/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m24
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g31_b31/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m25
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:0
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g31_b31/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m25
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g3_b3/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m26
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:21
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g3_b3/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m26
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g4_b4/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m27
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:20
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g4_b4/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m27
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g5_b5/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m28
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:19
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g5_b5/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m28
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g6_b6/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m29
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:18
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g6_b6/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m29
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g7_b7/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m30
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:17
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g7_b7/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m30
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g8_b8/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m31
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:16
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g8_b8/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m31
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/d/m/g9_b9/db/gen_100_dRam/mem0_i {
+                            power_mw 0.00
+                            interface_id m32
+                            template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:15
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/d/m/g9_b9/db/gen_100_dRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m32
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/p/f/m/ram0/gen_100_pRam/mem0_i {
+                            power_mw 0.01
+                            interface_id m33
+                            template /Core(ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:35
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/p/f/m/ram0/gen_100_pRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m33
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/p/f/m/ram1/gen_100_pRam/mem0_i {
+                            power_mw 0.01
+                            interface_id m34
+                            template /Core(ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:34
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/p/f/m/ram1/gen_100_pRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m34
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/p/f/m/ram2/gen_100_pRam/mem0_i {
+                            power_mw 0.01
+                            interface_id m35
+                            template /Core(ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:33
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/p/f/m/ram2/gen_100_pRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m35
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/p/f/m/ram3/gen_100_pRam/mem0_i {
+                            power_mw 0.01
+                            interface_id m36
+                            template /Core(ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:32
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/p/f/m/ram3/gen_100_pRam/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m36
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/p/gb1_b/m0/mem0_i {
+                            power_mw 0.00
+                            interface_id m37
+                            template /Core(ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:39
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/p/gb1_b/m0/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m37
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/p/gb1_b/m1/mem0_i {
+                            power_mw 0.00
+                            interface_id m38
+                            template /Core(ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:38
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/p/gb1_b/m1/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m38
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/p/gs1_s/m0/mem0_i {
+                            power_mw 0.00
+                            interface_id m39
+                            template /Core(ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:37
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/p/gs1_s/m0/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m39
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                          ph0/i/p/gs1_s/m1/mem0_i {
+                            power_mw 0.00
+                            interface_id m40
+                            template /Core(ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper)/Memory
+                            type sram
+                            object_id instance:36
+                            MemoryInterfaceInfo {
+                              design_instance ph0/i/p/gs1_s/m1/mem0_i_interface_inst
+                              module_name firebird7_in_gate1_tessent_mbist_c1_interface_m40
+                            }
+                            RepairInfo {
+                              type row_column
+                              spare_rows 2
+                              spare_columns 1
+                            }
+                            logical_ports 1RW
+                            test_ports 1
+                          }
+                        }
+                      }
+                    }
+                    power_mw 0.16
+                    run_time_ns 25694928.0
+                    test_cycles 32816
+                    soft_operation_count 0
+                    flop_count 215
+                    soft_instruction_count 0
+                    soft_operation_length 0
+                    soft_operation_max_strobe_data_out_pipelines 0
+                    soft_operation_signals {}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

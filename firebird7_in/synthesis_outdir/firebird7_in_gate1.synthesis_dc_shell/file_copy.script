@@ -1,0 +1,55 @@
+#!/bin/sh
+unset noclobber
+echo "Synthesis script to copy files back into the TSDB"
+
+echo ""
+echo "Checking that the synthesized files all exist"
+totalFiles=0
+actualFiles=0
+while read c p f ; do
+  if [ "$c" = "synth" ] ; then
+    totalFiles=`expr $totalFiles + 1`
+    if [ -s $f ] ; then
+      if [ -d $p -a -w $p ] ; then
+        actualFiles=`expr $actualFiles + 1`
+      else
+        echo "Error: The directory '$p' for file '$f' is not writable."
+      fi
+    else
+      echo "Error: Synthesized file '$f' is missing."
+    fi
+    if [ -f $p/$f ] ; then
+      rm $p/$f
+    fi
+  fi
+done < file_list
+
+if [ $actualFiles -ne $totalFiles ] ; then
+  echo ""
+  echo "Error: File copy failed - `expr $totalFiles - $actualFiles` files could not be copied."
+  exit 1
+fi
+
+echo ""
+echo "Removing synthesized files from previous run in TSDB"
+while read c p f ; do
+  if [ "$c" = "synth" ] ; then
+    if [ -f $p/$f ] ; then
+      rm $p/$f
+    fi
+  fi
+done < file_list
+
+echo ""
+echo "Copying synthesized files in TSDB"
+while read c p f ; do
+  if [ "$c" = "synth" ] ; then
+    echo "  $f -> `dirname $p/$f`"
+    cp $f $p/$f
+  fi
+done < file_list
+
+echo ""
+echo "File copy succeeded!"
+
+exit 0

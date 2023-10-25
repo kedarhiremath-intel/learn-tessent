@@ -1,0 +1,2449 @@
+#--------------------------------------------------------------------------
+#
+#  Unpublished work. Copyright 2022 Siemens
+#
+#  This material contains trade secrets or otherwise confidential 
+#  information owned by Siemens Industry Software Inc. or its affiliates 
+#  (collectively, SISW), or its licensors. Access to and use of this 
+#  information is strictly limited as set forth in the Customer's 
+#  applicable agreements with SISW.
+#
+#--------------------------------------------------------------------------
+#  File created by: Tessent Shell
+#          Version: 2022.4
+#       Created on: Tue Oct 24 19:30:10 PDT 2023
+#--------------------------------------------------------------------------
+
+# Consolidated PDL for firebird7_in, design_id gate2 
+
+iProcsForModule firebird7_in
+
+iProc firebird7_in_gate1_tessent_mbist_c1_controller_CheckRepairNeeded {
+    {controller_instance {}}
+    {test_execution_cycles {1}}
+    {bap_instance {}}
+} {  
+  if { $bap_instance ne "" } {
+    iNote "tessent_pragma optional_iRead"
+    iRead ${bap_instance}.tdr ignore
+    iNote "tessent_pragma optional_iRead"
+    iRead ${bap_instance}.tdr_bypass_sib_inst 0bx
+    iNote "tessent_pragma optional_iRead"
+    iRead ${bap_instance}.ctl_group_sib 0bx
+    iWrite ${bap_instance}.BIST_ASYNC_RESET_tdr 0b1
+    iTake ${bap_instance}.BIST_ASYNC_RESET_tdr
+  }
+    iTake ${controller_instance}.MBISTPG_EN 
+    iWrite ${controller_instance}.MBISTPG_EN 0 
+    iTake ${controller_instance}.BIST_SETUP[1] 
+    iWrite ${controller_instance}.BIST_SETUP[1] 0
+    iNote "Checking if repair is needed for MemoryBist controller ${controller_instance}"
+    iWrite ${controller_instance}.CHECK_REPAIR_NEEDED 0b1
+    iApply
+    iRunLoop ${test_execution_cycles} -tck
+    iNote "Checking GO is PASS"
+    iNote "  (A compare mismatch on GO indicates repair is needed)"
+    iWrite ${controller_instance}.CHECK_REPAIR_NEEDED 0b0
+    iRead ${controller_instance}.MBISTPG_GO Pass
+    iApply
+}
+
+iProc firebird7_in_gate1_tessent_mbist_c1_controller_HWDefault {
+    {controller_instance {}}
+    {bap_instance {}}
+    {config_path {}}
+    {memory_instances {}}
+    {clock_source {tck}}
+    {parallel_retention_time {0}}
+    {run_time_override {0}}
+    {run_length {100}}
+    {compare_go {Yes}}
+    {reduced_address_count {Off}}
+    {memory_reset {off}}
+    {persistent_bist_inputs {off}}
+    {disable_go_id_feedback {off}}
+    {strobe_count {}}
+    {debug_mode {off}}
+    enable_memory_list
+    {preserve_fuse_register_values {off}}
+    {retention_test_phase {all_phases}}
+    {bira_en {off}}
+    {check_repair_status {No}}
+    {extract_repair_fuse_map {No}}
+    {compare_go_id {No}}
+} {  
+      set short_chain_const_registers_dict [dict create]
+  # [start] : Setup Phase {{{
+      if { $bap_instance ne "" } {
+        iNote "tessent_pragma optional_iRead"
+        iRead ${bap_instance}.tdr ignore
+        iNote "tessent_pragma optional_iRead"
+        iRead ${bap_instance}.tdr_bypass_sib_inst 0bx
+        iNote "tessent_pragma optional_iRead"
+        iRead ${bap_instance}.ctl_group_sib 0bx
+        iWrite ${bap_instance}.BIST_ASYNC_RESET_tdr 0b1
+        iTake ${bap_instance}.BIST_ASYNC_RESET_tdr
+      }
+        iTake ${controller_instance}.MBISTPG_EN 
+        iWrite ${controller_instance}.MBISTPG_EN 0 
+        iTake ${controller_instance}.BIST_SETUP[1] 
+        iWrite ${controller_instance}.BIST_SETUP[1] 0
+      set icl_instance_path [get_icl_scope -iCall]
+      if { $icl_instance_path ne "" } {
+         append icl_instance_path "."
+      }
+      set ctl_mod_name [get_single_attribute_value [get_icl_instances [list ${icl_instance_path}$controller_instance]] -name master_module_name]
+      set tcd_path [get_config_elements -partition tcd Core($ctl_mod_name)/MemoryBistController -silent]
+      # Clock errors are caught when the 'iClock' is issued, which is done prior to invoking this iProc.
+      if { [catch_output {set clockPeriod [get_iclock_option ${icl_instance_path}${controller_instance}.BIST_CLK -period -in ns]} ] || $clockPeriod eq "" } {
+        return
+      }
+        iNote "Setting up MemoryBist controller $controller_instance"
+        iNote  "Releasing asynchronous reset"
+        iWrite ${controller_instance}.MBISTPG_ASYNC_RESETN 1
+        iTake ${controller_instance}.MBISTPG_ASYNC_RESETN 
+        iApply
+        iWrite ${controller_instance}.BIST_SETUP[0] 0
+        iWrite ${controller_instance}.LV_TM 0
+      if { $reduced_address_count } {
+        iNote "Enabling reduced address simulation"
+        iWrite ${controller_instance}.MBISTPG_REDUCED_ADDR_CNT_EN On
+      } else {
+        iWrite ${controller_instance}.MBISTPG_REDUCED_ADDR_CNT_EN Off
+      }
+      if { $memory_reset } {
+        iNote "Enabling memory reset mode (writing zeros to all memory locations)"
+        iWrite ${controller_instance}.MBISTPG_MEM_RST On
+      } else {
+        iWrite ${controller_instance}.MBISTPG_MEM_RST Off 
+      }
+      if { $persistent_bist_inputs } {
+        iNote "Maintaining BIST inputs to the memory"
+        iWrite ${controller_instance}.MBISTPG_TESTDATA_SELECT On
+      } else {
+        iWrite ${controller_instance}.MBISTPG_TESTDATA_SELECT Off 
+      }
+      if { $disable_go_id_feedback } {
+        iNote "Enabling diagnosis mode (GO_ID signals converted into compare status signals)"
+        iWrite ${controller_instance}.MBISTPG_DIAG_EN 0b1
+      } else {
+        iWrite ${controller_instance}.MBISTPG_DIAG_EN 0b0
+      }
+      if { $debug_mode } {
+        iNote "Enabling functional debug memory access mode"
+        iWrite ${controller_instance}.MBISTPG_MEM_ARRAY_DUMP_MODE 0b1
+      } else {
+        iWrite ${controller_instance}.MBISTPG_MEM_ARRAY_DUMP_MODE 0b0
+      }
+      if { $preserve_fuse_register_values } {
+        iNote "Preserving BIRA registers from previous BIST run"
+        iWrite ${controller_instance}.MBIST_RA_PRSRV_FUSE_VAL 0b1
+      } else {
+        iWrite ${controller_instance}.MBIST_RA_PRSRV_FUSE_VAL 0b0
+      }
+      if { [regexp -nocase {start_?to_?pause} $retention_test_phase ] } {
+        iNote "Enabling parallel retention test : Start to Pause"
+        iWrite ${controller_instance}.MBISTPG_ALGO_MODE 0b01
+      } elseif { [regexp -nocase {pause_?to_?pause} $retention_test_phase ] } {
+        iNote "Enabling parallel retention test : Pause to Pause"
+        iWrite ${controller_instance}.MBISTPG_ALGO_MODE 0b10
+      } elseif { [regexp -nocase {pause_?to_?end} $retention_test_phase ] } {
+        iNote "Enabling parallel retention test : Pause to End"
+        iWrite ${controller_instance}.MBISTPG_ALGO_MODE 0b11
+      } else { 
+        iWrite ${controller_instance}.MBISTPG_ALGO_MODE 0b00
+      }
+      if { $bira_en } {
+        iNote "Enabling BIRA mode"
+        iWrite ${controller_instance}.MBISTPG_BIRA_EN 0b1
+      } else {
+        iWrite ${controller_instance}.MBISTPG_BIRA_EN 0b0
+      }
+      iRelease ${controller_instance}.BIST_SETUP[1]
+      iApply
+  # [end]   : Setup Phase }}}
+  # [start] : Run phase {{{
+      set apply_run_phase yes
+    if { $apply_run_phase } {
+      iTake ${controller_instance}.BIST_SETUP[1]
+      iWrite ${controller_instance}.BIST_SETUP[1] 1
+      iWrite ${controller_instance}.RUN_MODE HWDefault
+      iApply
+      iRunLoop 1 -tck
+      set check_go_pre_exec 1
+      set check_done_pre_exec 1
+      if { [regexp -nocase {pause_?to_?pause} $retention_test_phase ] || [regexp -nocase {pause_?to_?end} $retention_test_phase ] } {
+        set check_go_pre_exec 0
+        set check_done_pre_exec 0
+      }
+      if { $check_go_pre_exec } {
+        if { $compare_go } {
+          iNote "Checking GO is FAIL before execution"
+          iNote "tessent_pragma optional_iRead"
+          iRead ${controller_instance}.MBISTPG_GO Fail
+        }
+      }
+      if { $check_done_pre_exec } {
+        iNote "Checking DONE is FAIL before execution"
+        iNote "tessent_pragma optional_iRead"
+        iRead ${controller_instance}.MBISTPG_DONE Fail
+      }
+      iTake ${controller_instance}.MBISTPG_EN
+      iWrite ${controller_instance}.MBISTPG_EN 1
+      iNote "Starting MemoryBist controller execution : ${controller_instance}"
+      if { $bap_instance ne "" } {
+        iWrite ${bap_instance}.CHAIN_BYPASS_EN 1
+        iTake ${bap_instance}.CHAIN_BYPASS_EN 
+      }
+      iApply
+      iRunLoop 1 -tck
+      iEvent firebird7_in_gate1_tessent_mbist_c1_controller_start_execution
+      if {$clock_source eq "tck"} {
+        iRunLoop [expr $run_length+5] -tck
+      } else {
+        iRunLoop [expr $run_length+5] -sck ${controller_instance}.BIST_CLK
+      }
+      set check_go_post_exec 1
+      set check_done_post_exec 1
+      if { $check_go_post_exec } {
+        if { $compare_go } {
+          iNote "Checking GO is PASS after execution completion"
+          iRead ${controller_instance}.MBISTPG_GO Pass
+        }
+      }
+      if { $check_done_post_exec } {
+        iNote "Checking DONE is PASS after execution completion"
+        iRead ${controller_instance}.MBISTPG_DONE Pass
+      }
+      iWrite ${controller_instance}.MBISTPG_EN 0
+      iEvent firebird7_in_gate1_tessent_mbist_c1_controller_stop_execution
+      iApply
+      if { $bap_instance ne "" } {
+        iRelease ${bap_instance}.CHAIN_BYPASS_EN 
+      }
+      iRelease ${controller_instance}.MBISTPG_EN
+      iRelease ${controller_instance}.BIST_SETUP[1]
+    }
+  # [end]   : Run phase }}}
+  # [start] : Compare Phase {{{
+    set do_compare_phase [getenv TESSENT_MEMORY_BIST_FORCE_COMPARE_PHASE -boolean_default no]
+    if { $compare_go_id } {
+      set do_compare_phase yes
+    }
+    if {  $extract_repair_fuse_map || [string match -nocase {on} $check_repair_status] } {
+      if { $extract_repair_fuse_map } {
+        iWrite ${controller_instance}.SETUP_MODE Bira
+      }
+      set do_compare_phase yes
+    }
+    if {$strobe_count ne ""} {
+      set do_compare_phase yes
+    }
+    iWrite ${controller_instance}.RUN_MODE Idle
+    iRelease ${controller_instance}.FL_CNT_MODE
+    if { $do_compare_phase } {
+      iRead ${controller_instance}.MBISTPG_GO Ignore
+      iRead ${controller_instance}.MBISTPG_DONE Ignore
+      iApply
+      iWrite ${controller_instance}.SETUP_MODE Short
+      if { $debug_mode } {
+        if { $compare_go_id } {
+            iWrite ${controller_instance}.SETUP_MODE Long
+            iWrite ${controller_instance}.BIST_SETUP2 1
+        }
+      }
+      iTake ${controller_instance}.MBISTPG_EN
+      iWrite ${controller_instance}.MBISTPG_EN 1
+      iApply
+      if { [regexp -nocase {non.*repairable} $check_repair_status] } {
+         iRead [dict get $memory_instances m1].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m2].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m3].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m4].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m5].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m6].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m7].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m8].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m9].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m10].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m11].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m12].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m13].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m14].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m15].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m16].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m17].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m18].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m19].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m20].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m21].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m22].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m23].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m24].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m25].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m26].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m27].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m28].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m29].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m30].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m31].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m32].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m33].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m34].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m35].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m36].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m37].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m38].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m39].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m40].RA_STATUS_SHADOW_REG 0b0x
+      } elseif { $check_repair_status } {
+         iRead [dict get $memory_instances m1].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m2].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m3].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m4].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m5].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m6].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m7].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m8].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m9].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m10].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m11].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m12].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m13].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m14].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m15].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m16].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m17].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m18].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m19].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m20].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m21].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m22].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m23].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m24].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m25].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m26].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m27].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m28].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m29].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m30].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m31].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m32].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m33].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m34].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m35].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m36].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m37].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m38].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m39].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m40].RA_STATUS_SHADOW_REG 0b00
+      }
+      if { $extract_repair_fuse_map } {
+         iNote "Extracting repair fuse map bits and status bits"
+         iRead [dict get $memory_instances m1].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m1].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m1].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m1].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m1].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m1].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m1].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m2].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m2].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m2].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m2].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m2].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m2].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m2].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m3].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m3].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m3].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m3].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m3].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m3].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m3].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m4].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m4].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m4].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m4].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m4].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m4].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m4].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m5].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m5].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m5].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m5].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m5].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m5].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m5].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m6].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m6].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m6].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m6].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m6].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m6].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m6].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m7].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m7].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m7].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m7].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m7].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m7].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m7].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m8].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m8].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m8].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m8].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m8].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m8].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m8].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m9].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m9].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m9].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m9].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m9].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m9].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m9].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m10].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m10].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m10].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m10].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m10].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m10].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m10].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m11].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m11].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m11].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m11].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m11].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m11].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m11].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m12].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m12].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m12].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m12].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m12].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m12].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m12].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m13].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m13].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m13].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m13].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m13].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m13].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m13].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m14].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m14].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m14].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m14].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m14].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m14].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m14].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m15].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m15].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m15].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m15].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m15].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m15].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m15].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m16].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m16].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m16].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m16].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m16].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m16].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m16].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m17].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m17].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m17].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m17].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m17].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m17].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m17].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m18].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m18].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m18].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m18].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m18].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m18].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m18].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m19].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m19].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m19].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m19].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m19].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m19].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m19].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m20].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m20].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m20].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m20].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m20].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m20].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m20].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m21].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m21].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m21].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m21].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m21].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m21].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m21].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m22].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m22].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m22].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m22].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m22].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m22].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m22].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m23].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m23].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m23].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m23].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m23].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m23].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m23].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m24].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m24].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m24].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m24].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m24].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m24].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m24].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m25].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m25].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m25].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m25].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m25].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m25].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m25].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m26].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m26].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m26].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m26].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m26].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m26].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m26].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m27].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m27].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m27].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m27].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m27].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m27].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m27].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m28].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m28].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m28].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m28].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m28].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m28].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m28].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m29].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m29].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m29].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m29].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m29].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m29].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m29].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m30].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m30].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m30].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m30].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m30].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m30].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m30].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m31].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m31].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m31].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m31].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m31].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m31].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m31].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m32].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m32].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m32].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m32].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m32].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m32].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m32].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m33].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m33].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m33].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m33].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m33].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m33].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m33].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m34].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m34].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m34].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m34].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m34].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m34].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m34].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m35].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m35].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m35].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m35].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m35].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m35].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m35].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m36].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m36].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m36].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m36].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m36].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m36].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m36].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m37].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m37].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m37].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m37].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m37].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m37].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m37].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m38].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m38].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m38].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m38].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m38].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m38].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m38].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m39].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m39].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m39].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m39].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m39].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m39].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m39].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m40].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m40].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m40].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m40].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m40].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m40].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m40].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+      }
+      if { $compare_go_id } {
+          if {!$debug_mode} {
+            dict for {reg_name reg_value} $short_chain_const_registers_dict {
+              iRead $reg_name $reg_value
+            }
+          }
+  
+           set goIdIndex [dict create]
+           set stepInstList [dict create]
+           set instList [list]
+  # [start] : Step 0 {{{
+             lappend instList m1
+             lappend instList m2
+             lappend instList m3
+             lappend instList m4
+             lappend instList m5
+             lappend instList m6
+             lappend instList m7
+             lappend instList m8
+             lappend instList m9
+             lappend instList m10
+             lappend instList m11
+             lappend instList m12
+             lappend instList m13
+             lappend instList m14
+             lappend instList m15
+             lappend instList m16
+             lappend instList m17
+             lappend instList m18
+             lappend instList m19
+             lappend instList m20
+             lappend instList m21
+             lappend instList m22
+             lappend instList m23
+             lappend instList m24
+             lappend instList m25
+             lappend instList m26
+             lappend instList m27
+             lappend instList m28
+             lappend instList m29
+             lappend instList m30
+             lappend instList m31
+             lappend instList m32
+             lappend instList m33
+             lappend instList m34
+             lappend instList m35
+             lappend instList m36
+             lappend instList m37
+             lappend instList m38
+             lappend instList m39
+             lappend instList m40
+  # [end]   : Step 0 }}}
+           dict set stepInstList 0 $instList
+  
+           set memGoID ""
+           if { $debug_mode } {
+              set instList [dict get $stepInstList 0]
+              if { $enable_memory_list eq "" } {
+                 if { [llength ${instList}] == 1 } {
+                    set memGoID [lindex ${instList} 0]
+                 }
+              } else {
+                 if { [llength ${enable_memory_list}] == 1 } {
+                    set memGoID [lindex $enable_memory_list 0] 
+                 }
+              }
+           }
+           if { $memGoID ne "" } {
+  # [start] : Check one GO_ID {{{
+              if { [dict exists $goIdIndex $memGoID] } {
+                 set goIDList [dict get $goIdIndex $memGoID]
+              } else {
+                 if { [dict exists $memory_instances $memGoID] } {
+                    iRead [dict get $memory_instances $memGoID].GO_ID_REG 0b0
+                 }
+              }
+  # [end]   : Check one GO_ID }}}
+           } else {
+  # [start] : Check all GO_ID {{{
+              if { [dict exists $memory_instances m1] } {
+                 iRead [dict get $memory_instances m1].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m2] } {
+                 iRead [dict get $memory_instances m2].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m3] } {
+                 iRead [dict get $memory_instances m3].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m4] } {
+                 iRead [dict get $memory_instances m4].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m5] } {
+                 iRead [dict get $memory_instances m5].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m6] } {
+                 iRead [dict get $memory_instances m6].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m7] } {
+                 iRead [dict get $memory_instances m7].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m8] } {
+                 iRead [dict get $memory_instances m8].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m9] } {
+                 iRead [dict get $memory_instances m9].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m10] } {
+                 iRead [dict get $memory_instances m10].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m11] } {
+                 iRead [dict get $memory_instances m11].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m12] } {
+                 iRead [dict get $memory_instances m12].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m13] } {
+                 iRead [dict get $memory_instances m13].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m14] } {
+                 iRead [dict get $memory_instances m14].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m15] } {
+                 iRead [dict get $memory_instances m15].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m16] } {
+                 iRead [dict get $memory_instances m16].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m17] } {
+                 iRead [dict get $memory_instances m17].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m18] } {
+                 iRead [dict get $memory_instances m18].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m19] } {
+                 iRead [dict get $memory_instances m19].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m20] } {
+                 iRead [dict get $memory_instances m20].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m21] } {
+                 iRead [dict get $memory_instances m21].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m22] } {
+                 iRead [dict get $memory_instances m22].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m23] } {
+                 iRead [dict get $memory_instances m23].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m24] } {
+                 iRead [dict get $memory_instances m24].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m25] } {
+                 iRead [dict get $memory_instances m25].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m26] } {
+                 iRead [dict get $memory_instances m26].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m27] } {
+                 iRead [dict get $memory_instances m27].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m28] } {
+                 iRead [dict get $memory_instances m28].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m29] } {
+                 iRead [dict get $memory_instances m29].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m30] } {
+                 iRead [dict get $memory_instances m30].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m31] } {
+                 iRead [dict get $memory_instances m31].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m32] } {
+                 iRead [dict get $memory_instances m32].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m33] } {
+                 iRead [dict get $memory_instances m33].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m34] } {
+                 iRead [dict get $memory_instances m34].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m35] } {
+                 iRead [dict get $memory_instances m35].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m36] } {
+                 iRead [dict get $memory_instances m36].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m37] } {
+                 iRead [dict get $memory_instances m37].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m38] } {
+                 iRead [dict get $memory_instances m38].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m39] } {
+                 iRead [dict get $memory_instances m39].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m40] } {
+                 iRead [dict get $memory_instances m40].GO_ID_REG 0b0
+              }
+  # [end]   : Check all GO_ID }}}
+           }
+      }
+          if {$strobe_count ne ""} {
+            iNote "Comparing strobe count"
+            iRead ${controller_instance}.STOP_ERROR_CNT_REG $strobe_count
+          } 
+      iWrite ${controller_instance}.MBISTPG_EN 0
+      iApply
+    }
+    iRelease ${controller_instance}.MBISTPG_EN
+    iRunLoop 1 -tck
+    iApply
+  # [end]   : Compare Phase }}}
+}
+
+iProc firebird7_in_gate1_tessent_mbist_c1_controller_IncFailureLimit {
+    {controller_instance {}}
+    {bap_instance {}}
+    {config_path {}}
+    {memory_instances {}}
+    {clock_source {tck}}
+    {increment_failure_limit {off}}
+} {  
+  if { $bap_instance ne "" } {
+    iNote "tessent_pragma optional_iRead"
+    iRead ${bap_instance}.tdr ignore
+    iNote "tessent_pragma optional_iRead"
+    iRead ${bap_instance}.tdr_bypass_sib_inst 0bx
+    iNote "tessent_pragma optional_iRead"
+    iRead ${bap_instance}.ctl_group_sib 0bx
+    iWrite ${bap_instance}.BIST_ASYNC_RESET_tdr 0b1
+    iTake ${bap_instance}.BIST_ASYNC_RESET_tdr
+  }
+    iTake ${controller_instance}.MBISTPG_EN 
+    iWrite ${controller_instance}.MBISTPG_EN 0 
+    iTake ${controller_instance}.BIST_SETUP[1] 
+    iWrite ${controller_instance}.BIST_SETUP[1] 0
+    iApply
+  set icl_instance_path [get_icl_scope -iCall]
+  if { $icl_instance_path ne "" } {
+     append icl_instance_path "."
+  }
+  set ctl_mod_name [get_single_attribute_value [get_icl_instances [list ${icl_instance_path}$controller_instance]] -name master_module_name]
+  set tcd_path [get_config_elements -partition tcd Core($ctl_mod_name)/MemoryBistController -silent]
+  # Clock errors are caught when the 'iClock' is issued, which is done prior to invoking this iProc.
+  if { [catch_output {set clockPeriod [get_iclock_option ${icl_instance_path}${controller_instance}.BIST_CLK -period -in ns]} ] || $clockPeriod eq "" } {
+    return
+  }
+    if { $increment_failure_limit } {
+      iNote "Incrementing failure limit counter"
+      iWrite ${controller_instance}.MBISTPG_EN  1
+      iWrite ${controller_instance}.FL_CNT_MODE 0b10
+      iApply
+    }
+    iWrite ${controller_instance}.MBISTPG_EN  0
+    iWrite ${controller_instance}.FL_CNT_MODE 0b00 
+    iApply
+}
+
+iProc firebird7_in_gate1_tessent_mbist_c1_controller_RunTimeProg {
+    {controller_instance {}}
+    {bap_instance {}}
+    {config_path {}}
+    {memory_instances {}}
+    {clock_source {tck}}
+    {parallel_retention_time {0}}
+    {run_time_override {0}}
+    {run_length {100}}
+    {compare_go {Yes}}
+    {reduced_address_count {Off}}
+    algo_reg_val
+    algorithm
+    address_generator
+    data_generator
+    {memory_reset {off}}
+    {persistent_bist_inputs {off}}
+    operation_set
+    {disable_go_id_feedback {off}}
+    {failure_limit {0}}
+    {strobe_count {}}
+    enable_memory_list
+    {debug_mode {off}}
+    {preserve_fuse_register_values {off}}
+    {spare_element_priority {column}}
+    {data_compare_time_slots {all}}
+    {retention_test_phase {all_phases}}
+    {bira_en {off}}
+    {extract_diagnosis_data {auto}}
+    {check_repair_status {No}}
+    {extract_repair_fuse_map {No}}
+    {compare_cmp_stat {off}}
+    {compare_go_id {No}}
+} {  
+      set short_chain_const_registers_dict [dict create]
+  # [start] : Setup Phase {{{
+      if { $bap_instance ne "" } {
+        iNote "tessent_pragma optional_iRead"
+        iRead ${bap_instance}.tdr ignore
+        iNote "tessent_pragma optional_iRead"
+        iRead ${bap_instance}.tdr_bypass_sib_inst 0bx
+        iNote "tessent_pragma optional_iRead"
+        iRead ${bap_instance}.ctl_group_sib 0bx
+        iWrite ${bap_instance}.BIST_ASYNC_RESET_tdr 0b1
+        iTake ${bap_instance}.BIST_ASYNC_RESET_tdr
+      }
+        iTake ${controller_instance}.MBISTPG_EN 
+        iWrite ${controller_instance}.MBISTPG_EN 0 
+        iTake ${controller_instance}.BIST_SETUP[1] 
+        iWrite ${controller_instance}.BIST_SETUP[1] 0
+      set icl_instance_path [get_icl_scope -iCall]
+      if { $icl_instance_path ne "" } {
+         append icl_instance_path "."
+      }
+      set ctl_mod_name [get_single_attribute_value [get_icl_instances [list ${icl_instance_path}$controller_instance]] -name master_module_name]
+      set tcd_path [get_config_elements -partition tcd Core($ctl_mod_name)/MemoryBistController -silent]
+      # Clock errors are caught when the 'iClock' is issued, which is done prior to invoking this iProc.
+      if { [catch_output {set clockPeriod [get_iclock_option ${icl_instance_path}${controller_instance}.BIST_CLK -period -in ns]} ] || $clockPeriod eq "" } {
+        return
+      }
+      if { [string match -nocase $extract_diagnosis_data "on"]} {
+        set extract_diag_data on
+      } else {
+        if { [string match -nocase $extract_diagnosis_data "auto"] && ($failure_limit != 0)} {
+          set extract_diag_data on
+        } else {
+          set extract_diag_data off
+        }
+      }
+        iNote "Setting up MemoryBist controller $controller_instance"
+        iNote  "Releasing asynchronous reset"
+        iWrite ${controller_instance}.MBISTPG_ASYNC_RESETN 1
+        iTake ${controller_instance}.MBISTPG_ASYNC_RESETN 
+        iApply
+        iWrite ${controller_instance}.BIST_SETUP[0] 0
+        iWrite ${controller_instance}.LV_TM 0
+        iWrite ${controller_instance}.MBISTPG_EN 1
+        iApply
+        if { $clock_source eq "tck" } {
+        iRunLoop 2 -tck
+        } 
+      if { $reduced_address_count } {
+        iNote "Enabling reduced address simulation"
+        iWrite ${controller_instance}.REDUCED_ADDR_CNT_EN_REG On
+        dict set short_chain_const_registers_dict  ${controller_instance}.REDUCED_ADDR_CNT_EN_REG On
+      } else {
+        iWrite ${controller_instance}.REDUCED_ADDR_CNT_EN_REG Off
+        dict set short_chain_const_registers_dict  ${controller_instance}.REDUCED_ADDR_CNT_EN_REG Off
+      }
+      set common_algo Off
+      set algo_code 0b0
+      set microcode_en 0b0 
+      if { $algorithm ne "" } {
+        dict set DefaultAlgo intellvpmovifx {0b0}
+        dict set DefaultAlgo smarchchkbci {0b1}
+        set algorithm_l [string tolower ${algorithm}]
+        if { [dict exists $DefaultAlgo ${algorithm_l}] } {
+          iNote "Selecting algorithm ${algorithm}"
+          set algo_code [dict get $DefaultAlgo ${algorithm_l}]
+        } else {
+          add_config_message -error -display -config_object $config_path "Invalid algorithm specified : ${algorithm}. The allowed algorithms are [dict keys ${DefaultAlgo}]"
+          return -code error
+        }
+        set common_algo On
+      } else {
+        dict set StepAlgo 0 {0b0}
+      }
+      iWrite ${controller_instance}.ALGO_SEL_CNT_REG $common_algo
+      dict set short_chain_const_registers_dict ${controller_instance}.ALGO_SEL_CNT_REG $common_algo
+      iWrite ${controller_instance}.ALGO_SEL_REG $algo_code
+      dict set short_chain_const_registers_dict ${controller_instance}.ALGO_SEL_REG $algo_code 
+      if { [dict exists $address_generator load_row_address_a] } {
+         iWrite ${controller_instance}.A_ADD_REG_X 0b[dict get $address_generator load_row_address_a]
+      } else {
+         iWrite ${controller_instance}.A_ADD_REG_X 0b0
+      }
+      if { [dict exists $address_generator load_column_address_a] } {
+         iWrite ${controller_instance}.A_ADD_REG_Y 0b[dict get $address_generator load_column_address_a]
+      } else {
+         iWrite ${controller_instance}.A_ADD_REG_Y 0b0
+      }
+      if { [dict exists $address_generator load_row_address_b] } {
+         iWrite ${controller_instance}.B_ADD_REG_X 0b[dict get $address_generator load_row_address_b]
+      } else {
+         iWrite ${controller_instance}.B_ADD_REG_X 0b0
+      }
+      if { [dict exists $address_generator load_column_address_b] } {
+         iWrite ${controller_instance}.B_ADD_REG_Y 0b[dict get $address_generator load_column_address_b]
+      } else {
+         iWrite ${controller_instance}.B_ADD_REG_Y 0b0
+      }
+      if { [dict exists $data_generator load_expect_data] } {
+         iWrite ${controller_instance}.EDATA_REG 0b[dict get $data_generator load_expect_data]
+         if {[regexp {ADDR_BIT_SEL} EDATA_REG]} {
+           dict set short_chain_const_registers_dict ${controller_instance}.EDATA_REG 0b[dict get $data_generator load_expect_data] 
+         }
+      } else {
+         iWrite ${controller_instance}.EDATA_REG 0b0
+         if {$data_generator ne ""} {  
+           if {[regexp {ADDR_BIT_SEL} EDATA_REG]} {
+             dict set short_chain_const_registers_dict ${controller_instance}.EDATA_REG 0b0 
+           }
+         } 
+      }
+      if { [dict exists $data_generator load_write_data] } {
+         iWrite ${controller_instance}.WDATA_REG 0b[dict get $data_generator load_write_data]
+         if {[regexp {ADDR_BIT_SEL} WDATA_REG]} {
+           dict set short_chain_const_registers_dict ${controller_instance}.WDATA_REG 0b[dict get $data_generator load_write_data] 
+         }
+      } else {
+         iWrite ${controller_instance}.WDATA_REG 0b0
+         if {$data_generator ne ""} {  
+           if {[regexp {ADDR_BIT_SEL} WDATA_REG]} {
+             dict set short_chain_const_registers_dict ${controller_instance}.WDATA_REG 0b0 
+           }
+         } 
+      }
+      if { [dict exists $data_generator invert_data_with_column_bit] } {
+         iWrite ${controller_instance}.Y_ADDR_BIT_SEL_REG 0b[dict get $data_generator invert_data_with_column_bit]
+         if {[regexp {ADDR_BIT_SEL} Y_ADDR_BIT_SEL_REG]} {
+           dict set short_chain_const_registers_dict ${controller_instance}.Y_ADDR_BIT_SEL_REG 0b[dict get $data_generator invert_data_with_column_bit] 
+         }
+      } else {
+         iWrite ${controller_instance}.Y_ADDR_BIT_SEL_REG 0b0
+         if {$data_generator ne ""} {  
+           if {[regexp {ADDR_BIT_SEL} Y_ADDR_BIT_SEL_REG]} {
+             dict set short_chain_const_registers_dict ${controller_instance}.Y_ADDR_BIT_SEL_REG 0b0 
+           }
+         } 
+      }
+      if { [dict exists $data_generator invert_data_with_row_bit] } {
+         iWrite ${controller_instance}.X_ADDR_BIT_SEL_REG 0b[dict get $data_generator invert_data_with_row_bit]
+         if {[regexp {ADDR_BIT_SEL} X_ADDR_BIT_SEL_REG]} {
+           dict set short_chain_const_registers_dict ${controller_instance}.X_ADDR_BIT_SEL_REG 0b[dict get $data_generator invert_data_with_row_bit] 
+         }
+      } else {
+         iWrite ${controller_instance}.X_ADDR_BIT_SEL_REG 0b0
+         if {$data_generator ne ""} {  
+           if {[regexp {ADDR_BIT_SEL} X_ADDR_BIT_SEL_REG]} {
+             dict set short_chain_const_registers_dict ${controller_instance}.X_ADDR_BIT_SEL_REG 0b0 
+           }
+         } 
+      }
+      if {$data_generator ne ""} {
+         iWrite ${controller_instance}.SELECT_COMMON_DATA_PAT_REG 0b1
+         dict set short_chain_const_registers_dict ${controller_instance}.SELECT_COMMON_DATA_PAT_REG 0b1
+      } else { 
+         iWrite ${controller_instance}.SELECT_COMMON_DATA_PAT_REG 0b0
+         dict set short_chain_const_registers_dict ${controller_instance}.SELECT_COMMON_DATA_PAT_REG 0b0
+      }
+      if { $memory_reset } {
+        iNote "Enabling memory reset mode (writing zeros to all memory locations)"
+        iWrite ${controller_instance}.MBISTPG_MEM_RST On
+      } else {
+        iWrite ${controller_instance}.MBISTPG_MEM_RST Off 
+      }
+      if { $persistent_bist_inputs } {
+        iNote "Maintaining BIST inputs to the memory"
+        iWrite ${controller_instance}.MBISTPG_TESTDATA_SELECT On
+      } else {
+        iWrite ${controller_instance}.MBISTPG_TESTDATA_SELECT Off 
+      }
+      if { $operation_set ne "" } {
+        dict set opsetList synccustom {0b0}
+        dict set opsetList sync {0b1}
+        set operationSet [string tolower ${operation_set}]
+        if { [dict exists $opsetList ${operationSet}] } {
+          iNote "Selecting operation set ${operation_set}"
+          iWrite ${controller_instance}.OPSET_SELECT_REG [dict get $opsetList ${operationSet}]
+          iWrite ${controller_instance}.SELECT_COMMON_OPSET_REG 0b1
+          dict set short_chain_const_registers_dict ${controller_instance}.OPSET_SELECT_REG [dict get $opsetList ${operationSet}]
+          dict set short_chain_const_registers_dict ${controller_instance}.SELECT_COMMON_OPSET_REG 0b1 
+        } else {
+            add_config_message -display -error -config_object $config_path "Invalid operation_set specified : ${operationSet}. The available operation_sets are [dict keys ${opsetList}]"
+            return -code error
+        }
+      } else {
+        dict set opsetList 0 {0b0}
+        iWrite ${controller_instance}.OPSET_SELECT_REG [dict get $opsetList 0]
+        iWrite ${controller_instance}.SELECT_COMMON_OPSET_REG 0b0
+        dict set short_chain_const_registers_dict ${controller_instance}.SELECT_COMMON_OPSET_REG 0b0 
+      }
+      if { $disable_go_id_feedback } {
+        iNote "Enabling diagnosis mode (GO_ID signals converted into compare status signals)"
+        iWrite ${controller_instance}.DIAG_EN_REG 0b1
+        dict set short_chain_const_registers_dict ${controller_instance}.DIAG_EN_REG 0b1 
+      } else {
+        iWrite ${controller_instance}.DIAG_EN_REG 0b0
+        dict set short_chain_const_registers_dict ${controller_instance}.DIAG_EN_REG 0b0 
+      }
+      if { [string match -nocase "auto*" $failure_limit] } {
+        iTake ${controller_instance}.FL_CNT_MODE
+        iWrite ${controller_instance}.FL_CNT_MODE 0b00
+        iWrite ${controller_instance}.STOP_ON_ERROR_REG 0b1
+        dict set short_chain_const_registers_dict ${controller_instance}.STOP_ON_ERROR_REG 0b1 
+      } elseif { $failure_limit > 0 } {
+        iNote "Enabling stop-on-nth-error diagnosis"
+        set failureLimit [expr $failure_limit-1]
+        iNote "Loading error counter with value $failureLimit"
+        iWrite ${controller_instance}.STOP_ON_ERROR_REG 0b1
+        dict set short_chain_const_registers_dict ${controller_instance}.STOP_ON_ERROR_REG 0b1 
+        iWrite ${controller_instance}.STOP_ERROR_CNT_REG $failureLimit
+        iTake ${controller_instance}.FL_CNT_MODE
+        iWrite ${controller_instance}.FL_CNT_MODE 0b00
+      } else {
+        iWrite ${controller_instance}.STOP_ON_ERROR_REG 0b0
+        dict set short_chain_const_registers_dict ${controller_instance}.STOP_ON_ERROR_REG 0b0 
+      }
+      iWrite ${controller_instance}.FREEZE_STOP_ERROR_REG 0b0
+      dict set memoryIndexList m1 ${controller_instance}.MEM_SELECT_REG0 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG0 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG0 1 
+      }  
+      dict set memoryIndexList m2 ${controller_instance}.MEM_SELECT_REG1 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG1 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG1 1 
+      }  
+      dict set memoryIndexList m3 ${controller_instance}.MEM_SELECT_REG2 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG2 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG2 1 
+      }  
+      dict set memoryIndexList m4 ${controller_instance}.MEM_SELECT_REG3 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG3 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG3 1 
+      }  
+      dict set memoryIndexList m5 ${controller_instance}.MEM_SELECT_REG4 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG4 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG4 1 
+      }  
+      dict set memoryIndexList m6 ${controller_instance}.MEM_SELECT_REG5 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG5 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG5 1 
+      }  
+      dict set memoryIndexList m7 ${controller_instance}.MEM_SELECT_REG6 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG6 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG6 1 
+      }  
+      dict set memoryIndexList m8 ${controller_instance}.MEM_SELECT_REG7 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG7 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG7 1 
+      }  
+      dict set memoryIndexList m9 ${controller_instance}.MEM_SELECT_REG8 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG8 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG8 1 
+      }  
+      dict set memoryIndexList m10 ${controller_instance}.MEM_SELECT_REG9 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG9 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG9 1 
+      }  
+      dict set memoryIndexList m11 ${controller_instance}.MEM_SELECT_REG10 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG10 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG10 1 
+      }  
+      dict set memoryIndexList m12 ${controller_instance}.MEM_SELECT_REG11 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG11 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG11 1 
+      }  
+      dict set memoryIndexList m13 ${controller_instance}.MEM_SELECT_REG12 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG12 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG12 1 
+      }  
+      dict set memoryIndexList m14 ${controller_instance}.MEM_SELECT_REG13 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG13 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG13 1 
+      }  
+      dict set memoryIndexList m15 ${controller_instance}.MEM_SELECT_REG14 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG14 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG14 1 
+      }  
+      dict set memoryIndexList m16 ${controller_instance}.MEM_SELECT_REG15 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG15 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG15 1 
+      }  
+      dict set memoryIndexList m17 ${controller_instance}.MEM_SELECT_REG16 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG16 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG16 1 
+      }  
+      dict set memoryIndexList m18 ${controller_instance}.MEM_SELECT_REG17 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG17 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG17 1 
+      }  
+      dict set memoryIndexList m19 ${controller_instance}.MEM_SELECT_REG18 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG18 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG18 1 
+      }  
+      dict set memoryIndexList m20 ${controller_instance}.MEM_SELECT_REG19 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG19 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG19 1 
+      }  
+      dict set memoryIndexList m21 ${controller_instance}.MEM_SELECT_REG20 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG20 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG20 1 
+      }  
+      dict set memoryIndexList m22 ${controller_instance}.MEM_SELECT_REG21 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG21 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG21 1 
+      }  
+      dict set memoryIndexList m23 ${controller_instance}.MEM_SELECT_REG22 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG22 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG22 1 
+      }  
+      dict set memoryIndexList m24 ${controller_instance}.MEM_SELECT_REG23 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG23 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG23 1 
+      }  
+      dict set memoryIndexList m25 ${controller_instance}.MEM_SELECT_REG24 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG24 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG24 1 
+      }  
+      dict set memoryIndexList m26 ${controller_instance}.MEM_SELECT_REG25 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG25 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG25 1 
+      }  
+      dict set memoryIndexList m27 ${controller_instance}.MEM_SELECT_REG26 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG26 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG26 1 
+      }  
+      dict set memoryIndexList m28 ${controller_instance}.MEM_SELECT_REG27 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG27 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG27 1 
+      }  
+      dict set memoryIndexList m29 ${controller_instance}.MEM_SELECT_REG28 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG28 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG28 1 
+      }  
+      dict set memoryIndexList m30 ${controller_instance}.MEM_SELECT_REG29 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG29 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG29 1 
+      }  
+      dict set memoryIndexList m31 ${controller_instance}.MEM_SELECT_REG30 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG30 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG30 1 
+      }  
+      dict set memoryIndexList m32 ${controller_instance}.MEM_SELECT_REG31 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG31 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG31 1 
+      }  
+      dict set memoryIndexList m33 ${controller_instance}.MEM_SELECT_REG32 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG32 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG32 1 
+      }  
+      dict set memoryIndexList m34 ${controller_instance}.MEM_SELECT_REG33 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG33 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG33 1 
+      }  
+      dict set memoryIndexList m35 ${controller_instance}.MEM_SELECT_REG34 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG34 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG34 1 
+      }  
+      dict set memoryIndexList m36 ${controller_instance}.MEM_SELECT_REG35 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG35 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG35 1 
+      }  
+      dict set memoryIndexList m37 ${controller_instance}.MEM_SELECT_REG36 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG36 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG36 1 
+      }  
+      dict set memoryIndexList m38 ${controller_instance}.MEM_SELECT_REG37 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG37 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG37 1 
+      }  
+      dict set memoryIndexList m39 ${controller_instance}.MEM_SELECT_REG38 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG38 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG38 1 
+      }  
+      dict set memoryIndexList m40 ${controller_instance}.MEM_SELECT_REG39 
+      if { [llength $enable_memory_list] > 0 } {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG39 0
+      } else {
+        dict set regSelDisableList ${controller_instance}.MEM_SELECT_REG39 1 
+      }  
+      foreach memInst $enable_memory_list  {
+        set memInstL [string tolower $memInst]
+        if { [dict exists $memoryIndexList $memInstL] } {
+          dict set regSelDisableList [dict get ${memoryIndexList} $memInstL] 1
+          iNote "Enabling memory instance $memInstL from memory test"
+        }
+      }
+      foreach {regi valuei} $regSelDisableList {
+         iWrite $regi 0b$valuei
+         dict set short_chain_const_registers_dict $regi 0b$valuei 
+      }
+      if { $debug_mode } {
+        iNote "Enabling functional debug memory access mode"
+        iWrite ${controller_instance}.MEM_ARRAY_DUMP_MODE_R 0b1
+        dict set short_chain_const_registers_dict ${controller_instance}.MEM_ARRAY_DUMP_MODE_R 0b1 
+      } else {
+        iWrite ${controller_instance}.MEM_ARRAY_DUMP_MODE_R 0b0
+        dict set short_chain_const_registers_dict ${controller_instance}.MEM_ARRAY_DUMP_MODE_R 0b0 
+      }
+      if { $debug_mode } {
+        iNote "Enabling functional debug memory access mode"
+        iWrite ${controller_instance}.MBISTPG_MEM_ARRAY_DUMP_MODE 0b1
+      } else {
+        iWrite ${controller_instance}.MBISTPG_MEM_ARRAY_DUMP_MODE 0b0
+      }
+      if { $preserve_fuse_register_values } {
+        iNote "Preserving BIRA registers from previous BIST run"
+        iWrite ${controller_instance}.PRESERVE_BIRA_FUSE_REG 0b1
+        dict set short_chain_const_registers_dict ${controller_instance}.PRESERVE_BIRA_FUSE_REG 0b1 
+      } else {
+        iWrite ${controller_instance}.PRESERVE_BIRA_FUSE_REG 0b0
+        dict set short_chain_const_registers_dict ${controller_instance}.PRESERVE_BIRA_FUSE_REG 0b0 
+      }
+      if { $bira_en } {
+         if { [string match -nocase $spare_element_priority "column"] } {
+           iNote "Prioritizing column spare element for row & column BIRA"
+           iWrite ${controller_instance}.PRIORITY_COLUMN_REG 0b1
+           dict set short_chain_const_registers_dict ${controller_instance}.PRIORITY_COLUMN_REG 0b1 
+         } else {
+           iNote "Prioritizing row spare element for row & column BIRA"
+           iWrite ${controller_instance}.PRIORITY_COLUMN_REG 0b0
+           dict set short_chain_const_registers_dict ${controller_instance}.PRIORITY_COLUMN_REG 0b0 
+         }
+      }
+      if { [string match -nocase $data_compare_time_slots "ALL"] } {
+        iWrite ${controller_instance}.CMP_EN_MASK_EN 0b0
+        dict set short_chain_const_registers_dict ${controller_instance}.CMP_EN_MASK_EN 0b0 
+      } else {
+        iWrite ${controller_instance}.CMP_EN_MASK_EN 0b1
+        dict set short_chain_const_registers_dict ${controller_instance}.CMP_EN_MASK_EN 0b1 
+        if { [string match -nocase $data_compare_time_slots "EVEN"] } {
+           iNote "Enabling even StrobeDataOut compares"
+           iWrite ${controller_instance}.CMP_EN_PARITY 0b1
+        } else {
+           iNote "Enabling odd StrobeDataOut compares"
+           iWrite ${controller_instance}.CMP_EN_PARITY 0b0
+        }
+      }
+      if { [regexp -nocase {start_?to_?pause} $retention_test_phase ] } {
+        iNote "Enabling parallel retention test : Start to Pause"
+        iWrite ${controller_instance}.MBISTPG_ALGO_MODE 0b01
+      } elseif { [regexp -nocase {pause_?to_?pause} $retention_test_phase ] } {
+        iNote "Enabling parallel retention test : Pause to Pause"
+        iWrite ${controller_instance}.MBISTPG_ALGO_MODE 0b10
+      } elseif { [regexp -nocase {pause_?to_?end} $retention_test_phase ] } {
+        iNote "Enabling parallel retention test : Pause to End"
+        iWrite ${controller_instance}.MBISTPG_ALGO_MODE 0b11
+      } else { 
+        iWrite ${controller_instance}.MBISTPG_ALGO_MODE 0b00
+      }
+      if { $bira_en } {
+        iNote "Enabling BIRA mode"
+        iWrite ${controller_instance}.BIRA_EN_REG 0b1
+        dict set short_chain_const_registers_dict ${controller_instance}.BIRA_EN_REG 0b1
+      } else {
+        iWrite ${controller_instance}.BIRA_EN_REG 0b0
+        dict set short_chain_const_registers_dict ${controller_instance}.BIRA_EN_REG 0b0
+      }
+      iWrite ${controller_instance}.BIST_SETUP[0] 1
+      iWrite ${controller_instance}.MBISTPG_EN 0 
+        iApply
+        iRunLoop 1 -tck
+      iRelease ${controller_instance}.MBISTPG_EN
+  # [end]   : Setup Phase }}}
+  # [start] : Run Phase {{{
+      iTake ${controller_instance}.BIST_SETUP[1]
+      iWrite ${controller_instance}.BIST_SETUP[1] 1
+      if { [string match -nocase "auto*" $failure_limit] } {
+        iNote "Loading error counter from failure limit counter"
+        iWrite ${controller_instance}.FL_CNT_MODE 0b01
+      }
+      iWrite ${controller_instance}.RUN_MODE RunTimeProg
+      iApply
+      iRunLoop 1 -tck
+      set check_go_pre_exec 1
+      set check_done_pre_exec 1
+      if { [regexp -nocase {pause_?to_?pause} $retention_test_phase ] || [regexp -nocase {pause_?to_?end} $retention_test_phase ] } {
+        set check_go_pre_exec 0
+        set check_done_pre_exec 0
+      }
+      if { $check_go_pre_exec } {
+        if { $compare_go } {
+          iNote "Checking GO is FAIL before execution"
+          iNote "tessent_pragma optional_iRead"
+          iRead ${controller_instance}.MBISTPG_GO Fail
+        }
+      }
+      if { $check_done_pre_exec } {
+        iNote "Checking DONE is FAIL before execution"
+        iNote "tessent_pragma optional_iRead"
+        iRead ${controller_instance}.MBISTPG_DONE Fail
+      }
+      iTake ${controller_instance}.MBISTPG_EN
+      iWrite ${controller_instance}.MBISTPG_EN 1
+      iNote "Starting MemoryBist controller execution : ${controller_instance}"
+      if { $bap_instance ne "" } {
+        iWrite ${bap_instance}.CHAIN_BYPASS_EN 1
+        iTake ${bap_instance}.CHAIN_BYPASS_EN 
+      }
+      iApply
+      iRunLoop 1 -tck
+      iEvent firebird7_in_gate1_tessent_mbist_c1_controller_start_execution
+      if {$clock_source eq "tck"} {
+        iRunLoop [expr $run_length+5] -tck
+      } else {
+        iRunLoop [expr $run_length+5] -sck ${controller_instance}.BIST_CLK
+      }
+      set check_go_post_exec 1
+      set check_done_post_exec 1
+      if { $check_go_post_exec } {
+        if { $compare_go } {
+          iNote "Checking GO is PASS after execution completion"
+          iRead ${controller_instance}.MBISTPG_GO Pass
+        }
+      }
+      if { $check_done_post_exec } {
+        iNote "Checking DONE is PASS after execution completion"
+        iRead ${controller_instance}.MBISTPG_DONE Pass
+      }
+      iWrite ${controller_instance}.MBISTPG_EN 0
+      iEvent firebird7_in_gate1_tessent_mbist_c1_controller_stop_execution
+      iApply
+      if { $bap_instance ne "" } {
+        iRelease ${bap_instance}.CHAIN_BYPASS_EN 
+      }
+      iRelease ${controller_instance}.MBISTPG_EN
+      iRelease ${controller_instance}.BIST_SETUP[1]
+  # [end]   : Run Phase }}}
+  # [start] : Compare Phase {{{
+    set do_compare_phase [getenv TESSENT_MEMORY_BIST_FORCE_COMPARE_PHASE -boolean_default no]
+    if { $compare_go_id } {
+      set do_compare_phase yes
+    }
+    if {  $extract_repair_fuse_map || [string match -nocase {on} $check_repair_status] } {
+      if { $extract_repair_fuse_map } {
+        iWrite ${controller_instance}.SETUP_MODE Bira
+      }
+      set do_compare_phase yes
+    }
+    if {$strobe_count ne ""} {
+      set do_compare_phase yes
+    }
+    iWrite ${controller_instance}.RUN_MODE Idle
+    iRelease ${controller_instance}.FL_CNT_MODE
+    if { [string match -nocase "auto*" $failure_limit] } {
+      iWrite ${controller_instance}.FL_CNT_MODE 0b00
+    }
+    if { $do_compare_phase } {
+      iRead ${controller_instance}.MBISTPG_GO Ignore
+      iRead ${controller_instance}.MBISTPG_DONE Ignore
+      iApply
+      iTake ${controller_instance}.MBISTPG_EN
+      iWrite ${controller_instance}.MBISTPG_EN 1
+      iApply
+      if { $extract_diag_data } {
+         iNote "Sampling registers containing diagnosis data"
+         iNote "Sampling 3-bit Operation Cycle Counter"
+         iRead ${controller_instance}.JCNT 0b0
+         iNote "Sampling 5-bit Instruction Pointer"
+         iRead ${controller_instance}.INST_POINTER_REG 0b0
+         iNote "Sampling 2-bit RepeatLoop A Counter"
+         iRead ${controller_instance}.REPEATLOOP_A_CNTR_REG 0b0
+         iNote "Sampling 2-bit RepeatLoop B Counter"
+         iRead ${controller_instance}.REPEATLOOP_B_CNTR_REG 0b0
+         iNote "Sampling 8-bit DelayCounter"
+         iRead ${controller_instance}.DELAYCOUNTER_CNT 0b0
+         iNote "Sampling 8-bit X-Segment of Address Register A"
+         iRead ${controller_instance}.A_ADD_REG_X 0b0
+         iNote "Sampling 8-bit X-Segment of Address Register B"
+         iRead ${controller_instance}.B_ADD_REG_X 0b0
+         iNote "Sampling 3-bit Y-Segment of Address Register A"
+         iRead ${controller_instance}.A_ADD_REG_Y 0b0
+         iNote "Sampling 3-bit Y-Segment of Address Register B"
+         iRead ${controller_instance}.B_ADD_REG_Y 0b0
+         iNote "Sampling 16-bit Error Counter"
+         iRead ${controller_instance}.STOP_ERROR_CNT_REG 0b0
+      }
+      if { [regexp -nocase {non.*repairable} $check_repair_status] } {
+         iRead [dict get $memory_instances m1].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m2].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m3].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m4].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m5].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m6].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m7].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m8].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m9].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m10].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m11].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m12].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m13].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m14].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m15].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m16].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m17].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m18].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m19].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m20].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m21].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m22].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m23].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m24].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m25].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m26].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m27].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m28].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m29].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m30].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m31].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m32].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m33].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m34].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m35].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m36].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m37].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m38].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m39].RA_STATUS_SHADOW_REG 0b0x
+         iRead [dict get $memory_instances m40].RA_STATUS_SHADOW_REG 0b0x
+      } elseif { $check_repair_status } {
+         iRead [dict get $memory_instances m1].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m2].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m3].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m4].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m5].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m6].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m7].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m8].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m9].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m10].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m11].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m12].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m13].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m14].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m15].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m16].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m17].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m18].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m19].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m20].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m21].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m22].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m23].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m24].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m25].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m26].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m27].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m28].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m29].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m30].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m31].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m32].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m33].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m34].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m35].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m36].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m37].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m38].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m39].RA_STATUS_SHADOW_REG 0b00
+         iRead [dict get $memory_instances m40].RA_STATUS_SHADOW_REG 0b00
+      }
+      if { $extract_repair_fuse_map } {
+         iNote "Extracting repair fuse map bits and status bits"
+         iRead [dict get $memory_instances m1].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m1].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m1].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m1].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m1].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m1].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m1].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m2].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m2].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m2].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m2].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m2].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m2].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m2].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m3].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m3].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m3].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m3].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m3].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m3].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m3].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m4].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m4].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m4].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m4].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m4].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m4].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m4].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m5].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m5].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m5].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m5].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m5].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m5].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m5].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m6].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m6].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m6].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m6].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m6].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m6].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m6].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m7].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m7].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m7].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m7].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m7].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m7].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m7].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m8].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m8].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m8].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m8].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m8].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m8].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m8].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m9].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m9].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m9].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m9].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m9].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m9].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m9].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m10].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m10].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m10].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m10].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m10].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m10].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m10].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m11].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m11].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m11].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m11].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m11].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m11].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m11].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m12].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m12].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m12].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m12].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m12].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m12].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m12].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m13].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m13].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m13].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m13].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m13].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m13].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m13].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m14].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m14].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m14].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m14].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m14].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m14].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m14].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m15].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m15].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m15].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m15].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m15].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m15].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m15].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m16].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m16].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m16].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m16].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m16].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m16].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m16].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m17].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m17].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m17].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m17].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m17].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m17].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m17].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m18].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m18].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m18].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m18].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m18].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m18].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m18].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m19].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m19].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m19].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m19].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m19].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m19].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m19].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m20].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m20].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m20].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m20].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m20].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m20].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m20].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m21].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m21].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m21].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m21].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m21].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m21].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m21].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m22].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m22].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m22].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m22].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m22].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m22].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m22].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m23].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m23].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m23].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m23].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m23].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m23].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m23].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m24].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m24].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m24].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m24].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m24].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m24].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m24].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m25].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m25].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m25].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m25].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m25].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m25].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m25].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m26].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m26].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m26].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m26].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m26].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m26].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m26].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m27].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m27].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m27].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m27].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m27].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m27].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m27].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m28].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m28].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m28].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m28].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m28].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m28].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m28].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m29].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m29].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m29].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m29].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m29].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m29].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m29].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m30].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m30].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m30].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m30].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m30].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m30].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m30].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m31].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m31].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m31].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m31].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m31].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m31].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m31].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m32].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m32].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m32].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m32].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m32].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m32].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m32].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m33].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m33].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m33].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m33].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m33].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m33].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m33].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m34].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m34].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m34].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m34].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m34].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m34].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m34].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m35].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m35].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m35].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m35].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m35].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m35].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m35].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m36].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m36].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m36].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m36].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m36].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m36].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m36].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m37].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m37].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m37].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m37].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m37].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m37].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m37].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m38].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m38].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m38].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m38].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m38].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m38].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m38].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m39].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m39].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m39].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m39].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m39].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m39].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m39].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+         iRead [dict get $memory_instances m40].RA_INTERFACE_STATUS_REG 0b0
+         iRead [dict get $memory_instances m40].RA_INTERFACE_ALL_SPARE1_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m40].RA_INTERFACE_ALL_SPARE1_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m40].RA_INTERFACE_ALL_SPARE0_ALLOC_BIT 0b0
+         iRead [dict get $memory_instances m40].RA_INTERFACE_ALL_SPARE0_FUSE_ADD_REG 0b0
+         iRead [dict get $memory_instances m40].RA_INTERFACE_All_SPARE0_ALLOC_REG 0b0
+         iRead [dict get $memory_instances m40].RA_INTERFACE_All_SPARE0_FUSE_REG 0b0
+      }
+      if { $compare_go_id } {
+          if {!$debug_mode} {
+            dict for {reg_name reg_value} $short_chain_const_registers_dict {
+              iRead $reg_name $reg_value
+            }
+          }
+  
+           set goIdIndex [dict create]
+           set stepInstList [dict create]
+           set instList [list]
+  # [start] : Step 0 {{{
+             lappend instList m1
+             lappend instList m2
+             lappend instList m3
+             lappend instList m4
+             lappend instList m5
+             lappend instList m6
+             lappend instList m7
+             lappend instList m8
+             lappend instList m9
+             lappend instList m10
+             lappend instList m11
+             lappend instList m12
+             lappend instList m13
+             lappend instList m14
+             lappend instList m15
+             lappend instList m16
+             lappend instList m17
+             lappend instList m18
+             lappend instList m19
+             lappend instList m20
+             lappend instList m21
+             lappend instList m22
+             lappend instList m23
+             lappend instList m24
+             lappend instList m25
+             lappend instList m26
+             lappend instList m27
+             lappend instList m28
+             lappend instList m29
+             lappend instList m30
+             lappend instList m31
+             lappend instList m32
+             lappend instList m33
+             lappend instList m34
+             lappend instList m35
+             lappend instList m36
+             lappend instList m37
+             lappend instList m38
+             lappend instList m39
+             lappend instList m40
+  # [end]   : Step 0 }}}
+           dict set stepInstList 0 $instList
+  
+           set memGoID ""
+           if { $debug_mode } {
+              set instList [dict get $stepInstList 0]
+              if { $enable_memory_list eq "" } {
+                 if { [llength ${instList}] == 1 } {
+                    set memGoID [lindex ${instList} 0]
+                 }
+              } else {
+                 if { [llength ${enable_memory_list}] == 1 } {
+                    set memGoID [lindex $enable_memory_list 0] 
+                 }
+              }
+           }
+           if { $memGoID ne "" } {
+  # [start] : Check one GO_ID {{{
+              if { [dict exists $goIdIndex $memGoID] } {
+                 set goIDList [dict get $goIdIndex $memGoID]
+              } else {
+                 if { [dict exists $memory_instances $memGoID] } {
+                    iRead [dict get $memory_instances $memGoID].GO_ID_REG 0b0
+                 }
+              }
+  # [end]   : Check one GO_ID }}}
+           } else {
+  # [start] : Check all GO_ID {{{
+              if { [dict exists $memory_instances m1] } {
+                 iRead [dict get $memory_instances m1].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m2] } {
+                 iRead [dict get $memory_instances m2].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m3] } {
+                 iRead [dict get $memory_instances m3].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m4] } {
+                 iRead [dict get $memory_instances m4].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m5] } {
+                 iRead [dict get $memory_instances m5].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m6] } {
+                 iRead [dict get $memory_instances m6].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m7] } {
+                 iRead [dict get $memory_instances m7].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m8] } {
+                 iRead [dict get $memory_instances m8].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m9] } {
+                 iRead [dict get $memory_instances m9].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m10] } {
+                 iRead [dict get $memory_instances m10].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m11] } {
+                 iRead [dict get $memory_instances m11].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m12] } {
+                 iRead [dict get $memory_instances m12].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m13] } {
+                 iRead [dict get $memory_instances m13].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m14] } {
+                 iRead [dict get $memory_instances m14].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m15] } {
+                 iRead [dict get $memory_instances m15].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m16] } {
+                 iRead [dict get $memory_instances m16].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m17] } {
+                 iRead [dict get $memory_instances m17].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m18] } {
+                 iRead [dict get $memory_instances m18].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m19] } {
+                 iRead [dict get $memory_instances m19].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m20] } {
+                 iRead [dict get $memory_instances m20].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m21] } {
+                 iRead [dict get $memory_instances m21].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m22] } {
+                 iRead [dict get $memory_instances m22].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m23] } {
+                 iRead [dict get $memory_instances m23].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m24] } {
+                 iRead [dict get $memory_instances m24].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m25] } {
+                 iRead [dict get $memory_instances m25].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m26] } {
+                 iRead [dict get $memory_instances m26].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m27] } {
+                 iRead [dict get $memory_instances m27].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m28] } {
+                 iRead [dict get $memory_instances m28].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m29] } {
+                 iRead [dict get $memory_instances m29].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m30] } {
+                 iRead [dict get $memory_instances m30].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m31] } {
+                 iRead [dict get $memory_instances m31].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m32] } {
+                 iRead [dict get $memory_instances m32].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m33] } {
+                 iRead [dict get $memory_instances m33].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m34] } {
+                 iRead [dict get $memory_instances m34].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m35] } {
+                 iRead [dict get $memory_instances m35].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m36] } {
+                 iRead [dict get $memory_instances m36].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m37] } {
+                 iRead [dict get $memory_instances m37].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m38] } {
+                 iRead [dict get $memory_instances m38].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m39] } {
+                 iRead [dict get $memory_instances m39].GO_ID_REG 0b0
+              }
+              if { [dict exists $memory_instances m40] } {
+                 iRead [dict get $memory_instances m40].GO_ID_REG 0b0
+              }
+  # [end]   : Check all GO_ID }}}
+           }
+      }
+          if {$strobe_count ne ""} {
+            iNote "Comparing strobe count"
+            iRead ${controller_instance}.STOP_ERROR_CNT_REG $strobe_count
+          } 
+      iWrite ${controller_instance}.MBISTPG_EN 0
+      iApply
+    }
+    iRelease ${controller_instance}.MBISTPG_EN
+    iRunLoop 1 -tck
+    iApply
+  # [end]   : Compare Phase }}}
+} 
+
+iProcsForModule firebird7_in_gate1_tessent_sib_sti
+
+iProc setup {args} {  
+    if {[expr [llength $args]%2 != 0]} {
+    display_message -error "Odd number of arguments. Expecting parameter and value pairs."
+    return -code error
+  }
+  array set ARGS {static_clock_control off}
+  array set ARGS $args
+  set static_clock_control $ARGS(static_clock_control)
+  
+  if {$static_clock_control ni {off external}} {
+    display_message -error "Invalid value '$static_clock_control'. Valid values are 'off' and 'external'."
+    return -code error
+  }
+  iWrite ltest_occ_en 0b1
+  if {$static_clock_control eq "external"} {
+    iWrite ltest_static_clock_control_mode 0b1
+  } else {
+    iWrite ltest_static_clock_control_mode 0b0
+  }
+  iApply
+} 
+
+iProcsForModule firebird7_in_gate2_tessent_edt_extest_edt
+
+iProc setup {args} {  
+   if {[expr [llength $args]%2 != 0]} {
+     display_message -error "Odd number of arguments. Expecting parameter and value pairs."
+     return -code error
+  }
+  
+  set edt_low_power_shift_en 0
+  set edt_bypass 0
+  foreach {param value} $args {
+     set param [string tolower $param]
+     if {$param eq "edt_low_power_shift_en"} {
+        set edt_low_power_shift_en $value
+     } elseif {$param eq "edt_bypass"} {
+        set edt_bypass $value
+     } else {
+        display_message -error "Invalid parameter '$param'. Valid parameters are 'edt_low_power_shift_en' and 'edt_bypass'."
+        return -code error
+     }
+     if {![string is boolean -strict $value]} {
+        display_message -error "Invalid non-boolean value '$value' for parameter '$param'."
+        return -code error
+     }
+  }
+  
+  if {$edt_low_power_shift_en} {
+     iWrite edt_low_power_shift_en on
+  } else {
+     iWrite edt_low_power_shift_en off
+  }
+  if {$edt_bypass} {
+     iWrite edt_bypass on
+  } else {
+     iWrite edt_bypass off
+  }
+  iApply
+} 
+
+iProcsForModule firebird7_in_gate2_tessent_edt_intest_edt
+
+iProc setup {args} {  
+   if {[expr [llength $args]%2 != 0]} {
+     display_message -error "Odd number of arguments. Expecting parameter and value pairs."
+     return -code error
+  }
+  
+  set edt_low_power_shift_en 0
+  set edt_bypass 0
+  foreach {param value} $args {
+     set param [string tolower $param]
+     if {$param eq "edt_low_power_shift_en"} {
+        set edt_low_power_shift_en $value
+     } elseif {$param eq "edt_bypass"} {
+        set edt_bypass $value
+     } else {
+        display_message -error "Invalid parameter '$param'. Valid parameters are 'edt_low_power_shift_en' and 'edt_bypass'."
+        return -code error
+     }
+     if {![string is boolean -strict $value]} {
+        display_message -error "Invalid non-boolean value '$value' for parameter '$param'."
+        return -code error
+     }
+  }
+  
+  if {$edt_low_power_shift_en} {
+     iWrite edt_low_power_shift_en on
+  } else {
+     iWrite edt_low_power_shift_en off
+  }
+  if {$edt_bypass} {
+     iWrite edt_bypass on
+  } else {
+     iWrite edt_bypass off
+  }
+  iApply
+} 
+
+iProcsForModule firebird7_in_gate2_tessent_occ_clk
+
+iProc setup {args} {  
+   if {[expr [llength $args]%2 != 0]} {
+     display_message -error "Odd number of arguments. Expecting parameter and value pairs."
+     return -code error
+  }
+  set fast_capture_mode 0
+  set parent_mode 0
+  set capture_window_size 5
+  set inject_tck 0
+  set active_upstream_parent_occ 0
+  foreach {param value} $args {
+     set param [string tolower $param]
+     if {$param eq "capture_window_size"} {
+        set capture_window_size $value
+     } elseif {$param eq "fast_capture_mode"} {
+        set fast_capture_mode $value
+     } elseif {$param eq "active_upstream_parent_occ"} {
+        set active_upstream_parent_occ $value
+     } elseif {$param eq "inject_tck"} {
+        set inject_tck $value
+     } else {
+        display_message -error "Invalid parameter '$param'. Valid parameters are 'fast_capture_mode', 'capture_window_size' and 'inject_tck'."
+        return -code error
+     }
+  }
+  
+  if {![string is boolean -strict $fast_capture_mode]} {
+     display_message -error "Invalid non-boolean value '$fast_capture_mode' for parameter 'fast_capture_mode'."
+     return -code error
+  }
+  if {![string is boolean -strict $active_upstream_parent_occ]} {
+     display_message -error "Invalid non-boolean value '$active_upstream_parent_occ' for parameter 'active_upstream_parent_occ'."
+     return -code error
+  }
+  if {![string is boolean -strict $parent_mode]} {
+     display_message -error "Invalid non-boolean value '$parent_mode' for parameter 'parent_mode'."
+     return -code error
+  } elseif {$parent_mode} {
+     display_message -error "Parameter 'parent_mode' cannot be set to 1 as the controller type is not 'parent'."
+     return -code error
+  }
+  if {![string is integer -strict $capture_window_size]} {
+     display_message -error "Invalid non-integer value '$capture_window_size' for parameter 'capture_window_size'."
+     return -code error
+  }
+  if {$capture_window_size < 1 || $capture_window_size > 5} {
+     display_message -error "Invalid value '$capture_window_size' for parameter 'capture_window_size'. Must be 1 to 5."
+     return -code error
+  }
+  if {![string is boolean -strict $inject_tck]} {
+     display_message -error "Invalid non-boolean value '$inject_tck' for parameter 'inject_tck'."
+     return -code error
+  }
+  
+  iWrite test_mode 1;
+  iWrite fast_capture_mode [string is true $fast_capture_mode];
+  iWrite capture_cycle_width [expr {$capture_window_size - 1}];
+  iWrite active_upstream_parent_occ  [string is true $active_upstream_parent_occ]
+  iWrite inject_tck [string is true $inject_tck];
+  
+  iApply;
+} 
+
+iProcsForModule firebird7_in_gate2_tessent_ssn_scan_host_ssh
+
+iProc end {args} {  
+    array set ARGS {sticky_status_global 1 expect pass}
+  array set ARGS $args
+  if {$ARGS(expect) ni {pass fail}} {
+    display_message "The iProc [get_icl_scope -icall].end was called with expect value '$ARGS(expect)' which is not one of 'pass' or 'fail'."
+    return -code error
+  }
+  if {$ARGS(sticky_status_global) in {0b1 1}} {
+    iNote "TESSENT_PRAGMA iReadVar sticky_status inner.sticky_status"
+    iRead inner.sticky_status $ARGS(expect)
+  }
+  iApply
+}
+
+iProc setup {args} {  
+    set param_list {
+    packet_size 
+    force_suppress_capture
+    bus_width
+    min_shift_clock_low_width 
+    min_capture_clock_low_width 
+    enable   
+    loop_back_en 
+    streaming_through_ijtag_en
+    initial_bit0_position 
+    initial_offset
+    relative_initial_offset_enable
+    bits_per_packet
+    extra_shift_packets
+    scan_en_transition_packets
+    scan_en_launch_packet
+    edt_update_falling_transition_words
+    edt_update_falling_launch_word
+    total_shift_cnt_minus_one
+    init_scan_load_used
+    disable_first_scan_load_masking
+    capture_packets
+    packets_per_capture_clock_minus_one
+    infinite_shift_mode
+    on_chip_compare_enable
+    disable_on_chip_compare_contribution
+    on_chip_compare_group_count
+    on_chip_compare_group
+  }
+  lappend param_list to_scan_in_bits
+  lappend param_list from_scan_out_bits
+  lappend param_list from_scan_out_le_strobe_en
+  array set PARAM {
+    enable                               0
+    force_suppress_capture               0
+    min_shift_clock_low_width            0 
+    min_capture_clock_low_width          0 
+    loop_back_en                         0 
+    streaming_through_ijtag_en           0
+    relative_initial_offset_enable       0
+    init_scan_load_used                  0
+    disable_first_scan_load_masking      0
+    packets_per_capture_clock_minus_one  0
+    extra_shift_packets                  0
+    scan_en_transition_packets           0
+    edt_update_falling_transition_words  0
+    infinite_shift_mode                  0
+    on_chip_compare_enable               0 
+    disable_on_chip_compare_contribution 0
+    on_chip_compare_group_count          1
+    on_chip_compare_group                0
+    from_scan_out_le_strobe_en 0
+  }
+  array set PARAM $args
+  if {[getenv INIT_SCAN_LOAD_USED -default 0] eq "1"} {
+    set PARAM(init_scan_load_used) 1
+  }
+  if {[getenv INFINITE_SHIFT_MODE -default 0] eq "1"} {
+    set PARAM(infinite_shift_mode) 1
+  }
+  foreach {param value} $args {
+    if {$param ni $param_list} {
+      display_message -warning "Unknown argument '$param' passed to the setup iProc of module firebird7_in_gate2_tessent_ssn_scan_host_ssh. It is ignored."
+    }
+  }
+  set missing_param 0
+  if {[info exists PARAM(enable)] && $PARAM(enable) in {1 0b1}} {
+    if {$PARAM(on_chip_compare_enable) in {1 0b1}} {
+      iNote "tessent_pragma iWriteVar disable_on_chip_compare_contribution inner.disable_on_chip_compare_contribution"
+    }
+    if {![info exists PARAM(streaming_through_ijtag_en)] || $PARAM(streaming_through_ijtag_en) in {0 0b0}} {
+      iNote "tessent_pragma patchable_iwrite enable inner.enable"
+    }
+    foreach param $param_list {
+      if {$PARAM(infinite_shift_mode)} {
+        if {$param eq "total_shift_cnt_minus_one"} {
+          continue
+        }
+      } else {
+        if {$param eq "infinite_shift_mode"} {
+          continue
+        }
+      }
+      if {$param eq "scan_en_launch_packet" && ![info exists PARAM(scan_en_launch_packet)] && [info exists PARAM(scan_en_transition_packets)]} {
+        set PARAM(scan_en_launch_packet) [expr {int(ceil($PARAM(scan_en_transition_packets)/2))}]
+      }
+      if {$param eq "edt_update_falling_launch_word" && ![info exists PARAM(edt_update_falling_launch_word)] && [info exists PARAM(edt_update_falling_transition_words)]} {
+        set PARAM(edt_update_falling_launch_word) [expr {int(ceil($PARAM(edt_update_falling_transition_words)/2))}]
+      }
+      if {![info exists PARAM($param)]} {
+        display_message "Mandatory argument '$param' passed to the setup iProc of module firebird7_in_gate2_tessent_ssn_scan_host_ssh is missing."
+        set missing_param 1
+      } else {
+        if {$param eq "disable_on_chip_compare_contribution" &&  [info exists ::ssh_disable_contribution_icl_instance_name_list] &&  [get_icl_scope -icall] in $::ssh_disable_contribution_icl_instance_name_list} {
+          puts "Setting $param to 1 for ICL Instance '[get_icl_scope -icall]'."
+          iWrite inner.${param} 0b1
+        } elseif {$param ne "enable" || $PARAM(streaming_through_ijtag_en) in {0 0b0}} {
+          iWrite inner.${param} $PARAM($param)
+        }
+      }
+    }
+  
+    if {$missing_param} {
+      return -code error
+    }
+  
+    if {1.0*$PARAM(packet_size)/$PARAM(bus_width) < 2} {
+      iWrite inner.packet_width_is_less_than_two_bus_clock 0b1
+    } else {
+      iWrite inner.packet_width_is_less_than_two_bus_clock 0b0
+    }
+  
+    iWrite inner.config_sib_shift_reg 0b0
+    iApply
+  }
+} 

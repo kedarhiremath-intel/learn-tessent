@@ -1,0 +1,442 @@
+/////////////////////////////////////////////////////////////
+// Created by: Synopsys DC Expert(TM) in wire load mode
+// Version   : Q-2019.12-SP5-1
+// Date      : Mon Oct 23 13:03:21 2023
+/////////////////////////////////////////////////////////////
+
+
+module firebird7_in_gate1_tessent_mbist_bap_ctl_sib ( reset, ijtag_select, si, 
+        capture_en, shift_en, update_en, tck, so, from_scan_out, 
+        ChainBypassMode, bist_done, bist_go, bistEn_reg, bistEn_latch, bistEn
+ );
+  input reset, ijtag_select, si, capture_en, shift_en, update_en, tck,
+         from_scan_out, ChainBypassMode, bist_done, bist_go;
+  output so, bistEn_reg, bistEn_latch, bistEn;
+  wire   tdr, n18, n17, n12, n13, n16, n19, n1, n2, n3, SYNOPSYS_UNCONNECTED_1,
+         SYNOPSYS_UNCONNECTED_2, SYNOPSYS_UNCONNECTED_3,
+         SYNOPSYS_UNCONNECTED_4;
+
+  i0sfuz040ab1d02x5 tdr_reg ( .si(n18), .d(n16), .den(n19), .ssb(n17), .clk(
+        tck), .o(tdr), .so(SYNOPSYS_UNCONNECTED_1) );
+  i0sfvz08bab1d03x6 sib_latch_reg ( .si(n18), .d(n12), .ssb(n17), .clkb(tck), 
+        .rb(reset), .s(n18), .o(bistEn_latch), .so(SYNOPSYS_UNCONNECTED_2) );
+  i0sfuz040ab1d02x5 sib_reg ( .si(n18), .d(n13), .den(n19), .ssb(n17), .clk(
+        tck), .o(so), .so(SYNOPSYS_UNCONNECTED_3) );
+  i0sfvz08bab1d03x6 to_enable_int_reg ( .si(n18), .d(bistEn_latch), .ssb(n17), 
+        .clkb(tck), .rb(reset), .s(n18), .o(bistEn), .so(
+        SYNOPSYS_UNCONNECTED_4) );
+  i0stilo00ab1n02x5 U3 ( .o(n18) );
+  i0stihi00ab1n02x5 U4 ( .o(n17) );
+  i0soa0012ab1n02x5 U5 ( .b(capture_en), .c(shift_en), .a(ijtag_select), .o(
+        n19) );
+  i0smbn022ab1n02x5 U6 ( .b(n1), .a(bist_done), .sa(capture_en), .o(n16) );
+  i0smbn022ab1n02x5 U7 ( .b(si), .a(from_scan_out), .sa(n2), .o(n1) );
+  i0snorb02ab1n02x5 U8 ( .a(bistEn_latch), .b(ChainBypassMode), .out0(n2) );
+  i0smbn022ab1n02x5 U9 ( .b(tdr), .a(bist_go), .sa(capture_en), .o(n13) );
+  i0smbn022ab1n02x5 U10 ( .b(bistEn_latch), .a(so), .sa(n3), .o(n12) );
+  i0sand002ab1n02x5 U11 ( .a(update_en), .b(ijtag_select), .o(n3) );
+endmodule
+
+
+module firebird7_in_gate1_tessent_mbist_bap_sib_0 ( reset, ijtag_select, si, 
+        capture_en, shift_en, update_en, tck, so, from_scan_out, 
+        ijtag_to_select_reg, ijtag_to_select );
+  input reset, ijtag_select, si, capture_en, shift_en, update_en, tck,
+         from_scan_out;
+  output so, ijtag_to_select_reg, ijtag_to_select;
+  wire   to_enable_int, sib_latch, n14, n13, n12, n15, n1, n2, n3,
+         SYNOPSYS_UNCONNECTED_1, SYNOPSYS_UNCONNECTED_2;
+
+  i0sfvz08bab1d03x6 to_enable_int_reg ( .si(n14), .d(sib_latch), .ssb(n13), 
+        .clkb(tck), .rb(reset), .s(n14), .o(to_enable_int), .so(
+        SYNOPSYS_UNCONNECTED_1) );
+  i0sfuq000ab1d02x5 sib_reg ( .si(n14), .d(n15), .ssb(n13), .clk(tck), .o(so)
+         );
+  i0sfvz08bab1d03x6 sib_latch_reg ( .si(n14), .d(n12), .ssb(n13), .clkb(tck), 
+        .rb(reset), .s(n14), .o(sib_latch), .so(SYNOPSYS_UNCONNECTED_2) );
+  i0stilo00ab1n02x5 U3 ( .o(n14) );
+  i0stihi00ab1n02x5 U4 ( .o(n13) );
+  i0smbn022ab1n02x5 U5 ( .b(n1), .a(so), .sa(n2), .o(n15) );
+  i0soai012ab1n02x5 U6 ( .b(shift_en), .c(capture_en), .a(ijtag_select), .o1(
+        n2) );
+  i0smd2no2ab1n02x5 U7 ( .c(capture_en), .b(si), .a(from_scan_out), .sa(
+        sib_latch), .out0(n1) );
+  i0smbn022ab1n02x5 U8 ( .b(sib_latch), .a(so), .sa(n3), .o(n12) );
+  i0sand002ab1n02x5 U9 ( .a(update_en), .b(ijtag_select), .o(n3) );
+  i0sand002ab1n02x5 U10 ( .a(to_enable_int), .b(ijtag_select), .o(
+        ijtag_to_select) );
+endmodule
+
+
+module firebird7_in_gate1_tessent_mbist_bap_sib_1 ( reset, ijtag_select, si, 
+        capture_en, shift_en, update_en, tck, so, from_scan_out, 
+        ijtag_to_select_reg, ijtag_to_select );
+  input reset, ijtag_select, si, capture_en, shift_en, update_en, tck,
+         from_scan_out;
+  output so, ijtag_to_select_reg, ijtag_to_select;
+  wire   to_enable_int, sib_latch, n1, n2, n3, n4, n5, n6, n7,
+         SYNOPSYS_UNCONNECTED_1, SYNOPSYS_UNCONNECTED_2;
+
+  i0sfvz08bab1d03x6 to_enable_int_reg ( .si(n7), .d(sib_latch), .ssb(n6), 
+        .clkb(tck), .rb(reset), .s(n7), .o(to_enable_int), .so(
+        SYNOPSYS_UNCONNECTED_1) );
+  i0sfuq000ab1d02x5 sib_reg ( .si(n7), .d(n4), .ssb(n6), .clk(tck), .o(so) );
+  i0sfvz08bab1d03x6 sib_latch_reg ( .si(n7), .d(n5), .ssb(n6), .clkb(tck), 
+        .rb(reset), .s(n7), .o(sib_latch), .so(SYNOPSYS_UNCONNECTED_2) );
+  i0stilo00ab1n02x5 U3 ( .o(n7) );
+  i0stihi00ab1n02x5 U4 ( .o(n6) );
+  i0smbn022ab1n02x5 U5 ( .b(n1), .a(so), .sa(n2), .o(n4) );
+  i0soai012ab1n02x5 U6 ( .b(shift_en), .c(capture_en), .a(ijtag_select), .o1(
+        n2) );
+  i0smd2no2ab1n02x5 U7 ( .c(capture_en), .b(si), .a(from_scan_out), .sa(
+        sib_latch), .out0(n1) );
+  i0smbn022ab1n02x5 U8 ( .b(sib_latch), .a(so), .sa(n3), .o(n5) );
+  i0sand002ab1n02x5 U9 ( .a(update_en), .b(ijtag_select), .o(n3) );
+  i0sand002ab1n02x5 U10 ( .a(to_enable_int), .b(ijtag_select), .o(
+        ijtag_to_select) );
+endmodule
+
+
+module firebird7_in_gate1_tessent_mbist_bap_tdr ( reset, ijtag_select, si, 
+        capture_en, shift_en, update_en, tck, ltest_en, ENABLE_MEM_RESET, 
+        REDUCED_ADDRESS_COUNT, BIST_SELECT_TEST_DATA, BIST_ALGO_MODE0, 
+        BIST_ALGO_MODE1, MEM_ARRAY_DUMP_MODE, BIRA_EN, BIST_DIAG_EN, 
+        PRESERVE_FUSE_REGISTER, CHECK_REPAIR_NEEDED, BIST_ASYNC_RESET, 
+        FL_CNT_MODE0, FL_CNT_MODE1, INCLUDE_MEM_RESULTS_REG, CHAIN_BYPASS_EN, 
+        CHAIN_BYPASS_EN_reg, TCK_MODE, BIST_SETUP, BIST_SETUP_reg, so );
+  output [2:0] BIST_SETUP;
+  output [2:0] BIST_SETUP_reg;
+  input reset, ijtag_select, si, capture_en, shift_en, update_en, tck,
+         ltest_en;
+  output ENABLE_MEM_RESET, REDUCED_ADDRESS_COUNT, BIST_SELECT_TEST_DATA,
+         BIST_ALGO_MODE0, BIST_ALGO_MODE1, MEM_ARRAY_DUMP_MODE, BIRA_EN,
+         BIST_DIAG_EN, PRESERVE_FUSE_REGISTER, CHECK_REPAIR_NEEDED,
+         BIST_ASYNC_RESET, FL_CNT_MODE0, FL_CNT_MODE1, INCLUDE_MEM_RESULTS_REG,
+         CHAIN_BYPASS_EN, CHAIN_BYPASS_EN_reg, TCK_MODE, so;
+  wire   n5, n6, tdr_latch10, tdr_15, tdr_13_, tdr_12_, tdr_11_, tdr_10_,
+         tdr_9_, tdr_8_, tdr_7_, tdr_6_, tdr_5_, tdr_4_, tdr_3_, tdr_2_,
+         tdr_1_, n156, n157, n50, n56, n62, n68, n74, n80, n86, n92, n98, n104,
+         n110, n116, n122, n128, n134, n140, n146, n152, n158, n159, n160,
+         n161, n162, n163, n164, n165, n166, n167, n168, n169, n170, n171,
+         n172, n173, n174, n175, n176, n177, n178, n1, n2, n3, n4,
+         SYNOPSYS_UNCONNECTED_1, SYNOPSYS_UNCONNECTED_2,
+         SYNOPSYS_UNCONNECTED_3, SYNOPSYS_UNCONNECTED_4,
+         SYNOPSYS_UNCONNECTED_5, SYNOPSYS_UNCONNECTED_6,
+         SYNOPSYS_UNCONNECTED_7, SYNOPSYS_UNCONNECTED_8,
+         SYNOPSYS_UNCONNECTED_9, SYNOPSYS_UNCONNECTED_10,
+         SYNOPSYS_UNCONNECTED_11, SYNOPSYS_UNCONNECTED_12,
+         SYNOPSYS_UNCONNECTED_13, SYNOPSYS_UNCONNECTED_14,
+         SYNOPSYS_UNCONNECTED_15, SYNOPSYS_UNCONNECTED_16,
+         SYNOPSYS_UNCONNECTED_17, SYNOPSYS_UNCONNECTED_18,
+         SYNOPSYS_UNCONNECTED_19;
+
+  i0smbn022ab1n02x5 tessent_persistent_cell_BIST_ASYNC_RESET_mux ( .b(
+        tdr_latch10), .a(reset), .sa(ltest_en), .o(BIST_ASYNC_RESET) );
+  i0sfuq000ab1d02x5 tdr_reg_16 ( .si(n157), .d(n162), .ssb(n156), .clk(tck), 
+        .o(n6) );
+  i0sfuq000ab1d02x5 tdr_reg_15 ( .si(n157), .d(n163), .ssb(n156), .clk(tck), 
+        .o(tdr_15) );
+  i0sfuq000ab1d02x5 tdr_reg_13 ( .si(n157), .d(n165), .ssb(n156), .clk(tck), 
+        .o(tdr_13_) );
+  i0sfuq000ab1d02x5 tdr_reg_12 ( .si(n157), .d(n166), .ssb(n156), .clk(tck), 
+        .o(tdr_12_) );
+  i0sfuq000ab1d02x5 tdr_reg_11 ( .si(n157), .d(n167), .ssb(n156), .clk(tck), 
+        .o(tdr_11_) );
+  i0sfuq000ab1d02x5 tdr_reg_10 ( .si(n157), .d(n168), .ssb(n156), .clk(tck), 
+        .o(tdr_10_) );
+  i0sfuq000ab1d02x5 tdr_reg_9 ( .si(n157), .d(n169), .ssb(n156), .clk(tck), 
+        .o(tdr_9_) );
+  i0sfuq000ab1d02x5 tdr_reg_0 ( .si(n157), .d(n178), .ssb(n156), .clk(tck), 
+        .o(so) );
+  i0sfuq000ab1d02x5 tdr_reg_18 ( .si(n157), .d(n160), .ssb(n156), .clk(tck), 
+        .o(n5) );
+  i0sfuq000ab1d02x5 tdr_reg_8 ( .si(n157), .d(n170), .ssb(n156), .clk(tck), 
+        .o(tdr_8_) );
+  i0sfuq000ab1d02x5 tdr_reg_7 ( .si(n157), .d(n171), .ssb(n156), .clk(tck), 
+        .o(tdr_7_) );
+  i0sfuq000ab1d02x5 tdr_reg_6 ( .si(n157), .d(n172), .ssb(n156), .clk(tck), 
+        .o(tdr_6_) );
+  i0sfuq000ab1d02x5 tdr_reg_5 ( .si(n157), .d(n173), .ssb(n156), .clk(tck), 
+        .o(tdr_5_) );
+  i0sfuq000ab1d02x5 tdr_reg_4 ( .si(n157), .d(n174), .ssb(n156), .clk(tck), 
+        .o(tdr_4_) );
+  i0sfuq000ab1d02x5 tdr_reg_3 ( .si(n157), .d(n175), .ssb(n156), .clk(tck), 
+        .o(tdr_3_) );
+  i0sfuq000ab1d02x5 tdr_reg_2 ( .si(n157), .d(n176), .ssb(n156), .clk(tck), 
+        .o(tdr_2_) );
+  i0sfuq000ab1d02x5 tdr_reg_1 ( .si(n157), .d(n177), .ssb(n156), .clk(tck), 
+        .o(tdr_1_) );
+  i0sfuq000ab1d02x5 tdr_reg_14 ( .si(n157), .d(n164), .ssb(n156), .clk(tck), 
+        .o(CHAIN_BYPASS_EN_reg) );
+  i0sfuq000ab1d02x5 tdr_reg_17 ( .si(n157), .d(n161), .ssb(n156), .clk(tck), 
+        .o(BIST_SETUP_reg[1]) );
+  i0sfvz08bab1d03x6 tdr_latch16_reg ( .si(n157), .d(n146), .ssb(n156), .clkb(
+        tck), .rb(reset), .s(n157), .o(BIST_SETUP[0]), .so(
+        SYNOPSYS_UNCONNECTED_1) );
+  i0sfvz08bab1d03x6 tdr_latch15_reg ( .si(n157), .d(n140), .ssb(n156), .clkb(
+        tck), .rb(reset), .s(n157), .o(TCK_MODE), .so(SYNOPSYS_UNCONNECTED_2)
+         );
+  i0sfvz08bab1d03x6 tdr_latch13_reg ( .si(n157), .d(n128), .ssb(n156), .clkb(
+        tck), .rb(reset), .s(n157), .o(INCLUDE_MEM_RESULTS_REG), .so(
+        SYNOPSYS_UNCONNECTED_3) );
+  i0sfvz08bab1d03x6 tdr_latch12_reg ( .si(n157), .d(n122), .ssb(n156), .clkb(
+        tck), .rb(reset), .s(n157), .o(FL_CNT_MODE1), .so(
+        SYNOPSYS_UNCONNECTED_4) );
+  i0sfvz08bab1d03x6 tdr_latch11_reg ( .si(n157), .d(n116), .ssb(n156), .clkb(
+        tck), .rb(reset), .s(n157), .o(FL_CNT_MODE0), .so(
+        SYNOPSYS_UNCONNECTED_5) );
+  i0sfvz08bab1d03x6 tdr_latch9_reg ( .si(n157), .d(n104), .ssb(n156), .clkb(
+        tck), .rb(reset), .s(n157), .o(CHECK_REPAIR_NEEDED), .so(
+        SYNOPSYS_UNCONNECTED_6) );
+  i0sfvz08bab1d03x6 tdr_latch10_reg ( .si(n157), .d(n110), .ssb(n156), .clkb(
+        tck), .rb(reset), .s(n157), .o(tdr_latch10), .so(
+        SYNOPSYS_UNCONNECTED_7) );
+  i0sfvz08bab1d03x6 tdr_latch18_reg ( .si(n157), .d(n158), .ssb(n156), .clkb(
+        tck), .rb(reset), .s(n157), .o(BIST_SETUP[2]), .so(
+        SYNOPSYS_UNCONNECTED_8) );
+  i0sfvz08bab1d03x6 tdr_latch8_reg ( .si(n157), .d(n98), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(PRESERVE_FUSE_REGISTER), .so(SYNOPSYS_UNCONNECTED_9) );
+  i0sfvz08bab1d03x6 tdr_latch7_reg ( .si(n157), .d(n92), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(BIST_DIAG_EN), .so(SYNOPSYS_UNCONNECTED_10) );
+  i0sfvz08bab1d03x6 tdr_latch6_reg ( .si(n157), .d(n86), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(BIRA_EN), .so(SYNOPSYS_UNCONNECTED_11) );
+  i0sfvz08bab1d03x6 tdr_latch5_reg ( .si(n157), .d(n80), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(MEM_ARRAY_DUMP_MODE), .so(SYNOPSYS_UNCONNECTED_12)
+         );
+  i0sfvz08bab1d03x6 tdr_latch4_reg ( .si(n157), .d(n74), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(BIST_ALGO_MODE1), .so(SYNOPSYS_UNCONNECTED_13) );
+  i0sfvz08bab1d03x6 tdr_latch3_reg ( .si(n157), .d(n68), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(BIST_ALGO_MODE0), .so(SYNOPSYS_UNCONNECTED_14) );
+  i0sfvz08bab1d03x6 tdr_latch2_reg ( .si(n157), .d(n62), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(BIST_SELECT_TEST_DATA), .so(SYNOPSYS_UNCONNECTED_15) );
+  i0sfvz08bab1d03x6 tdr_latch1_reg ( .si(n157), .d(n56), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(REDUCED_ADDRESS_COUNT), .so(SYNOPSYS_UNCONNECTED_16) );
+  i0sfvz08bab1d03x6 tdr_latch0_reg ( .si(n157), .d(n50), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(ENABLE_MEM_RESET), .so(SYNOPSYS_UNCONNECTED_17) );
+  i0sfvz08bab1d03x6 tdr_latch14_reg ( .si(n157), .d(n134), .ssb(n156), .clkb(
+        tck), .rb(n156), .s(n159), .o(CHAIN_BYPASS_EN), .so(
+        SYNOPSYS_UNCONNECTED_18) );
+  i0sfvz08bab1d03x6 tdr_latch17_reg ( .si(n157), .d(n152), .ssb(n156), .clkb(
+        tck), .rb(reset), .s(n157), .o(BIST_SETUP[1]), .so(
+        SYNOPSYS_UNCONNECTED_19) );
+  i0stihi00ab1n02x5 U3 ( .o(n156) );
+  i0stilo00ab1n02x5 U4 ( .o(n157) );
+  i0smbn022ab1n02x5 U5 ( .b(PRESERVE_FUSE_REGISTER), .a(tdr_8_), .sa(n1), .o(
+        n98) );
+  i0smbn022ab1n02x5 U6 ( .b(BIST_DIAG_EN), .a(tdr_7_), .sa(n1), .o(n92) );
+  i0smbn022ab1n02x5 U7 ( .b(BIRA_EN), .a(tdr_6_), .sa(n1), .o(n86) );
+  i0smbn022ab1n02x5 U8 ( .b(MEM_ARRAY_DUMP_MODE), .a(tdr_5_), .sa(n1), .o(n80)
+         );
+  i0smbn022ab1n02x5 U9 ( .b(BIST_ALGO_MODE1), .a(tdr_4_), .sa(n1), .o(n74) );
+  i0smbn022ab1n02x5 U10 ( .b(BIST_ALGO_MODE0), .a(tdr_3_), .sa(n1), .o(n68) );
+  i0smbn022ab1n02x5 U11 ( .b(BIST_SELECT_TEST_DATA), .a(tdr_2_), .sa(n1), .o(
+        n62) );
+  i0smbn022ab1n02x5 U12 ( .b(REDUCED_ADDRESS_COUNT), .a(tdr_1_), .sa(n1), .o(
+        n56) );
+  i0smbn022ab1n02x5 U13 ( .b(ENABLE_MEM_RESET), .a(so), .sa(n1), .o(n50) );
+  i0sao0222ab1n03x5 U14 ( .a(tdr_1_), .b(n2), .c(so), .d(n3), .e(
+        ENABLE_MEM_RESET), .f(n4), .o(n178) );
+  i0sao0222ab1n03x5 U15 ( .a(tdr_2_), .b(n2), .c(tdr_1_), .d(n3), .e(
+        REDUCED_ADDRESS_COUNT), .f(n4), .o(n177) );
+  i0sao0222ab1n03x5 U16 ( .a(tdr_3_), .b(n2), .c(tdr_2_), .d(n3), .e(
+        BIST_SELECT_TEST_DATA), .f(n4), .o(n176) );
+  i0sao0222ab1n03x5 U17 ( .a(tdr_4_), .b(n2), .c(tdr_3_), .d(n3), .e(
+        BIST_ALGO_MODE0), .f(n4), .o(n175) );
+  i0sao0222ab1n03x5 U18 ( .a(tdr_5_), .b(n2), .c(tdr_4_), .d(n3), .e(
+        BIST_ALGO_MODE1), .f(n4), .o(n174) );
+  i0sao0222ab1n03x5 U19 ( .a(tdr_6_), .b(n2), .c(tdr_5_), .d(n3), .e(
+        MEM_ARRAY_DUMP_MODE), .f(n4), .o(n173) );
+  i0sao0222ab1n03x5 U20 ( .a(tdr_7_), .b(n2), .c(tdr_6_), .d(n3), .e(BIRA_EN), 
+        .f(n4), .o(n172) );
+  i0sao0222ab1n03x5 U21 ( .a(tdr_8_), .b(n2), .c(tdr_7_), .d(n3), .e(
+        BIST_DIAG_EN), .f(n4), .o(n171) );
+  i0sao0222ab1n03x5 U22 ( .a(n2), .b(tdr_9_), .c(tdr_8_), .d(n3), .e(
+        PRESERVE_FUSE_REGISTER), .f(n4), .o(n170) );
+  i0sao0222ab1n03x5 U23 ( .a(n2), .b(tdr_10_), .c(n3), .d(tdr_9_), .e(n4), .f(
+        CHECK_REPAIR_NEEDED), .o(n169) );
+  i0sao0222ab1n03x5 U24 ( .a(n2), .b(tdr_11_), .c(n3), .d(tdr_10_), .e(n4), 
+        .f(tdr_latch10), .o(n168) );
+  i0sao0222ab1n03x5 U25 ( .a(n2), .b(tdr_12_), .c(n3), .d(tdr_11_), .e(n4), 
+        .f(FL_CNT_MODE0), .o(n167) );
+  i0sao0222ab1n03x5 U26 ( .a(n2), .b(tdr_13_), .c(n3), .d(tdr_12_), .e(n4), 
+        .f(FL_CNT_MODE1), .o(n166) );
+  i0sao0222ab1n03x5 U27 ( .a(n2), .b(CHAIN_BYPASS_EN_reg), .c(n3), .d(tdr_13_), 
+        .e(n4), .f(INCLUDE_MEM_RESULTS_REG), .o(n165) );
+  i0sao0222ab1n03x5 U28 ( .a(n2), .b(tdr_15), .c(n3), .d(CHAIN_BYPASS_EN_reg), 
+        .e(n4), .f(CHAIN_BYPASS_EN), .o(n164) );
+  i0sao0222ab1n03x5 U29 ( .a(n2), .b(n6), .c(n3), .d(tdr_15), .e(n4), .f(
+        TCK_MODE), .o(n163) );
+  i0sao0222ab1n03x5 U30 ( .a(n2), .b(BIST_SETUP_reg[1]), .c(n3), .d(n6), .e(n4), .f(BIST_SETUP[0]), .o(n162) );
+  i0sao0222ab1n03x5 U31 ( .a(n2), .b(n5), .c(n3), .d(BIST_SETUP_reg[1]), .e(n4), .f(BIST_SETUP[1]), .o(n161) );
+  i0sao0222ab1n03x5 U32 ( .a(si), .b(n2), .c(n5), .d(n3), .e(BIST_SETUP[2]), 
+        .f(n4), .o(n160) );
+  i0snor002ab1n02x5 U33 ( .a(n4), .b(n2), .o1(n3) );
+  i0snano22ab1n02x5 U34 ( .b(ijtag_select), .c(shift_en), .a(n4), .out0(n2) );
+  i0sand002ab1n02x5 U35 ( .a(capture_en), .b(ijtag_select), .o(n4) );
+  i0sinv000ab1n02x5 U36 ( .a(reset), .o1(n159) );
+  i0smbn022ab1n02x5 U37 ( .b(BIST_SETUP[2]), .a(n5), .sa(n1), .o(n158) );
+  i0smbn022ab1n02x5 U38 ( .b(BIST_SETUP[1]), .a(BIST_SETUP_reg[1]), .sa(n1), 
+        .o(n152) );
+  i0smbn022ab1n02x5 U39 ( .b(BIST_SETUP[0]), .a(n6), .sa(n1), .o(n146) );
+  i0smbn022ab1n02x5 U40 ( .b(TCK_MODE), .a(tdr_15), .sa(n1), .o(n140) );
+  i0smbn022ab1n02x5 U41 ( .b(CHAIN_BYPASS_EN), .a(CHAIN_BYPASS_EN_reg), .sa(n1), .o(n134) );
+  i0smbn022ab1n02x5 U42 ( .b(INCLUDE_MEM_RESULTS_REG), .a(tdr_13_), .sa(n1), 
+        .o(n128) );
+  i0smbn022ab1n02x5 U43 ( .b(FL_CNT_MODE1), .a(tdr_12_), .sa(n1), .o(n122) );
+  i0smbn022ab1n02x5 U44 ( .b(FL_CNT_MODE0), .a(tdr_11_), .sa(n1), .o(n116) );
+  i0smbn022ab1n02x5 U45 ( .b(tdr_latch10), .a(tdr_10_), .sa(n1), .o(n110) );
+  i0smbn022ab1n02x5 U46 ( .b(CHECK_REPAIR_NEEDED), .a(tdr_9_), .sa(n1), .o(
+        n104) );
+  i0sand002ab1n02x5 U47 ( .a(update_en), .b(ijtag_select), .o(n1) );
+endmodule
+
+
+module firebird7_in_gate1_tessent_mbist_bap ( reset, ijtag_select, si, 
+        capture_en, shift_en, shift_en_R, update_en, tck, to_interfaces_tck, 
+        to_controllers_tck, mcp_bounding_en, mcp_bounding_to_en, scan_en, 
+        scan_to_en, memory_bypass_en, memory_bypass_to_en, ltest_en, 
+        ltest_to_en, BIST_HOLD, ENABLE_MEM_RESET, REDUCED_ADDRESS_COUNT, 
+        BIST_SELECT_TEST_DATA, BIST_ALGO_MODE0, BIST_ALGO_MODE1, 
+        MEM_ARRAY_DUMP_MODE, BIRA_EN, BIST_DIAG_EN, PRESERVE_FUSE_REGISTER, 
+        CHECK_REPAIR_NEEDED, BIST_ASYNC_RESET, FL_CNT_MODE0, FL_CNT_MODE1, 
+        INCLUDE_MEM_RESULTS_REG, CHAIN_BYPASS_EN, TCK_MODE, BIST_SETUP, 
+        MBISTPG_GO, MBISTPG_DONE, bistEn, toBist, fromBist, so );
+  output [2:0] BIST_SETUP;
+  input [0:0] MBISTPG_GO;
+  input [0:0] MBISTPG_DONE;
+  output [0:0] bistEn;
+  output [0:0] toBist;
+  input [0:0] fromBist;
+  input reset, ijtag_select, si, capture_en, shift_en, update_en, tck,
+         mcp_bounding_en, scan_en, memory_bypass_en, ltest_en;
+  output shift_en_R, to_interfaces_tck, to_controllers_tck, mcp_bounding_to_en,
+         scan_to_en, memory_bypass_to_en, ltest_to_en, BIST_HOLD,
+         ENABLE_MEM_RESET, REDUCED_ADDRESS_COUNT, BIST_SELECT_TEST_DATA,
+         BIST_ALGO_MODE0, BIST_ALGO_MODE1, MEM_ARRAY_DUMP_MODE, BIRA_EN,
+         BIST_DIAG_EN, PRESERVE_FUSE_REGISTER, CHECK_REPAIR_NEEDED,
+         BIST_ASYNC_RESET, FL_CNT_MODE0, FL_CNT_MODE1, INCLUDE_MEM_RESULTS_REG,
+         CHAIN_BYPASS_EN, TCK_MODE, so;
+  wire   n15, mcp_bounding_to_en, scan_to_en, memory_bypass_to_en, ltest_to_en,
+         ijtag_select_bap_tdr, ENABLE_MEM_RESET_int, REDUCED_ADDRESS_COUNT_int,
+         BIST_SELECT_TEST_DATA_int, BIST_ALGO_MODE0_int, BIST_ALGO_MODE1_int,
+         MEM_ARRAY_DUMP_MODE_int, BIRA_EN_int, BIST_DIAG_EN_int,
+         PRESERVE_FUSE_REGISTER_int, CHECK_REPAIR_NEEDED_int,
+         BIST_ASYNC_RESET_to_buf, FL_CNT_MODE0_int, FL_CNT_MODE1_int,
+         INCLUDE_MEM_RESULTS_REG_int, CHAIN_BYPASS_EN_int, CHAIN_BYPASS_EN_reg,
+         TCK_MODE_to_buf, BIST_SETUP_int_2_, BIST_SETUP_int_1_,
+         BIST_SETUP_int_0_, BIST_SETUP_reg_1_, tdr_so, tdr_bypass_so,
+         ijtag_select_ctl_sib, sib_bist_en_0_, sib_bist_en_latch_0_,
+         fromBist_retime_0_, sib_scan_out_0_, sib_ctl_bypass_so,
+         BIST_HOLD_latch, to_mbist_tck_en, tck_out_gated, n14, n13, n16, n18,
+         n19, n20, n21, n22, SYNOPSYS_UNCONNECTED_1, SYNOPSYS_UNCONNECTED_2,
+         SYNOPSYS_UNCONNECTED_3, SYNOPSYS_UNCONNECTED_4,
+         SYNOPSYS_UNCONNECTED_5, SYNOPSYS_UNCONNECTED_6,
+         SYNOPSYS_UNCONNECTED_7, SYNOPSYS_UNCONNECTED_8,
+         SYNOPSYS_UNCONNECTED_9;
+  assign mcp_bounding_to_en = mcp_bounding_en;
+  assign scan_to_en = scan_en;
+  assign memory_bypass_to_en = memory_bypass_en;
+  assign ltest_to_en = ltest_en;
+
+  firebird7_in_gate1_tessent_mbist_bap_tdr tdr_inst ( .reset(reset), 
+        .ijtag_select(ijtag_select_bap_tdr), .si(si), .capture_en(capture_en), 
+        .shift_en(shift_en), .update_en(update_en), .tck(tck), .ltest_en(
+        ltest_to_en), .ENABLE_MEM_RESET(ENABLE_MEM_RESET_int), 
+        .REDUCED_ADDRESS_COUNT(REDUCED_ADDRESS_COUNT_int), 
+        .BIST_SELECT_TEST_DATA(BIST_SELECT_TEST_DATA_int), .BIST_ALGO_MODE0(
+        BIST_ALGO_MODE0_int), .BIST_ALGO_MODE1(BIST_ALGO_MODE1_int), 
+        .MEM_ARRAY_DUMP_MODE(MEM_ARRAY_DUMP_MODE_int), .BIRA_EN(BIRA_EN_int), 
+        .BIST_DIAG_EN(BIST_DIAG_EN_int), .PRESERVE_FUSE_REGISTER(
+        PRESERVE_FUSE_REGISTER_int), .CHECK_REPAIR_NEEDED(
+        CHECK_REPAIR_NEEDED_int), .BIST_ASYNC_RESET(BIST_ASYNC_RESET_to_buf), 
+        .FL_CNT_MODE0(FL_CNT_MODE0_int), .FL_CNT_MODE1(FL_CNT_MODE1_int), 
+        .INCLUDE_MEM_RESULTS_REG(INCLUDE_MEM_RESULTS_REG_int), 
+        .CHAIN_BYPASS_EN(CHAIN_BYPASS_EN_int), .CHAIN_BYPASS_EN_reg(
+        CHAIN_BYPASS_EN_reg), .TCK_MODE(TCK_MODE_to_buf), .BIST_SETUP({
+        BIST_SETUP_int_2_, BIST_SETUP_int_1_, BIST_SETUP_int_0_}), 
+        .BIST_SETUP_reg({SYNOPSYS_UNCONNECTED_1, BIST_SETUP_reg_1_, 
+        SYNOPSYS_UNCONNECTED_2}), .so(tdr_so) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_BIST_SETUP_2_buf ( .a(
+        BIST_SETUP_int_2_), .o(BIST_SETUP[2]) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_BIST_SETUP_1_buf ( .a(
+        BIST_SETUP_int_1_), .o(BIST_SETUP[1]) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_BIST_SETUP_0_buf ( .a(
+        BIST_SETUP_int_0_), .o(BIST_SETUP[0]) );
+  firebird7_in_gate1_tessent_mbist_bap_sib_0 firebird7_in_gate1_tessent_mbist_controller_sib_tdr_bypass_inst ( 
+        .reset(reset), .ijtag_select(ijtag_select), .si(si), .capture_en(
+        capture_en), .shift_en(shift_en), .update_en(update_en), .tck(tck), 
+        .so(tdr_bypass_so), .from_scan_out(tdr_so), .ijtag_to_select_reg(
+        SYNOPSYS_UNCONNECTED_3), .ijtag_to_select(ijtag_select_bap_tdr) );
+  firebird7_in_gate1_tessent_mbist_bap_ctl_sib firebird7_in_gate1_tessent_mbist_controller_sib_inst0 ( 
+        .reset(reset), .ijtag_select(ijtag_select_ctl_sib), .si(tdr_bypass_so), 
+        .capture_en(capture_en), .shift_en(shift_en), .update_en(update_en), 
+        .tck(tck), .so(sib_scan_out_0_), .from_scan_out(fromBist_retime_0_), 
+        .ChainBypassMode(n16), .bist_done(MBISTPG_DONE[0]), .bist_go(
+        MBISTPG_GO[0]), .bistEn_reg(SYNOPSYS_UNCONNECTED_4), .bistEn_latch(
+        sib_bist_en_latch_0_), .bistEn(sib_bist_en_0_) );
+  firebird7_in_gate1_tessent_mbist_bap_sib_1 firebird7_in_gate1_tessent_mbist_controller_sib_ctl_bypass_inst ( 
+        .reset(reset), .ijtag_select(ijtag_select), .si(tdr_bypass_so), 
+        .capture_en(capture_en), .shift_en(shift_en), .update_en(update_en), 
+        .tck(tck), .so(sib_ctl_bypass_so), .from_scan_out(sib_scan_out_0_), 
+        .ijtag_to_select_reg(SYNOPSYS_UNCONNECTED_5), .ijtag_to_select(
+        ijtag_select_ctl_sib) );
+  i0scilb01ab1n02x5 tessent_persistent_cell_GATING_TCK ( .clk(tck), .en(
+        to_mbist_tck_en), .te(n15), .clkout(tck_out_gated) );
+  i0scbf000ab1n02x5 tessent_persistent_cell_BUF_C_TCK ( .clk(tck_out_gated), 
+        .clkout(to_controllers_tck) );
+  i0scbf000ab1n02x5 tessent_persistent_cell_BUF_I_TCK ( .clk(tck_out_gated), 
+        .clkout(to_interfaces_tck) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_bistEn_0 ( .a(sib_bist_en_0_), .o(
+        bistEn[0]) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_BIST_ASYNC_RESET ( .a(
+        BIST_ASYNC_RESET_to_buf), .o(BIST_ASYNC_RESET) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_TCK_MODE ( .a(TCK_MODE_to_buf), 
+        .o(TCK_MODE) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_BIST_HOLD ( .a(BIST_HOLD_latch), 
+        .o(BIST_HOLD) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_ENABLE_MEM_RESET_buf ( .a(
+        ENABLE_MEM_RESET_int), .o(ENABLE_MEM_RESET) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_REDUCED_ADDRESS_COUNT_buf ( .a(
+        REDUCED_ADDRESS_COUNT_int), .o(REDUCED_ADDRESS_COUNT) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_BIST_SELECT_TEST_DATA_buf ( .a(
+        BIST_SELECT_TEST_DATA_int), .o(BIST_SELECT_TEST_DATA) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_BIST_ALGO_MODE0_buf ( .a(
+        BIST_ALGO_MODE0_int), .o(BIST_ALGO_MODE0) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_BIST_ALGO_MODE1_buf ( .a(
+        BIST_ALGO_MODE1_int), .o(BIST_ALGO_MODE1) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_MEM_ARRAY_DUMP_MODE_buf ( .a(
+        MEM_ARRAY_DUMP_MODE_int), .o(MEM_ARRAY_DUMP_MODE) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_BIRA_EN_buf ( .a(BIRA_EN_int), .o(
+        BIRA_EN) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_BIST_DIAG_EN_buf ( .a(
+        BIST_DIAG_EN_int), .o(BIST_DIAG_EN) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_PRESERVE_FUSE_REGISTER_buf ( .a(
+        PRESERVE_FUSE_REGISTER_int), .o(PRESERVE_FUSE_REGISTER) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_CHECK_REPAIR_NEEDED_buf ( .a(
+        CHECK_REPAIR_NEEDED_int), .o(CHECK_REPAIR_NEEDED) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_FL_CNT_MODE0_buf ( .a(
+        FL_CNT_MODE0_int), .o(FL_CNT_MODE0) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_FL_CNT_MODE1_buf ( .a(
+        FL_CNT_MODE1_int), .o(FL_CNT_MODE1) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_INCLUDE_MEM_RESULTS_REG_buf ( .a(
+        INCLUDE_MEM_RESULTS_REG_int), .o(INCLUDE_MEM_RESULTS_REG) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_CHAIN_BYPASS_EN_buf ( .a(
+        CHAIN_BYPASS_EN_int), .o(CHAIN_BYPASS_EN) );
+  i0sfuz080ab1d03x5 fromBist_retime_reg_0 ( .si(n15), .d(fromBist[0]), .ssb(
+        n14), .clkb(tck), .o(fromBist_retime_0_), .so(SYNOPSYS_UNCONNECTED_6)
+         );
+  i0sfuz080ab1d03x5 retiming_so_reg ( .si(n15), .d(sib_ctl_bypass_so), .ssb(
+        n14), .clkb(tck), .o(so), .so(SYNOPSYS_UNCONNECTED_7) );
+  i0sfuz080ab1d03x5 toBist_reg_0 ( .si(n15), .d(tdr_bypass_so), .ssb(n14), 
+        .clkb(tck), .o(toBist[0]), .so(SYNOPSYS_UNCONNECTED_8) );
+  i0sfvz08bab1d03x6 BIST_HOLD_latch_reg ( .si(n15), .d(n13), .ssb(n14), .clkb(
+        tck), .rb(reset), .s(n15), .o(BIST_HOLD_latch), .so(
+        SYNOPSYS_UNCONNECTED_9) );
+  i0stilo00ab1n02x5 U21 ( .o(n15) );
+  i0stihi00ab1n02x5 U22 ( .o(n14) );
+  i0snand02ab1n02x5 U23 ( .a(n18), .b(n19), .o1(to_mbist_tck_en) );
+  i0snona23ab1n02x4 U24 ( .c(BIST_SETUP_int_1_), .d(sib_bist_en_latch_0_), .a(
+        ijtag_select), .b(capture_en), .out0(n19) );
+  i0sinv000ab1n02x5 U25 ( .a(n18), .o1(shift_en_R) );
+  i0snand04ab1n02x4 U26 ( .a(sib_bist_en_latch_0_), .b(shift_en), .c(
+        ijtag_select_ctl_sib), .d(n20), .o1(n18) );
+  i0sinv000ab1n02x5 U27 ( .a(n20), .o1(n16) );
+  i0snor002ab1n02x5 U28 ( .a(BIST_SETUP_int_1_), .b(CHAIN_BYPASS_EN_int), .o1(
+        n20) );
+  i0smbn022ab1n02x5 U29 ( .b(BIST_HOLD_latch), .a(n21), .sa(n22), .o(n13) );
+  i0sand002ab1n02x5 U30 ( .a(update_en), .b(ijtag_select), .o(n22) );
+  i0snano23ab1n02x4 U31 ( .c(sib_scan_out_0_), .d(sib_ctl_bypass_so), .a(
+        CHAIN_BYPASS_EN_reg), .b(BIST_SETUP_reg_1_), .out0(n21) );
+endmodule
+

@@ -1,0 +1,46 @@
+#--------------------------------------------------------------------------
+#
+#  Unpublished work. Copyright 2022 Siemens
+#
+#  This material contains trade secrets or otherwise confidential 
+#  information owned by Siemens Industry Software Inc. or its affiliates 
+#  (collectively, SISW), or its licensors. Access to and use of this 
+#  information is strictly limited as set forth in the Customer's 
+#  applicable agreements with SISW.
+#
+#--------------------------------------------------------------------------
+#  File created by: Tessent Shell
+#          Version: 2022.4
+#       Created on: Mon Oct 23 12:52:23 PDT 2023
+#--------------------------------------------------------------------------
+
+iProcsForModule [get_single_name [get_current_design -icl]]
+# [start] : Create init_bisr_chains iProc for ATPG initialisation {{{
+iTopProc init_bisr_chains {{bisr_controller_instance {}} } {
+  set bisr_chain_length [get_bisr_chain_length]
+  set current_design [get_single_name [get_current_design]]
+  # [start] : Reset top-level BISR chains {{{
+  set do_iApply no
+  foreach_in_collection bisr_disable_mem_port [get_icl_ports -direction input -filter {tessent_bisr_function==MemoryDisable} -silent] {
+    iWrite [get_single_name $bisr_disable_mem_port] 0;
+    set do_iApply yes
+  }
+  set bisr_rst_port_col [get_icl_ports -direction input -filter {tessent_bisr_function==Reset} -silent]
+  foreach_in_collection bisr_rst_port $bisr_rst_port_col {
+    set scan_interface [get_attribute_value_list -name associated_scan_interface $bisr_rst_port]
+    iNote "Initializing BISR chains scan interface '$scan_interface'."
+    iWrite [get_single_name $bisr_rst_port] 0;
+    set do_iApply yes
+  }
+  if { $do_iApply } {
+    iApply;
+  }
+  if { [sizeof_collection $bisr_rst_port_col] } {
+    foreach_in_collection bisr_rst_port $bisr_rst_port_col {
+      iWrite [get_single_name $bisr_rst_port] 1;
+    }
+    iApply;
+  }
+  # [end]   : Reset top-level BISR chains }}}
+}
+# [end]   : Create init_bisr_chains iProc for ATPG initialisation }}}

@@ -1,0 +1,22 @@
+/////////////////////////////////////////////////////////////
+// Created by: Synopsys DC Expert(TM) in wire load mode
+// Version   : Q-2019.12-SP5-1
+// Date      : Tue Oct 24 19:31:00 2023
+/////////////////////////////////////////////////////////////
+
+
+module firebird7_in_gate2_edt_channel_out_mux_2x1_1 ( mux_in0, mux_en0, 
+        mux_in1, mux_en1, mux_out );
+  input [1:0] mux_in0;
+  input [0:0] mux_en0;
+  input [1:0] mux_in1;
+  input [0:0] mux_en1;
+  output [1:0] mux_out;
+
+
+  i0sao0022ab1n02x5 U3 ( .a(mux_in1[1]), .b(mux_en1[0]), .c(mux_in0[1]), .d(
+        mux_en0[0]), .o(mux_out[1]) );
+  i0sao0022ab1n02x5 U4 ( .a(mux_in1[0]), .b(mux_en1[0]), .c(mux_in0[0]), .d(
+        mux_en0[0]), .o(mux_out[0]) );
+endmodule
+

@@ -1,0 +1,72 @@
+#--------------------------------------------------------------------------
+#
+#  Unpublished work. Copyright 2022 Siemens
+#
+#  This material contains trade secrets or otherwise confidential 
+#  information owned by Siemens Industry Software Inc. or its affiliates 
+#  (collectively, SISW), or its licensors. Access to and use of this 
+#  information is strictly limited as set forth in the Customer's 
+#  applicable agreements with SISW.
+#
+#--------------------------------------------------------------------------
+#  File created by: Tessent Shell
+#          Version: 2022.4
+#       Created on: Mon Oct 23 12:51:39 PDT 2023
+#--------------------------------------------------------------------------
+
+set ijtag_sdc_dictionary {
+  created_ports {
+    data_in0 {
+      name secure_red
+    }
+    data_in1 {
+      name secure_orange
+    }
+    data_in2 {
+      name secure_insysbist
+    }
+    data_in3 {
+      name secure_green
+    }
+  }
+  firebird7_in_gate1_tessent_sib_sti {
+    ltest_clock_mux {
+      persistent_cell tessent_persistent_cell_ltest_clock_mux
+    }
+    version 0
+    mini_occ {
+      clock_gate_pin tessent_persistent_cell_occ_clock_gate/clkout
+    }
+  }
+  Cells {
+    Cell.Buf.input a
+    Cell.Buf.module_name i0sbfn000ab1n02x5
+    Cell.Buf.output o
+    Cell.ClkBuf.input clk
+    Cell.ClkBuf.module_name i0scbf000ab1n02x5
+    Cell.ClkBuf.output clkout
+    Cell.ClkGateAnd.clock_in clk
+    Cell.ClkGateAnd.clock_out clkout
+    Cell.ClkGateAnd.functional_enable en
+    Cell.ClkGateAnd.functional_enable_polarity 1
+    Cell.ClkGateAnd.module_name i0scilb01ab1n02x5
+    Cell.ClkGateAnd.test_enable te
+    Cell.ClkGateAnd.test_enable_polarity 1
+    Cell.ClkMux2.input0 clk2
+    Cell.ClkMux2.input1 clk1
+    Cell.ClkMux2.module_name i0scmbn22ab1n02x5
+    Cell.ClkMux2.output clkout
+    Cell.ClkMux2.select s
+    Cell.Mux2.input0 b
+    Cell.Mux2.input1 a
+    Cell.Mux2.module_name i0smbn022ab1n02x5
+    Cell.Mux2.output o
+    Cell.Mux2.select sa
+    Cell.Or2.input0 a
+    Cell.Or2.input1 b
+    Cell.Or2.module_name i0sorn002ab1n02x5
+    Cell.Or2.output o
+    persistent_cell_prefix tessent_persistent_cell_
+    persistent_clock_cell_prefix tessent_persistent_cell_
+  }
+}

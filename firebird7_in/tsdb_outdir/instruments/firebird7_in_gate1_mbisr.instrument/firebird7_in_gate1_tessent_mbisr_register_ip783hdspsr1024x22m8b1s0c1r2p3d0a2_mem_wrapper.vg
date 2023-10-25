@@ -1,0 +1,102 @@
+/////////////////////////////////////////////////////////////
+// Created by: Synopsys DC Expert(TM) in wire load mode
+// Version   : Q-2019.12-SP5-1
+// Date      : Mon Oct 23 13:02:00 2023
+/////////////////////////////////////////////////////////////
+
+
+
+    module firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper ( 
+        CLK, RSTB, SI, SO, SE, D, MSO, MSEL, Q );
+  input [21:0] D;
+  output [21:0] Q;
+  input CLK, RSTB, SI, SE, MSO, MSEL;
+  output SO;
+  wire   N6, N7, N8, N9, N10, N11, N12, N13, N14, N15, N16, N17, N18, N19, N20,
+         N21, N22, N23, N24, N25, N26, N27, n47, n46, n48,
+         SYNOPSYS_UNCONNECTED_1, SYNOPSYS_UNCONNECTED_2,
+         SYNOPSYS_UNCONNECTED_3, SYNOPSYS_UNCONNECTED_4,
+         SYNOPSYS_UNCONNECTED_5, SYNOPSYS_UNCONNECTED_6,
+         SYNOPSYS_UNCONNECTED_7, SYNOPSYS_UNCONNECTED_8,
+         SYNOPSYS_UNCONNECTED_9, SYNOPSYS_UNCONNECTED_10,
+         SYNOPSYS_UNCONNECTED_11, SYNOPSYS_UNCONNECTED_12,
+         SYNOPSYS_UNCONNECTED_13, SYNOPSYS_UNCONNECTED_14,
+         SYNOPSYS_UNCONNECTED_15, SYNOPSYS_UNCONNECTED_16,
+         SYNOPSYS_UNCONNECTED_17, SYNOPSYS_UNCONNECTED_18,
+         SYNOPSYS_UNCONNECTED_19, SYNOPSYS_UNCONNECTED_20,
+         SYNOPSYS_UNCONNECTED_21, SYNOPSYS_UNCONNECTED_22,
+         SYNOPSYS_UNCONNECTED_23;
+
+  i0sfvz003ab1d03x6 ShiftReg_reg_21 ( .si(n47), .d(N27), .ssb(n46), .clk(CLK), 
+        .rb(RSTB), .o(Q[21]), .so(SYNOPSYS_UNCONNECTED_1) );
+  i0sfvz003ab1d03x6 ShiftReg_reg_20 ( .si(n47), .d(N26), .ssb(n46), .clk(CLK), 
+        .rb(RSTB), .o(Q[20]), .so(SYNOPSYS_UNCONNECTED_2) );
+  i0sfvz003ab1d03x6 ShiftReg_reg_19 ( .si(n47), .d(N25), .ssb(n46), .clk(CLK), 
+        .rb(RSTB), .o(Q[19]), .so(SYNOPSYS_UNCONNECTED_3) );
+  i0sfvz003ab1d03x6 ShiftReg_reg_18 ( .si(n47), .d(N24), .ssb(n46), .clk(CLK), 
+        .rb(RSTB), .o(Q[18]), .so(SYNOPSYS_UNCONNECTED_4) );
+  i0sfvz003ab1d03x6 ShiftReg_reg_17 ( .si(n47), .d(N23), .ssb(n46), .clk(CLK), 
+        .rb(RSTB), .o(Q[17]), .so(SYNOPSYS_UNCONNECTED_5) );
+  i0sfvz003ab1d03x6 ShiftReg_reg_16 ( .si(n47), .d(N22), .ssb(n46), .clk(CLK), 
+        .rb(RSTB), .o(Q[16]), .so(SYNOPSYS_UNCONNECTED_6) );
+  i0sfvz003ab1d03x6 ShiftReg_reg_15 ( .si(n47), .d(N21), .ssb(n46), .clk(CLK), 
+        .rb(RSTB), .o(Q[15]), .so(SYNOPSYS_UNCONNECTED_7) );
+  i0sfvz003ab1d03x6 ShiftReg_reg_14 ( .si(n47), .d(N20), .ssb(n46), .clk(CLK), 
+        .rb(RSTB), .o(Q[14]), .so(SYNOPSYS_UNCONNECTED_8) );
+  i0sfvz003ab1d03x6 ShiftReg_reg_13 ( .si(n47), .d(N19), .ssb(n46), .clk(CLK), 
+        .rb(RSTB), .o(Q[13]), .so(SYNOPSYS_UNCONNECTED_9) );
+  i0sfvz003ab1d03x6 ShiftReg_reg_12 ( .si(n47), .d(N18), .ssb(n46), .clk(CLK), 
+        .rb(RSTB), .o(Q[12]), .so(SYNOPSYS_UNCONNECTED_10) );
+  i0sfvz003ab1d03x6 ShiftReg_reg_11 ( .si(n47), .d(N17), .ssb(n46), .clk(CLK), 
+        .rb(RSTB), .o(Q[11]), .so(SYNOPSYS_UNCONNECTED_11) );
+  i0sfvz003ab1d03x6 ShiftReg_reg_10 ( .si(n47), .d(N16), .ssb(n46), .clk(CLK), 
+        .rb(RSTB), .o(Q[10]), .so(SYNOPSYS_UNCONNECTED_12) );
+  i0sfvz003ab1d03x6 ShiftReg_reg_9 ( .si(n47), .d(N15), .ssb(n46), .clk(CLK), 
+        .rb(RSTB), .o(Q[9]), .so(SYNOPSYS_UNCONNECTED_13) );
+  i0sfvz003ab1d03x6 ShiftReg_reg_8 ( .si(n47), .d(N14), .ssb(n46), .clk(CLK), 
+        .rb(RSTB), .o(Q[8]), .so(SYNOPSYS_UNCONNECTED_14) );
+  i0sfvz003ab1d03x6 ShiftReg_reg_7 ( .si(n47), .d(N13), .ssb(n46), .clk(CLK), 
+        .rb(RSTB), .o(Q[7]), .so(SYNOPSYS_UNCONNECTED_15) );
+  i0sfvz003ab1d03x6 ShiftReg_reg_6 ( .si(n47), .d(N12), .ssb(n46), .clk(CLK), 
+        .rb(RSTB), .o(Q[6]), .so(SYNOPSYS_UNCONNECTED_16) );
+  i0sfvz003ab1d03x6 ShiftReg_reg_5 ( .si(n47), .d(N11), .ssb(n46), .clk(CLK), 
+        .rb(RSTB), .o(Q[5]), .so(SYNOPSYS_UNCONNECTED_17) );
+  i0sfvz003ab1d03x6 ShiftReg_reg_4 ( .si(n47), .d(N10), .ssb(n46), .clk(CLK), 
+        .rb(RSTB), .o(Q[4]), .so(SYNOPSYS_UNCONNECTED_18) );
+  i0sfvz003ab1d03x6 ShiftReg_reg_3 ( .si(n47), .d(N9), .ssb(n46), .clk(CLK), 
+        .rb(RSTB), .o(Q[3]), .so(SYNOPSYS_UNCONNECTED_19) );
+  i0sfvz003ab1d03x6 ShiftReg_reg_2 ( .si(n47), .d(N8), .ssb(n46), .clk(CLK), 
+        .rb(RSTB), .o(Q[2]), .so(SYNOPSYS_UNCONNECTED_20) );
+  i0sfvz003ab1d03x6 ShiftReg_reg_1 ( .si(n47), .d(N7), .ssb(n46), .clk(CLK), 
+        .rb(RSTB), .o(Q[1]), .so(SYNOPSYS_UNCONNECTED_21) );
+  i0sfvz003ab1d03x6 ShiftReg_reg_0 ( .si(n47), .d(N6), .ssb(n46), .clk(CLK), 
+        .rb(RSTB), .o(Q[0]), .so(SYNOPSYS_UNCONNECTED_22) );
+  i0sfvz08bab1d03x6 retime_reg ( .si(n47), .d(n48), .ssb(n46), .clkb(CLK), 
+        .rb(RSTB), .s(n47), .o(SO), .so(SYNOPSYS_UNCONNECTED_23) );
+  i0stilo00ab1n02x5 U75 ( .o(n47) );
+  i0stihi00ab1n02x5 U76 ( .o(n46) );
+  i0smbn022ab1n02x5 U77 ( .b(Q[0]), .a(MSO), .sa(MSEL), .o(n48) );
+  i0smbn022ab1n02x5 U78 ( .b(D[3]), .a(Q[4]), .sa(SE), .o(N9) );
+  i0smbn022ab1n02x5 U79 ( .b(D[2]), .a(Q[3]), .sa(SE), .o(N8) );
+  i0smbn022ab1n02x5 U80 ( .b(D[1]), .a(Q[2]), .sa(SE), .o(N7) );
+  i0smbn022ab1n02x5 U81 ( .b(D[0]), .a(Q[1]), .sa(SE), .o(N6) );
+  i0smbn022ab1n02x5 U82 ( .b(D[21]), .a(SI), .sa(SE), .o(N27) );
+  i0smbn022ab1n02x5 U83 ( .b(D[20]), .a(Q[21]), .sa(SE), .o(N26) );
+  i0smbn022ab1n02x5 U84 ( .b(D[19]), .a(Q[20]), .sa(SE), .o(N25) );
+  i0smbn022ab1n02x5 U85 ( .b(D[18]), .a(Q[19]), .sa(SE), .o(N24) );
+  i0smbn022ab1n02x5 U86 ( .b(D[17]), .a(Q[18]), .sa(SE), .o(N23) );
+  i0smbn022ab1n02x5 U87 ( .b(D[16]), .a(Q[17]), .sa(SE), .o(N22) );
+  i0smbn022ab1n02x5 U88 ( .b(D[15]), .a(Q[16]), .sa(SE), .o(N21) );
+  i0smbn022ab1n02x5 U89 ( .b(D[14]), .a(Q[15]), .sa(SE), .o(N20) );
+  i0smbn022ab1n02x5 U90 ( .b(D[13]), .a(Q[14]), .sa(SE), .o(N19) );
+  i0smbn022ab1n02x5 U91 ( .b(D[12]), .a(Q[13]), .sa(SE), .o(N18) );
+  i0smbn022ab1n02x5 U92 ( .b(D[11]), .a(Q[12]), .sa(SE), .o(N17) );
+  i0smbn022ab1n02x5 U93 ( .b(D[10]), .a(Q[11]), .sa(SE), .o(N16) );
+  i0smbn022ab1n02x5 U94 ( .b(D[9]), .a(Q[10]), .sa(SE), .o(N15) );
+  i0smbn022ab1n02x5 U95 ( .b(D[8]), .a(Q[9]), .sa(SE), .o(N14) );
+  i0smbn022ab1n02x5 U96 ( .b(D[7]), .a(Q[8]), .sa(SE), .o(N13) );
+  i0smbn022ab1n02x5 U97 ( .b(D[6]), .a(Q[7]), .sa(SE), .o(N12) );
+  i0smbn022ab1n02x5 U98 ( .b(D[5]), .a(Q[6]), .sa(SE), .o(N11) );
+  i0smbn022ab1n02x5 U99 ( .b(D[4]), .a(Q[5]), .sa(SE), .o(N10) );
+endmodule
+

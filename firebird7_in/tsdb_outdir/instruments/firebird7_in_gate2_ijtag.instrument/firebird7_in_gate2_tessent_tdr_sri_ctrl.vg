@@ -1,0 +1,235 @@
+/////////////////////////////////////////////////////////////
+// Created by: Synopsys DC Expert(TM) in wire load mode
+// Version   : Q-2019.12-SP5-1
+// Date      : Tue Oct 24 19:31:02 2023
+/////////////////////////////////////////////////////////////
+
+
+module firebird7_in_gate2_tessent_tdr_sri_ctrl ( ijtag_reset, ijtag_sel, 
+        ijtag_si, ijtag_ce, ijtag_se, ijtag_ue, ijtag_tck, all_test, 
+        occ_kill_clock_en, se_pipeline_en, ext_mode, int_mode, ext_edt_mode, 
+        int_edt_mode, ext_ltest_en, int_ltest_en, tck_occ_en, 
+        async_set_reset_static_disable, memory_bypass_en, ltest_en, 
+        fscan_clkungate, ijtag_so );
+  input ijtag_reset, ijtag_sel, ijtag_si, ijtag_ce, ijtag_se, ijtag_ue,
+         ijtag_tck;
+  output all_test, occ_kill_clock_en, se_pipeline_en, ext_mode, int_mode,
+         ext_edt_mode, int_edt_mode, ext_ltest_en, int_ltest_en, tck_occ_en,
+         async_set_reset_static_disable, memory_bypass_en, ltest_en,
+         fscan_clkungate, ijtag_so;
+  wire   all_test_latch, occ_kill_clock_en_latch, se_pipeline_en_latch,
+         ext_mode_latch, int_mode_latch, ext_edt_mode_latch,
+         int_edt_mode_latch, ext_ltest_en_latch, int_ltest_en_latch,
+         tck_occ_en_latch, async_set_reset_static_disable_latch,
+         memory_bypass_en_latch, ltest_en_latch, fscan_clkungate_latch,
+         tdr_13_, tdr_12_, tdr_11_, tdr_10_, tdr_9_, tdr_8_, tdr_7_, tdr_6_,
+         tdr_5_, tdr_4_, tdr_3_, tdr_2_, tdr_1_, tdr_0_, n102, n101, n22, n26,
+         n30, n34, n38, n42, n46, n50, n54, n58, n62, n66, n70, n74, n103,
+         n104, n105, n106, n107, n108, n109, n110, n111, n112, n113, n114,
+         n115, n116, net900, net901, net928, net997, net1819, n117, n118, n119,
+         n120, n121, n122, n123, n124, n125, n126, n127, n128, n129, n130,
+         n131, n132, n133, n134, n135, n136, n137, n138, n139, n140, n141,
+         n142, n143, n144, n145, n146, n147, n148, n149, n150, n151, n152,
+         n153, n154, n155, n156, n157, n158, SYNOPSYS_UNCONNECTED_1,
+         SYNOPSYS_UNCONNECTED_2, SYNOPSYS_UNCONNECTED_3,
+         SYNOPSYS_UNCONNECTED_4, SYNOPSYS_UNCONNECTED_5,
+         SYNOPSYS_UNCONNECTED_6, SYNOPSYS_UNCONNECTED_7,
+         SYNOPSYS_UNCONNECTED_8, SYNOPSYS_UNCONNECTED_9,
+         SYNOPSYS_UNCONNECTED_10, SYNOPSYS_UNCONNECTED_11,
+         SYNOPSYS_UNCONNECTED_12, SYNOPSYS_UNCONNECTED_13,
+         SYNOPSYS_UNCONNECTED_14, SYNOPSYS_UNCONNECTED_15,
+         SYNOPSYS_UNCONNECTED_16, SYNOPSYS_UNCONNECTED_17,
+         SYNOPSYS_UNCONNECTED_18, SYNOPSYS_UNCONNECTED_19,
+         SYNOPSYS_UNCONNECTED_20, SYNOPSYS_UNCONNECTED_21,
+         SYNOPSYS_UNCONNECTED_22, SYNOPSYS_UNCONNECTED_23,
+         SYNOPSYS_UNCONNECTED_24, SYNOPSYS_UNCONNECTED_25,
+         SYNOPSYS_UNCONNECTED_26, SYNOPSYS_UNCONNECTED_27;
+
+  i0sbfn000ab1n02x5 tessent_persistent_cell_all_test ( .a(all_test_latch), .o(
+        all_test) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_occ_kill_clock_en ( .a(
+        occ_kill_clock_en_latch), .o(occ_kill_clock_en) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_se_pipeline_en ( .a(
+        se_pipeline_en_latch), .o(se_pipeline_en) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_ext_mode ( .a(ext_mode_latch), .o(
+        ext_mode) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_int_mode ( .a(int_mode_latch), .o(
+        int_mode) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_ext_edt_mode ( .a(
+        ext_edt_mode_latch), .o(ext_edt_mode) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_int_edt_mode ( .a(
+        int_edt_mode_latch), .o(int_edt_mode) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_ext_ltest_en ( .a(
+        ext_ltest_en_latch), .o(ext_ltest_en) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_int_ltest_en ( .a(
+        int_ltest_en_latch), .o(int_ltest_en) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_tck_occ_en ( .a(tck_occ_en_latch), 
+        .o(tck_occ_en) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_async_set_reset_static_disable ( 
+        .a(async_set_reset_static_disable_latch), .o(
+        async_set_reset_static_disable) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_memory_bypass_en ( .a(
+        memory_bypass_en_latch), .o(memory_bypass_en) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_ltest_en ( .a(ltest_en_latch), .o(
+        ltest_en) );
+  i0sbfn000ab1n02x5 tessent_persistent_cell_fscan_clkungate ( .a(
+        fscan_clkungate_latch), .o(fscan_clkungate) );
+  i0slsn080ab1n02x5 retiming_so_reg ( .clkb(ijtag_tck), .d(tdr_0_), .o(
+        ijtag_so) );
+  i0sfvz08bab1d02x5 all_test_latch_reg ( .si(n102), .d(n74), .ssb(n101), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n102), .o(all_test_latch), .so(
+        SYNOPSYS_UNCONNECTED_1) );
+  i0sfuq000ab1d24x5 tdr_reg_13 ( .si(n102), .d(n104), .ssb(n101), .clk(
+        ijtag_tck), .o(tdr_13_) );
+  i0sfvz08bab1d02x5 ltest_en_latch_reg ( .si(n102), .d(n26), .ssb(n101), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n102), .o(ltest_en_latch), .so(
+        SYNOPSYS_UNCONNECTED_2) );
+  i0sfuz000ab1d03x5 tdr_reg_1 ( .si(n102), .d(n116), .ssb(n101), .clk(
+        ijtag_tck), .o(tdr_1_), .so(SYNOPSYS_UNCONNECTED_3) );
+  i0sfvz08bab1d02x5 se_pipeline_en_latch_reg ( .si(n102), .d(n66), .ssb(n101), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n102), .o(se_pipeline_en_latch), 
+        .so(SYNOPSYS_UNCONNECTED_4) );
+  i0sfvz08bab1d02x5 int_mode_latch_reg ( .si(n102), .d(n58), .ssb(n101), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n102), .o(int_mode_latch), .so(
+        SYNOPSYS_UNCONNECTED_5) );
+  i0sfvz08bab1d02x5 ext_edt_mode_latch_reg ( .si(n102), .d(n54), .ssb(n101), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n102), .o(ext_edt_mode_latch), 
+        .so(SYNOPSYS_UNCONNECTED_6) );
+  i0sfvz08bab1d02x5 int_edt_mode_latch_reg ( .si(n102), .d(n50), .ssb(n101), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n102), .o(int_edt_mode_latch), 
+        .so(SYNOPSYS_UNCONNECTED_7) );
+  i0sfvz08bab1d02x5 ext_ltest_en_latch_reg ( .si(n102), .d(n46), .ssb(n101), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n102), .o(ext_ltest_en_latch), 
+        .so(SYNOPSYS_UNCONNECTED_8) );
+  i0sfvz08bab1d02x5 int_ltest_en_latch_reg ( .si(n102), .d(n42), .ssb(n101), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n102), .o(int_ltest_en_latch), 
+        .so(SYNOPSYS_UNCONNECTED_9) );
+  i0sfvz08bab1d02x5 tck_occ_en_latch_reg ( .si(n102), .d(n38), .ssb(n101), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n102), .o(tck_occ_en_latch), 
+        .so(SYNOPSYS_UNCONNECTED_10) );
+  i0sfvz08bab1d02x5 async_set_reset_static_disable_latch_reg ( .si(n102), .d(
+        n34), .ssb(n101), .clkb(ijtag_tck), .rb(ijtag_reset), .s(n102), .o(
+        async_set_reset_static_disable_latch), .so(SYNOPSYS_UNCONNECTED_11) );
+  i0sfvz08bab1d02x5 memory_bypass_en_latch_reg ( .si(n102), .d(n30), .ssb(n101), .clkb(ijtag_tck), .rb(ijtag_reset), .s(n102), .o(memory_bypass_en_latch), 
+        .so(SYNOPSYS_UNCONNECTED_12) );
+  i0sfuz000ab1d04x5 tdr_reg_0 ( .si(n102), .d(n103), .ssb(n101), .clk(
+        ijtag_tck), .o(tdr_0_), .so(SYNOPSYS_UNCONNECTED_13) );
+  i0sfvp08bab1d02x5 fscan_clkungate_latch_reg ( .si(n102), .d(n22), .ssb(n101), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n102), .o(fscan_clkungate_latch), .so(SYNOPSYS_UNCONNECTED_14) );
+  i0sfuz000ab1d03x5 tdr_reg_9 ( .si(n102), .d(n108), .ssb(n101), .clk(
+        ijtag_tck), .o(tdr_9_), .so(SYNOPSYS_UNCONNECTED_15) );
+  i0sfuz000ab1d03x5 tdr_reg_11 ( .si(n102), .d(n106), .ssb(n101), .clk(
+        ijtag_tck), .o(tdr_11_), .so(SYNOPSYS_UNCONNECTED_16) );
+  i0sfuz000ab1d03x5 tdr_reg_8 ( .si(n102), .d(n109), .ssb(n101), .clk(
+        ijtag_tck), .o(tdr_8_), .so(SYNOPSYS_UNCONNECTED_17) );
+  i0sfuz000ab1d03x5 tdr_reg_12 ( .si(n102), .d(n105), .ssb(n101), .clk(
+        ijtag_tck), .o(tdr_12_), .so(SYNOPSYS_UNCONNECTED_18) );
+  i0sfvz08bab1d02x5 occ_kill_clock_en_latch_reg ( .si(n102), .d(n70), .ssb(
+        n101), .clkb(ijtag_tck), .rb(ijtag_reset), .s(n102), .o(
+        occ_kill_clock_en_latch), .so(SYNOPSYS_UNCONNECTED_19) );
+  i0sfuz000ab1d03x5 tdr_reg_10 ( .si(n102), .d(n107), .ssb(n101), .clk(
+        ijtag_tck), .o(tdr_10_), .so(SYNOPSYS_UNCONNECTED_20) );
+  i0sfvz08bab1d02x5 ext_mode_latch_reg ( .si(n102), .d(n62), .ssb(n101), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n102), .o(ext_mode_latch), .so(
+        SYNOPSYS_UNCONNECTED_21) );
+  i0sfuz000ab1d04x5 tdr_reg_4 ( .si(n102), .d(n113), .ssb(n101), .clk(
+        ijtag_tck), .o(tdr_4_), .so(SYNOPSYS_UNCONNECTED_22) );
+  i0sfuz000ab1d03x6 tdr_reg_5 ( .si(n102), .d(n112), .ssb(n101), .clk(
+        ijtag_tck), .o(tdr_5_), .so(SYNOPSYS_UNCONNECTED_23) );
+  i0sfuz000ab1d03x6 tdr_reg_6 ( .si(n102), .d(n111), .ssb(n101), .clk(
+        ijtag_tck), .o(tdr_6_), .so(SYNOPSYS_UNCONNECTED_24) );
+  i0sfuz000ab1d03x6 tdr_reg_2 ( .si(n102), .d(n115), .ssb(n101), .clk(
+        ijtag_tck), .o(tdr_2_), .so(SYNOPSYS_UNCONNECTED_25) );
+  i0sfuz000ab1d03x6 tdr_reg_3 ( .si(n102), .d(n114), .ssb(n101), .clk(
+        ijtag_tck), .o(tdr_3_), .so(SYNOPSYS_UNCONNECTED_26) );
+  i0sfuz000ab1d03x6 tdr_reg_7 ( .si(n102), .d(n110), .ssb(n101), .clk(
+        ijtag_tck), .o(tdr_7_), .so(SYNOPSYS_UNCONNECTED_27) );
+  i0smdn022ab1n03x4 U119 ( .b(n117), .a(n118), .sa(net901), .o1(n74) );
+  i0sinv000ab1n18x5 U120 ( .a(net1819), .o1(net901) );
+  i0sbff000ab1n42x5 U121 ( .a(net928), .o(net1819) );
+  i0sinv030ab1n04x5 U122 ( .a(all_test_latch), .o1(n117) );
+  i0sinv000ab1n06x5 U123 ( .a(tdr_13_), .o1(n118) );
+  i0smdn022ab1n03x4 U124 ( .b(n119), .a(n120), .sa(net1819), .o1(n42) );
+  i0sinv030ab1n04x5 U125 ( .a(int_ltest_en_latch), .o1(n120) );
+  i0sinv000ab1n06x5 U126 ( .a(tdr_5_), .o1(n119) );
+  i0sinv040ab1n03x5 U127 ( .a(tdr_7_), .o1(n157) );
+  i0sinv040ab1n03x5 U128 ( .a(tdr_3_), .o1(n151) );
+  i0sinv040ab1n03x5 U129 ( .a(tdr_2_), .o1(n149) );
+  i0sinv040ab1n03x5 U130 ( .a(tdr_6_), .o1(n155) );
+  i0sinv040ab1n03x5 U131 ( .a(tdr_4_), .o1(n153) );
+  i0snanp02ab1n03x5 U132 ( .a(ijtag_ue), .b(ijtag_sel), .o1(net928) );
+  i0smbn022ab1n03x5 U133 ( .b(ext_mode_latch), .a(tdr_10_), .sa(net901), .o(
+        n62) );
+  i0smbn022ab1n03x5 U134 ( .b(fscan_clkungate_latch), .a(tdr_0_), .sa(net901), 
+        .o(n22) );
+  i0smbn022ab1n03x5 U135 ( .b(occ_kill_clock_en_latch), .a(tdr_12_), .sa(
+        net901), .o(n70) );
+  i0smbn022ab1n03x5 U136 ( .b(tdr_8_), .a(ext_edt_mode_latch), .sa(net1819), 
+        .o(n54) );
+  i0smbn022ab1n03x5 U137 ( .b(tdr_11_), .a(se_pipeline_en_latch), .sa(net1819), 
+        .o(n66) );
+  i0smbn022ab1n03x5 U138 ( .b(tdr_9_), .a(int_mode_latch), .sa(net1819), .o(
+        n58) );
+  i0sinv000ab1n02x5 U139 ( .a(tdr_10_), .o1(n140) );
+  i0sinv000ab1n02x5 U140 ( .a(tdr_9_), .o1(n139) );
+  i0sinv000ab1n02x5 U141 ( .a(tdr_0_), .o1(n147) );
+  i0smdn022ab1n03x4 U142 ( .b(n154), .a(n153), .sa(net901), .o1(n38) );
+  i0sinv000ab1n02x5 U143 ( .a(tdr_13_), .o1(net900) );
+  i0sinv000ab1n02x5 U144 ( .a(tdr_2_), .o1(n132) );
+  i0sinv000ab1n02x5 U145 ( .a(tdr_7_), .o1(n137) );
+  i0sinv000ab1n02x5 U146 ( .a(tdr_6_), .o1(n136) );
+  i0sinv000ab1n02x5 U147 ( .a(tdr_5_), .o1(net997) );
+  i0sinv000ab1n02x5 U148 ( .a(tdr_3_), .o1(n133) );
+  i0soai012ab1n03x5 U149 ( .b(n146), .c(n148), .a(n121), .o1(n116) );
+  i0sorn002ab1n02x7 U150 ( .a(n144), .b(n132), .o(n121) );
+  i0soai012ab1n03x5 U151 ( .b(n146), .c(n140), .a(n122), .o1(n107) );
+  i0sorn002ab1n02x7 U152 ( .a(n144), .b(n141), .o(n122) );
+  i0soai012ab1n03x5 U153 ( .b(n146), .c(n138), .a(n123), .o1(n109) );
+  i0sorn002ab1n02x7 U154 ( .a(n144), .b(n139), .o(n123) );
+  i0soai012ab1n03x5 U155 ( .b(n146), .c(net997), .a(n124), .o1(n112) );
+  i0sorn002ab1n02x7 U156 ( .a(n144), .b(n136), .o(n124) );
+  i0soai012ab1n03x5 U157 ( .b(n146), .c(n135), .a(n125), .o1(n113) );
+  i0sorn002ab1n02x7 U158 ( .a(n144), .b(net997), .o(n125) );
+  i0soai012ab1n03x5 U159 ( .b(n146), .c(n133), .a(n126), .o1(n114) );
+  i0sorn002ab1n02x7 U160 ( .a(n144), .b(n135), .o(n126) );
+  i0soai012ab1n03x5 U161 ( .b(n146), .c(n132), .a(n127), .o1(n115) );
+  i0sorn002ab1n02x7 U162 ( .a(n144), .b(n133), .o(n127) );
+  i0soai012ab1n03x5 U163 ( .b(n146), .c(n137), .a(n128), .o1(n110) );
+  i0sorn002ab1n02x7 U164 ( .a(n144), .b(n138), .o(n128) );
+  i0soai012ab1n03x5 U165 ( .b(n146), .c(n141), .a(n129), .o1(n106) );
+  i0sorn002ab1n02x7 U166 ( .a(n144), .b(n142), .o(n129) );
+  i0soai012ab1n03x5 U167 ( .b(n146), .c(n139), .a(n130), .o1(n108) );
+  i0sorn002ab1n02x7 U168 ( .a(n144), .b(n140), .o(n130) );
+  i0soai012ab1n03x5 U169 ( .b(n146), .c(n136), .a(n131), .o1(n111) );
+  i0sorn002ab1n02x7 U170 ( .a(n144), .b(n137), .o(n131) );
+  i0snorp02ab1n02x5 U171 ( .a(n144), .b(net900), .o1(n143) );
+  i0snorp02ab1n03x5 U172 ( .a(n144), .b(n148), .o1(n145) );
+  i0sinv000ab1n03x5 U173 ( .a(memory_bypass_en_latch), .o1(n150) );
+  i0sinv000ab1n03x5 U174 ( .a(async_set_reset_static_disable_latch), .o1(n152)
+         );
+  i0sinv000ab1n03x5 U175 ( .a(tck_occ_en_latch), .o1(n154) );
+  i0sinv000ab1n03x5 U176 ( .a(ext_ltest_en_latch), .o1(n156) );
+  i0sinv000ab1n03x5 U177 ( .a(int_edt_mode_latch), .o1(n158) );
+  i0sobai22ab1n02x5 U178 ( .a(ijtag_si), .b(n144), .c(n146), .d(net900), 
+        .out0(n104) );
+  i0saob012ab1n03x5 U179 ( .b(ijtag_ce), .c(ijtag_sel), .a(n144), .out0(n146)
+         );
+  i0snanb03ab1n03x5 U180 ( .a(ijtag_ce), .b(ijtag_sel), .c(ijtag_se), .out0(
+        n144) );
+  i0stilo00ab1n02x5 U181 ( .o(n102) );
+  i0stihi00ab1n02x5 U182 ( .o(n101) );
+  i0soabi12ab1n03x5 U183 ( .b(n146), .c(n142), .a(n143), .out0(n105) );
+  i0smdn022ab1n02x5 U184 ( .b(n150), .a(n149), .sa(net901), .o1(n30) );
+  i0smdn022ab1n02x5 U185 ( .b(n152), .a(n151), .sa(net901), .o1(n34) );
+  i0smdn022ab1n02x5 U186 ( .b(n156), .a(n155), .sa(net901), .o1(n46) );
+  i0smdn022ab1n02x5 U187 ( .b(n158), .a(n157), .sa(net901), .o1(n50) );
+  i0sinv000ab1n02x5 U188 ( .a(tdr_1_), .o1(n148) );
+  i0smbn022ab1n03x5 U189 ( .b(ltest_en_latch), .a(tdr_1_), .sa(net901), .o(n26) );
+  i0soabi12ab1n02x5 U190 ( .b(n146), .c(n147), .a(n145), .out0(n103) );
+  i0sinv000ab1n02x5 U191 ( .a(n153), .o1(n134) );
+  i0sinv000ab1n03x5 U192 ( .a(n134), .o1(n135) );
+  i0sinv000ab1n03x5 U193 ( .a(tdr_8_), .o1(n138) );
+  i0sinv000ab1n03x5 U194 ( .a(tdr_11_), .o1(n141) );
+  i0sinv000ab1n03x5 U195 ( .a(tdr_12_), .o1(n142) );
+endmodule
+

@@ -1,0 +1,253 @@
+//--------------------------------------------------------------------------
+//
+//  Unpublished work. Copyright 2022 Siemens
+//
+//  This material contains trade secrets or otherwise confidential 
+//  information owned by Siemens Industry Software Inc. or its affiliates 
+//  (collectively, SISW), or its licensors. Access to and use of this 
+//  information is strictly limited as set forth in the Customer's 
+//  applicable agreements with SISW.
+//
+//--------------------------------------------------------------------------
+//  File created by: Tessent Shell
+//          Version: 2022.4
+//       Created on: Tue Oct 24 19:28:51 PDT 2023
+//--------------------------------------------------------------------------
+
+Core(firebird7_in_gate2_tessent_ssn_scan_host_ssh) {
+  Ssh {
+    version: 12;
+    streaming_interfaces : both;
+    Interface {
+      ScanEn(scan_en) {
+        persistent_pin : tessent_persistent_cell_scan_en_buf/o;
+      }
+      EdtUpdate(edt_update) {
+        persistent_pin : clock_gen/tessent_persistent_cell_edt_update_mux/o;
+      }
+      EdtClock(edt_clock) {
+        persistent_pin : clock_gen/clock_signals/tessent_persistent_cell_edt_clock_buf/clkout;
+      }
+      ShiftCaptureClock(shift_capture_clock) {
+        persistent_pin : clock_gen/clock_signals/tessent_persistent_cell_shift_capture_clock_buf/clkout;
+      }
+      ToScanIn(to_scan_in[3:0]) {
+        persistent_pin(0) : tessent_persistent_cell_to_scan_in_0_buf/o;
+        persistent_pin(1) : tessent_persistent_cell_to_scan_in_1_buf/o;
+        persistent_pin(2) : tessent_persistent_cell_to_scan_in_2_buf/o;
+        persistent_pin(3) : tessent_persistent_cell_to_scan_in_3_buf/o;
+        group : ;
+      }
+      FromScanOut(from_scan_out[1:0]) {
+        persistent_pin(0) : tessent_persistent_cell_from_scan_out_0_and/a;
+        persistent_pin(1) : tessent_persistent_cell_from_scan_out_1_and/a;
+        group : ;
+        max_in_on_chip_compare : 2;
+      }
+      BusClock(bus_clock) {
+        persistent_pin : tessent_persistent_cell_bus_clock_buf/a;
+      }
+      BusIn(bus_data_in[19:0]) {
+        persistent_pin(0) : tessent_persistent_cell_bus_data_in_buf_0/a;
+        persistent_pin(1) : tessent_persistent_cell_bus_data_in_buf_1/a;
+        persistent_pin(2) : tessent_persistent_cell_bus_data_in_buf_2/a;
+        persistent_pin(3) : tessent_persistent_cell_bus_data_in_buf_3/a;
+        persistent_pin(4) : tessent_persistent_cell_bus_data_in_buf_4/a;
+        persistent_pin(5) : tessent_persistent_cell_bus_data_in_buf_5/a;
+        persistent_pin(6) : tessent_persistent_cell_bus_data_in_buf_6/a;
+        persistent_pin(7) : tessent_persistent_cell_bus_data_in_buf_7/a;
+        persistent_pin(8) : tessent_persistent_cell_bus_data_in_buf_8/a;
+        persistent_pin(9) : tessent_persistent_cell_bus_data_in_buf_9/a;
+        persistent_pin(10) : tessent_persistent_cell_bus_data_in_buf_10/a;
+        persistent_pin(11) : tessent_persistent_cell_bus_data_in_buf_11/a;
+        persistent_pin(12) : tessent_persistent_cell_bus_data_in_buf_12/a;
+        persistent_pin(13) : tessent_persistent_cell_bus_data_in_buf_13/a;
+        persistent_pin(14) : tessent_persistent_cell_bus_data_in_buf_14/a;
+        persistent_pin(15) : tessent_persistent_cell_bus_data_in_buf_15/a;
+        persistent_pin(16) : tessent_persistent_cell_bus_data_in_buf_16/a;
+        persistent_pin(17) : tessent_persistent_cell_bus_data_in_buf_17/a;
+        persistent_pin(18) : tessent_persistent_cell_bus_data_in_buf_18/a;
+        persistent_pin(19) : tessent_persistent_cell_bus_data_in_buf_19/a;
+      }
+      BusOut(bus_data_out[19:0]) {
+        persistent_pin(0) : tessent_persistent_cell_bus_data_out_buf_0/o;
+        persistent_pin(1) : tessent_persistent_cell_bus_data_out_buf_1/o;
+        persistent_pin(2) : tessent_persistent_cell_bus_data_out_buf_2/o;
+        persistent_pin(3) : tessent_persistent_cell_bus_data_out_buf_3/o;
+        persistent_pin(4) : tessent_persistent_cell_bus_data_out_buf_4/o;
+        persistent_pin(5) : tessent_persistent_cell_bus_data_out_buf_5/o;
+        persistent_pin(6) : tessent_persistent_cell_bus_data_out_buf_6/o;
+        persistent_pin(7) : tessent_persistent_cell_bus_data_out_buf_7/o;
+        persistent_pin(8) : tessent_persistent_cell_bus_data_out_buf_8/o;
+        persistent_pin(9) : tessent_persistent_cell_bus_data_out_buf_9/o;
+        persistent_pin(10) : tessent_persistent_cell_bus_data_out_buf_10/o;
+        persistent_pin(11) : tessent_persistent_cell_bus_data_out_buf_11/o;
+        persistent_pin(12) : tessent_persistent_cell_bus_data_out_buf_12/o;
+        persistent_pin(13) : tessent_persistent_cell_bus_data_out_buf_13/o;
+        persistent_pin(14) : tessent_persistent_cell_bus_data_out_buf_14/o;
+        persistent_pin(15) : tessent_persistent_cell_bus_data_out_buf_15/o;
+        persistent_pin(16) : tessent_persistent_cell_bus_data_out_buf_16/o;
+        persistent_pin(17) : tessent_persistent_cell_bus_data_out_buf_17/o;
+        persistent_pin(18) : tessent_persistent_cell_bus_data_out_buf_18/o;
+        persistent_pin(19) : tessent_persistent_cell_bus_data_out_buf_19/o;
+      }
+      IjtagClock(ijtag_tck) {
+      }
+    }
+    ChainGroups {
+      ChainGroup() {
+        parameter : from_scan_out_le_strobe_en;
+        type      : bool;
+        default_value : off;
+      }
+    }
+    PersistentGates {
+      SshEnableSync {
+        persistent_pin : fsm/tessent_persistent_cell_enable_sync_buf/o;
+      }
+      SshBusClock {
+        persistent_pin : clock_gen/clock_signals/tessent_persistent_cell_shift_capture_clock_cg/clk;
+      }
+      SshScanEn {
+        persistent_pin_in  : tessent_persistent_cell_scan_en_buf/a;
+        persistent_pin_out : tessent_persistent_cell_scan_en_buf/o;
+      }
+      SshEdtUpdateState {
+        persistent_pin  : fsm/tessent_persistent_cell_state_is_edt_update_buf/o;
+      }
+    }
+    Parameters {
+      setup_iproc: setup;
+      end_iproc: end;
+      PacketSize {
+        parameter     : packet_size;
+        type          : int;
+        legal_int     : 1..65535;
+      }
+      BusWidth {
+        parameter     : bus_width;
+        type          : int;
+        legal_int     : 1..20;
+      }
+      MinShiftClockLowWidth {
+        parameter     : min_shift_clock_low_width;
+        type          : int;
+        legal_int     : 0..63;
+        default_value : 0;
+      }
+      MinCaptureClockLowWidth {
+        parameter     : min_capture_clock_low_width;
+        type          : int;
+        legal_int     : 0..63;
+        default_value : 0;
+      }
+      InitialOffset {
+        parameter     : initial_offset;
+        type          : int;
+        legal_int     : 0..2147483647;
+        default_value : 0;
+      }
+      InitScanLoadUsed {
+        parameter     : init_scan_load_used;
+        type          : int;
+        legal_int     : 0..1;
+        default_value : 0;
+      }
+      DisableFirstScanLoadMasking {
+        parameter     : disable_first_scan_load_masking;
+        type          : int;
+        legal_int     : 0..1;
+        default_value : 0;
+      }
+      InitialBit0Position {
+        parameter     : initial_bit0_position;
+        type          : int;
+        legal_int     : 0..31;
+        default_value : 0;
+      }
+      ScanEnTransitionPackets {
+        parameter     : scan_en_transition_packets;
+        type          : int;
+        legal_int     : 0..15;
+        default_value : 0;
+      }
+      ScanEnLaunchPacket {
+        parameter     : scan_en_launch_packet;
+        type          : int;
+        legal_int     : 0..15;
+        // Default is ceil(scan_en_transition_packets/2) and it is computed in the iProc when unspecified
+      }
+      EdtUpdateTransitionWords {
+        parameter     : edt_update_falling_transition_words;
+        type          : int;
+        legal_int     : 0..15;
+        default_value : 0;
+      }
+      EdtUpdateLaunchWord {
+        parameter     : edt_update_falling_launch_word;
+        type          : int;
+        legal_int     : 0..15;
+        // Default is ceil(edt_update_falling_transition_words/2) and it is computed in the iProc when unspecified
+      }
+      TotalShiftCntMinusOne {
+        parameter     : total_shift_cnt_minus_one;
+        type          : int;
+        legal_int     : 0..268435455;
+      }
+      CapturePackets {
+        parameter     : capture_packets;
+        type          : int;
+        legal_int     : 0..7;
+      }
+      PacketsPerCapturePulse {
+        parameter     : packets_per_capture_clock_minus_one;
+        type          : int;
+        legal_int     : 0..7;
+        default_value : 0;
+      }
+      OnChipCompareEnable {
+        parameter     : on_chip_compare_enable;
+        type          : boolean;
+        default_value : off;
+      }
+      OnChipCompareCaptureGroupCount {
+        parameter     : on_chip_compare_group_count;
+        type          : int;
+        legal_int     : 0..255;
+        default_value : 1;
+      }
+      OnChipCompareCaptureGroup {
+        parameter     : on_chip_compare_group;
+        type          : int;
+        legal_int     : 0..255;
+        default_value : 1;
+      }
+      StickyStatusGlobal {
+        parameter     : sticky_status_global;
+        type          : boolean;
+        default_value : on;
+      }
+      BitsPerPacket {
+        parameter     : bits_per_packet;
+        type          : int;
+        legal_int     : 1..65535;
+      }
+      ExtraShiftPackets {
+        parameter     : extra_shift_packets;
+        type          : int;
+        legal_int     : 0..268435455;
+        default_value : 0;
+      }
+      InfiniteShiftMode {
+        parameter     : infinite_shift_mode;
+        type          : boolean;
+        default_value : off;
+      }
+      RelativeInitialOffsetEnable {
+        parameter     : relative_initial_offset_enable;
+        type          : boolean;
+        default_value : off;
+      }
+    }
+  }
+}

@@ -1,0 +1,227 @@
+//-------------------------------------------------
+//  File created by: Tessent Shell
+//          Version: 2022.4
+//       Created on: Tue Oct 24 19:29:00 PDT 2023
+//-------------------------------------------------
+
+
+Core(firebird7_in_gate2_tessent_edt_extest_edt) {
+  Edt {
+    version : 3;
+    Instances {
+      edt_decompressor : firebird7_in_gate2_tessent_edt_extest_edt_decompressor_i;
+      edt_compactor : firebird7_in_gate2_tessent_edt_extest_edt_compactor_i;
+    }
+    Interface {
+      MasterClock(edt_clock) {
+        persistent_pin : tessent_persistent_cell_edt_clock_buf/clkout;
+      }
+      Update(edt_update) {
+        persistent_pin : tessent_persistent_cell_edt_update_buf/o;
+      }
+      Bypass(edt_bypass) {
+        persistent_pin : tessent_persistent_cell_edt_bypass_buf/o;
+      }
+      LowPowerShiftEnable(edt_low_power_shift_en) {
+        persistent_pin : tessent_persistent_cell_edt_low_power_shift_en_buf/o;
+      }
+      ChannelIn(edt_channels_in) {
+        persistent_pin : tessent_persistent_cell_edt_channels_in_0_buf/o;
+      }
+      ChannelOut(edt_channels_out) {
+        persistent_pin : tessent_persistent_cell_edt_channels_out_0_buf/o;
+      }
+      ScanInput(edt_scan_in[0]) {
+        persistent_pin : tessent_persistent_cell_edt_scan_in_0_buf/o;
+      }
+      ScanOutput(edt_scan_out[0]) {
+        persistent_pin : tessent_persistent_cell_edt_scan_out_0_buf/o;
+      }
+      ScanInput(edt_scan_in[1]) {
+        persistent_pin : tessent_persistent_cell_edt_scan_in_1_buf/o;
+      }
+      ScanOutput(edt_scan_out[1]) {
+        persistent_pin : tessent_persistent_cell_edt_scan_out_1_buf/o;
+      }
+      ScanInput(edt_scan_in[2]) {
+        persistent_pin : tessent_persistent_cell_edt_scan_in_2_buf/o;
+      }
+      ScanOutput(edt_scan_out[2]) {
+        persistent_pin : tessent_persistent_cell_edt_scan_out_2_buf/o;
+      }
+      ScanInput(edt_scan_in[3]) {
+        persistent_pin : tessent_persistent_cell_edt_scan_in_3_buf/o;
+      }
+      ScanOutput(edt_scan_out[3]) {
+        persistent_pin : tessent_persistent_cell_edt_scan_out_3_buf/o;
+      }
+      ScanInput(edt_scan_in[4]) {
+        persistent_pin : tessent_persistent_cell_edt_scan_in_4_buf/o;
+      }
+      ScanOutput(edt_scan_out[4]) {
+        persistent_pin : tessent_persistent_cell_edt_scan_out_4_buf/o;
+      }
+    }
+    Parameters {
+      iproc : setup;
+      LowPowerShiftEnable {
+        parameter : edt_low_power_shift_en;
+        type : boolean;
+        default_value : off;
+      }
+      Bypass {
+        parameter : edt_bypass;
+        type : boolean;
+        default_value : off;
+      }
+    }
+    EdtConfigurationCommon {
+      ip_version : 8;
+      scan_chains : 5;
+      compactor_type : xpress;
+      decompressor_type : edt;
+      decompressor_size : 25;
+      scan_mode_type : external;
+      initialization_cycles : 31;
+      xor_taps_per_chain : 3;
+      longest_chain_range_min : 250;
+      longest_chain_range_max : 275;
+      multiple_fanouts_from_scan_chains : off;
+      clock_edt_before_shift : off;
+      clocking : edge;
+      reset : off;
+      lockup_cells : on;
+      retime_chain_boundaries : off;
+      chain_endpoints : le_te;
+      internal_static_control_tdr : off;
+      control_method : constant_chains;
+      switching_threshold : 15;
+      power_decoder_type : broadcast;
+      bypass_chain_change_edge : on;
+      change_edge_at_compactor_output_global : trailing;
+      BypassChains {
+        BypassChain(1) {
+          concatenated_chains : 1, 2, 3, 4, 5;
+        }
+      }
+      ScanChainClocking {
+        Chain(1) {
+          scan_in_clock_id : 0;
+          scan_out_clock_id : 0;
+          scan_in_clock_edge : LE;
+          scan_out_clock_edge : TE;
+        }
+        Chain(2) {
+          scan_in_clock_id : 0;
+          scan_out_clock_id : 0;
+          scan_in_clock_edge : LE;
+          scan_out_clock_edge : TE;
+        }
+        Chain(3) {
+          scan_in_clock_id : 0;
+          scan_out_clock_id : 0;
+          scan_in_clock_edge : LE;
+          scan_out_clock_edge : TE;
+        }
+        Chain(4) {
+          scan_in_clock_id : 0;
+          scan_out_clock_id : 0;
+          scan_in_clock_edge : LE;
+          scan_out_clock_edge : TE;
+        }
+        Chain(5) {
+          scan_in_clock_id : 0;
+          scan_out_clock_id : 0;
+          scan_in_clock_edge : LE;
+          scan_out_clock_edge : TE;
+        }
+      }
+    }
+    EdtConfiguration() {
+      input_channels : 1;
+      output_channels : 1;
+      separate_control_data_channels : off;
+      compactor_pipeline_stages : 1;
+      bypass_logic : on;
+      bypass_single_chain_config : off;
+      bypass_chains : 1;
+      DecompressorConnections {
+        ChainTaps {
+          chain(1) : 11, 13, 15;
+          chain(2) : 2, 12, 22;
+          chain(3) : 3, 14, 25;
+          chain(4) : 10, 23, 24;
+          chain(5) : 9, 20, 21;
+        }
+        ChannelTaps {
+          channel(1) : 1, 3, 5, 7, 9, 11, 24, 22, 20, 18, 16, 14;
+        }
+      }
+      CompactorConnections {
+        channel(1) : 1, 2, 3, 4, 5;
+      }
+      MaskRegisterBitsPerChannel {
+        channel(1) : 6;
+      }
+      MaskDecoderConnections {
+        ModeBit {
+          Coordinate {
+            channel(1) : 6;
+          }
+        }
+        OneHotDecoder(1) {
+          Coordinate {
+            channel(1) : 5;
+            channel(1) : 4;
+            channel(1) : 3;
+          }
+        }
+        xorDecoderConnection(1) {
+          Coordinate {
+            channel(1) : 5;
+          }
+        }
+        xorDecoderConnection(2) {
+          Coordinate {
+            channel(1) : 4;
+          }
+        }
+        xorDecoderConnection(3) {
+          Coordinate {
+            channel(1) : 3;
+          }
+        }
+        xorDecoderConnection(4) {
+          Coordinate {
+            channel(1) : 2;
+          }
+        }
+        xorDecoderConnection(5) {
+          Coordinate {
+            channel(1) : 1;
+          }
+        }
+      }
+      ShiftPowerController {
+        InputChannelRegisterSizes {
+          channel(1) : 5;
+        }
+        PowerControllerConnections(1) {
+          taps(1) : 1, 7;
+        }
+        PowerControllerConnections(2) {
+          taps(1) : 1, 8;
+        }
+        PowerControllerConnections(3) {
+          taps(1) : 1, 9;
+        }
+        PowerControllerConnections(4) {
+          taps(1) : 1, 10;
+        }
+        PowerControllerConnections(5) {
+          taps(1) : 1, 11;
+        }
+      }
+    }
+  }
+}

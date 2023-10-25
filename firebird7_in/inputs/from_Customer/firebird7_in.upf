@@ -1,0 +1,108 @@
+upf_version 2.1
+set_design_attributes -elements {.} -attribute enable_state_propagation_in_add_power_state TRUE
+set_design_attributes -elements {.} -attribute lower_domain_boundary false
+
+
+create_supply_port vccsoc
+create_supply_net vccsoc
+connect_supply_net vccsoc -ports vccsoc
+create_supply_port vss
+create_supply_net vss
+connect_supply_net vss -ports vss
+create_supply_set ss_VCCSOC -function "power vccsoc" -function "ground vss"
+create_power_domain PD_TOP -elements {.} -supply {primary ss_VCCSOC}
+
+connect_supply_net vccsoc -ports {ph0/i/p/f/m/ram0/gen_100_pRam/mem0_i/ip783hdspsr1024x72m2b2s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/p/f/m/ram0/gen_100_pRam/mem0_i/ip783hdspsr1024x72m2b2s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/p/f/m/ram1/gen_100_pRam/mem0_i/ip783hdspsr1024x72m2b2s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/p/f/m/ram1/gen_100_pRam/mem0_i/ip783hdspsr1024x72m2b2s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/p/f/m/ram2/gen_100_pRam/mem0_i/ip783hdspsr1024x72m2b2s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/p/f/m/ram2/gen_100_pRam/mem0_i/ip783hdspsr1024x72m2b2s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/p/f/m/ram3/gen_100_pRam/mem0_i/ip783hdspsr1024x72m2b2s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/p/f/m/ram3/gen_100_pRam/mem0_i/ip783hdspsr1024x72m2b2s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/p/gb1_b/m0/mem0_i/ip783hdspsr512x32m4b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/p/gb1_b/m0/mem0_i/ip783hdspsr512x32m4b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/p/gb1_b/m1/mem0_i/ip783hdspsr512x32m4b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/p/gb1_b/m1/mem0_i/ip783hdspsr512x32m4b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/p/gs1_s/m0/mem0_i/ip783hdspsr512x32m4b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/p/gs1_s/m0/mem0_i/ip783hdspsr512x32m4b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/p/gs1_s/m1/mem0_i/ip783hdspsr512x32m4b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/p/gs1_s/m1/mem0_i/ip783hdspsr512x32m4b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g0_b0/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g0_b0/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g1_b1/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g1_b1/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g2_b2/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g2_b2/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g3_b3/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g3_b3/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g4_b4/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g4_b4/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g5_b5/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g5_b5/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g6_b6/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g6_b6/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g7_b7/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g7_b7/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g8_b8/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g8_b8/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g9_b9/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g9_b9/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g10_b10/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g10_b10/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g11_b11/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g11_b11/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g12_b12/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g12_b12/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g13_b13/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g13_b13/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g14_b14/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g14_b14/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g15_b15/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g15_b15/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g16_b16/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g16_b16/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g17_b17/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g17_b17/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g18_b18/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g18_b18/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g19_b19/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g19_b19/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g20_b20/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g20_b20/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g21_b21/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g21_b21/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g22_b22/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g22_b22/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g23_b23/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g23_b23/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g24_b24/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g24_b24/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g25_b25/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g25_b25/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g26_b26/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g26_b26/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g27_b27/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g27_b27/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g28_b28/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g28_b28/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g29_b29/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g29_b29/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g30_b30/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g30_b30/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+connect_supply_net vccsoc -ports {ph0/i/d/m/g31_b31/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vddp}
+connect_supply_net vss -ports {ph0/i/d/m/g31_b31/db/gen_100_dRam/mem0_i/ip783hdspsr1024x22m8b1s0c1r2p3d0a2/vss}
+
+
+
+create_pst pst_wrapper_test -supplies {ss_VCCSOC.power ss_VCCSOC.ground}
+add_power_state -supply ss_VCCSOC -state VCCON {-supply_expr { power == `{FULL_ON, 0.650}}}
+add_power_state -supply ss_VCCSOC -state GND {-supply_expr { ground == `{FULL_ON, 0.000}}} -update
+add_power_state -supply ss_VCCSOC -state VCCOFF {-supply_expr { power == `{OFF}}} -update
+
+
+
+
+add_pst_state ALL_ON -pst pst_wrapper_test -state {VCCON GND}
+add_pst_state ALL_OFF -pst pst_wrapper_test -state {VCCOFF GND}
+

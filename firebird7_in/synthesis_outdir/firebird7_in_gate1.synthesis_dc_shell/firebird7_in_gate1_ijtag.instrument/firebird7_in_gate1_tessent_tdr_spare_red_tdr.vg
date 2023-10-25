@@ -1,0 +1,51 @@
+/////////////////////////////////////////////////////////////
+// Created by: Synopsys DC Expert(TM) in wire load mode
+// Version   : Q-2019.12-SP5-1
+// Date      : Mon Oct 23 13:03:14 2023
+/////////////////////////////////////////////////////////////
+
+
+module firebird7_in_gate1_tessent_tdr_spare_red_tdr ( ijtag_reset, ijtag_sel, 
+        ijtag_si, ijtag_ce, ijtag_se, ijtag_ue, ijtag_tck, ijtag_so );
+  input ijtag_reset, ijtag_sel, ijtag_si, ijtag_ce, ijtag_se, ijtag_ue,
+         ijtag_tck;
+  output ijtag_so;
+  wire   tdr_0_, n15, n16, n17, n18, n19, n20, n21, n22, n23, n24, n25, n26,
+         n27, n28, n29, n30, n31, n32, n33, SYNOPSYS_UNCONNECTED_1,
+         SYNOPSYS_UNCONNECTED_2, SYNOPSYS_UNCONNECTED_3,
+         SYNOPSYS_UNCONNECTED_4, SYNOPSYS_UNCONNECTED_5,
+         SYNOPSYS_UNCONNECTED_6, SYNOPSYS_UNCONNECTED_7;
+
+  i0saob012ab1n03x5 U27 ( .b(ijtag_sel), .c(ijtag_ce), .a(n25), .out0(n24) );
+  i0slsn080ab1n02x5 retiming_so_reg ( .clkb(ijtag_tck), .d(tdr_0_), .o(
+        ijtag_so) );
+  i0sfuz010ab1d03x5 tdr_reg_1 ( .si(n16), .d(n33), .ssb(n15), .clk(ijtag_tck), 
+        .ob(n23), .so(SYNOPSYS_UNCONNECTED_1) );
+  i0sfuz010ab1d03x5 tdr_reg_7 ( .si(n16), .d(n27), .ssb(n15), .clk(ijtag_tck), 
+        .ob(n17), .so(SYNOPSYS_UNCONNECTED_2) );
+  i0sfuz010ab1d03x5 tdr_reg_6 ( .si(n16), .d(n28), .ssb(n15), .clk(ijtag_tck), 
+        .ob(n18), .so(SYNOPSYS_UNCONNECTED_3) );
+  i0sfuz010ab1d03x5 tdr_reg_5 ( .si(n16), .d(n29), .ssb(n15), .clk(ijtag_tck), 
+        .ob(n19), .so(SYNOPSYS_UNCONNECTED_4) );
+  i0sfuz010ab1d03x5 tdr_reg_4 ( .si(n16), .d(n30), .ssb(n15), .clk(ijtag_tck), 
+        .ob(n20), .so(SYNOPSYS_UNCONNECTED_5) );
+  i0sfuz010ab1d03x5 tdr_reg_3 ( .si(n16), .d(n31), .ssb(n15), .clk(ijtag_tck), 
+        .ob(n21), .so(SYNOPSYS_UNCONNECTED_6) );
+  i0sfuz010ab1d03x5 tdr_reg_2 ( .si(n16), .d(n32), .ssb(n15), .clk(ijtag_tck), 
+        .ob(n22), .so(SYNOPSYS_UNCONNECTED_7) );
+  i0sfuq000ab1d02x5 tdr_reg_0 ( .si(n16), .d(n26), .ssb(n15), .clk(ijtag_tck), 
+        .o(tdr_0_) );
+  i0soai022ab1n03x5 U29 ( .a(n23), .b(n24), .c(n25), .d(n22), .o1(n33) );
+  i0soai022ab1n03x5 U30 ( .a(n24), .b(n22), .c(n25), .d(n21), .o1(n32) );
+  i0soai022ab1n03x5 U31 ( .a(n24), .b(n21), .c(n25), .d(n20), .o1(n31) );
+  i0soai022ab1n03x5 U32 ( .a(n24), .b(n20), .c(n25), .d(n19), .o1(n30) );
+  i0soai022ab1n03x5 U33 ( .a(n24), .b(n19), .c(n25), .d(n18), .o1(n29) );
+  i0soai022ab1n03x5 U34 ( .a(n24), .b(n18), .c(n25), .d(n17), .o1(n28) );
+  i0sobai22ab1n02x5 U35 ( .a(ijtag_si), .b(n25), .c(n24), .d(n17), .out0(n27)
+         );
+  i0sobai22ab1n02x5 U36 ( .a(tdr_0_), .b(n24), .c(n25), .d(n23), .out0(n26) );
+  i0snanb03ab1n03x5 U37 ( .a(ijtag_ce), .b(ijtag_se), .c(ijtag_sel), .out0(n25) );
+  i0stihi00ab1n02x5 U38 ( .o(n15) );
+  i0stilo00ab1n02x5 U39 ( .o(n16) );
+endmodule
+

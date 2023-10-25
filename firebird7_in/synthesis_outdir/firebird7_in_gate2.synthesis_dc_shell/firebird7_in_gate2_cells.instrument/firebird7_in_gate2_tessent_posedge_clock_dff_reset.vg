@@ -1,0 +1,17 @@
+/////////////////////////////////////////////////////////////
+// Created by: Synopsys DC Expert(TM) in wire load mode
+// Version   : Q-2019.12-SP5-1
+// Date      : Tue Oct 24 19:30:58 2023
+/////////////////////////////////////////////////////////////
+
+
+module firebird7_in_gate2_tessent_posedge_clock_dff_reset ( rn, d, clk, q );
+  input rn, d, clk;
+  output q;
+  wire   n1, n2, SYNOPSYS_UNCONNECTED_1;
+
+  i0sfvz003ab1d03x6 q_reg ( .si(n2), .d(d), .ssb(n1), .clk(clk), .rb(rn), .o(q), .so(SYNOPSYS_UNCONNECTED_1) );
+  i0stihi00ab1n02x5 U5 ( .o(n1) );
+  i0stilo00ab1n02x5 U6 ( .o(n2) );
+endmodule
+

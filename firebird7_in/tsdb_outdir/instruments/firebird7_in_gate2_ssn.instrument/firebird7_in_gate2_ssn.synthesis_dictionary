@@ -1,0 +1,66 @@
+#--------------------------------------------------------------------------
+#
+#  Unpublished work. Copyright 2022 Siemens
+#
+#  This material contains trade secrets or otherwise confidential 
+#  information owned by Siemens Industry Software Inc. or its affiliates 
+#  (collectively, SISW), or its licensors. Access to and use of this 
+#  information is strictly limited as set forth in the Customer's 
+#  applicable agreements with SISW.
+#
+#--------------------------------------------------------------------------
+#  File created by: Tessent Shell
+#          Version: 2022.4
+#       Created on: Tue Oct 24 19:28:51 PDT 2023
+#--------------------------------------------------------------------------
+
+set synthesis_dictionary {
+  design_source_dictionary {
+    read1 {
+      format verilog_2001
+      work_library work
+      files {./firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe.v ./firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe.v ./firebird7_in_gate2_tessent_ssn_scan_host_ssh.v}
+    }
+  }
+  designs_dictionary {
+    firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe {
+      boundary_optimization off
+      size_only_prefix_list tessent_persistent_cell_
+      sdc {
+        file_name firebird7_in_gate2_ssn.sdc
+        proc_list firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe
+      }
+      output_files {
+        firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe.vg {
+          module_name_list firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe*
+        }
+      }
+    }
+    firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe {
+      boundary_optimization off
+      size_only_prefix_list tessent_persistent_cell_
+      sdc {
+        file_name firebird7_in_gate2_ssn.sdc
+        proc_list firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe
+      }
+      output_files {
+        firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe.vg {
+          module_name_list firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe*
+        }
+      }
+    }
+    firebird7_in_gate2_tessent_ssn_scan_host_ssh {
+      boundary_optimization off
+      size_only_prefix_list tessent_persistent_cell_
+      sdc {
+        file_name firebird7_in_gate2_ssn.sdc
+        proc_list firebird7_in_gate2_tessent_ssn_scan_host_ssh
+      }
+      output_files {
+        firebird7_in_gate2_tessent_ssn_scan_host_ssh.vg {
+          module_name_list firebird7_in_gate2_tessent_ssn_scan_host_ssh*
+        }
+      }
+    }
+  }
+}

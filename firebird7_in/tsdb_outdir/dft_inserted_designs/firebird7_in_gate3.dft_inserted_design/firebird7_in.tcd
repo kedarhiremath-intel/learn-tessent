@@ -1,0 +1,175 @@
+//-------------------------------------------------
+//  File created by: Tessent Shell
+//          Version: 2022.4
+//       Created on: Tue Oct 24 20:38:55 PDT 2023
+//-------------------------------------------------
+
+
+Core(firebird7_in) {
+  DesignInfo {
+    design_id : gate3;
+    design_level : physical_block;
+    ChildBlockModules {
+    }
+    Clocks {
+      Clock(clk) {
+        domain_label : clk_bbm;
+        type : async_source;
+        base_period : 783.00ns;
+        period : 783.0;
+        posedge_scannable_flop_count : 89638;
+        negedge_scannable_flop_count : 0;
+        posedge_non_scannable_flop_count : 0;
+        negedge_non_scannable_flop_count : 0;
+        active_high_latch_count : 0;
+        active_low_latch_count : 2659;
+        posedge_memory_clock_input_count : 0;
+        negedge_memory_clock_input_count : 0;
+      }
+      Clock(bisr_clk) {
+        domain_label : bisr_clk;
+        type : sync_source;
+      }
+      Clock(ijtag_tck) {
+        domain_label : ijtag_tck;
+        type : sync_source;
+      }
+    }
+    DynamicDftSignals {
+      DynamicDftSignal(async_set_reset_dynamic_disable) {
+        Instance {
+          type : pin;
+          created_from_other_signals : on;
+          add_hold_scan_cell : off;
+          node_name : tessent_persistent_cell_async_set_reset_dynamic_disable/o;
+        }
+      }
+      DynamicDftSignal(edt_clock) {
+        Instance {
+          type : pin;
+          node_name : firebird7_in_gate2_tessent_ssn_scan_host_ssh_inst/edt_clock;
+          At {
+            ssh_dft_driver_node_name : firebird7_in_gate2_tessent_ssn_scan_host_ssh_inst/edt_clock;
+          }
+        }
+      }
+      DynamicDftSignal(edt_update) {
+        Instance {
+          type : pin;
+          add_hold_scan_cell : off;
+          node_name : firebird7_in_gate2_tessent_ssn_scan_host_ssh_inst/edt_update;
+          At {
+            ssh_dft_driver_node_name : firebird7_in_gate2_tessent_ssn_scan_host_ssh_inst/edt_update;
+          }
+        }
+      }
+      DynamicDftSignal(scan_en) {
+        Instance {
+          type : pin;
+          add_hold_scan_cell : off;
+          node_name : firebird7_in_gate2_tessent_ssn_scan_host_ssh_inst/scan_en;
+          At {
+            ssh_dft_driver_node_name : firebird7_in_gate2_tessent_ssn_scan_host_ssh_inst/scan_en;
+          }
+        }
+      }
+      DynamicDftSignal(shift_capture_clock) {
+        Instance {
+          type : pin;
+          node_name : firebird7_in_gate2_tessent_ssn_scan_host_ssh_inst/shift_capture_clock;
+          At {
+            ssh_dft_driver_node_name : firebird7_in_gate2_tessent_ssn_scan_host_ssh_inst/shift_capture_clock;
+          }
+        }
+      }
+    }
+  }
+  Scan {
+    allow_internal_pins : 1;
+    is_hard_module : 1;
+    exclude_from_concatenated_netlist : 1;
+    internal_scan_only : 1;
+    Mode(int_mode) {
+      type : internal;
+      enable_dft_signal : int_edt_mode;
+      traceable : 1;
+      make_active_automatically : 1;
+      EdtInstances {
+        firebird7_in_gate2_tessent_edt_intest_edt_inst : firebird7_in_gate2_tessent_edt_intest_edt;
+      }
+      OccInstances {
+        firebird7_in_gate2_tessent_occ_clk_inst : firebird7_in_gate2_tessent_occ_clk;
+        firebird7_in_gate1_tessent_sib_sti_inst : firebird7_in_gate1_tessent_sib_sti;
+      }
+      ScanEn(firebird7_in_gate2_tessent_ssn_scan_host_ssh_inst/tessent_persistent_cell_scan_en_buf/o) {
+        pipeline_count : 1;
+        active_polarity : all_ones;
+      }
+      Clock(firebird7_in_gate2_tessent_ssn_scan_host_ssh_inst/clock_gen/clock_signals/tessent_persistent_cell_shift_capture_clock_buf/clkout) {
+        off_state : 1'b0;
+      }
+      ChildBlockInstance(firebird7_in_gate1_tessent_sib_sti_inst) {
+        child_mode_name : "";
+        enable_dft_signal : "";
+      }
+      ChildBlockInstance(firebird7_in_gate2_tessent_occ_clk_inst) {
+        child_mode_name : "";
+        enable_dft_signal : "";
+      }
+    }
+    Mode(ext_mode) {
+      type : external;
+      enable_dft_signal : ext_edt_mode;
+      traceable : 1;
+      make_active_automatically : 1;
+      EdtInstances {
+        firebird7_in_gate2_tessent_edt_extest_edt_inst : firebird7_in_gate2_tessent_edt_extest_edt;
+      }
+      ScanEn(firebird7_in_gate2_tessent_ssn_scan_host_ssh_inst/tessent_persistent_cell_scan_en_buf/o) {
+        pipeline_count : 1;
+        active_polarity : all_ones;
+      }
+      Clock(clk) {
+        off_state : 1'b0;
+        is_capture_clock : true;
+      }
+      Clock(firebird7_in_gate2_tessent_ssn_scan_host_ssh_inst/clock_gen/clock_signals/tessent_persistent_cell_shift_capture_clock_buf/clkout) {
+        off_state : 1'b0;
+      }
+    }
+    OccModule(firebird7_in_gate2_tessent_occ_clk) {
+      supports_add_core_instances : 1;
+      Iproc(setup) {
+        parameter_value_list : fast_capture_mode, 1;
+      }
+      OccShiftOnlyEn(shift_only_mode) {
+        active_polarity : 1'b1;
+      }
+      Clock(slow_clock) {
+        off_state : 1'b0;
+      }
+      ClockOut(tessent_persistent_cell_clock_out_mux/clkout) {
+        slow_clock_input : slow_clock;
+        fast_clock_input : fast_clock;
+      }
+      FastCaptureClockEn(tessent_persistent_cell_cgc_fast_clock/en) {
+        clock_input : fast_clock;
+      }
+      ShiftRegisterClockEn(occ_control/tessent_persistent_cell_cgc_SHIFT_REG_CLK/en) {
+        clock_input : slow_clock;
+      }
+    }
+    OccModule(firebird7_in_gate1_tessent_sib_sti) {
+      supports_add_core_instances : 1;
+      Clock(ltest_clk) {
+        off_state : 1'b0;
+      }
+      ClockOut(tessent_persistent_cell_ltest_clock_mux/clkout) {
+        slow_clock_input : ltest_clk;
+      }
+      CaptureClockEn(tessent_persistent_cell_occ_clock_gate/en) {
+        clock_input : ltest_clk;
+      }
+    }
+  }
+}

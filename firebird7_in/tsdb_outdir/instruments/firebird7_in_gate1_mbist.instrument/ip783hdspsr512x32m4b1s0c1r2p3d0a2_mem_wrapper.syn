@@ -1,0 +1,77 @@
+/*
+----------------------------------------------------------------------------------
+-                                                                                -
+-  Unpublished work. Copyright 2022 Siemens                                      -
+-                                                                                -
+-  This material contains trade secrets or otherwise confidential                -
+-  information owned by Siemens Industry Software Inc. or its affiliates         -
+-  (collectively, SISW), or its licensors. Access to and use of this             -
+-  information is strictly limited as set forth in the Customer's                -
+-  applicable agreements with SISW.                                              -
+-                                                                                -
+----------------------------------------------------------------------------------
+-  File created by: Tessent Shell                                                -
+-          Version: 2022.4                                                       -
+-       Created on: Mon Oct 23 12:52:07 PDT 2023                                 -
+----------------------------------------------------------------------------------
+
+
+*/
+`celldefine
+module ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper (
+    row_repair_in, 
+    col_repair_in, 
+    
+    clk,
+    wen,
+    ren,
+    async_rst,
+    fastsleep,
+    deepsleep,
+    sbc,
+    shutoff,
+    mce,
+    stbyp,
+    rmce,
+    wmce,
+    wpulse,
+    wa_disable,
+    wa,
+    ra,
+    global_rrow_en_in,
+    isolation_control_in,
+    dpslp_or_shutoffout,
+    shutoffout,
+    adr,
+    din,
+    q
+
+);
+input           clk;
+input           wen;
+input           ren;
+input           async_rst;
+input           fastsleep;
+input           deepsleep;
+input   [1:0]   sbc;
+input           shutoff;
+input           mce;
+input           stbyp;
+input   [3:0]   rmce;
+input   [1:0]   wmce;
+input   [1:0]   wpulse;
+input           wa_disable;
+input   [2:0]   wa;
+input   [1:0]   ra;
+input   [1:0]   global_rrow_en_in;
+input           isolation_control_in;
+output          dpslp_or_shutoffout;
+output          shutoffout;
+input  [8:0]    adr;
+input  [31:0]   din;
+output [31:0]   q;
+input [25:0]    row_repair_in;
+input [12:0]    col_repair_in;
+
+endmodule
+`endcelldefine

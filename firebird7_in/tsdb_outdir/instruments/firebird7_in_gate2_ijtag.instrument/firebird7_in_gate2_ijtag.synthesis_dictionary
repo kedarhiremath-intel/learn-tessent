@@ -1,0 +1,190 @@
+#--------------------------------------------------------------------------
+#
+#  Unpublished work. Copyright 2022 Siemens
+#
+#  This material contains trade secrets or otherwise confidential 
+#  information owned by Siemens Industry Software Inc. or its affiliates 
+#  (collectively, SISW), or its licensors. Access to and use of this 
+#  information is strictly limited as set forth in the Customer's 
+#  applicable agreements with SISW.
+#
+#--------------------------------------------------------------------------
+#  File created by: Tessent Shell
+#          Version: 2022.4
+#       Created on: Tue Oct 24 19:28:51 PDT 2023
+#--------------------------------------------------------------------------
+
+set synthesis_dictionary {
+  design_source_dictionary {
+    read1 {
+      format verilog_2001
+      work_library work
+      files {
+        ./firebird7_in_gate2_tessent_sib_extest_edt_scan_bi_sol.v ./firebird7_in_gate2_tessent_sib_intest_edt_scan_bi_sol.v
+        ./firebird7_in_gate2_tessent_sib_sri.v ./firebird7_in_gate2_tessent_sib_ssn.v
+        ./firebird7_in_gate2_tessent_sib_occ.v ./firebird7_in_gate2_tessent_sib_edt.v
+        ./firebird7_in_gate2_tessent_sib_sri_ctrl.v ./firebird7_in_gate2_tessent_tdr_sri_ctrl.v
+        ./firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_control.v ./firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_status.v
+        ./firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_control.v ./firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_status.v
+      }
+    }
+  }
+  designs_dictionary {
+    firebird7_in_gate2_tessent_sib_extest_edt_scan_bi_sol {
+      boundary_optimization off
+      size_only_prefix_list tessent_persistent_cell_
+      sdc {
+        file_name firebird7_in_gate2_ijtag.sdc
+        proc_list firebird7_in_gate2_tessent_sib_extest_edt_scan_bi_sol
+      }
+      output_files {
+        firebird7_in_gate2_tessent_sib_extest_edt_scan_bi_sol.vg {
+          module_name_list firebird7_in_gate2_tessent_sib_extest_edt_scan_bi_sol
+        }
+      }
+    }
+    firebird7_in_gate2_tessent_sib_intest_edt_scan_bi_sol {
+      boundary_optimization off
+      size_only_prefix_list tessent_persistent_cell_
+      sdc {
+        file_name firebird7_in_gate2_ijtag.sdc
+        proc_list firebird7_in_gate2_tessent_sib_intest_edt_scan_bi_sol
+      }
+      output_files {
+        firebird7_in_gate2_tessent_sib_intest_edt_scan_bi_sol.vg {
+          module_name_list firebird7_in_gate2_tessent_sib_intest_edt_scan_bi_sol
+        }
+      }
+    }
+    firebird7_in_gate2_tessent_sib_sri {
+      boundary_optimization off
+      size_only_prefix_list tessent_persistent_cell_
+      sdc {
+        file_name firebird7_in_gate2_ijtag.sdc
+        proc_list firebird7_in_gate2_tessent_sib_sri
+      }
+      output_files {
+        firebird7_in_gate2_tessent_sib_sri.vg {
+          module_name_list firebird7_in_gate2_tessent_sib_sri
+        }
+      }
+    }
+    firebird7_in_gate2_tessent_sib_ssn {
+      boundary_optimization off
+      size_only_prefix_list tessent_persistent_cell_
+      sdc {
+        file_name firebird7_in_gate2_ijtag.sdc
+        proc_list firebird7_in_gate2_tessent_sib_ssn
+      }
+      output_files {
+        firebird7_in_gate2_tessent_sib_ssn.vg {
+          module_name_list firebird7_in_gate2_tessent_sib_ssn
+        }
+      }
+    }
+    firebird7_in_gate2_tessent_sib_occ {
+      boundary_optimization off
+      size_only_prefix_list tessent_persistent_cell_
+      sdc {
+        file_name firebird7_in_gate2_ijtag.sdc
+        proc_list firebird7_in_gate2_tessent_sib_occ
+      }
+      output_files {
+        firebird7_in_gate2_tessent_sib_occ.vg {
+          module_name_list firebird7_in_gate2_tessent_sib_occ
+        }
+      }
+    }
+    firebird7_in_gate2_tessent_sib_edt {
+      boundary_optimization off
+      size_only_prefix_list tessent_persistent_cell_
+      sdc {
+        file_name firebird7_in_gate2_ijtag.sdc
+        proc_list firebird7_in_gate2_tessent_sib_edt
+      }
+      output_files {
+        firebird7_in_gate2_tessent_sib_edt.vg {
+          module_name_list firebird7_in_gate2_tessent_sib_edt
+        }
+      }
+    }
+    firebird7_in_gate2_tessent_sib_sri_ctrl {
+      boundary_optimization off
+      size_only_prefix_list tessent_persistent_cell_
+      sdc {
+        file_name firebird7_in_gate2_ijtag.sdc
+        proc_list firebird7_in_gate2_tessent_sib_sri_ctrl
+      }
+      output_files {
+        firebird7_in_gate2_tessent_sib_sri_ctrl.vg {
+          module_name_list firebird7_in_gate2_tessent_sib_sri_ctrl
+        }
+      }
+    }
+    firebird7_in_gate2_tessent_tdr_sri_ctrl {
+      boundary_optimization off
+      size_only_prefix_list tessent_persistent_cell_
+      sdc {
+        file_name firebird7_in_gate2_ijtag.sdc
+        proc_list firebird7_in_gate2_tessent_tdr_sri_ctrl
+      }
+      output_files {
+        firebird7_in_gate2_tessent_tdr_sri_ctrl.vg {
+          module_name_list firebird7_in_gate2_tessent_tdr_sri_ctrl
+        }
+      }
+    }
+    firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_control {
+      boundary_optimization off
+      size_only_prefix_list tessent_persistent_cell_
+      sdc {
+        file_name firebird7_in_gate2_ijtag.sdc
+        proc_list firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_control
+      }
+      output_files {
+        firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_control.vg {
+          module_name_list firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_control
+        }
+      }
+    }
+    firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_status {
+      boundary_optimization off
+      size_only_prefix_list tessent_persistent_cell_
+      sdc {
+        file_name firebird7_in_gate2_ijtag.sdc
+        proc_list firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_status
+      }
+      output_files {
+        firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_status.vg {
+          module_name_list firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_status
+        }
+      }
+    }
+    firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_control {
+      boundary_optimization off
+      size_only_prefix_list tessent_persistent_cell_
+      sdc {
+        file_name firebird7_in_gate2_ijtag.sdc
+        proc_list firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_control
+      }
+      output_files {
+        firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_control.vg {
+          module_name_list firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_control
+        }
+      }
+    }
+    firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_status {
+      boundary_optimization off
+      size_only_prefix_list tessent_persistent_cell_
+      sdc {
+        file_name firebird7_in_gate2_ijtag.sdc
+        proc_list firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_status
+      }
+      output_files {
+        firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_status.vg {
+          module_name_list firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_status
+        }
+      }
+    }
+  }
+}

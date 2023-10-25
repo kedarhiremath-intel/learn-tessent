@@ -1,0 +1,153 @@
+#-------------------------------------------------
+#  File created by: Tessent Shell
+#          Version: 2022.4
+#       Created on: Mon Oct 23 12:54:12 PDT 2023
+#-------------------------------------------------
+
+ 
+set tessent_dft_info_dict {
+  version 1
+  dft_signals {}
+  modules_with_chains {
+    firebird7_in_gate1_tessent_sib_sti {
+      pre_scan_drc_on_boundary_only 0
+      module_type occ
+      is_hard_module 1
+      internal_scan_only 0
+      allow_scan_out_retiming 0
+      instance_list firebird7_in_gate1_tessent_sib_sti_inst
+      scan_en_ports {
+        ltest_scan_en {
+          active_polarity 1
+        }
+      }
+      clock_ports {
+        ltest_clk {
+          off_state 0
+        }
+      }
+      ltest_en_ports {
+        ltest_en {
+          active_polarity 1
+        }
+      }
+      scan_chains {
+        scan_chain0 {
+          length 7
+          mux_si_functional_source 0
+          no_si_pipelining 0
+          is_non_scan_stitchable 0
+          scan_in_port ltest_si
+          scan_in_clock_name ltest_clk
+          scan_in_clock_inversion 0
+          scan_in_clock_unbalanced 0
+          scan_out_port ltest_so
+          scan_out_clock_name ltest_clk
+          scan_out_clock_inversion 1
+          scan_out_clock_unbalanced 0
+        }
+      }
+    }
+  }
+  modules_with_chains_not_active_by_default {}
+  non_scannable_instance_list {
+    firebird7_in_gate1_tessent_scanmux_green_sec_mux_inst
+    firebird7_in_gate1_tessent_scanmux_insysbist_sec_mux_inst
+    firebird7_in_gate1_tessent_scanmux_orange_sec_mux_inst
+    firebird7_in_gate1_tessent_scanmux_red_sec_mux_inst
+    firebird7_in_gate1_tessent_sib_array_pwrmgmt_inst
+    firebird7_in_gate1_tessent_sib_array_trim_fuse_override_inst
+    firebird7_in_gate1_tessent_sib_spare_green_inst
+    firebird7_in_gate1_tessent_sib_spare_inst
+    firebird7_in_gate1_tessent_sib_spare_insysbist_inst
+    firebird7_in_gate1_tessent_sib_spare_orange_inst
+    firebird7_in_gate1_tessent_sib_spare_red_inst
+    firebird7_in_gate1_tessent_tdr_spare_green_tdr_inst
+    firebird7_in_gate1_tessent_tdr_spare_insysbist_tdr_inst
+    firebird7_in_gate1_tessent_tdr_spare_orange_tdr_inst
+    firebird7_in_gate1_tessent_tdr_spare_red_tdr_inst
+    ph0/i/d/m/g0_b0/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g0_b0/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g10_b10/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g10_b10/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g11_b11/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g11_b11/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g12_b12/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g12_b12/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g13_b13/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g13_b13/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g14_b14/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g14_b14/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g15_b15/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g15_b15/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g16_b16/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g16_b16/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g17_b17/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g17_b17/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g18_b18/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g18_b18/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g19_b19/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g19_b19/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g1_b1/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g1_b1/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g20_b20/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g20_b20/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g21_b21/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g21_b21/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g22_b22/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g22_b22/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g23_b23/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g23_b23/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g24_b24/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g24_b24/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g25_b25/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g25_b25/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g26_b26/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g26_b26/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g27_b27/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g27_b27/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g28_b28/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g28_b28/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g29_b29/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g29_b29/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g2_b2/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g2_b2/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g30_b30/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g30_b30/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g31_b31/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g31_b31/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g3_b3/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g3_b3/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g4_b4/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g4_b4/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g5_b5/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g5_b5/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g6_b6/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g6_b6/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g7_b7/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g7_b7/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g8_b8/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g8_b8/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/d/m/g9_b9/db/gen_100_dRam/mem0_i
+    ph0/i/d/m/g9_b9/db/gen_100_dRam/mem0_i_bisr_inst
+    ph0/i/firebird7_in_gate1_tessent_tdr_array_pwrmgmt_ctrl_hdspsr_inst
+    ph0/i/firebird7_in_gate1_tessent_tdr_array_trim_fuse_override_ctrl_hdspsr_inst
+    ph0/i/p/f/m/ram0/gen_100_pRam/mem0_i
+    ph0/i/p/f/m/ram0/gen_100_pRam/mem0_i_bisr_inst
+    ph0/i/p/f/m/ram1/gen_100_pRam/mem0_i
+    ph0/i/p/f/m/ram1/gen_100_pRam/mem0_i_bisr_inst
+    ph0/i/p/f/m/ram2/gen_100_pRam/mem0_i
+    ph0/i/p/f/m/ram2/gen_100_pRam/mem0_i_bisr_inst
+    ph0/i/p/f/m/ram3/gen_100_pRam/mem0_i
+    ph0/i/p/f/m/ram3/gen_100_pRam/mem0_i_bisr_inst
+    ph0/i/p/gb1_b/m0/mem0_i
+    ph0/i/p/gb1_b/m0/mem0_i_bisr_inst
+    ph0/i/p/gb1_b/m1/mem0_i
+    ph0/i/p/gb1_b/m1/mem0_i_bisr_inst
+    ph0/i/p/gs1_s/m0/mem0_i
+    ph0/i/p/gs1_s/m0/mem0_i_bisr_inst
+    ph0/i/p/gs1_s/m1/mem0_i
+    ph0/i/p/gs1_s/m1/mem0_i_bisr_inst
+  }
+  edt_instances {}
+}
