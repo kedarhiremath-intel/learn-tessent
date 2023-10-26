@@ -1,8 +1,9 @@
 # learn-tessent
-This repository is a sandbox environment for running the DFT insertion flow using plain vanilla Tessent commands, with a special emphasis on the Iron Wood and Powder Mill projects.
-The intent is to show you what frameworks like TEAMaker and MINT are actually doing "behind the scenes", so you will be well-prepared to use these or other Tessent-based tools, flows and methodologies.
+This repository is a sandbox environment for running the DFT insertion flow using vanilla Tessent shell commands and the workflow recommended by Siemens EDA. I will develop a variety of use cases with a special emphasis on the Iron Wood and Powder Mill projects.
 
-There is no dependency on any group or repository. All the required files are contained within this repository, with the exception of the CAD tools which should already be present on your system.
+The intent is to show you what Intel frameworks like TEAMaker and MINT are actually doing "behind the scenes", so you will be very well-prepared to use these or other Tessent-based tools, flows and methodologies.
+
+This is an entirely self-contained repository, meaning that there is no external dependency, with the exception of the CAD tools which should already be present on your system.
 
 Here is the high-level Tessent insertion flow:
 
