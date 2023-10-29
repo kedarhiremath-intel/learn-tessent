@@ -1,4 +1,4 @@
-Your job has been queued (JobID 8048010222582926, Class SLES12&&32G&&2C, Queue zsc14_express, Slot /XNE/irw/be)
+Your job has been queued (JobID 8476247232303957, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
 
                            Design Compiler Graphical 
                                  DC Ultra (TM)
@@ -1007,19 +1007,19 @@ foreach subDir $synth_subdir_list { file mkdir ${subDir}/ }
 read_file -format verilog {   ../../tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v   ../../tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v   ../../tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt_tdr.v   ../../tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt_tdr.v   ../../tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_edt_channel_out_mux_2x1_1.v }
 Loading db file '/p/hdk/cad/designcompiler/Q-2019.12-SP5-1/libraries/syn/gtech.db'
   Loading link library 'gtech'
-Loading verilog files: '/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v' '/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v' '/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt_tdr.v' '/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt_tdr.v' '/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_edt_channel_out_mux_2x1_1.v' 
+Loading verilog files: '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v' '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v' '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt_tdr.v' '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt_tdr.v' '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_edt_channel_out_mux_2x1_1.v' 
 Detecting input file type automatically (-rtl or -netlist).
 Reading with Presto HDL Compiler (equivalent to -rtl option).
 Running PRESTO HDLC
-Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v
-Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v
-Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt_tdr.v
-Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt_tdr.v
-Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_edt_channel_out_mux_2x1_1.v
+Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v
+Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v
+Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt_tdr.v
+Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt_tdr.v
+Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_edt_channel_out_mux_2x1_1.v
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_intest_edt_decompressor_segment_1 line 33 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1028,7 +1028,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_intest_edt_decompressor_segment_1 line 60 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1037,7 +1037,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_intest_edt_decompressor_segment_2 line 211 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1046,7 +1046,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_intest_edt_decompressor_segment_2 line 237 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1055,7 +1055,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_intest_edt_decompressor_segment_3 line 385 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1064,7 +1064,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_intest_edt_decompressor_segment_3 line 410 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1073,7 +1073,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_intest_edt_low_power_shift_controller line 988 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
 =====================================================================================
 |       Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 =====================================================================================
@@ -1085,7 +1085,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_intest_edt_low_power_shift_controller line 1007 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
 ====================================================================================
 |      Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ====================================================================================
@@ -1096,7 +1096,7 @@ Inferred memory devices in process
 ====================================================================================
 
 Statistics for case statements in always block at line 1537 in file
-	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'
+	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
@@ -1104,7 +1104,7 @@ Statistics for case statements in always block at line 1537 in file
 ===============================================
 
 Statistics for case statements in always block at line 1736 in file
-	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'
+	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
@@ -1113,7 +1113,7 @@ Statistics for case statements in always block at line 1736 in file
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_intest_edt_controller line 2355 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
 =================================================================================
 |     Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 =================================================================================
@@ -1125,7 +1125,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_intest_edt_controller line 2371 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
 ================================================================================
 |    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ================================================================================
@@ -1137,7 +1137,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_intest_edt_spatial_compactor_185_w_output_lockup line 2650 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
 ================================================================================
 |    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ================================================================================
@@ -1146,7 +1146,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_intest_edt_spatial_compactor_185_w_output_lockup line 2655 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
 =================================================================================
 |     Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 =================================================================================
@@ -1155,7 +1155,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_intest_edt_spatial_compactor_186_w_output_lockup line 2892 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
 ================================================================================
 |    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ================================================================================
@@ -1164,7 +1164,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_intest_edt_spatial_compactor_186_w_output_lockup line 2897 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt.v'.
 =================================================================================
 |     Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 =================================================================================
@@ -1173,7 +1173,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_extest_edt_decompressor line 30 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1182,7 +1182,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_extest_edt_decompressor line 64 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1191,7 +1191,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_extest_edt_low_power_shift_controller line 126 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v'.
 =====================================================================================
 |       Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 =====================================================================================
@@ -1200,7 +1200,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_extest_edt_low_power_shift_controller line 139 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v'.
 ====================================================================================
 |      Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ====================================================================================
@@ -1208,7 +1208,7 @@ Inferred memory devices in process
 ====================================================================================
 
 Statistics for case statements in always block at line 172 in file
-	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v'
+	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
@@ -1217,7 +1217,7 @@ Statistics for case statements in always block at line 172 in file
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_extest_edt_controller line 232 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v'.
 =================================================================================
 |     Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 =================================================================================
@@ -1226,7 +1226,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_extest_edt_controller line 242 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v'.
 ================================================================================
 |    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ================================================================================
@@ -1235,7 +1235,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_extest_edt_spatial_compactor_5_w_output_lockup line 291 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v'.
 ================================================================================
 |    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ================================================================================
@@ -1244,7 +1244,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_extest_edt_spatial_compactor_5_w_output_lockup line 296 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt.v'.
 =================================================================================
 |     Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 =================================================================================
@@ -1253,7 +1253,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_intest_edt_tdr line 42 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt_tdr.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt_tdr.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1262,7 +1262,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_intest_edt_tdr line 52 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt_tdr.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt_tdr.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1271,7 +1271,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_intest_edt_tdr line 57 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt_tdr.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt_tdr.v'.
 ============================================================================================
 |          Register Name           |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ============================================================================================
@@ -1280,7 +1280,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_intest_edt_tdr line 68 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt_tdr.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt_tdr.v'.
 ================================================================================
 |    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ================================================================================
@@ -1289,7 +1289,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_extest_edt_tdr line 42 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt_tdr.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt_tdr.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1298,7 +1298,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_extest_edt_tdr line 52 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt_tdr.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt_tdr.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1307,7 +1307,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_extest_edt_tdr line 57 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt_tdr.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt_tdr.v'.
 ============================================================================================
 |          Register Name           |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ============================================================================================
@@ -1316,14 +1316,14 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_edt_extest_edt_tdr line 68 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt_tdr.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_extest_edt_tdr.v'.
 ================================================================================
 |    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ================================================================================
 | edt_bypass_latch_reg | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
 ================================================================================
 Presto compilation completed successfully.
-Current design is now '/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt_decompressor_segment_1.db:firebird7_in_gate2_tessent_edt_intest_edt_decompressor_segment_1'
+Current design is now '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_tessent_edt_intest_edt_decompressor_segment_1.db:firebird7_in_gate2_tessent_edt_intest_edt_decompressor_segment_1'
 Loaded 28 designs.
 Current design is 'firebird7_in_gate2_tessent_edt_intest_edt_decompressor_segment_1'.
 firebird7_in_gate2_tessent_edt_intest_edt_decompressor_segment_1 firebird7_in_gate2_tessent_edt_intest_edt_decompressor_segment_2 firebird7_in_gate2_tessent_edt_intest_edt_decompressor_segment_3 firebird7_in_gate2_tessent_edt_intest_edt_decompressor firebird7_in_gate2_tessent_edt_intest_edt_low_power_shift_decoder firebird7_in_gate2_tessent_edt_intest_edt_low_power_shift_controller firebird7_in_gate2_tessent_edt_intest_edt_onehot_decoder_8_to_185 firebird7_in_gate2_tessent_edt_intest_edt_onehot_decoder_8_to_186 firebird7_in_gate2_tessent_edt_intest_edt_xor_decoder firebird7_in_gate2_tessent_edt_intest_edt_controller firebird7_in_gate2_tessent_edt_intest_edt_spatial_compactor_185_w_output_lockup firebird7_in_gate2_tessent_edt_intest_edt_spatial_compactor_186_w_output_lockup firebird7_in_gate2_tessent_edt_intest_edt_compactor firebird7_in_gate2_tessent_edt_intest_edt_bypass_logic firebird7_in_gate2_tessent_edt_intest_edt firebird7_in_gate2_tessent_edt_extest_edt_decompressor firebird7_in_gate2_tessent_edt_extest_edt_low_power_shift_decoder firebird7_in_gate2_tessent_edt_extest_edt_low_power_shift_controller firebird7_in_gate2_tessent_edt_extest_edt_onehot_decoder_3_to_5 firebird7_in_gate2_tessent_edt_extest_edt_xor_decoder firebird7_in_gate2_tessent_edt_extest_edt_controller firebird7_in_gate2_tessent_edt_extest_edt_spatial_compactor_5_w_output_lockup firebird7_in_gate2_tessent_edt_extest_edt_compactor firebird7_in_gate2_tessent_edt_extest_edt_bypass_logic firebird7_in_gate2_tessent_edt_extest_edt firebird7_in_gate2_tessent_edt_intest_edt_tdr firebird7_in_gate2_tessent_edt_extest_edt_tdr firebird7_in_gate2_edt_channel_out_mux_2x1_1
@@ -7405,18 +7405,18 @@ Information: Design 'firebird7_in_gate2_edt_channel_out_mux_2x1_1' has no optimi
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:10       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
 
 
 
@@ -7427,9 +7427,9 @@ Information: Design 'firebird7_in_gate2_edt_channel_out_mux_2x1_1' has no optimi
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:11       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
 
 
   Beginning Design Rule Fixing  (min_capacitance)
@@ -7439,7 +7439,7 @@ Information: Design 'firebird7_in_gate2_edt_channel_out_mux_2x1_1' has no optimi
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:11       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -7449,17 +7449,17 @@ Information: Design 'firebird7_in_gate2_edt_channel_out_mux_2x1_1' has no optimi
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:11       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
-    0:00:11       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
+    0:00:09       0.1      0.00       0.0       0.2                          
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -7495,7 +7495,7 @@ Design          Type    Object                  New Name
 1
 write -f verilog -output firebird7_in_gate2_edt.instrument/firebird7_in_gate2_edt_channel_out_mux_2x1_1.vg   [check_modules firebird7_in_gate2_edt_channel_out_mux_2x1_1]
 Current design is 'firebird7_in_gate2_edt_channel_out_mux_2x1_1'.
-Writing verilog file '/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/synthesis_outdir/firebird7_in_gate2.synthesis_dc_shell/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_edt_channel_out_mux_2x1_1.vg'.
+Writing verilog file '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/synthesis_outdir/firebird7_in_gate2.synthesis_dc_shell/firebird7_in_gate2_edt.instrument/firebird7_in_gate2_edt_channel_out_mux_2x1_1.vg'.
 1
 set_dont_touch [get_designs firebird7_in_gate2_edt_channel_out_mux_2x1_1]
 1
@@ -7503,7 +7503,7 @@ exit
 
 Memory usage for this session 2244 Mbytes.
 Memory usage for this session including child processes 2244 Mbytes.
-CPU usage for this session 21 seconds ( 0.01 hours ).
-Elapsed time for this session 37 seconds ( 0.01 hours ).
+CPU usage for this session 19 seconds ( 0.01 hours ).
+Elapsed time for this session 45 seconds ( 0.01 hours ).
 
 Thank you...

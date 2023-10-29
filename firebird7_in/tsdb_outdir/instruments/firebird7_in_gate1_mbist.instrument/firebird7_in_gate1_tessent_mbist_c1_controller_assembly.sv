@@ -11,17 +11,17 @@
 //--------------------------------------------------------------------------
 //  File created by: Tessent Shell
 //          Version: 2022.4
-//       Created on: Mon Oct 23 12:52:46 PDT 2023
+//       Created on: Sun Oct 29 14:15:14 PDT 2023
 //--------------------------------------------------------------------------
 
 
 module firebird7_in_gate1_tessent_mbist_c1_controller_assembly(LV_TM, MEM_BYPASS_EN, 
                                                                SCAN_SHIFT_EN, MCP_BOUNDING_EN, 
                                                                BIST_ON, BIST_DONE, 
-                                                               BIST_GO, clk_clk_bbm, 
-                                                               m1_inst_wen, m1_inst_ren, 
-                                                               m1_inst_adr, m1_inst_din, 
-                                                               m1_inst_async_rst, 
+                                                               BIST_GO, MBISTPG_STABLE, 
+                                                               clk_clk_bbm, m1_inst_wen, 
+                                                               m1_inst_ren, m1_inst_adr, 
+                                                               m1_inst_din, m1_inst_async_rst, 
                                                                m1_inst_fastsleep, 
                                                                m1_inst_deepsleep, 
                                                                m1_inst_sbc, m1_inst_shutoff, 
@@ -975,8 +975,9 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_assembly(LV_TM, MEM_BYPASS
                 m21_inst_q, m22_inst_q, m23_inst_q, m24_inst_q, m25_inst_q, 
                 m26_inst_q, m27_inst_q, m28_inst_q, m29_inst_q, m30_inst_q, 
                 m31_inst_q, m32_inst_q;
-  output BIST_ON, BIST_DONE, BIST_GO, m1_inst_dpslp_or_shutoffout, 
-         m1_inst_shutoffout, m2_inst_dpslp_or_shutoffout, m2_inst_shutoffout, 
+  output BIST_ON, BIST_DONE, BIST_GO, MBISTPG_STABLE, 
+         m1_inst_dpslp_or_shutoffout, m1_inst_shutoffout, 
+         m2_inst_dpslp_or_shutoffout, m2_inst_shutoffout, 
          m3_inst_dpslp_or_shutoffout, m3_inst_shutoffout, 
          m4_inst_dpslp_or_shutoffout, m4_inst_shutoffout, 
          m5_inst_dpslp_or_shutoffout, m5_inst_shutoffout, 
@@ -1930,8 +1931,8 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_assembly(LV_TM, MEM_BYPASS
       .BIST_COLLAR_EN37(BIST_COLLAR_EN37), .BIST_RUN_TO_COLLAR37(BIST_RUN_TO_COLLAR37), 
       .BIST_COLLAR_EN38(BIST_COLLAR_EN38), .BIST_RUN_TO_COLLAR38(BIST_RUN_TO_COLLAR38), 
       .BIST_COLLAR_EN39(BIST_COLLAR_EN39), .BIST_RUN_TO_COLLAR39(BIST_RUN_TO_COLLAR39), 
-      .CHKBCI_PHASE(CHKBCI_PHASE), .MBISTPG_GO(BIST_GO), .MBISTPG_DONE(BIST_DONE), 
-      .BIST_ON_TO_COLLAR(BIST_ON), .BIST_SHIFT_BIRA_COLLAR(BIST_SHIFT_BIRA_COLLAR)
+      .CHKBCI_PHASE(CHKBCI_PHASE), .MBISTPG_GO(BIST_GO), .MBISTPG_STABLE(MBISTPG_STABLE), 
+      .MBISTPG_DONE(BIST_DONE), .BIST_ON_TO_COLLAR(BIST_ON), .BIST_SHIFT_BIRA_COLLAR(BIST_SHIFT_BIRA_COLLAR)
   );
   firebird7_in_gate1_tessent_mbist_c1_interface_m1 m1_interface_instance(
       .PriorityColumn(PriorityColumn), .BIST_CLEAR_BIRA(BIST_CLEAR_BIRA), .wen_IN(m1_inst_wen), 

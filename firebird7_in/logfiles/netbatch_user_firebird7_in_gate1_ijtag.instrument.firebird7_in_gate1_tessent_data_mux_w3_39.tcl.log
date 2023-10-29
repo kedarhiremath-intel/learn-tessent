@@ -1,21 +1,21 @@
 +-----------------------------------------------------------------------------+
 | Logfile        : netbatch_user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_39.tcl.log|
-| Job id         : 7945074277320208           Class: (SLES12&&32G&&2C) && (!HIGHMEM) Qslot: /XNE/IRW|
-| User           : khiremat                   Full Id: zsc14_tiers2_vp.7945074277320208|
-| Class Reservation : cores=2,general_ramp=1:duration=60s,memory=32           |
-| Executed on    : scda053108                 Pool : zsc14_nb2_ppm            |
-| Queueing time  : Mon Oct 23 13:00:38 2023                                   |
-| Starting time  : Mon Oct 23 13:00:39 2023          Qwait:   0h:00m:01s      |
+| Job id         : 8476275939300953           Class: SLES12&&16G&&4C Qslot: /XNE/IRW|
+| User           : khiremat                   Full Id: zsc14_tiers2_vp.8476275939300953|
+| Class Reservation : cores=4,general_ramp=1:duration=60s,memory=16           |
+| Executed on    : scdg144302                 Pool : zsc14_nb2_ppm            |
+| Queueing time  : Sun Oct 29 14:19:24 2023                                   |
+| Starting time  : Sun Oct 29 14:19:25 2023          Qwait:   0h:00m:01s      |
 | Command        : dc_shell -64 -f ./user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_data_mux_w3_39.tcl |
 +-----------------------------------------------------------------------------+
 +-----------------------------------------------------------------------------+
 | Exit Status    : 0                                                          |
-| Finishing time : Mon Oct 23 13:02:05 2023                                   |
-| CPU time       : Usr 18.477s Sys 0.928s  WC  0h:01m:26s                     |
-| Rusage Stats   : Mem:2198   PF:  574757/291CSv/f:  0/0     Swaps:0          |
-|                :           Msg:    0/0     IOops:  319184/1504Sigs :0          |
+| Finishing time : Sun Oct 29 14:20:15 2023                                   |
+| CPU time       : Usr 18.333s Sys 1.005s  WC  0h:00m:50s                     |
+| Rusage Stats   : Mem:2206   PF:  577295/0  CSv/f:  0/0     Swaps:0          |
+|                :           Msg:    0/0     IOops:  48/1464 Sigs :0          |
 | User Groups    : soc, socenv, ipx_general_user, arborcrest_soc, ncsg76,     |
 |                : i1278proc, i1278, intelall, ncsg78, irw, powdermill,       |
 |                : soc73, gdlusers, srvr10nm                                  |
-| Actual Class Reservation : cores=2,general_ramp=1:duration=60s,memory=32    |
+| Actual Class Reservation : cores=4,general_ramp=1:duration=60s,memory=16    |
 +-----------------------------------------------------------------------------+

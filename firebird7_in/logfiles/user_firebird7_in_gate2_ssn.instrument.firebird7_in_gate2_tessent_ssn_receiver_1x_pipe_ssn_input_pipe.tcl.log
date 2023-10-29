@@ -1,4 +1,4 @@
-Your job has been queued (JobID 7944909053785968, Class SLES12&&32G&&2C, Queue zsc14_express, Slot /XNE/irw/be)
+Your job has been queued (JobID 8476247232303956, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
 
                            Design Compiler Graphical 
                                  DC Ultra (TM)
@@ -1007,17 +1007,17 @@ foreach subDir $synth_subdir_list { file mkdir ${subDir}/ }
 read_file -format verilog {   ../../tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe.v   ../../tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe.v   ../../tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v }
 Loading db file '/p/hdk/cad/designcompiler/Q-2019.12-SP5-1/libraries/syn/gtech.db'
   Loading link library 'gtech'
-Loading verilog files: '/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe.v' '/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe.v' '/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v' 
+Loading verilog files: '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe.v' '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe.v' '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v' 
 Detecting input file type automatically (-rtl or -netlist).
 Reading with Presto HDL Compiler (equivalent to -rtl option).
 Running PRESTO HDLC
-Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe.v
-Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe.v
-Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v
+Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe.v
+Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe.v
+Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe_fsm line 54 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe.v'.
 =================================================================================
 |     Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 =================================================================================
@@ -1026,7 +1026,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe_datapath line 77 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1035,7 +1035,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe_fsm line 54 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe.v'.
 =================================================================================
 |     Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 =================================================================================
@@ -1044,7 +1044,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe_datapath line 80 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1053,7 +1053,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe_datapath line 90 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1062,18 +1062,18 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh line 315 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ====================================================================================
 |      Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ====================================================================================
 | enable_sync_reset_ff_reg | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
 ====================================================================================
-Warning:  /nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v:2681: Net expected_value connected to instance datapath_shifters is declared as reg data type but is not driven by an always block. (VER-1004)
-Warning:  /nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v:2681: Net mask_value connected to instance datapath_shifters is declared as reg data type but is not driven by an always block. (VER-1004)
+Warning:  /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v:2681: Net expected_value connected to instance datapath_shifters is declared as reg data type but is not driven by an always block. (VER-1004)
+Warning:  /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v:2681: Net mask_value connected to instance datapath_shifters is declared as reg data type but is not driven by an always block. (VER-1004)
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_datapath line 776 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ===================================================================================
 |      Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===================================================================================
@@ -1082,7 +1082,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_datapath line 790 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ====================================================================================================
 |              Register Name               |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ====================================================================================================
@@ -1092,7 +1092,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_datapath line 933 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1101,7 +1101,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_datapath line 947 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 =======================================================================================
 |        Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 =======================================================================================
@@ -1110,7 +1110,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_datapath line 1180 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1126,7 +1126,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_datapath line 1217 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 =====================================================================================
 |       Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 =====================================================================================
@@ -1135,7 +1135,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_datapath line 1436 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ===========================================================================================
 |          Register Name          |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===========================================================================================
@@ -1144,7 +1144,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_datapath line 1443 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 =======================================================================================
 |        Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 =======================================================================================
@@ -1153,7 +1153,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_datapath line 1461 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ===========================================================================================
 |          Register Name          |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===========================================================================================
@@ -1162,7 +1162,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_datapath line 1468 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 =======================================================================================
 |        Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 =======================================================================================
@@ -1171,7 +1171,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_datapath line 1486 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ===========================================================================================
 |          Register Name          |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===========================================================================================
@@ -1180,7 +1180,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_datapath line 1493 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 =======================================================================================
 |        Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 =======================================================================================
@@ -1189,7 +1189,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_datapath line 1511 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ===========================================================================================
 |          Register Name          |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===========================================================================================
@@ -1198,7 +1198,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_datapath line 1518 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 =======================================================================================
 |        Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 =======================================================================================
@@ -1207,7 +1207,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_datapath line 2664 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ================================================================================
 |    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ================================================================================
@@ -1215,7 +1215,7 @@ Inferred memory devices in process
 ================================================================================
 
 Statistics for case statements in always block at line 3071 in file
-	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'
+	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
@@ -1223,7 +1223,7 @@ Statistics for case statements in always block at line 3071 in file
 ===============================================
 
 Statistics for case statements in always block at line 3169 in file
-	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'
+	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
@@ -1232,7 +1232,7 @@ Statistics for case statements in always block at line 3169 in file
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_fsm line 2873 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1241,7 +1241,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_fsm line 2881 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 =================================================================================
 |     Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 =================================================================================
@@ -1250,7 +1250,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_fsm line 2915 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ==================================================================================
 |     Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ==================================================================================
@@ -1259,7 +1259,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_fsm line 2920 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 =============================================================================================
 |           Register Name           |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 =============================================================================================
@@ -1281,7 +1281,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_fsm line 3322 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ========================================================================================
 |        Register Name         |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ========================================================================================
@@ -1290,7 +1290,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_fsm line 3330 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ==================================================================================
 |     Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ==================================================================================
@@ -1300,7 +1300,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_fsm line 3344 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ===================================================================================
 |      Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===================================================================================
@@ -1309,7 +1309,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_fsm line 3359 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1318,7 +1318,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_fsm line 3427 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ==============================================================================================
@@ -1327,7 +1327,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_fsm line 3754 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ====================================================================================================
 |              Register Name               |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ====================================================================================================
@@ -1338,7 +1338,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_fsm line 3904 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ===================================================================================
 |      Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===================================================================================
@@ -1347,7 +1347,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_ijtag_registers line 4211 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 =================================================================================================================
 |                     Register Name                     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 =================================================================================================================
@@ -1386,7 +1386,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_ijtag_registers line 4281 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 =======================================================================================================
 |                Register Name                |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 =======================================================================================================
@@ -1398,7 +1398,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_ijtag_registers line 4297 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ====================================================================================
 |      Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ====================================================================================
@@ -1408,7 +1408,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_clock_gen line 4429 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ======================================================================================================
 |               Register Name                |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ======================================================================================================
@@ -1421,7 +1421,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_clock_gen line 4448 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ==================================================================================
 |     Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ==================================================================================
@@ -1430,7 +1430,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_clock_gen line 4485 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 =======================================================================================
 |        Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 =======================================================================================
@@ -1440,7 +1440,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_clock_gen line 4509 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1449,14 +1449,14 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_ssn_scan_host_ssh_clock_gen line 4529 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_scan_host_ssh.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
 | edt_update_ret_reg  | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
 ===============================================================================
 Presto compilation completed successfully.
-Current design is now '/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe.db:firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe'
+Current design is now '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe.db:firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe'
 Loaded 13 designs.
 Current design is 'firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe'.
 firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe_fsm firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe_datapath firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe_fsm firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe_datapath firebird7_in_gate2_tessent_ssn_scan_host_ssh firebird7_in_gate2_tessent_ssn_scan_host_ssh_datapath firebird7_in_gate2_tessent_ssn_scan_host_ssh_fsm firebird7_in_gate2_tessent_ssn_scan_host_ssh_ijtag_registers firebird7_in_gate2_tessent_ssn_scan_host_ssh_clock_gen firebird7_in_gate2_tessent_ssn_scan_host_ssh_datapath_shifters firebird7_in_gate2_tessent_ssn_scan_host_ssh_clock_signals
@@ -7579,7 +7579,7 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:10      11.7     58.05    2721.4       2.0                          
+    0:00:09      11.7     58.05    2721.4       2.0                          
     0:00:10      11.4     64.48    3124.5       2.0                          
     0:00:10      11.4     64.48    3124.5       2.0                          
     0:00:10      11.4     64.48    3124.5       2.0                          
@@ -7603,7 +7603,7 @@ Information: Updating design information... (UID-85)
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
     0:00:10      11.5     63.11    3169.4       2.0                          
-    0:00:11      11.5     60.11    3068.0       2.0                          
+    0:00:10      11.5     60.11    3068.0       2.0                          
     0:00:11      11.1     60.15    3074.3       2.0                          
 
 
@@ -7624,19 +7624,19 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:12      11.1     60.15    3074.3       2.0                          
-    0:00:12      11.1     60.15    3074.3       2.0                          
-    0:00:12      11.1     60.15    3074.3       2.0                          
-    0:00:12      11.1     60.15    3074.3       2.0                          
-    0:00:12      11.1     60.15    3074.3       2.0                          
-    0:00:12      11.1     60.15    3074.3       2.0                          
-    0:00:12      11.1     60.58    3089.4       2.0                          
-    0:00:12      11.1     60.58    3089.4       2.0                          
-    0:00:12      11.1     60.58    3089.4       2.0                          
-    0:00:12      11.1     60.58    3089.4       2.0                          
-    0:00:12      11.1     60.58    3089.4       2.0                          
-    0:00:12      11.1     60.58    3089.4       2.0                          
-    0:00:12      10.2     60.06    3060.3       2.0                          
+    0:00:11      11.1     60.15    3074.3       2.0                          
+    0:00:11      11.1     60.15    3074.3       2.0                          
+    0:00:11      11.1     60.15    3074.3       2.0                          
+    0:00:11      11.1     60.15    3074.3       2.0                          
+    0:00:11      11.1     60.15    3074.3       2.0                          
+    0:00:11      11.1     60.15    3074.3       2.0                          
+    0:00:11      11.1     60.58    3089.4       2.0                          
+    0:00:11      11.1     60.58    3089.4       2.0                          
+    0:00:11      11.1     60.58    3089.4       2.0                          
+    0:00:11      11.1     60.58    3089.4       2.0                          
+    0:00:11      11.1     60.58    3089.4       2.0                          
+    0:00:11      11.1     60.58    3089.4       2.0                          
+    0:00:11      10.2     60.06    3060.3       2.0                          
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -7729,7 +7729,7 @@ firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe_datapath cell r0_
 1
 write -f verilog -output firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe.vg   [check_modules firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe*]
 Current design is 'firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe'.
-Writing verilog file '/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/synthesis_outdir/firebird7_in_gate2.synthesis_dc_shell/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe.vg'.
+Writing verilog file '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/synthesis_outdir/firebird7_in_gate2.synthesis_dc_shell/firebird7_in_gate2_ssn.instrument/firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe.vg'.
 1
 set_dont_touch [get_designs firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe]
 1
@@ -7740,6 +7740,6 @@ exit
 Memory usage for this session 2203 Mbytes.
 Memory usage for this session including child processes 2203 Mbytes.
 CPU usage for this session 21 seconds ( 0.01 hours ).
-Elapsed time for this session 38 seconds ( 0.01 hours ).
+Elapsed time for this session 46 seconds ( 0.01 hours ).
 
 Thank you...

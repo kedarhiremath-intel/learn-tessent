@@ -11,7 +11,7 @@
 //--------------------------------------------------------------------------
 //  File created by: Tessent Shell
 //          Version: 2022.4
-//       Created on: Mon Oct 23 12:51:38 PDT 2023
+//       Created on: Sun Oct 29 14:14:07 PDT 2023
 //--------------------------------------------------------------------------
 
 module firebird7_in_gate1_tessent_tdr_spare_insysbist_tdr (
@@ -31,11 +31,22 @@ reg                 retiming_so ;
  
 // --------- ShiftRegister ---------
  
-always_ff @ (posedge ijtag_tck) begin
+always_ff @ (posedge ijtag_tck or negedge ijtag_reset) begin
+  if (~ijtag_reset) begin
+    tdr[7] <= 1'b0;
+    tdr[6] <= 1'b0;
+    tdr[5] <= 1'b0;
+    tdr[4] <= 1'b0;
+    tdr[3] <= 1'b0;
+    tdr[2] <= 1'b0;
+    tdr[1] <= 1'b0;
+    tdr[0] <= 1'b0;
+  end else begin
   if (ijtag_ce & ijtag_sel) begin
-    tdr <= { 8'b00000000};
+    tdr <= { tdr[7:0]};
   end else if (ijtag_se & ijtag_sel) begin
     tdr <= {ijtag_si,tdr[7:1]};
+  end
   end
 end
  

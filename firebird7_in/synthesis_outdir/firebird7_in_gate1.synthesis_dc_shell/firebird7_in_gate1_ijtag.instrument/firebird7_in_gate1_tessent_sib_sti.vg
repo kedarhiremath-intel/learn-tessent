@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys DC Expert(TM) in wire load mode
 // Version   : Q-2019.12-SP5-1
-// Date      : Mon Oct 23 13:02:04 2023
+// Date      : Sun Oct 29 14:20:23 2023
 /////////////////////////////////////////////////////////////
 
 
@@ -30,8 +30,8 @@ module firebird7_in_gate1_tessent_sib_sti ( ijtag_reset, ijtag_sel, ijtag_si,
          clock_sequence_buf_out_1_, clock_sequence_buf_out_0_,
          ltest_scan_in_buf_out, ltest_clk_buf, occ_ctrl_1_, occ_ctrl_0_, N58,
          occ_ctrl_so_retimed, occ_clock_out, n_1_net_0, n3, n4, n5, n7, n8, n9,
-         n10, n11, n15, n16, n17, n18, n19, n43, n42, n46, n47, n48, net776,
-         net777, net783, n49, n50, n510, n52, n53, n54, n55, n56,
+         n10, n11, n15, n16, n17, n18, n19, n43, n42, n46, n47, n48, net782,
+         net783, net789, n49, n50, n510, n52, n53, n54, n55, n56,
          SYNOPSYS_UNCONNECTED_1, SYNOPSYS_UNCONNECTED_2,
          SYNOPSYS_UNCONNECTED_3, SYNOPSYS_UNCONNECTED_4,
          SYNOPSYS_UNCONNECTED_5, SYNOPSYS_UNCONNECTED_6,
@@ -102,7 +102,7 @@ module firebird7_in_gate1_tessent_sib_sti ( ijtag_reset, ijtag_sel, ijtag_si,
         N51) );
   i0sinv000ab1n02x5 U36 ( .a(ltest_to_reset), .o1(n18) );
   i0sinv000ab1n02x5 U37 ( .a(ltest_scan_en), .o1(n17) );
-  i0slsn080ab1n02x5 retiming_so_reg ( .clkb(ijtag_tck), .d(net783), .o(
+  i0slsn080ab1n02x5 retiming_so_reg ( .clkb(ijtag_tck), .d(net789), .o(
         ijtag_so) );
   i0sfuq000ab1d02x5 occ_ctrl_reg_1 ( .si(n54), .d(N58), .ssb(n43), .clk(
         ltest_clk_buf), .o(occ_ctrl_1_) );
@@ -123,7 +123,7 @@ module firebird7_in_gate1_tessent_sib_sti ( ijtag_reset, ijtag_sel, ijtag_si,
   i0sfuq000ab1d02x5 ltest_to_si_reg ( .si(n54), .d(N51), .ssb(n43), .clk(
         ijtag_to_tck), .o(ltest_to_si) );
   i0sfhz000ab1d03f5 sib_reg ( .si(n54), .d(n48), .ssb(n43), .clk(ijtag_tck), 
-        .o(net783), .so(SYNOPSYS_UNCONNECTED_6) );
+        .o(net789), .so(SYNOPSYS_UNCONNECTED_6) );
   i0sfvz08bab1d12x5 sib_latch_reg ( .si(n54), .d(n42), .ssb(n43), .clkb(
         ijtag_tck), .rb(ijtag_reset), .s(n54), .o(sib_latch), .so(
         SYNOPSYS_UNCONNECTED_7) );
@@ -132,9 +132,9 @@ module firebird7_in_gate1_tessent_sib_sti ( ijtag_reset, ijtag_sel, ijtag_si,
         SYNOPSYS_UNCONNECTED_8) );
   i0stilo00ab1n02x5 U62 ( .o(n54) );
   i0snor042ab1n03x5 U63 ( .a(n49), .b(n50), .o1(n510) );
-  i0smdn022ab1n03x4 U64 ( .b(n52), .a(net776), .sa(net777), .o1(n48) );
+  i0smdn022ab1n03x4 U64 ( .b(n52), .a(net782), .sa(net783), .o1(n48) );
   i0smdn022ab1n03x4 U65 ( .b(n53), .a(n52), .sa(n510), .o1(n42) );
-  i0sinv030ab1n04x5 U66 ( .a(net783), .o1(n52) );
+  i0sinv030ab1n04x5 U66 ( .a(net789), .o1(n52) );
   i0sinv030ab1n04x5 U67 ( .a(sib_latch), .o1(n53) );
   i0sinv030ab1d32x5 U68 ( .a(ijtag_sel), .o1(n49) );
   i0sinv030ab1d32x5 U69 ( .a(ijtag_ue), .o1(n50) );
@@ -145,8 +145,8 @@ module firebird7_in_gate1_tessent_sib_sti ( ijtag_reset, ijtag_sel, ijtag_si,
   i0sinv000ab1n03x5 U73 ( .a(ijtag_from_so), .o1(n15) );
   i0stihi00ab1n02x5 U74 ( .o(n43) );
   i0smd2na2ab1n03x5 U75 ( .c(n56), .b(n16), .a(n15), .sa(sib_latch), .out0(
-        net776) );
-  i0soa0012ab1n03x5 U76 ( .b(ijtag_se), .c(ijtag_ce), .a(ijtag_sel), .o(net777) );
+        net782) );
+  i0soa0012ab1n03x5 U76 ( .b(ijtag_se), .c(ijtag_ce), .a(ijtag_sel), .o(net783) );
   i0saob012ab1n03x5 U77 ( .b(ltest_to_sel), .c(ltest_to_en), .a(n55), .out0(
         ijtag_to_sel) );
 endmodule

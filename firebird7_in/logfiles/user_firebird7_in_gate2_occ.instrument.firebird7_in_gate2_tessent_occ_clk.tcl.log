@@ -1,4 +1,4 @@
-Your job has been queued (JobID 8048005887583034, Class SLES12&&32G&&2C, Queue zsc14_express, Slot /XNE/irw/be)
+Your job has been queued (JobID 8476247232303959, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
 
                            Design Compiler Graphical 
                                  DC Ultra (TM)
@@ -1007,15 +1007,15 @@ foreach subDir $synth_subdir_list { file mkdir ${subDir}/ }
 read_file -format verilog ../../tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v
 Loading db file '/p/hdk/cad/designcompiler/Q-2019.12-SP5-1/libraries/syn/gtech.db'
   Loading link library 'gtech'
-Loading verilog file '/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'
+Loading verilog file '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'
 Detecting input file type automatically (-rtl or -netlist).
 Reading with Presto HDL Compiler (equivalent to -rtl option).
 Running PRESTO HDLC
-Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v
+Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_occ_clk_control line 164 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1024,7 +1024,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_occ_clk_control line 194 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1033,7 +1033,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_occ_clk_control line 199 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1042,7 +1042,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_occ_clk_control line 216 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1051,7 +1051,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_occ_clk_control line 224 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1060,7 +1060,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_occ_clk_control line 228 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1069,7 +1069,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_occ_clk_control line 237 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
 =================================================================================
 |     Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 =================================================================================
@@ -1078,7 +1078,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_occ_clk_control line 246 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
 ==========================================================================================
 |         Register Name          |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ==========================================================================================
@@ -1087,7 +1087,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_occ_clk_control line 255 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
 ===================================================================================
 |      Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===================================================================================
@@ -1096,7 +1096,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_occ_clk_control line 264 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1104,7 +1104,7 @@ Inferred memory devices in process
 ===============================================================================
 
 Statistics for case statements in always block at line 304 in file
-	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'
+	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
@@ -1113,7 +1113,7 @@ Statistics for case statements in always block at line 304 in file
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_occ_clk_shift_reg line 304 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1122,7 +1122,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_occ_clk_sib line 339 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1131,7 +1131,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_occ_clk_sib line 349 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1141,14 +1141,14 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate2_tessent_occ_clk_sib line 354 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
 |       sib_reg       | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
 ===============================================================================
 Presto compilation completed successfully.
-Current design is now '/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.db:firebird7_in_gate2_tessent_occ_clk'
+Current design is now '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.db:firebird7_in_gate2_tessent_occ_clk'
 Loaded 4 designs.
 Current design is 'firebird7_in_gate2_tessent_occ_clk'.
 firebird7_in_gate2_tessent_occ_clk firebird7_in_gate2_tessent_occ_clk_control firebird7_in_gate2_tessent_occ_clk_shift_reg firebird7_in_gate2_tessent_occ_clk_sib
@@ -7238,7 +7238,7 @@ Information: Design 'firebird7_in_gate2_tessent_occ_clk' has no optimization con
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:09      12.6      0.00       0.0       0.2                          
+    0:00:10      12.6      0.00       0.0       0.2                          
     0:00:10      12.6      0.00       0.0       0.2                          
     0:00:10      12.6      0.00       0.0       0.2                          
     0:00:10      12.6      0.00       0.0       0.2                          
@@ -7358,7 +7358,7 @@ firebird7_in_gate2_tessent_occ_clk_shift_reg cell FF_reg[3] FF_reg_3
 1
 write -f verilog -output firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.vg   [check_modules firebird7_in_gate2_tessent_occ_clk*]
 Current design is 'firebird7_in_gate2_tessent_occ_clk'.
-Writing verilog file '/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/synthesis_outdir/firebird7_in_gate2.synthesis_dc_shell/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.vg'.
+Writing verilog file '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/synthesis_outdir/firebird7_in_gate2.synthesis_dc_shell/firebird7_in_gate2_occ.instrument/firebird7_in_gate2_tessent_occ_clk.vg'.
 1
 set_dont_touch [get_designs firebird7_in_gate2_tessent_occ_clk]
 1
@@ -7366,7 +7366,7 @@ exit
 
 Memory usage for this session 2165 Mbytes.
 Memory usage for this session including child processes 2165 Mbytes.
-CPU usage for this session 18 seconds ( 0.01 hours ).
-Elapsed time for this session 35 seconds ( 0.01 hours ).
+CPU usage for this session 19 seconds ( 0.01 hours ).
+Elapsed time for this session 45 seconds ( 0.01 hours ).
 
 Thank you...

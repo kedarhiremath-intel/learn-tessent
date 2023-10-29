@@ -8,3 +8,5 @@ dofile ./dofiles/3rd_pass/4.Specify_scan_configuration.do
 dofile ./dofiles/3rd_pass/5.Analyze_scan_chains.do
 dofile ./dofiles/3rd_pass/6.Insert_test_logic.do
 
+exit
+

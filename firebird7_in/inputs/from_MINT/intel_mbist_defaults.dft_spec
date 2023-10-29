@@ -1,63 +1,64 @@
     DefaultsSpecification(company) {
         DftSpecification {
-            rtl_extension                : v  ;                       // default: v
-            gate_extension               : vg  ;                      // default: vg
+            rtl_extension : v;
+            gate_extension : vg ;
             system_verilog_rtl_extension : sv;
-            allow_system_verilog         : on;
-            reuse_modules_when_possible  : auto ;                     // default: auto
-            use_rtl_cells                : off;                     // default: auto
+            allow_system_verilog : on;
+            reuse_modules_when_possible : auto;
+            use_rtl_cells : off;
             use_synchronizer_cell_with_reset : on;
-            use_rtl_synchronizer_cell    : off;
-            dft_cell_selection_name      : ctech_lib ;
-            insert_tck_occ_for_scan_tested_instruments : on;
-            compress_concatenated_netlist : on;
+            use_rtl_synchronizer_cell : off;
+            dft_cell_selection_name : ctech_lib;
+            insert_tck_occ_for_scan_tested_instruments : off; // Set "off" to "on"
+            compress_concatenated_netlist : off; // Set "off" to "on"
             MemoryBist {
-                clock_partitioning                  : per_clock_domain ; // legal  : (per_clock_domain) per_sync_clock_group 
-                max_steps_per_controller            : 1         ;    // default: unlimited
-                max_memories_per_step               : unlimited         ;    // default: unlimited
-                max_test_time_per_controller        : unlimited        ;         // default: 500ms { symbols: unlimited }
-                max_power_per_step                  : unlimited ;                  // default: 500 { symbols: unlimited }
-                single_memory_dimension_per_step    : off     ;               // default: off
-                physical_domain_size_ratio          : 100;
-                max_comparators_per_physical_domain : unlimited;
-                memory_interface_reuse_method       : non_unique_instances_only;
+                clock_partitioning : per_sync_clock_group; // Set "per_sync_clock_group" to "per_clock_domain"???
+                max_steps_per_controller : 1;
+                max_memories_per_step : unlimited;
+                max_test_time_per_controller : unlimited;
+                max_power_per_step : unlimited ;
+                single_memory_dimension_per_step : off;
+                //physical_domain_size_ratio : 100;
+                //max_comparators_per_physical_domain : unlimited;
+                //memory_interface_reuse_method : non_unique_instances_only;
                 ControllerOptions {
-                    algorithm : IntelLVPMOVIFx           ;
-                    operation_set : SyncCustom           ;
-                    gate_bist_clock_in_functional_mode   : with_clock_gating_cell;      // default: off
-                    bist_on_async_reset                  : on;
-                    flop_async_reset                     : on;
-                    comparator_location                : per_interface ;              // legal  : shared_in_controller (per_interface) 
+                    //algorithm : IntelLVPMOVIFx;
+                    operation_set : SyncCustom;
+                    gate_bist_clock_in_functional_mode : with_clock_gating_cell;
+                    bist_on_async_reset : on;
+                    flop_async_reset : on;
+                    comparator_location : per_interface;
                     functional_debug_mode : on;
 	            use_multicycle_paths : on;
-		    include_asynchronous_interface     : off;
+		    include_asynchronous_interface : off;
                 }
                 DiagnosisOptions {
                     StopOnErrorOptions {
-                        failure_limit : 65536 ;                                         // default: 4096 { symbols: off }
+                        failure_limit : 65536;
                     }
                     rom_diagnosis : off;
                 }
                 AlgorithmResourceOptions {
-                    data_register_bits                   : 4 ;         // default: auto RF = 8 SRAM = 32 fix in flow
-                    soft_instruction_count               : 0 ;
-                    delay_counter_bits                   : 8 ;      // default: auto
-                    soft_algorithm_address_min_max       : on ;       // default: off
-                    a_equals_b_command_allowed           : on ;        // default: off { symbols: auto }
-                    address_segment_x0_y0_allowed        : off ;       // default: off { symbols: auto }
-                    max_x0_segment_bits                  : 1 ;         // default: 1 { symbols: auto }
-                    max_y0_segment_bits                  : 1 ;         // default: 1 { symbols: auto }
+                    data_register_bits : 4;
+                    soft_instruction_count : 0; // Set "0" to "8"
+                    delay_counter_bits : 8;
+                    soft_algorithm_address_min_max : on;
+                    a_equals_b_command_allowed : on;
+                    address_segment_x0_y0_allowed : off;
+                    max_x0_segment_bits : 1;
+                    max_y0_segment_bits : 1;
                 }
                 MemoryInterfaceOptions {
-                    bist_data_in_pipelining     : off ;     // default: off { symbols: on off }
-                    bist_data_out_pipelining    : off ;     // default: off { symbols: per_port }
-                    local_comparators_per_go_id : 1   ;     // default: 1 { symbols: all }
-                    observation_xor_size        : 3   ;     // default: 3 { symbols: off }
-                    repair_analysis_present     : auto  ;    // default: auto { symbols: off auto }
-                    scan_bypass_logic           : sync_mux    ; // legal  : async_mux none sync_mux (from_library) 
+                    bist_data_in_pipelining : off;
+                    bist_data_out_pipelining : off;
+                    local_comparators_per_go_id : 1;
+                    observation_xor_size : 3;
+                    repair_analysis_present : auto;
+                    scan_bypass_logic : none; // Set "none" to "sync_mux"
                 }
                 MemoryClusterOptions {
                 }
             }
         }
     }
+

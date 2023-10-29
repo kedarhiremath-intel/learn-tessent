@@ -1,4 +1,4 @@
-Your job has been queued (JobID 7944390404322730, Class SLES12&&32G&&2C, Queue zsc14_express, Slot /XNE/irw/be)
+Your job has been queued (JobID 856353723998503, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
 
                            Design Compiler Graphical 
                                  DC Ultra (TM)
@@ -1005,17 +1005,17 @@ foreach subDir $synth_subdir_list { file mkdir ${subDir}/ }
 read_sverilog {   ../../tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper.sv   ../../tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper.sv   ../../tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper.sv }
 Loading db file '/p/hdk/cad/designcompiler/Q-2019.12-SP5-1/libraries/syn/gtech.db'
   Loading link library 'gtech'
-Loading sverilog files: '/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper.sv' '/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper.sv' '/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper.sv' 
+Loading sverilog files: '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper.sv' '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper.sv' '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper.sv' 
 Detecting input file type automatically (-rtl or -netlist).
 Reading with Presto HDL Compiler (equivalent to -rtl option).
 Running PRESTO HDLC
-Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper.sv
-Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper.sv
-Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper.sv
+Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper.sv
+Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper.sv
+Compiling source file /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper.sv
 
 Inferred memory devices in process
 	in routine firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper line 31 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper.sv'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1024,7 +1024,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper line 43 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper.sv'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1033,7 +1033,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper line 31 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper.sv'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1042,7 +1042,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper line 43 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper.sv'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1051,7 +1051,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper line 31 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper.sv'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -1060,14 +1060,14 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper line 43 in file
-		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper.sv'.
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
 |     retime_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
 ===============================================================================
 Presto compilation completed successfully.
-Current design is now '/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper.db:firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper'
+Current design is now '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper.db:firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper'
 Loaded 3 designs.
 Current design is 'firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper'.
 firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper
@@ -7141,19 +7141,19 @@ Information: Design 'firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x2
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:08       7.3      0.00       0.0       0.1                          
-    0:00:09       7.3      0.00       0.0       0.1                          
-    0:00:09       7.3      0.00       0.0       0.1                          
-    0:00:09       7.3      0.00       0.0       0.1                          
-    0:00:09       7.3      0.00       0.0       0.1                          
-    0:00:09       7.2      0.00       0.0       0.1                          
-    0:00:09       7.2      0.00       0.0       0.1                          
-    0:00:09       7.2      0.00       0.0       0.1                          
-    0:00:09       7.2      0.00       0.0       0.1                          
-    0:00:09       7.2      0.00       0.0       0.1                          
-    0:00:09       7.2      0.00       0.0       0.1                          
-    0:00:09       7.2      0.00       0.0       0.1                          
-    0:00:09       7.2      0.00       0.0       0.1                          
+    0:00:10       7.3      0.00       0.0       0.1                          
+    0:00:11       7.3      0.00       0.0       0.1                          
+    0:00:11       7.3      0.00       0.0       0.1                          
+    0:00:11       7.3      0.00       0.0       0.1                          
+    0:00:11       7.3      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
 
 
 
@@ -7164,9 +7164,9 @@ Information: Design 'firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x2
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:09       7.2      0.00       0.0       0.1                          
-    0:00:09       7.2      0.00       0.0       0.1                          
-    0:00:09       7.2      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
 
 
   Beginning Design Rule Fixing  (min_capacitance)
@@ -7176,7 +7176,7 @@ Information: Design 'firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x2
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:09       7.2      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -7186,17 +7186,17 @@ Information: Design 'firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x2
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:09       7.2      0.00       0.0       0.1                          
-    0:00:09       7.2      0.00       0.0       0.1                          
-    0:00:09       7.2      0.00       0.0       0.1                          
-    0:00:09       7.2      0.00       0.0       0.1                          
-    0:00:09       7.2      0.00       0.0       0.1                          
-    0:00:09       7.2      0.00       0.0       0.1                          
-    0:00:09       7.2      0.00       0.0       0.1                          
-    0:00:09       7.2      0.00       0.0       0.1                          
-    0:00:09       7.2      0.00       0.0       0.1                          
-    0:00:09       7.2      0.00       0.0       0.1                          
-    0:00:09       7.2      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
+    0:00:11       7.2      0.00       0.0       0.1                          
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -7250,7 +7250,7 @@ firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem
 1
 write -f verilog -output firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper.vg   [check_modules firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper]
 Current design is 'firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper'.
-Writing verilog file '/nfs/site/disks/zsc14.xne_irw_003/khiremat/learn-tessent/firebird7_in/synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper.vg'.
+Writing verilog file '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper.vg'.
 1
 set_dont_touch [get_designs firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper]
 1
@@ -7262,7 +7262,7 @@ exit
 
 Memory usage for this session 2165 Mbytes.
 Memory usage for this session including child processes 2165 Mbytes.
-CPU usage for this session 18 seconds ( 0.01 hours ).
-Elapsed time for this session 79 seconds ( 0.02 hours ).
+CPU usage for this session 19 seconds ( 0.01 hours ).
+Elapsed time for this session 48 seconds ( 0.01 hours ).
 
 Thank you...

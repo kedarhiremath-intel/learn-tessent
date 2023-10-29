@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys DC Expert(TM) in wire load mode
 // Version   : Q-2019.12-SP5-1
-// Date      : Tue Oct 24 19:31:05 2023
+// Date      : Sun Oct 29 14:41:30 2023
 /////////////////////////////////////////////////////////////
 
 
@@ -20,9 +20,9 @@ module firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_control (
          n82, n88, n94, n100, n106, n112, n118, n124, n130, n136, n142, n148,
          n154, n160, n166, n167, n168, n169, n170, n171, n172, n173, n174,
          n175, n176, n177, n178, n179, n180, n181, n182, n183, n184, n185,
-         n186, net1251, net1253, net1255, net1278, net1281, net1286, net1288,
-         net1298, net1300, net1321, net1806, net1819, net1817, net1828,
-         net1827, n_cell_2187_net2055, n_cell_2187_net2054, n187, n188, n189,
+         n186, net1260, net1262, net1264, net1287, net1290, net1295, net1297,
+         net1307, net1309, net1330, net1815, net1828, net1826, net1837,
+         net1836, n_cell_2187_net2064, n_cell_2187_net2063, n187, n188, n189,
          n190, n191, n192, n193, n194, n195, n196, n197, n198, n199, n200,
          n201, n202, n203, n204, n205, n206, n207, n208, n209, n210, n211,
          n212, n213, n214, n215, n216, n217, n218, n219, n220, n221, n222,
@@ -148,27 +148,27 @@ module firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_control (
   i0stilo00ab1n02x5 U189 ( .o(n195) );
   i0snanp02ab1n06x5 U190 ( .a(n188), .b(n187), .o1(n185) );
   i0sinv040ab1d32x5 U191 ( .a(n210), .o1(n187) );
-  i0sorn002ab1n12x5 U192 ( .a(net1300), .b(n248), .o(n188) );
-  i0sinv000ab1n02x5 U193 ( .a(net1281), .o1(n189) );
+  i0sorn002ab1n12x5 U192 ( .a(net1309), .b(n248), .o(n188) );
+  i0sinv000ab1n02x5 U193 ( .a(net1290), .o1(n189) );
   i0sinv030ab1n04x5 U194 ( .a(tdr_18_), .o1(n222) );
-  i0smbc003ab1n03x7 U195 ( .a(net1827), .sa(tdr_18_), .b(net1321), .sb(tdr_17_), .c(net1819), .sc(sol_thresh[13]), .o(n169) );
-  i0sinv040ab1n03x5 U196 ( .a(sol_thresh[8]), .o1(net1281) );
-  i0smdn022ab1n03x4 U197 ( .b(n219), .a(n222), .sa(net1806), .o1(n160) );
+  i0smbc003ab1n03x7 U195 ( .a(net1836), .sa(tdr_18_), .b(net1330), .sb(tdr_17_), .c(net1828), .sc(sol_thresh[13]), .o(n169) );
+  i0sinv040ab1n03x5 U196 ( .a(sol_thresh[8]), .o1(net1290) );
+  i0smdn022ab1n03x4 U197 ( .b(n219), .a(n222), .sa(net1815), .o1(n160) );
   i0sinv030ab1n04x5 U198 ( .a(tdr_2_), .o1(n249) );
-  i0smdn022ab1n03x4 U199 ( .b(n248), .a(n252), .sa(net1806), .o1(n58) );
-  i0smdn022ab1n06x4 U200 ( .b(n244), .a(n247), .sa(net1806), .o1(n70) );
+  i0smdn022ab1n03x4 U199 ( .b(n248), .a(n252), .sa(net1815), .o1(n58) );
+  i0smdn022ab1n06x4 U200 ( .b(n244), .a(n247), .sa(net1815), .o1(n70) );
   i0sinv000ab1n06x5 U201 ( .a(tdr_8_), .o1(n237) );
   i0sinv030ab1n08x5 U202 ( .a(tdr_3_), .o1(n247) );
   i0sinv000ab1n03x5 U203 ( .a(n241), .o1(n191) );
   i0sinv000ab1n02x5 U204 ( .a(sol_thresh[1]), .o1(n240) );
-  i0smdn022ab1n03x4 U205 ( .b(n230), .a(n202), .sa(net1806), .o1(n112) );
+  i0smdn022ab1n03x4 U205 ( .b(n230), .a(n202), .sa(net1815), .o1(n112) );
   i0sinv000ab1n02x5 U206 ( .a(sol_thresh[6]), .o1(n230) );
   i0sinv030ab1n04x5 U207 ( .a(tdr_10_), .o1(n202) );
   i0sinv030ab1n02x5 U208 ( .a(sol_thresh[12]), .o1(n197) );
   i0sinv030ab1n02x5 U209 ( .a(sol_thresh[9]), .o1(n226) );
   i0sinv040ab1n03x5 U210 ( .a(tdr_9_), .o1(n235) );
   i0sinv030ab1n02x5 U211 ( .a(sol_thresh[11]), .o1(n223) );
-  i0sinv000ab1n03x5 U212 ( .a(n_cell_2187_net2055), .o1(net1806) );
+  i0sinv000ab1n03x5 U212 ( .a(n_cell_2187_net2064), .o1(net1815) );
   i0sinv000ab1n03x5 U213 ( .a(n239), .o1(n194) );
   i0sinv000ab1n03x5 U214 ( .a(tdr_13_), .o1(n228) );
   i0sinv000ab1n03x5 U215 ( .a(ijtag_se), .o1(n198) );
@@ -176,51 +176,51 @@ module firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_control (
   i0sinv000ab1n03x5 U217 ( .a(tdr_6_), .o1(n207) );
   i0sinv000ab1n02x5 U218 ( .a(sol_thresh[3]), .o1(n236) );
   i0sinv000ab1n03x5 U219 ( .a(tdr_7_), .o1(n208) );
-  i0smdn022ab1n03x4 U220 ( .b(n237), .a(n204), .sa(n_cell_2187_net2055), .o1(
+  i0smdn022ab1n03x4 U220 ( .b(n237), .a(n204), .sa(n_cell_2187_net2064), .o1(
         n100) );
-  i0smdn022ab1n02x4 U221 ( .b(n228), .a(n226), .sa(n_cell_2187_net2055), .o1(
+  i0smdn022ab1n02x4 U221 ( .b(n228), .a(n226), .sa(n_cell_2187_net2064), .o1(
         n130) );
-  i0soai122ab1n03x5 U222 ( .b(net1253), .c(n220), .d(net1255), .e(n218), .a(
+  i0soai122ab1n03x5 U222 ( .b(net1262), .c(n220), .d(net1264), .e(n218), .a(
         n217), .o1(n167) );
   i0sinv000ab1n03x5 U223 ( .a(jam_edt_channels_in), .o1(n250) );
   i0sinv000ab1n03x5 U224 ( .a(sol_init), .o1(n244) );
   i0sinv000ab1n03x5 U225 ( .a(n243), .o1(n192) );
   i0sinv000ab1n03x5 U226 ( .a(n233), .o1(n193) );
   i0snanp03ab1n03x5 U227 ( .a(n199), .b(n200), .c(n201), .o1(n170) );
-  i0snanb02ab1n02x5 U228 ( .a(net1251), .b(tdr_17_), .out0(n200) );
-  i0smbn022ab1n03x5 U229 ( .b(tdr_12_), .a(n189), .sa(n_cell_2187_net2055), 
+  i0snanb02ab1n02x5 U228 ( .a(net1260), .b(tdr_17_), .out0(n200) );
+  i0smbn022ab1n03x5 U229 ( .b(tdr_12_), .a(n189), .sa(n_cell_2187_net2064), 
         .o(n124) );
   i0snanp02ab1n03x5 U230 ( .a(ijtag_ue), .b(ijtag_sel), .o1(
-        n_cell_2187_net2055) );
-  i0snanb02ab1n02x5 U231 ( .a(net1253), .b(tdr_16_), .out0(n201) );
-  i0sinv000ab1n02x5 U232 ( .a(tdr_16_), .o1(net1286) );
-  i0sinv040ab1n06x5 U233 ( .a(tdr_16_), .o1(n_cell_2187_net2054) );
+        n_cell_2187_net2064) );
+  i0snanb02ab1n02x5 U231 ( .a(net1262), .b(tdr_16_), .out0(n201) );
+  i0sinv000ab1n02x5 U232 ( .a(tdr_16_), .o1(net1295) );
+  i0sinv040ab1n06x5 U233 ( .a(tdr_16_), .o1(n_cell_2187_net2063) );
   i0snona22ab1n02x5 U234 ( .b(ijtag_ce), .c(n198), .a(ijtag_sel), .out0(
-        net1251) );
-  i0snanp02ab1n03x5 U235 ( .a(net1300), .b(net1298), .o1(net1253) );
-  i0snanp02ab1n03x5 U236 ( .a(ijtag_ce), .b(ijtag_sel), .o1(net1300) );
+        net1260) );
+  i0snanp02ab1n03x5 U235 ( .a(net1309), .b(net1307), .o1(net1262) );
+  i0snanp02ab1n03x5 U236 ( .a(ijtag_ce), .b(ijtag_sel), .o1(net1309) );
   i0sinv000ab1n02x5 U237 ( .a(tdr_2_), .o1(n190) );
-  i0soai222ab1n03x5 U238 ( .a(net1251), .b(net1286), .c(net1253), .d(n225), 
-        .e(net1255), .f(n223), .o1(n171) );
+  i0soai222ab1n03x5 U238 ( .a(net1260), .b(net1295), .c(net1262), .d(n225), 
+        .e(net1264), .f(n223), .o1(n171) );
   i0sinv030ab1n04x5 U239 ( .a(tdr_11_), .o1(n196) );
-  i0smbc003ab1n03x7 U240 ( .a(net1827), .sa(n194), .b(net1828), .sb(n191), .c(
-        net1819), .sc(sol_thresh[2]), .o(n180) );
-  i0smdn022ab1n03x4 U241 ( .b(n224), .a(n227), .sa(net1806), .o1(n136) );
-  i0smbc003ab1n03x7 U242 ( .a(net1817), .sa(n191), .b(net1828), .sb(n192), .c(
-        net1819), .sc(sol_thresh[1]), .o(n181) );
-  i0smbc003ab1n03x7 U243 ( .a(net1827), .sa(tdr_11_), .b(net1828), .sb(n193), 
-        .c(net1819), .sc(sol_thresh[6]), .o(n176) );
-  i0smbc003ab1n03x7 U244 ( .a(net1817), .sa(tdr_8_), .b(net1828), .sb(n194), 
-        .c(net1819), .sc(sol_thresh[3]), .o(n179) );
-  i0soai222ab1n06x5 U245 ( .a(net1298), .b(net1278), .c(net1253), .d(n231), 
+  i0smbc003ab1n03x7 U240 ( .a(net1836), .sa(n194), .b(net1837), .sb(n191), .c(
+        net1828), .sc(sol_thresh[2]), .o(n180) );
+  i0smdn022ab1n03x4 U241 ( .b(n224), .a(n227), .sa(net1815), .o1(n136) );
+  i0smbc003ab1n03x7 U242 ( .a(net1826), .sa(n191), .b(net1837), .sb(n192), .c(
+        net1828), .sc(sol_thresh[1]), .o(n181) );
+  i0smbc003ab1n03x7 U243 ( .a(net1836), .sa(tdr_11_), .b(net1837), .sb(n193), 
+        .c(net1828), .sc(sol_thresh[6]), .o(n176) );
+  i0smbc003ab1n03x7 U244 ( .a(net1826), .sa(tdr_8_), .b(net1837), .sb(n194), 
+        .c(net1828), .sc(sol_thresh[3]), .o(n179) );
+  i0soai222ab1n06x5 U245 ( .a(net1307), .b(net1287), .c(net1262), .d(n231), 
         .e(n216), .f(n229), .o1(n175) );
-  i0smbc003ab1n02x5 U246 ( .a(net1817), .sa(tdr_4_), .b(net1321), .sb(tdr_3_), 
-        .c(net1819), .sc(sol_init), .o(n183) );
+  i0smbc003ab1n02x5 U246 ( .a(net1826), .sa(tdr_4_), .b(net1330), .sb(tdr_3_), 
+        .c(net1828), .sc(sol_init), .o(n183) );
   i0sinv000ab1n02x5 U247 ( .a(tdr_11_), .o1(n231) );
-  i0smdn022ab1n02x5 U248 ( .b(n197), .a(n_cell_2187_net2054), .sa(net1806), 
+  i0smdn022ab1n02x5 U248 ( .b(n197), .a(n_cell_2187_net2063), .sa(net1815), 
         .o1(n148) );
-  i0snanb02ab1n03x5 U249 ( .a(net1300), .b(sol_thresh[12]), .out0(n199) );
-  i0sinv000ab1n06x5 U250 ( .a(tdr_17_), .o1(net1288) );
+  i0snanb02ab1n03x5 U249 ( .a(net1309), .b(sol_thresh[12]), .out0(n199) );
+  i0sinv000ab1n06x5 U250 ( .a(tdr_17_), .o1(net1297) );
   i0sinv000ab1n02x5 U251 ( .a(tdr_10_), .o1(n233) );
   i0sinv000ab1n02x5 U252 ( .a(n234), .o1(n203) );
   i0sinv000ab1n03x5 U253 ( .a(n203), .o1(n204) );
@@ -231,56 +231,56 @@ module firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_control (
   i0sinv000ab1n02x5 U258 ( .a(tdr_7_), .o1(n239) );
   i0sinv020ab1n04x5 U259 ( .a(tdr_5_), .o1(n209) );
   i0sinv000ab1n02x5 U260 ( .a(tdr_5_), .o1(n243) );
-  i0soai222ab1n03x5 U261 ( .a(net1251), .b(n243), .c(net1253), .d(n245), .e(
-        net1300), .f(n242), .o1(n182) );
-  i0smdn022ab1n02x5 U262 ( .b(n240), .a(n209), .sa(net1806), .o1(n82) );
+  i0soai222ab1n03x5 U261 ( .a(net1260), .b(n243), .c(net1262), .d(n245), .e(
+        net1309), .f(n242), .o1(n182) );
+  i0smdn022ab1n02x5 U262 ( .b(n240), .a(n209), .sa(net1815), .o1(n82) );
   i0sorn002ab1n03x5 U263 ( .a(n214), .b(n215), .o(n210) );
-  i0smdn022ab1n02x5 U264 ( .b(n236), .a(n208), .sa(net1806), .o1(n94) );
-  i0smdn022ab1n02x5 U265 ( .b(n238), .a(n207), .sa(net1806), .o1(n88) );
-  i0smdn022ab1n02x5 U266 ( .b(n235), .a(n232), .sa(n_cell_2187_net2055), .o1(
+  i0smdn022ab1n02x5 U264 ( .b(n236), .a(n208), .sa(net1815), .o1(n94) );
+  i0smdn022ab1n02x5 U265 ( .b(n238), .a(n207), .sa(net1815), .o1(n88) );
+  i0smdn022ab1n02x5 U266 ( .b(n235), .a(n232), .sa(n_cell_2187_net2064), .o1(
         n106) );
-  i0soai222ab1n02x7 U267 ( .a(net1251), .b(n235), .c(net1253), .d(n237), .e(
+  i0soai222ab1n02x7 U267 ( .a(net1260), .b(n235), .c(net1262), .d(n237), .e(
         n216), .f(n234), .o1(n178) );
-  i0smdn022ab1n02x5 U268 ( .b(n196), .a(n229), .sa(n_cell_2187_net2055), .o1(
+  i0smdn022ab1n02x5 U268 ( .b(n196), .a(n229), .sa(n_cell_2187_net2064), .o1(
         n118) );
-  i0sinv000ab1n02x5 U269 ( .a(tdr_12_), .o1(net1278) );
-  i0soai222ab1n02x7 U270 ( .a(net1298), .b(n233), .c(net1253), .d(n235), .e(
-        net1255), .f(n232), .o1(n177) );
-  i0smbc003ab1n02x7 U271 ( .a(net1827), .sa(n206), .b(net1828), .sb(tdr_0_), 
-        .c(net1819), .sc(jam_edt_channels_in), .o(n186) );
-  i0sorn002ab1n02x5 U272 ( .a(net1251), .b(n247), .o(n211) );
+  i0sinv000ab1n02x5 U269 ( .a(tdr_12_), .o1(net1287) );
+  i0soai222ab1n02x7 U270 ( .a(net1307), .b(n233), .c(net1262), .d(n235), .e(
+        net1264), .f(n232), .o1(n177) );
+  i0smbc003ab1n02x7 U271 ( .a(net1836), .sa(n206), .b(net1837), .sb(tdr_0_), 
+        .c(net1828), .sc(jam_edt_channels_in), .o(n186) );
+  i0sorn002ab1n02x5 U272 ( .a(net1260), .b(n247), .o(n211) );
   i0sinv020ab1n04x5 U273 ( .a(tdr_4_), .o1(n245) );
   i0sinv030ab1n04x5 U274 ( .a(tdr_0_), .o1(n251) );
   i0sinv030ab1n02x5 U275 ( .a(sol_mask[0]), .o1(n218) );
-  i0sinv000ab1n03x5 U276 ( .a(net1251), .o1(net1827) );
-  i0sinv000ab1n03x5 U277 ( .a(net1253), .o1(net1828) );
-  i0snanp03ab1n03x5 U278 ( .a(ijtag_se), .b(ijtag_sel), .c(n216), .o1(net1298)
+  i0sinv000ab1n03x5 U276 ( .a(net1260), .o1(net1836) );
+  i0sinv000ab1n03x5 U277 ( .a(net1262), .o1(net1837) );
+  i0snanp03ab1n03x5 U278 ( .a(ijtag_se), .b(ijtag_sel), .c(n216), .o1(net1307)
          );
   i0snanp02ab1n03x5 U279 ( .a(ijtag_ce), .b(ijtag_sel), .o1(n216) );
-  i0sorn002ab1n02x5 U280 ( .a(net1253), .b(n190), .o(n212) );
+  i0sorn002ab1n02x5 U280 ( .a(net1262), .b(n190), .o(n212) );
   i0sorn002ab1n06x5 U281 ( .a(n216), .b(n246), .o(n213) );
   i0snand23ab1n03x5 U282 ( .a(n211), .b(n212), .c(n213), .o1(n184) );
-  i0snorp02ab1n02x5 U283 ( .a(net1298), .b(n190), .o1(n214) );
-  i0snorp02ab1n02x5 U284 ( .a(net1253), .b(n205), .o1(n215) );
-  i0sinv000ab1n03x5 U285 ( .a(net1298), .o1(net1817) );
-  i0sinv000ab1n03x5 U286 ( .a(net1255), .o1(net1819) );
-  i0smdn022ab1n02x5 U287 ( .b(n245), .a(n242), .sa(n_cell_2187_net2055), .o1(
+  i0snorp02ab1n02x5 U283 ( .a(net1307), .b(n190), .o1(n214) );
+  i0snorp02ab1n02x5 U284 ( .a(net1262), .b(n205), .o1(n215) );
+  i0sinv000ab1n03x5 U285 ( .a(net1307), .o1(net1826) );
+  i0sinv000ab1n03x5 U286 ( .a(net1264), .o1(net1828) );
+  i0smdn022ab1n02x5 U287 ( .b(n245), .a(n242), .sa(n_cell_2187_net2064), .o1(
         n76) );
-  i0soai222ab1n03x5 U288 ( .a(net1251), .b(n228), .c(net1253), .d(net1278), 
-        .e(net1281), .f(net1255), .o1(n174) );
-  i0soai222ab1n03x5 U289 ( .a(net1298), .b(n227), .c(net1253), .d(n228), .e(
-        net1300), .f(n226), .o1(n173) );
-  i0smdn022ab1n03x4 U290 ( .b(n218), .a(n220), .sa(net1806), .o1(n166) );
+  i0soai222ab1n03x5 U288 ( .a(net1260), .b(n228), .c(net1262), .d(net1287), 
+        .e(net1290), .f(net1264), .o1(n174) );
+  i0soai222ab1n03x5 U289 ( .a(net1307), .b(n227), .c(net1262), .d(n228), .e(
+        net1309), .f(n226), .o1(n173) );
+  i0smdn022ab1n03x4 U290 ( .b(n218), .a(n220), .sa(net1815), .o1(n166) );
   i0sinv000ab1n02x5 U291 ( .a(sol_thresh[10]), .o1(n224) );
   i0sinv000ab1n03x5 U292 ( .a(sol_thresh[13]), .o1(n221) );
-  i0sinv000ab1n03x5 U293 ( .a(net1253), .o1(net1321) );
-  i0snanp02ab1n03x5 U294 ( .a(ijtag_ce), .b(ijtag_sel), .o1(net1255) );
+  i0sinv000ab1n03x5 U293 ( .a(net1262), .o1(net1330) );
+  i0snanp02ab1n03x5 U294 ( .a(ijtag_ce), .b(ijtag_sel), .o1(net1264) );
   i0stihi00ab1n02x5 U295 ( .o(n164) );
   i0sinv000ab1n02x5 U296 ( .a(sol_thresh[14]), .o1(n219) );
-  i0smbc003ab1n03x7 U297 ( .a(net1827), .sa(tdr_19_), .b(net1321), .sb(tdr_18_), .c(net1819), .sc(sol_thresh[14]), .o(n168) );
-  i0smdn022ab1n02x5 U298 ( .b(n223), .a(n225), .sa(net1806), .o1(n142) );
-  i0smdn022ab1n02x5 U299 ( .b(n221), .a(net1288), .sa(net1806), .o1(n154) );
-  i0smbc003ab1n03x7 U300 ( .a(net1827), .sa(tdr_15_), .b(net1321), .sb(tdr_14_), .c(net1819), .sc(sol_thresh[10]), .o(n172) );
+  i0smbc003ab1n03x7 U297 ( .a(net1836), .sa(tdr_19_), .b(net1330), .sb(tdr_18_), .c(net1828), .sc(sol_thresh[14]), .o(n168) );
+  i0smdn022ab1n02x5 U298 ( .b(n223), .a(n225), .sa(net1815), .o1(n142) );
+  i0smdn022ab1n02x5 U299 ( .b(n221), .a(net1297), .sa(net1815), .o1(n154) );
+  i0smbc003ab1n03x7 U300 ( .a(net1836), .sa(tdr_15_), .b(net1330), .sb(tdr_14_), .c(net1828), .sc(sol_thresh[10]), .o(n172) );
   i0sinv020ab1n04x5 U301 ( .a(tdr_15_), .o1(n225) );
   i0sinv020ab1n04x5 U302 ( .a(tdr_14_), .o1(n227) );
   i0sinv020ab1n04x5 U303 ( .a(tdr_19_), .o1(n220) );
@@ -290,8 +290,8 @@ module firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_control (
   i0sinv040ab1n03x5 U307 ( .a(sol_thresh[0]), .o1(n242) );
   i0sinv040ab1n03x5 U308 ( .a(sol_mode), .o1(n246) );
   i0sinv040ab1n03x5 U309 ( .a(reset_b), .o1(n248) );
-  i0snanb02ab1n03x5 U310 ( .a(net1251), .b(ijtag_si), .out0(n217) );
-  i0smdn022ab1n03x4 U311 ( .b(n246), .a(n249), .sa(net1806), .o1(n64) );
-  i0smdn022ab1n03x4 U312 ( .b(n250), .a(n251), .sa(net1806), .o1(n52) );
+  i0snanb02ab1n03x5 U310 ( .a(net1260), .b(ijtag_si), .out0(n217) );
+  i0smdn022ab1n03x4 U311 ( .b(n246), .a(n249), .sa(net1815), .o1(n64) );
+  i0smdn022ab1n03x4 U312 ( .b(n250), .a(n251), .sa(net1815), .o1(n52) );
 endmodule
 

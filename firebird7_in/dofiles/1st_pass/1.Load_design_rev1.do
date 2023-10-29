@@ -4,6 +4,9 @@
 // Step 1. Set the context.
 set_context dft -no_rtl -design_identifier gate1
 
+// "dft" is the context for DFT insertion.
+// "-no_rtl" is for netlist-based insertion.
+
 
 // Step 2. Read the standard cell libraries.
 dofile ./dofiles/common/read_standard_cell_libraries.do

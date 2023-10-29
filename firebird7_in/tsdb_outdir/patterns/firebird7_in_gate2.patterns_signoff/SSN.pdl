@@ -1,0 +1,8 @@
+iProcsForModule firebird7_in
+
+iProc default {} {
+
+   iReset
+   iNote "SSNContinuityVerify(default)"
+
+}

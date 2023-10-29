@@ -12,7 +12,7 @@
 ----------------------------------------------------------------------------------
 -  File created by: Tessent Shell                                                -
 -          Version: 2022.4                                                       -
--       Created on: Mon Oct 23 12:51:54 PDT 2023                                 -
+-       Created on: Sun Oct 29 14:14:24 PDT 2023                                 -
 ----------------------------------------------------------------------------------
 
 
@@ -23,7 +23,8 @@
      Description :  Microprogrammable BIST Controller
 --------------------------------------------------------------------------------
      Language               : Verilog
-     Controller Type        : HardProgrammable
+     Controller Type        : SoftProgrammable
+     Microcode Array Size   : 8 Instructions
 ---------------------------------------------------------------------------- */
 
 
@@ -235,6 +236,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller (
   output wire        BIST_RUN_TO_COLLAR39,
   output wire        CHKBCI_PHASE,
   output wire        MBISTPG_GO, // Status bit indicating BIST is Pass when high and DONE is High
+  output wire        MBISTPG_STABLE,
   output wire        MBISTPG_DONE, // Status bit indicating BIST is done when high
   output wire        BIST_ON_TO_COLLAR,
   output wire        BIST_SHIFT_BIRA_COLLAR
@@ -257,6 +259,10 @@ reg         SELECT_COMMON_DATA_PAT_REG;
 wire        SELECT_COMMON_DATA_PAT_RST;
 wire        SELECT_COMMON_DATA_PAT_SI;
 wire        SELECT_COMMON_DATA_PAT_SO;
+reg         SELECT_COMMON_ADD_MIN_MAX_REG;
+wire        SELECT_COMMON_ADD_MIN_MAX_RST;
+wire        SELECT_COMMON_ADD_MIN_MAX_SI;
+wire        SELECT_COMMON_ADD_MIN_MAX_SO;
 reg         MICROCODE_EN_REG;
 wire        MICROCODE_EN_RST;
 wire        MICROCODE_EN_SI;
@@ -515,6 +521,7 @@ wire        COLLAR_GO;
 wire        MBISTPG_GO_INT;
 wire        BIST_SI_SYNC;
 wire        BIST_SHIFT_SYNC;
+wire        BIST_SHIFT_LONG;
 wire        BIST_SHIFT_SHORT;
 wire [2:0]  BIST_SETUP_INT;
 wire [1:0]  BIST_SETUP_SYNC;
@@ -560,6 +567,7 @@ wire [3:0]  EDATA_CMD_MODIFIED;
 wire        INH_LAST_ADDR_CNT_MODIFIED;
 wire        INH_LAST_ADDR_CNT_MODIFIED_INT;
 wire        INH_DATA_CMP_MODIFIED;
+wire        INH_DATA_CMP_MODIFIED_PRE_PIPE;
 wire         LOOP_STATE_TRUE;
 wire [4:0]  LOOP_POINTER;
 wire [7:0]  ROW_ADDRESS;
@@ -629,10 +637,19 @@ wire        MBISTPG_GOID_SETUP_TO_SYNC;
 wire        MBISTPG_GOID_SETUP_SYNC;
 wire        BIST_SHIFT_GOID;
 reg         MEM_ARRAY_DUMP_MODE_R;
+reg         MEM_ARRAY_DUMP_MODE_R_SHADOW;
 wire        MEM_ARRAY_DUMP_MODE_RST;
 wire        MEM_ARRAY_DUMP_MODE_SI;
 wire        MEM_ARRAY_DUMP_MODE_SO;
 wire        MEM_ARRAY_DUMP_MODE;
+wire        STOP_AND_RESUME_EN;
+wire        SAR_INIT_MODE;
+wire        SAR_DEFAULT_MODE;
+wire        SAR_RUN;
+reg         INHIBIT_FSM_RESET;
+wire        SELECT_SHADOW_STATE;
+wire        ESOE_EXEC_MODE;
+wire        BIST_STABLE_TO_BUF;
 
 
 
@@ -716,12 +733,12 @@ wire        MEM_ARRAY_DUMP_MODE;
         .d          ( MBISTPG_TESTDATA_SELECT     ), // i
         .o          ( BIST_TESTDATA_SELECT_TO_COLLAR             )  // o
     ); 
-    assign RESET_REG_SETUP1         = SETUP_PULSE1;
-    assign RESET_REG_SETUP2         = SETUP_PULSE2;
-    assign RESET_REG_DEFAULT_MODE   = (SETUP_PULSE1 & (DEFAULT_MODE | (~MICROCODE_EN_REG)));
+    assign RESET_REG_SETUP1         = SETUP_PULSE1 & (~SAR_RUN);
+    assign RESET_REG_SETUP2         = SETUP_PULSE2 & (~SAR_RUN);
+    assign RESET_REG_DEFAULT_MODE   = (SETUP_PULSE1 & (DEFAULT_MODE | (~MICROCODE_EN_REG))) & (~SAR_RUN);
     assign MBISTPG_RESET_BIRA_CONFIG_INT = BIST_INIT & DEFAULT_MODE;
-    assign CLEAR_DEFAULT            = (BIST_INIT & DEFAULT_MODE & (~GO_EN));
-    assign CLEAR                    = (BIST_INIT & (~GO_EN));
+    assign CLEAR_DEFAULT            = (BIST_INIT & DEFAULT_MODE & (~GO_EN)) & (~SAR_RUN);
+    assign CLEAR                    = (BIST_INIT & (~GO_EN)) & (~SAR_RUN);
     assign BIST_CLEAR_DEFAULT       = CLEAR_DEFAULT & (~MBISTPG_ALGO_MODE_INT[1]);
     assign BIST_CLEAR               = CLEAR & (~MBISTPG_ALGO_MODE_INT[1]);
     assign BIST_CLEAR_BIRA_INT      = RESET_REG_SETUP1 & (~GO_EN) & (BIST_BIRA_EN | BYPASS_RUN_STATE_INT) & (~MBISTPG_PRESERVE_BIRA);
@@ -788,7 +805,7 @@ wire        MEM_ARRAY_DUMP_MODE;
     );
 
     wire  BIST_DONE_PIPE0;
-    assign BIST_DONE_PIPE0 = BIST_DONE;
+    assign BIST_DONE_PIPE0 = BIST_DONE & BIST_ON_TO_BUF;
 
     reg  BIST_DONE_PIPE1;
     reg  BIST_DONE_PIPE2;
@@ -809,6 +826,12 @@ wire        MEM_ARRAY_DUMP_MODE;
     i0sbfn000ab1n02x5 tessent_persistent_cell_MBISTPG_DONE (
         .a           (BIST_DONE_PIPE2),
         .o           (MBISTPG_DONE)
+    );
+
+    assign BIST_STABLE_TO_BUF = FREEZE_STOP_ERROR | BIST_DONE | (~MBISTPG_EN_INT);
+    i0sbfn000ab1n02x5 tessent_persistent_cell_MBISTPG_STABLE (
+        .a           (BIST_STABLE_TO_BUF),
+        .o           (MBISTPG_STABLE)
     );
     assign MBISTPG_RESET_REG_SETUP2 = RESET_REG_SETUP2;
  
@@ -1058,6 +1081,7 @@ wire        MEM_ARRAY_DUMP_MODE;
     assign BIST_COLLAR_EN39_PRE     = BIST_RUN_INT & MEM_SELECT_REG_INT[39] & (~(X_ADDRESS > 8'b01111111)) & (~(Y_ADDRESS > 3'b011)) ;
  
  
+    assign BIST_SHIFT_LONG   = BIST_HOLD_INT & MBISTPG_EN_INT & (~BIST_SETUP2) & (~BIST_SETUP[1]) & BIST_SETUP[0];  
     assign BIST_SHIFT_SHORT  = BIST_HOLD_INT & MBISTPG_EN_INT & (~BIST_SETUP2) & (~BIST_SETUP[1]);  
     assign BIST_SHIFT_SYNC   = BIST_HOLD_INT & MBISTPG_EN_INT;
     assign BIST_SHIFT_GOID   = BIST_HOLD_INT & MBISTPG_EN_INT & BIST_SETUP2 & (~BIST_SETUP[1]) & BIST_SETUP[0];
@@ -1078,12 +1102,14 @@ wire        MEM_ARRAY_DUMP_MODE;
     );    
  
  
-    assign BYPASS_RUN_STATE_INT     = (MBISTPG_MEM_RST_SYNC & (MBISTPG_ALGO_MODE_INT != 2'b00)) | (MEM_ARRAY_DUMP_MODE & BIST_SETUP_SYNC[1] & BIST_SETUP_SYNC[0]);
+    assign BYPASS_RUN_STATE_INT     = (MBISTPG_MEM_RST_SYNC & (MBISTPG_ALGO_MODE_INT != 2'b00)) | (MEM_ARRAY_DUMP_MODE & BIST_SETUP_SYNC[1] & BIST_SETUP_SYNC[0]) | SAR_INIT_MODE;
     firebird7_in_gate1_tessent_mbist_c1_controller_fsm MBISTPG_FSM (
        .BIST_CLK                    (BIST_CLK_INT                ), 
        .BIST_ON                     (BIST_ON_TO_BUF              ),
        .BIST_HOLD_R                 (BIST_HOLD_R                 ),
        .BYPASS_RUN_STATE            (BYPASS_RUN_STATE_INT        ),
+       .SAR_INIT_MODE               (SAR_INIT_MODE               ),
+       .INHIBIT_FSM_RESET           (INHIBIT_FSM_RESET           ),
        .BIST_ASYNC_RESETN           (MBISTPG_ASYNC_RESETN        ),
        .PAUSETOEND_ALGO_MODE        (PAUSETOEND_ALGO_MODE                       ),
        .LAST_STATE_DONE_PIPELINED   (LAST_STATE_DONE_PIPELINED   ),
@@ -1446,9 +1472,30 @@ assign CMP_EN = CMP_EN_INT;
     assign SELECT_COMMON_DATA_PAT_SO = SELECT_COMMON_DATA_PAT_REG;
 
     //------------------------
+    // COMMON ADDRESS MIN MAX SELECT 
+    //------------------------
+    assign SELECT_COMMON_ADD_MIN_MAX_SI = SELECT_COMMON_DATA_PAT_SO;
+    // synopsys sync_set_reset "SELECT_COMMON_ADD_MIN_MAX_RST"
+    assign SELECT_COMMON_ADD_MIN_MAX_RST = (~BIST_HOLD_R_INT) & CLEAR_DEFAULT & (~MEM_ARRAY_DUMP_MODE);
+    // synopsys async_set_reset "MBISTPG_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK_INT or negedge MBISTPG_ASYNC_RESETN) begin
+       if (~MBISTPG_ASYNC_RESETN)
+          SELECT_COMMON_ADD_MIN_MAX_REG            <= 1'b0;
+       else
+       if (SELECT_COMMON_ADD_MIN_MAX_RST) begin
+          SELECT_COMMON_ADD_MIN_MAX_REG            <= 1'b0; 
+       end else begin
+          if (BIST_SHIFT_SHORT) begin 
+             SELECT_COMMON_ADD_MIN_MAX_REG         <= SELECT_COMMON_ADD_MIN_MAX_SI;
+          end
+       end
+    end
+    assign SELECT_COMMON_ADD_MIN_MAX_SO = SELECT_COMMON_ADD_MIN_MAX_REG;
+
+    //------------------------
     // MICROCODE ARRAY ENABLE
     //------------------------
-    assign MICROCODE_EN_SI = SELECT_COMMON_DATA_PAT_SO;
+    assign MICROCODE_EN_SI = SELECT_COMMON_ADD_MIN_MAX_SO;
     // synopsys sync_set_reset "MICROCODE_EN_RST"
     assign MICROCODE_EN_RST = (~BIST_HOLD_R_INT) & CLEAR_DEFAULT & (~MEM_ARRAY_DUMP_MODE);
     // synopsys async_set_reset "MBISTPG_ASYNC_RESETN"
@@ -1480,14 +1527,48 @@ assign CMP_EN = CMP_EN_INT;
        if (MEM_ARRAY_DUMP_MODE_RST) begin
           MEM_ARRAY_DUMP_MODE_R     <= 1'b0; 
        end else begin
-          if (BIST_SHIFT_SHORT) begin
+          if (BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE)) begin
              MEM_ARRAY_DUMP_MODE_R                 <= MEM_ARRAY_DUMP_MODE_SI;
           end
        end
     end
     assign MEM_ARRAY_DUMP_MODE = DEFAULT_MODE ? MBISTPG_MEM_ARRAY_DUMP_MODE : MEM_ARRAY_DUMP_MODE_R;
 
-    assign POINTER_CNTRL_SI         = MEM_ARRAY_DUMP_MODE_SO;
+    // synopsys async_set_reset "MBISTPG_ASYNC_RESETN"
+    always_ff @ ( posedge BIST_CLK_INT or negedge MBISTPG_ASYNC_RESETN ) begin
+       if (~MBISTPG_ASYNC_RESETN)
+          MEM_ARRAY_DUMP_MODE_R_SHADOW             <= 1'b0;
+       else
+       if (BIST_SHIFT_SHORT) begin
+          MEM_ARRAY_DUMP_MODE_R_SHADOW             <= MEM_ARRAY_DUMP_MODE_SI;
+       end else
+       if (~BIST_HOLD_R) begin
+          MEM_ARRAY_DUMP_MODE_R_SHADOW             <= MEM_ARRAY_DUMP_MODE_R;
+       end
+    end
+
+
+    //------------------------
+    // INHIBIT FSM RESET WHEN ALGO COMPLETES
+    //------------------------
+    // synopsys async_set_reset "MBISTPG_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK_INT or negedge MBISTPG_ASYNC_RESETN) begin
+       if (~MBISTPG_ASYNC_RESETN)
+          INHIBIT_FSM_RESET         <= 1'b0;
+       else
+       if (BIST_DONE & (SAR_DEFAULT_MODE | ESOE_EXEC_MODE)) begin
+          INHIBIT_FSM_RESET         <= 1'b1;
+       end
+    end
+
+    assign STOP_AND_RESUME_EN = MEM_ARRAY_DUMP_MODE & BIST_STOP_ON_ERROR_EN_INT;
+    assign SAR_INIT_MODE = STOP_AND_RESUME_EN & BIST_SETUP_SYNC[1] & BIST_SETUP_SYNC[0];
+    assign SAR_DEFAULT_MODE = STOP_AND_RESUME_EN & DEFAULT_MODE;
+    assign SAR_RUN = SAR_DEFAULT_MODE;
+    assign SELECT_SHADOW_STATE = STOP_AND_RESUME_EN & FL_CNT_MODE[0] & (~BIST_SETUP_INT[2]) & (~BIST_SETUP_INT[1]);
+    assign ESOE_EXEC_MODE = BIST_STOP_ON_ERROR_EN_INT & FL_CNT_MODE[0] & BIST_SETUP_SYNC[1] & BIST_SETUP_SYNC[0];
+
+    assign POINTER_CNTRL_SI         = SELECT_SHADOW_STATE ? MEM_ARRAY_DUMP_MODE_R_SHADOW : MEM_ARRAY_DUMP_MODE_SO;
     firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl MBISTPG_POINTER_CNTRL ( 
        .BIST_CLK                                   ( BIST_CLK_INT                              ),
        .RESET_REG_SETUP1                           (RESET_REG_SETUP1                           ),
@@ -1528,9 +1609,12 @@ assign CMP_EN = CMP_EN_INT;
        .LOOP_POINTER                               (LOOP_POINTER                               ),
        .BIST_HOLD                                  (BIST_HOLD_R_INT                            ),
        .BIST_SHIFT_SHORT                           (BIST_SHIFT_SHORT                           ),
+       .BIST_SHIFT_LONG                            (BIST_SHIFT_LONG                            ),
+       .MEM_ARRAY_DUMP_MODE                        (MEM_ARRAY_DUMP_MODE                        ),
        .SI                                         (POINTER_CNTRL_SI                           ),
        .SHORT_SETUP                                (SHORT_SETUP_SYNC                           ),
        .SO                                         (POINTER_CNTRL_SO                           ),
+       .SELECT_SHADOW_STATE                        (SELECT_SHADOW_STATE                        ),
        .LAST_STATE                                 (LAST_STATE                                 ),
        .LAST_STATE_DONE                            (LAST_STATE_DONE                            ),
        .LAST_STATE_DONE_PIPELINED                  (LAST_STATE_DONE_PIPELINED                  ),
@@ -1556,6 +1640,7 @@ assign CMP_EN = CMP_EN_INT;
        .SO                          (ADD_GEN_SO                  ),
        .BIST_SHIFT_SHORT            (BIST_SHIFT_SHORT            ),
        .BIST_HOLD                   (BIST_HOLD_R_INT             ),
+       .SELECT_SHADOW_STATE         (SELECT_SHADOW_STATE         ),
        .LAST_TICK                   (LAST_TICK                   ),
        .MBISTPG_REDUCED_ADDR_CNT_EN (MBISTPG_REDUCED_ADDR_CNT_EN_INT            ),
        .ESOE_RESET                  (ESOE_RESET                  ), 
@@ -1575,6 +1660,10 @@ assign CMP_EN = CMP_EN_INT;
        .X_ADDRESS                   (X_ADDRESS                   ),
        .Y_ADDRESS                   (Y_ADDRESS                   ),
        .MEM_ARRAY_DUMP_MODE         (MEM_ARRAY_DUMP_MODE         ),
+       .RESET_REG_SETUP1            (RESET_REG_SETUP1            ),
+       .DEFAULT_MODE                (DEFAULT_MODE                ),
+       .BIST_MICROCODE_EN           (MICROCODE_EN_REG            ),
+       .SELECT_COMMON_ADD_MIN_MAX                  (SELECT_COMMON_ADD_MIN_MAX_REG              ),
        .A_EQUALS_B_TRIGGER          (A_EQUALS_B_TRIGGER          )
     );
  
@@ -1608,6 +1697,7 @@ assign CMP_EN = CMP_EN_INT;
        .BIST_ASYNC_RESETN                          ( MBISTPG_ASYNC_RESETN       ),
        .SI                                         (SIGNAL_GEN_SI                              ),
        .BIST_SHIFT_SHORT                           (BIST_SHIFT_SHORT                           ),
+       .SELECT_SHADOW_STATE                        (SELECT_SHADOW_STATE                        ),
        .BIST_HOLD_R_INT                            (BIST_HOLD_R_INT                            ),
        .RESET_REG_DEFAULT_MODE                     (RESET_REG_DEFAULT_MODE      ),
        .OP_SELECT_CMD                              (OP_SELECT_CMD                              ),
@@ -1618,6 +1708,9 @@ assign CMP_EN = CMP_EN_INT;
        .LAST_STATE_DONE_PIPELINED                  (LAST_STATE_DONE_PIPELINED                  ),
        .MBISTPG_ALGO_SEL                           (MBISTPG_ALGO_SEL_INT                       ),
        .MEM_ARRAY_DUMP_MODE                        (MEM_ARRAY_DUMP_MODE         ),
+       .STOP_AND_RESUME_EN                         (STOP_AND_RESUME_EN          ),
+       .CMP_EN                                     (CMP_EN_INT                  ),
+       .INH_DATA_CMP                               (INH_DATA_CMP_MODIFIED_PRE_PIPE             ),
        .BIST_ALGO_SEL_CNT                          (INIT_SIGNAL_GEN_REGS        ), 
        .MEM_BYPASS_EN                              (MEM_BYPASS_EN               ),
        .LV_TM                                      (LV_TM        ),
@@ -1643,6 +1736,7 @@ assign CMP_EN = CMP_EN_INT;
        .BIST_HOLD                                  (BIST_HOLD_R_INT                            ),
        .BIST_ASYNC_RESETN                          (MBISTPG_ASYNC_RESETN        ),
        .BIST_SHIFT_SHORT                           (BIST_SHIFT_SHORT                           ),
+       .SELECT_SHADOW_STATE                        (SELECT_SHADOW_STATE                        ),
        .RESET_REG_DEFAULT_MODE                     (RESET_REG_DEFAULT_MODE                     ),
        .RESET_REG_SETUP1                           (RESET_REG_SETUP1                           ),
        .BIST_ALGO_SEL_CNT                          (ALGO_SEL_CNT_REG                           ), 
@@ -1663,7 +1757,7 @@ assign CMP_EN = CMP_EN_INT;
         .a           (DELAYCOUNTER_ENDCOUNT_TRIGGER_INT),
         .o           (DELAYCOUNTER_ENDCOUNT_TRIGGER)
     );    
-    assign DATA_GEN_SI              = DELAYCOUNTER_SO;
+    assign DATA_GEN_SI              = SELECT_SHADOW_STATE ? DELAYCOUNTER_SO : DELAYCOUNTER_SO;
 
     firebird7_in_gate1_tessent_mbist_c1_controller_data_gen MBISTPG_DATA_GEN (
        //inputs
@@ -1684,6 +1778,7 @@ assign CMP_EN = CMP_EN_INT;
        .LAST_TICK                   (LAST_TICK                   ),
        .BIST_RUN                    (BIST_RUN                    ),
        .BIST_SHIFT_SHORT            (BIST_SHIFT_SHORT            ),
+       .SELECT_SHADOW_STATE         (SELECT_SHADOW_STATE         ),
        .SI                          (DATA_GEN_SI                 ),
        .BIST_WRITEENABLE            (BIST_WRITEENABLE            ),
        //outputs
@@ -1718,6 +1813,7 @@ assign CMP_EN = CMP_EN_INT;
        .LAST_TICK                                  (LAST_TICK                   ),
        .BIST_SHIFT_SHORT                           (BIST_SHIFT_SHORT            ),
        .BIST_RUN                                   (BIST_RUN                    ),
+       .SELECT_SHADOW_STATE                        (SELECT_SHADOW_STATE         ),
        .OPSET_SELECT_DECODED                       (OPSET_SELECT_DECODED        ),
        .LOOPCOUNTMAX_TRIGGER                       (LOOPCOUNTMAX_TRIGGER_INT    ),
        .LOOP_POINTER                               (LOOP_POINTER                ),
@@ -1732,6 +1828,7 @@ assign CMP_EN = CMP_EN_INT;
        .WDATA_CMD_MODIFIED                         (WDATA_CMD_MODIFIED          ),
        .EDATA_CMD_MODIFIED                         (EDATA_CMD_MODIFIED          ),
        .INH_LAST_ADDR_CNT_MODIFIED                 (INH_LAST_ADDR_CNT_MODIFIED_INT             ),
+       .INH_DATA_CMP_MODIFIED_PRE_PIPE             (INH_DATA_CMP_MODIFIED_PRE_PIPE             ),
        .INH_DATA_CMP_MODIFIED                      (INH_DATA_CMP_MODIFIED       )
     );
  
@@ -1743,7 +1840,34 @@ assign CMP_EN = CMP_EN_INT;
         .a           (INH_LAST_ADDR_CNT_MODIFIED_INT),
         .o           (INH_LAST_ADDR_CNT_MODIFIED)
     );    
-    assign COUNTERA_ENDCOUNT_TRIGGER               = 1'b0;
+
+    assign COUNTERA_SI              = REPEAT_LOOP_CNTRL_SO;
+    firebird7_in_gate1_tessent_mbist_c1_controller_counter_a MBISTPG_COUNTER_A (
+       //inputs
+       .BIST_CLK                    ( BIST_CLK_INT                              ),
+       .BIST_HOLD                   (BIST_HOLD_R_INT                            ), 
+       .BIST_ASYNC_RESETN           (MBISTPG_ASYNC_RESETN        ),
+       .BIST_SHIFT_SHORT            (BIST_SHIFT_SHORT                           ),
+       .SELECT_SHADOW_STATE         (SELECT_SHADOW_STATE                        ),
+       .RESET_REG_DEFAULT_MODE      (RESET_REG_DEFAULT_MODE                     ),
+       .RESET_REG_SETUP1            (RESET_REG_SETUP1                           ),
+       .COUNTERA_CMD                (COUNTERA_CMD                               ),
+       .LAST_TICK                   (LAST_TICK                                  ),    
+       .BIST_RUN                    (BIST_RUN                                   ),
+       .LAST_STATE_DONE_INT         (LAST_STATE_DONE                            ),
+       .SI                          (COUNTERA_SI                                ),
+       .MBISTPG_ALGO_SEL            (MBISTPG_ALGO_SEL_INT        ),
+       .MEM_ARRAY_DUMP_MODE         (MEM_ARRAY_DUMP_MODE         ),
+       .ESOE_RESET                  (ESOE_RESET                  ),
+ 
+       //outputs
+       .SO                          (COUNTERA_SO                                ),
+       .COUNTERA_ENDCOUNT_TRIGGER   (COUNTERA_ENDCOUNT_TRIGGER_INT              )
+    );
+    i0sbfn000ab1n02x5 tessent_persistent_cell_COUNTERA_ENDCOUNT_TRIGGER (
+        .a           (COUNTERA_ENDCOUNT_TRIGGER_INT),
+        .o           (COUNTERA_ENDCOUNT_TRIGGER)
+    );    
     
     //---------------------
     // GO ENABLE
@@ -1757,7 +1881,7 @@ assign CMP_EN = CMP_EN_INT;
        if (~BIST_ON_TO_BUF) begin
           GO_EN <= 1'b0;
        end else begin
-          if (RESET_REG_SETUP1) begin
+          if (SETUP_PULSE1) begin
              GO_EN <= 1'b1;
           end
        end
@@ -1820,8 +1944,8 @@ assign CMP_EN = CMP_EN_INT;
     //---------------------------------------
     // Setup chain muxing to first collar
     //---------------------------------------
-    assign TO_COLLAR_SI_MUX_INPUT0 = (MBISTPG_BIRA_SETUP_SYNC) ? BIST_SI_PIPELINE : REPEAT_LOOP_CNTRL_SO;
-    assign TO_COLLAR_SI_MUX_INPUT1 = REPEAT_LOOP_CNTRL_SO;
+    assign TO_COLLAR_SI_MUX_INPUT0 = (MBISTPG_BIRA_SETUP_SYNC) ? BIST_SI_PIPELINE : COUNTERA_SO;
+    assign TO_COLLAR_SI_MUX_INPUT1 = COUNTERA_SO;
     always_comb begin
         case (SHORT_SETUP_SYNC)
         1'b0 : TO_COLLAR_SI = TO_COLLAR_SI_MUX_INPUT0;
@@ -2244,6 +2368,9 @@ end
        .BIST_HOLD_R                 ( BIST_HOLD_R                               ), // i
        .BIST_SHIFT_SHORT            ( BIST_SHIFT_SHORT                          ), // i
        .FREEZE_STOP_ERROR           ( FREEZE_STOP_ERROR                         ), // o
+       .SELECT_SHADOW_STATE         ( SELECT_SHADOW_STATE                       ), // i
+       .ESOE_EXEC_MODE              ( ESOE_EXEC_MODE                            ), // i
+       .INHIBIT_FSM_RESET           ( INHIBIT_FSM_RESET          ), // i
        .SI                          ( CTL_COMP_SI                               ), // i
        .SO                          ( CTL_COMP_SO                               ), // o
        .GO                          ( MBISTPG_GO                 ), // o
@@ -2257,7 +2384,7 @@ end
        .BIST_STOP_ON_ERROR_EN       ( BIST_STOP_ON_ERROR_EN_INT                 ), // o
        .BIST_DONE                   ( BIST_DONE                                 ), // i
        .FL1                         ( FL_CNT_MODE[1]                            ), // i
-       .RESET_REG_SETUP1            ( RESET_REG_SETUP2                          ), // i
+       .RESET_REG_SETUP1            ( SETUP_PULSE2                              ), // i
        .FL_CNT_MODE0_SYNC           ( FL_CNT_MODE0_SYNC                         ), // i
        .ESOE_RESET                  ( ESOE_RESET                                ), // o
        .TM                          ( LV_TM                                     )  // i
@@ -2284,6 +2411,9 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp (
   input  wire        CLEAR_DEFAULT,
   input  wire        CLEAR,
   input  wire        BIST_HOLD_R,
+  input  wire        SELECT_SHADOW_STATE,
+  input  wire        ESOE_EXEC_MODE,
+  input  wire        INHIBIT_FSM_RESET,
   input  wire        BIST_SHIFT_SHORT,
   input  wire        SI,
   input  wire        GO,
@@ -2312,8 +2442,10 @@ wire                 FREEZE_STOP_ERROR_IN;
 wire                 FREEZE_STOP_ERROR_RST;
 wire                 STOP_ON_ERROR_RST; 
 reg                  STOP_ON_ERROR;
+reg                  STOP_ON_ERROR_SHADOW;
 reg  [1:0]           PHASE_START_REG;
 reg  [15:0]          ERROR_CNT_REG;
+reg  [15:0]          ERROR_CNT_REG_SHADOW;
 wire                 ERROR_CNT_LAST;
 wire                 FL_CNT_MODE1_PULSE;  
 reg  [15:0]          FL_CNT_REG;
@@ -2348,11 +2480,27 @@ always_ff @ (posedge BIST_CLK  or negedge BIST_ASYNC_RESETN) begin
     if (STOP_ON_ERROR_RST) begin
         STOP_ON_ERROR <= 1'b0;
     end else begin
-        if (BIST_SHIFT_SHORT) begin
+        if ((BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE))) begin
             STOP_ON_ERROR <= SI;
         end
     end
 end    
+
+// synopsys async_set_reset "BIST_ASYNC_RESETN"
+always_ff @ (posedge BIST_CLK  or negedge BIST_ASYNC_RESETN) begin
+    if (~BIST_ASYNC_RESETN)
+        STOP_ON_ERROR_SHADOW <= 1'b0;
+    else
+    if (BIST_SHIFT_SHORT) begin
+        STOP_ON_ERROR_SHADOW <= SI;
+    end else
+    if (~BIST_HOLD_R) begin
+        STOP_ON_ERROR_SHADOW <= STOP_ON_ERROR;
+    end
+end    
+
+wire FREEZE_STOP_ERROR_SI;
+assign FREEZE_STOP_ERROR_SI = SELECT_SHADOW_STATE ? STOP_ON_ERROR_SHADOW : STOP_ON_ERROR;
 
     reg BIST_DONE_R;
     // synopsys async_set_reset BIST_ASYNC_RESETN
@@ -2367,7 +2515,7 @@ end
        if (~BIST_ASYNC_RESETN)
           ESOE_RESET  <= 1'b0;
        else
-          ESOE_RESET  <= (BIST_DONE & STOP_ON_ERROR & FL_CNT_MODE0_SYNC) & (~BIST_DONE_R);
+          ESOE_RESET  <= ((BIST_DONE & STOP_ON_ERROR & FL_CNT_MODE0_SYNC) & (~BIST_DONE_R)) | (ESOE_EXEC_MODE & INHIBIT_FSM_RESET);
    end
 
 // synopsys async_set_reset "BIST_ASYNC_RESETN"
@@ -2379,7 +2527,7 @@ always_ff @ (posedge BIST_CLK  or negedge BIST_ASYNC_RESETN) begin
         FREEZE_STOP_ERROR <= 1'b0;
     end else begin
         if (BIST_SHIFT_SHORT) begin
-            FREEZE_STOP_ERROR <= STOP_ON_ERROR;
+            FREEZE_STOP_ERROR <= FREEZE_STOP_ERROR_SI;
         end else begin
             if (~BIST_HOLD_R) begin
                 if (GO_EN) begin
@@ -2398,7 +2546,7 @@ always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
     if (ERROR_CNT_REG_RST) begin
         ERROR_CNT_REG <= 16'd0; 
     end else begin
-        if (BIST_SHIFT_SHORT) begin
+        if ((BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE))) begin
             ERROR_CNT_REG <= {ERROR_CNT_REG[14:0], FREEZE_STOP_ERROR};
         end else begin
             if (~HOLD_EN) begin
@@ -2412,6 +2560,19 @@ always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
                 end
             end
         end
+    end
+end  
+
+// synopsys async_set_reset "BIST_ASYNC_RESETN"
+always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+    if (~BIST_ASYNC_RESETN) 
+        ERROR_CNT_REG_SHADOW <= 16'd0;
+    else 
+    if (BIST_SHIFT_SHORT) begin
+        ERROR_CNT_REG_SHADOW <= {ERROR_CNT_REG_SHADOW[14:0], FREEZE_STOP_ERROR};
+    end else
+    if (~BIST_HOLD_R) begin
+        ERROR_CNT_REG_SHADOW <= ERROR_CNT_REG;
     end
 end  
 
@@ -2498,8 +2659,11 @@ end
 endfunction
 
     assign FREEZE_GO_ID = BIST_SHIFT_SHORT | (~GO_EN) | (~CMP_EN) ;
+
+    wire GO_ID_SI;
+    assign GO_ID_SI                 = SELECT_SHADOW_STATE ? ERROR_CNT_REG_SHADOW[15] : ERROR_CNT_REG[15];
  
-    assign SO        = ERROR_CNT_REG[15];
+    assign SO        = GO_ID_SI;
  
 endmodule // firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp
  
@@ -2555,6 +2719,8 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
   input wire LOOPCOUNTMAX_TRIGGER,
   input wire [4:0] LOOP_POINTER,
   input wire BIST_HOLD,
+  input wire BIST_SHIFT_LONG,
+  input wire MEM_ARRAY_DUMP_MODE,
   input wire BIST_SHIFT_SHORT,
   input wire SI,
   input wire DEFAULT_MODE,
@@ -2563,6 +2729,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
   input wire ESOE_RESET,
   output wire SO,
   input wire SHORT_SETUP,
+  input wire SELECT_SHADOW_STATE,
   output wire [5:0] OP_SELECT_CMD,
   output wire [1:0] A_EQUALS_B_INVERT_DATA,
   output wire [1:0] ADD_Y0_CMD,
@@ -2600,45 +2767,74 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
     wire   [6:0]     NEXT_TRIGGERS;
     wire   [6:0]     NEXT_CONDITIONS;
     reg              EXECUTE_NEXT_CONDITIONS_REG6;
+    reg              EXECUTE_NEXT_CONDITIONS_REG5;
+    reg              EXECUTE_NEXT_CONDITIONS_REG4;
     reg              EXECUTE_NEXT_CONDITIONS_REG3;
+    reg              EXECUTE_NEXT_CONDITIONS_REG2;
     reg              EXECUTE_NEXT_CONDITIONS_REG1;
+    reg              EXECUTE_NEXT_CONDITIONS_REG0;
     wire   [6:0]     NEXT_CONDITIONS_FIELD;
     wire   [5:0]     LOOP_TRIGGERS;
     wire   [5:0]     LOOP_CONDITIONS;
+    reg              EXECUTE_OP_SELECT_CMD_REG5;
+    reg              EXECUTE_OP_SELECT_CMD_REG4;
     reg              EXECUTE_OP_SELECT_CMD_REG3;
+    reg              EXECUTE_OP_SELECT_CMD_REG2;
     reg              EXECUTE_OP_SELECT_CMD_REG1;
     reg              EXECUTE_OP_SELECT_CMD_REG0;
     wire   [5:0]     NEXT_OP_SELECT_CMD;
+    reg              EXECUTE_A_EQUALS_B_INVERT_DATA_REG1;
+    reg              EXECUTE_A_EQUALS_B_INVERT_DATA_REG0;
     wire   [1:0]     NEXT_A_EQUALS_B_INVERT_DATA;
+    reg              EXECUTE_ADD_Y0_CMD_REG1;
+    reg              EXECUTE_ADD_Y0_CMD_REG0;
     wire   [1:0]     NEXT_ADD_Y0_CMD;
     reg              EXECUTE_ADD_Y1_CMD_REG2;
     reg              EXECUTE_ADD_Y1_CMD_REG1;
     reg              EXECUTE_ADD_Y1_CMD_REG0;
     wire   [2:0]     NEXT_ADD_Y1_CMD;
+    reg              EXECUTE_ADD_X0_CMD_REG1;
+    reg              EXECUTE_ADD_X0_CMD_REG0;
     wire   [1:0]     NEXT_ADD_X0_CMD;
     reg              EXECUTE_ADD_X1_CMD_REG2;
     reg              EXECUTE_ADD_X1_CMD_REG1;
     reg              EXECUTE_ADD_X1_CMD_REG0;
     wire   [2:0]     NEXT_ADD_X1_CMD;
+    reg              EXECUTE_ADD_REG_SELECT_REG2;
     reg              EXECUTE_ADD_REG_SELECT_REG1;
+    reg              EXECUTE_ADD_REG_SELECT_REG0;
     wire   [2:0]     NEXT_ADD_REG_SELECT;
     reg              EXECUTE_WDATA_CMD_REG3;
+    reg              EXECUTE_WDATA_CMD_REG2;
     reg              EXECUTE_WDATA_CMD_REG1;
     reg              EXECUTE_WDATA_CMD_REG0;
     wire   [3:0]     NEXT_WDATA_CMD;
     reg              EXECUTE_EDATA_CMD_REG3;
+    reg              EXECUTE_EDATA_CMD_REG2;
     reg              EXECUTE_EDATA_CMD_REG1;
     reg              EXECUTE_EDATA_CMD_REG0;
     wire   [3:0]     NEXT_EDATA_CMD;
     reg              EXECUTE_LOOP_CMD_REG1;
     reg              EXECUTE_LOOP_CMD_REG0;
     wire   [1:0]     NEXT_LOOP_CMD;
+    reg              EXECUTE_COUNTERA_CMD_REG0;
     wire             NEXT_COUNTERA_CMD;
     reg              EXECUTE_INH_LAST_ADDR_CNT_REG0;
     wire             NEXT_INH_LAST_ADDR_CNT;
     reg              EXECUTE_INH_DATA_CMP_REG0;
     wire             NEXT_INH_DATA_CMP;
+    reg              EXECUTE_DELAYCOUNTER_CMD_REG0;
     wire             NEXT_DELAYCOUNTER_CMD;
+// [start] : Soft algo registers {{{
+    reg    [46:0]    INSTRUCTION0_REG;
+    reg    [46:0]    INSTRUCTION1_REG;
+    reg    [46:0]    INSTRUCTION2_REG;
+    reg    [46:0]    INSTRUCTION3_REG;
+    reg    [46:0]    INSTRUCTION4_REG;
+    reg    [46:0]    INSTRUCTION5_REG;
+    reg    [46:0]    INSTRUCTION6_REG;
+    reg    [46:0]    INSTRUCTION7_REG;
+// [end]   : Soft algo registers }}}
 // [start] : Hard algo wires {{{
     reg    [46:0]    INSTRUCTION0_WIRE;
     reg    [46:0]    INSTRUCTION1_WIRE;
@@ -2701,6 +2897,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
     reg [4:0] INST_POINTER;
     wire             INST_POINTER_SI;
     wire             INST_POINTER_SO;
+    reg    [4:0]     INST_POINTER_SHADOW;
     reg              LAST_STATE_DONE_REG;
 
 //---------------------
@@ -2708,10 +2905,10 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
 //---------------------
 // [start] : OperationSelect {{{
     assign OP_SELECT_CMD            = {
-                                        1'b0,
-                                        1'b0,
+                                        EXECUTE_OP_SELECT_CMD_REG5,
+                                        EXECUTE_OP_SELECT_CMD_REG4,
                                         EXECUTE_OP_SELECT_CMD_REG3,
-                                        1'b0,
+                                        EXECUTE_OP_SELECT_CMD_REG2,
                                         EXECUTE_OP_SELECT_CMD_REG1,
                                         EXECUTE_OP_SELECT_CMD_REG0 
                                       };
@@ -2749,17 +2946,26 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
     // synopsys async_set_reset "BIST_ASYNC_RESETN"
     always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
         if (~BIST_ASYNC_RESETN) begin
+            EXECUTE_OP_SELECT_CMD_REG5             <= 1'b0;
+            EXECUTE_OP_SELECT_CMD_REG4             <= 1'b0;
             EXECUTE_OP_SELECT_CMD_REG3             <= 1'b0;
+            EXECUTE_OP_SELECT_CMD_REG2             <= 1'b0;
             EXECUTE_OP_SELECT_CMD_REG1             <= 1'b0;
             EXECUTE_OP_SELECT_CMD_REG0             <= 1'b0;
         end else
         if (RESET_REG_SETUP2) begin
+            EXECUTE_OP_SELECT_CMD_REG5             <= INSTRUCTION0[5];
+            EXECUTE_OP_SELECT_CMD_REG4             <= INSTRUCTION0[4];
             EXECUTE_OP_SELECT_CMD_REG3             <= INSTRUCTION0[3];
+            EXECUTE_OP_SELECT_CMD_REG2             <= INSTRUCTION0[2];
             EXECUTE_OP_SELECT_CMD_REG1             <= INSTRUCTION0[1];
             EXECUTE_OP_SELECT_CMD_REG0             <= INSTRUCTION0[0];
         end else
         if (LAST_TICK & (~BIST_HOLD)) begin
+            EXECUTE_OP_SELECT_CMD_REG5            <= NEXT_OP_SELECT_CMD[5];
+            EXECUTE_OP_SELECT_CMD_REG4            <= NEXT_OP_SELECT_CMD[4];
             EXECUTE_OP_SELECT_CMD_REG3            <= NEXT_OP_SELECT_CMD[3];
+            EXECUTE_OP_SELECT_CMD_REG2            <= NEXT_OP_SELECT_CMD[2];
             EXECUTE_OP_SELECT_CMD_REG1            <= NEXT_OP_SELECT_CMD[1];
             EXECUTE_OP_SELECT_CMD_REG0            <= NEXT_OP_SELECT_CMD[0];
         end
@@ -2772,8 +2978,8 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
 //------------------------
 // [start] : Add_Reg_A_Equals_B {{{
     assign A_EQUALS_B_INVERT_DATA   = {
-                                        1'b0,
-                                        1'b0 
+                                        EXECUTE_A_EQUALS_B_INVERT_DATA_REG1,
+                                        EXECUTE_A_EQUALS_B_INVERT_DATA_REG0 
                                       };
  
     // [start] : instruction field {{{
@@ -2806,6 +3012,22 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
                                                                                  INSTRUCTION26[7:6]            ;
     // [end]   : instruction field }}}
  
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+       if (~BIST_ASYNC_RESETN) begin
+        EXECUTE_A_EQUALS_B_INVERT_DATA_REG1        <= 1'b0;
+        EXECUTE_A_EQUALS_B_INVERT_DATA_REG0        <= 1'b0;
+       end else
+       if (RESET_REG_SETUP2) begin
+          EXECUTE_A_EQUALS_B_INVERT_DATA_REG1      <= INSTRUCTION0[7];
+          EXECUTE_A_EQUALS_B_INVERT_DATA_REG0      <= INSTRUCTION0[6];
+       end else begin 
+          if (LAST_TICK & (~BIST_HOLD)) begin
+             EXECUTE_A_EQUALS_B_INVERT_DATA_REG1  <= NEXT_A_EQUALS_B_INVERT_DATA[1];
+             EXECUTE_A_EQUALS_B_INVERT_DATA_REG0  <= NEXT_A_EQUALS_B_INVERT_DATA[0];
+          end
+       end
+    end
 // [end]   : Add_Reg_A_Equals_B }}}
 
 
@@ -2814,8 +3036,8 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
 //------------------
 // [start] : Y0AddressCmd {{{
     assign ADD_Y0_CMD               = {
-                                        1'b0,
-                                        1'b0 
+                                        EXECUTE_ADD_Y0_CMD_REG1,
+                                        EXECUTE_ADD_Y0_CMD_REG0 
                                       };
  
     // [start] : instruction field {{{
@@ -2848,6 +3070,22 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
                                                                   INSTRUCTION26[9:8]            ;
     // [end]   : instruction field }}}
  
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+       if (~BIST_ASYNC_RESETN) begin
+        EXECUTE_ADD_Y0_CMD_REG1     <= 1'b0;
+        EXECUTE_ADD_Y0_CMD_REG0     <= 1'b0;
+       end else
+       if (RESET_REG_SETUP2) begin
+          EXECUTE_ADD_Y0_CMD_REG1   <= INSTRUCTION0[9];
+          EXECUTE_ADD_Y0_CMD_REG0   <= INSTRUCTION0[8];
+       end else begin 
+          if (LAST_TICK & (~BIST_HOLD)) begin
+             EXECUTE_ADD_Y0_CMD_REG1              <= NEXT_ADD_Y0_CMD[1];
+             EXECUTE_ADD_Y0_CMD_REG0              <= NEXT_ADD_Y0_CMD[0];
+          end
+       end
+    end
 // [end]   : Y0AddressCmd }}}
 
 
@@ -2918,8 +3156,8 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
 //------------------
 // [start] : X0AddressCmd {{{
     assign ADD_X0_CMD               = {
-                                        1'b0,
-                                        1'b0 
+                                        EXECUTE_ADD_X0_CMD_REG1,
+                                        EXECUTE_ADD_X0_CMD_REG0 
                                       };
  
     // [start] : instruction field {{{
@@ -2952,6 +3190,22 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
                                                                   INSTRUCTION26[14:13]          ;
     // [end]   : instruction field }}}
  
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+       if (~BIST_ASYNC_RESETN) begin
+        EXECUTE_ADD_X0_CMD_REG1     <= 1'b0;
+        EXECUTE_ADD_X0_CMD_REG0     <= 1'b0;
+       end else
+       if (RESET_REG_SETUP2) begin
+          EXECUTE_ADD_X0_CMD_REG1   <= INSTRUCTION0[14];
+          EXECUTE_ADD_X0_CMD_REG0   <= INSTRUCTION0[13];
+       end else begin 
+          if (LAST_TICK & (~BIST_HOLD)) begin
+             EXECUTE_ADD_X0_CMD_REG1              <= NEXT_ADD_X0_CMD[1];
+             EXECUTE_ADD_X0_CMD_REG0              <= NEXT_ADD_X0_CMD[0];
+          end
+       end
+    end
 // [end]   : X0AddressCmd }}}
 
 
@@ -3022,9 +3276,9 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
 //----------------------
 // [start] : AddressSelectCmd {{{
     assign ADD_REG_SELECT           = {
-                                        1'b0,
+                                        EXECUTE_ADD_REG_SELECT_REG2,
                                         EXECUTE_ADD_REG_SELECT_REG1,
-                                        1'b0 
+                                        EXECUTE_ADD_REG_SELECT_REG0 
                                       };
  
     // [start] : instruction field {{{
@@ -3060,13 +3314,19 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
     // synopsys async_set_reset "BIST_ASYNC_RESETN"
     always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
        if (~BIST_ASYNC_RESETN) begin
+         EXECUTE_ADD_REG_SELECT_REG2               <= 1'b0;
          EXECUTE_ADD_REG_SELECT_REG1               <= 1'b0;
+         EXECUTE_ADD_REG_SELECT_REG0               <= 1'b0;
        end else
        if (RESET_REG_SETUP2) begin
+          EXECUTE_ADD_REG_SELECT_REG2              <= INSTRUCTION0[20];
           EXECUTE_ADD_REG_SELECT_REG1              <= INSTRUCTION0[19];
+          EXECUTE_ADD_REG_SELECT_REG0              <= INSTRUCTION0[18];
        end else begin 
           if (LAST_TICK & (~BIST_HOLD)) begin
+             EXECUTE_ADD_REG_SELECT_REG2          <= NEXT_ADD_REG_SELECT[2];
              EXECUTE_ADD_REG_SELECT_REG1          <= NEXT_ADD_REG_SELECT[1];
+             EXECUTE_ADD_REG_SELECT_REG0          <= NEXT_ADD_REG_SELECT[0];
           end
        end
     end
@@ -3079,7 +3339,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
 // [start] : WriteDataCmd {{{
     assign WDATA_CMD                = {
                                         EXECUTE_WDATA_CMD_REG3,
-                                        1'b0,
+                                        EXECUTE_WDATA_CMD_REG2,
                                         EXECUTE_WDATA_CMD_REG1,
                                         EXECUTE_WDATA_CMD_REG0 
                                       };
@@ -3118,16 +3378,19 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
     always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
        if (~BIST_ASYNC_RESETN) begin
         EXECUTE_WDATA_CMD_REG3      <= 1'b0;
+        EXECUTE_WDATA_CMD_REG2      <= 1'b0;
         EXECUTE_WDATA_CMD_REG1      <= 1'b0;
         EXECUTE_WDATA_CMD_REG0      <= 1'b0;
        end else
        if (RESET_REG_SETUP2) begin
           EXECUTE_WDATA_CMD_REG3    <= INSTRUCTION0[24];
+          EXECUTE_WDATA_CMD_REG2    <= INSTRUCTION0[23];
           EXECUTE_WDATA_CMD_REG1    <= INSTRUCTION0[22];
           EXECUTE_WDATA_CMD_REG0    <= INSTRUCTION0[21];
        end else begin 
           if (LAST_TICK & (~BIST_HOLD)) begin
              EXECUTE_WDATA_CMD_REG3               <= NEXT_WDATA_CMD[3];
+             EXECUTE_WDATA_CMD_REG2               <= NEXT_WDATA_CMD[2];
              EXECUTE_WDATA_CMD_REG1               <= NEXT_WDATA_CMD[1];
              EXECUTE_WDATA_CMD_REG0               <= NEXT_WDATA_CMD[0];
           end
@@ -3142,7 +3405,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
 // [start] : ExpectDataCmd {{{
     assign EDATA_CMD                = {
                                         EXECUTE_EDATA_CMD_REG3,
-                                        1'b0,
+                                        EXECUTE_EDATA_CMD_REG2,
                                         EXECUTE_EDATA_CMD_REG1,
                                         EXECUTE_EDATA_CMD_REG0 
                                       };
@@ -3181,16 +3444,19 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
     always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
        if (~BIST_ASYNC_RESETN) begin
         EXECUTE_EDATA_CMD_REG3      <= 1'b0;
+        EXECUTE_EDATA_CMD_REG2      <= 1'b0;
         EXECUTE_EDATA_CMD_REG1      <= 1'b0;
         EXECUTE_EDATA_CMD_REG0      <= 1'b0;
        end else
        if (RESET_REG_SETUP2) begin
           EXECUTE_EDATA_CMD_REG3    <= INSTRUCTION0[28];
+          EXECUTE_EDATA_CMD_REG2    <= INSTRUCTION0[27];
           EXECUTE_EDATA_CMD_REG1    <= INSTRUCTION0[26];
           EXECUTE_EDATA_CMD_REG0    <= INSTRUCTION0[25];
        end else begin 
           if (LAST_TICK & (~BIST_HOLD)) begin
              EXECUTE_EDATA_CMD_REG3               <= NEXT_EDATA_CMD[3];
+             EXECUTE_EDATA_CMD_REG2               <= NEXT_EDATA_CMD[2];
              EXECUTE_EDATA_CMD_REG1               <= NEXT_EDATA_CMD[1];
              EXECUTE_EDATA_CMD_REG0               <= NEXT_EDATA_CMD[0];
           end
@@ -3313,7 +3579,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
 //-- CounterACmd --
 //-----------------
 // [start] : CounterACmd {{{
-    assign COUNTERA_CMD             = 1'b0;
+    assign COUNTERA_CMD             = EXECUTE_COUNTERA_CMD_REG0;
  
     // [start] : instruction field {{{
     assign NEXT_COUNTERA_CMD        = (NEXT_POINTER == 5'b00000)                ? INSTRUCTION0[33:33]          :
@@ -3345,6 +3611,19 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
                                                                   INSTRUCTION26[33:33]          ;
     // [end]   : instruction field }}}
  
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+       if (~BIST_ASYNC_RESETN) begin
+        EXECUTE_COUNTERA_CMD_REG0   <= 1'b0;
+       end else
+       if (RESET_REG_SETUP2) begin
+          EXECUTE_COUNTERA_CMD_REG0                <= INSTRUCTION0[33];
+       end else begin 
+          if (LAST_TICK & (~BIST_HOLD)) begin
+             EXECUTE_COUNTERA_CMD_REG0            <= NEXT_COUNTERA_CMD;
+          end
+       end
+    end
 // [end]   : CounterACmd }}}
 
 
@@ -3352,7 +3631,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
 //-- DelayCounterACmd --
 //----------------------
 // [start] : DelayCounterCmd {{{
-    assign DELAYCOUNTER_CMD         = 1'b0;
+    assign DELAYCOUNTER_CMD         = EXECUTE_DELAYCOUNTER_CMD_REG0;
  
     // [start] : instruction field {{{
     assign NEXT_DELAYCOUNTER_CMD    = (NEXT_POINTER == 5'b00000)                ? INSTRUCTION0[34:34]          :
@@ -3384,6 +3663,19 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
                                                                   INSTRUCTION26[34:34]          ;
     // [end]   : instruction field }}}
  
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+       if (~BIST_ASYNC_RESETN) begin
+        EXECUTE_DELAYCOUNTER_CMD_REG0              <= 1'b0;
+       end else
+       if (RESET_REG_SETUP2) begin
+          EXECUTE_DELAYCOUNTER_CMD_REG0            <= INSTRUCTION0[34];
+       end else begin 
+          if (LAST_TICK & (~BIST_HOLD)) begin
+             EXECUTE_DELAYCOUNTER_CMD_REG0        <= NEXT_DELAYCOUNTER_CMD;
+          end
+       end
+    end
 // [end]   : DelayCounterCmd }}}
 
 
@@ -3463,12 +3755,12 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
 // [start] : NextConditions {{{
     assign NEXT_CONDITIONS          = {
                                         EXECUTE_NEXT_CONDITIONS_REG6, // NC0_REPEATLOOP_ENDCOUNT
-                                        1'b0, // NC0_COUNTERA_ENDCOUNT
-                                        1'b0, // NC0_DELAYCOUNTER_ENDCOUNT
+                                        EXECUTE_NEXT_CONDITIONS_REG5, // NC0_COUNTERA_ENDCOUNT
+                                        EXECUTE_NEXT_CONDITIONS_REG4, // NC0_DELAYCOUNTER_ENDCOUNT
                                         EXECUTE_NEXT_CONDITIONS_REG3, // NC0_X1_ENDCOUNT
-                                        1'b0, // NC0_X0_ENDCOUNT
+                                        EXECUTE_NEXT_CONDITIONS_REG2, // NC0_X0_ENDCOUNT
                                         EXECUTE_NEXT_CONDITIONS_REG1, // NC0_Y1_ENDCOUNT
-                                        1'b0  // NC0_Y0_ENDCOUNT
+                                        EXECUTE_NEXT_CONDITIONS_REG0  // NC0_Y0_ENDCOUNT
                                       };
  
     // [start] : instruction field {{{
@@ -3505,18 +3797,30 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
     always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
        if (~BIST_ASYNC_RESETN) begin
         EXECUTE_NEXT_CONDITIONS_REG6               <= 1'b0;
+        EXECUTE_NEXT_CONDITIONS_REG5               <= 1'b0;
+        EXECUTE_NEXT_CONDITIONS_REG4               <= 1'b0;
         EXECUTE_NEXT_CONDITIONS_REG3               <= 1'b0;
+        EXECUTE_NEXT_CONDITIONS_REG2               <= 1'b0;
         EXECUTE_NEXT_CONDITIONS_REG1               <= 1'b0;
+        EXECUTE_NEXT_CONDITIONS_REG0               <= 1'b0;
        end else        
        if (RESET_REG_SETUP2) begin
           EXECUTE_NEXT_CONDITIONS_REG6             <= INSTRUCTION0[46];
+          EXECUTE_NEXT_CONDITIONS_REG5             <= INSTRUCTION0[45];
+          EXECUTE_NEXT_CONDITIONS_REG4             <= INSTRUCTION0[44];
           EXECUTE_NEXT_CONDITIONS_REG3             <= INSTRUCTION0[43];
+          EXECUTE_NEXT_CONDITIONS_REG2             <= INSTRUCTION0[42];
           EXECUTE_NEXT_CONDITIONS_REG1             <= INSTRUCTION0[41];
+          EXECUTE_NEXT_CONDITIONS_REG0             <= INSTRUCTION0[40];
        end else begin 
           if (LAST_TICK & (~BIST_HOLD)) begin
              EXECUTE_NEXT_CONDITIONS_REG6         <= NEXT_CONDITIONS_FIELD[6];
+             EXECUTE_NEXT_CONDITIONS_REG5         <= NEXT_CONDITIONS_FIELD[5];
+             EXECUTE_NEXT_CONDITIONS_REG4         <= NEXT_CONDITIONS_FIELD[4];
              EXECUTE_NEXT_CONDITIONS_REG3         <= NEXT_CONDITIONS_FIELD[3];
+             EXECUTE_NEXT_CONDITIONS_REG2         <= NEXT_CONDITIONS_FIELD[2];
              EXECUTE_NEXT_CONDITIONS_REG1         <= NEXT_CONDITIONS_FIELD[1];
+             EXECUTE_NEXT_CONDITIONS_REG0         <= NEXT_CONDITIONS_FIELD[0];
           end
        end
     end
@@ -3581,19 +3885,19 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
 //--------------------
 // [start] : LoopConditions {{{
     assign LOOP_CONDITIONS          = {
-                                        1'b0, // NC0_COUNTERA_ENDCOUNT
-                                        1'b0, // NC0_DELAYCOUNTER_ENDCOUNT
+                                        EXECUTE_NEXT_CONDITIONS_REG5, // NC0_COUNTERA_ENDCOUNT
+                                        EXECUTE_NEXT_CONDITIONS_REG4, // NC0_DELAYCOUNTER_ENDCOUNT
                                         EXECUTE_NEXT_CONDITIONS_REG3, // NC0_X1_ENDCOUNT
-                                        1'b0, // NC0_X0_ENDCOUNT
+                                        EXECUTE_NEXT_CONDITIONS_REG2, // NC0_X0_ENDCOUNT
                                         EXECUTE_NEXT_CONDITIONS_REG1, // NC0_Y1_ENDCOUNT
-                                        1'b0  // NC0_Y0_ENDCOUNT
+                                        EXECUTE_NEXT_CONDITIONS_REG0  // NC0_Y0_ENDCOUNT
                                       };
  
  
 // [end]   : LoopConditions }}}
 
 
-    assign SO        = INST_POINTER_SO;
+    assign SO        = SHORT_SETUP ? INST_POINTER_SO : INSTRUCTION7_REG[46];
  
 
 // NEXT_POINTER persistent buffers {{{
@@ -3676,7 +3980,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
        endcase 
     end
    
-    assign    LAST_STATE =  LAST_STATE_INT;
+    assign    LAST_STATE =  ((DEFAULT_MODE & (~MEM_ARRAY_DUMP_MODE)) | (~BIST_MICROCODE_EN)) ? LAST_STATE_INT : (BIST_RUN && NEXT_STATE_TRUE && (INST_POINTER == 5'b00111));
    
     assign LAST_STATE_DONE          = LAST_STATE_DONE_REG;
 
@@ -3685,41 +3989,17 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
 //--------------------------
     always_comb begin
        case (MBISTPG_ALGO_SEL_INT)
-       // Algorithm: INTELLVPMOVIFX Instructions: 5 {{{
+       // Algorithm: INTELLVPMOVIFASTX Instructions: 4 {{{
        1'b0:  begin
-         // Instruction: M0_DUMMY INST_POINTER: 0 {{{
+         // Instruction: M0_W0 INST_POINTER: 0 {{{
          INSTRUCTION0_WIRE          = { 1'b0      ,              // [46:46] NextConditions: RepeatLoopEndCount
                                         1'b0      ,              // [45:45] NextConditions: CounterAEndCount
                                         1'b0      ,              // [44:44] NextConditions: DelayCounterEndCount
-                                        1'b0      ,              // [43:43] NextConditions: X1_EndCount
-                                        1'b0      ,              // [42:42] NextConditions: X0_EndCount
-                                        1'b0      ,              // [41:41] NextConditions: Y1_EndCount
-                                        1'b0      ,              // [40:40] NextConditions: Y0_EndCount
-                                        5'b00000  ,              // [39:35] BranchToInstruction
-                                        1'b0      ,              // [34:34] DelayCounterCmd
-                                        1'b0      ,              // [33:33] CounterACmd
-                                        1'b0      ,              // [32:32] InhibitDataCompare
-                                        1'b0      ,              // [31:31] InhibitLastAddressCount
-                                        2'b00     ,              // [30:29] RepeatLoop
-                                        4'b0010   ,              // [28:25] ExpectDataCmd
-                                        4'b0010   ,              // [24:21] WriteDataCmd
-                                        3'b000    ,              // [20:18] AddressSelectCmd
-                                        3'b101    ,              // [17:15] X1AddressCmd
-                                        2'b00     ,              // [14:13] X0AddressCmd
-                                        3'b101    ,              // [12:10] Y1AddressCmd
-                                        2'b00     ,              // [9:8] Y0AddressCmd
-                                        2'b00     ,              // [7:6] Add_Reg_A_Equals_B
-                                        6'b000000 };             // [5:0] OperationSelect
-         // Instruction: M0_DUMMY }}}
-         // Instruction: M0_W0 INST_POINTER: 1 {{{
-         INSTRUCTION1_WIRE          = { 1'b0      ,              // [46:46] NextConditions: RepeatLoopEndCount
-                                        1'b0      ,              // [45:45] NextConditions: CounterAEndCount
-                                        1'b0      ,              // [44:44] NextConditions: DelayCounterEndCount
                                         1'b1      ,              // [43:43] NextConditions: X1_EndCount
-                                        1'b0      ,              // [42:42] NextConditions: X0_EndCount
+                                        1'b1      ,              // [42:42] NextConditions: X0_EndCount
                                         1'b1      ,              // [41:41] NextConditions: Y1_EndCount
-                                        1'b0      ,              // [40:40] NextConditions: Y0_EndCount
-                                        5'b00001  ,              // [39:35] BranchToInstruction
+                                        1'b1      ,              // [40:40] NextConditions: Y0_EndCount
+                                        5'b00000  ,              // [39:35] BranchToInstruction
                                         1'b0      ,              // [34:34] DelayCounterCmd
                                         1'b0      ,              // [33:33] CounterACmd
                                         1'b0      ,              // [32:32] InhibitDataCompare
@@ -3729,21 +4009,21 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
                                         4'b0000   ,              // [24:21] WriteDataCmd
                                         3'b000    ,              // [20:18] AddressSelectCmd
                                         3'b011    ,              // [17:15] X1AddressCmd
-                                        2'b00     ,              // [14:13] X0AddressCmd
+                                        2'b11     ,              // [14:13] X0AddressCmd
                                         3'b011    ,              // [12:10] Y1AddressCmd
-                                        2'b00     ,              // [9:8] Y0AddressCmd
+                                        2'b11     ,              // [9:8] Y0AddressCmd
                                         2'b00     ,              // [7:6] Add_Reg_A_Equals_B
-                                        6'b000010 };             // [5:0] OperationSelect
+                                        6'b011010 };             // [5:0] OperationSelect
          // Instruction: M0_W0 }}}
-         // Instruction: M1_R0_W1 INST_POINTER: 2 {{{
-         INSTRUCTION2_WIRE          = { 1'b1      ,              // [46:46] NextConditions: RepeatLoopEndCount
+         // Instruction: M1_R0_W1 INST_POINTER: 1 {{{
+         INSTRUCTION1_WIRE          = { 1'b1      ,              // [46:46] NextConditions: RepeatLoopEndCount
                                         1'b0      ,              // [45:45] NextConditions: CounterAEndCount
                                         1'b0      ,              // [44:44] NextConditions: DelayCounterEndCount
                                         1'b1      ,              // [43:43] NextConditions: X1_EndCount
-                                        1'b0      ,              // [42:42] NextConditions: X0_EndCount
+                                        1'b1      ,              // [42:42] NextConditions: X0_EndCount
                                         1'b1      ,              // [41:41] NextConditions: Y1_EndCount
-                                        1'b0      ,              // [40:40] NextConditions: Y0_EndCount
-                                        5'b00010  ,              // [39:35] BranchToInstruction
+                                        1'b1      ,              // [40:40] NextConditions: Y0_EndCount
+                                        5'b00001  ,              // [39:35] BranchToInstruction
                                         1'b0      ,              // [34:34] DelayCounterCmd
                                         1'b0      ,              // [33:33] CounterACmd
                                         1'b0      ,              // [32:32] InhibitDataCompare
@@ -3753,21 +4033,21 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
                                         4'b0001   ,              // [24:21] WriteDataCmd
                                         3'b000    ,              // [20:18] AddressSelectCmd
                                         3'b010    ,              // [17:15] X1AddressCmd
-                                        2'b00     ,              // [14:13] X0AddressCmd
+                                        2'b10     ,              // [14:13] X0AddressCmd
                                         3'b010    ,              // [12:10] Y1AddressCmd
-                                        2'b00     ,              // [9:8] Y0AddressCmd
+                                        2'b10     ,              // [9:8] Y0AddressCmd
                                         2'b00     ,              // [7:6] Add_Reg_A_Equals_B
                                         6'b001000 };             // [5:0] OperationSelect
          // Instruction: M1_R0_W1 }}}
-         // Instruction: M1_DUMMY INST_POINTER: 3 {{{
-         INSTRUCTION3_WIRE          = { 1'b0      ,              // [46:46] NextConditions: RepeatLoopEndCount
+         // Instruction: M1_DUMMY INST_POINTER: 2 {{{
+         INSTRUCTION2_WIRE          = { 1'b0      ,              // [46:46] NextConditions: RepeatLoopEndCount
                                         1'b0      ,              // [45:45] NextConditions: CounterAEndCount
                                         1'b0      ,              // [44:44] NextConditions: DelayCounterEndCount
                                         1'b0      ,              // [43:43] NextConditions: X1_EndCount
                                         1'b0      ,              // [42:42] NextConditions: X0_EndCount
                                         1'b0      ,              // [41:41] NextConditions: Y1_EndCount
                                         1'b0      ,              // [40:40] NextConditions: Y0_EndCount
-                                        5'b00011  ,              // [39:35] BranchToInstruction
+                                        5'b00010  ,              // [39:35] BranchToInstruction
                                         1'b0      ,              // [34:34] DelayCounterCmd
                                         1'b0      ,              // [33:33] CounterACmd
                                         1'b0      ,              // [32:32] InhibitDataCompare
@@ -3783,15 +4063,15 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
                                         2'b00     ,              // [7:6] Add_Reg_A_Equals_B
                                         6'b000000 };             // [5:0] OperationSelect
          // Instruction: M1_DUMMY }}}
-         // Instruction: CLEAR_ARRAYS INST_POINTER: 4 {{{
-         INSTRUCTION4_WIRE          = { 1'b0      ,              // [46:46] NextConditions: RepeatLoopEndCount
+         // Instruction: CLEAR_ARRAYS INST_POINTER: 3 {{{
+         INSTRUCTION3_WIRE          = { 1'b0      ,              // [46:46] NextConditions: RepeatLoopEndCount
                                         1'b0      ,              // [45:45] NextConditions: CounterAEndCount
                                         1'b0      ,              // [44:44] NextConditions: DelayCounterEndCount
                                         1'b1      ,              // [43:43] NextConditions: X1_EndCount
-                                        1'b0      ,              // [42:42] NextConditions: X0_EndCount
+                                        1'b1      ,              // [42:42] NextConditions: X0_EndCount
                                         1'b1      ,              // [41:41] NextConditions: Y1_EndCount
-                                        1'b0      ,              // [40:40] NextConditions: Y0_EndCount
-                                        5'b00100  ,              // [39:35] BranchToInstruction
+                                        1'b1      ,              // [40:40] NextConditions: Y0_EndCount
+                                        5'b00011  ,              // [39:35] BranchToInstruction
                                         1'b0      ,              // [34:34] DelayCounterCmd
                                         1'b0      ,              // [33:33] CounterACmd
                                         1'b0      ,              // [32:32] InhibitDataCompare
@@ -3801,12 +4081,36 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
                                         4'b1001   ,              // [24:21] WriteDataCmd
                                         3'b000    ,              // [20:18] AddressSelectCmd
                                         3'b010    ,              // [17:15] X1AddressCmd
-                                        2'b00     ,              // [14:13] X0AddressCmd
+                                        2'b10     ,              // [14:13] X0AddressCmd
                                         3'b010    ,              // [12:10] Y1AddressCmd
+                                        2'b10     ,              // [9:8] Y0AddressCmd
+                                        2'b00     ,              // [7:6] Add_Reg_A_Equals_B
+                                        6'b011010 };             // [5:0] OperationSelect
+         // Instruction: CLEAR_ARRAYS }}}
+         // Instruction: 4 INST_POINTER: 4 {{{
+         INSTRUCTION4_WIRE          = { 1'b0      ,              // [46:46] NextConditions: RepeatLoopEndCount
+                                        1'b0      ,              // [45:45] NextConditions: CounterAEndCount
+                                        1'b0      ,              // [44:44] NextConditions: DelayCounterEndCount
+                                        1'b0      ,              // [43:43] NextConditions: X1_EndCount
+                                        1'b0      ,              // [42:42] NextConditions: X0_EndCount
+                                        1'b0      ,              // [41:41] NextConditions: Y1_EndCount
+                                        1'b0      ,              // [40:40] NextConditions: Y0_EndCount
+                                        5'b00100  ,              // [39:35] BranchToInstruction
+                                        1'b0      ,              // [34:34] DelayCounterCmd
+                                        1'b0      ,              // [33:33] CounterACmd
+                                        1'b0      ,              // [32:32] InhibitDataCompare
+                                        1'b0      ,              // [31:31] InhibitLastAddressCount
+                                        2'b00     ,              // [30:29] RepeatLoop
+                                        4'b0000   ,              // [28:25] ExpectDataCmd
+                                        4'b0000   ,              // [24:21] WriteDataCmd
+                                        3'b000    ,              // [20:18] AddressSelectCmd
+                                        3'b000    ,              // [17:15] X1AddressCmd
+                                        2'b00     ,              // [14:13] X0AddressCmd
+                                        3'b000    ,              // [12:10] Y1AddressCmd
                                         2'b00     ,              // [9:8] Y0AddressCmd
                                         2'b00     ,              // [7:6] Add_Reg_A_Equals_B
-                                        6'b000010 };             // [5:0] OperationSelect
-         // Instruction: CLEAR_ARRAYS }}}
+                                        6'b000000 };             // [5:0] OperationSelect
+         // Instruction: 4 }}}
          // Instruction: 5 INST_POINTER: 5 {{{
          INSTRUCTION5_WIRE          = { 1'b0      ,              // [46:46] NextConditions: RepeatLoopEndCount
                                         1'b0      ,              // [45:45] NextConditions: CounterAEndCount
@@ -4336,7 +4640,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
                                         6'b000000 };             // [5:0] OperationSelect
          // Instruction: 26 }}}
        end   
-       // Algorithm: INTELLVPMOVIFX }}}
+       // Algorithm: INTELLVPMOVIFASTX }}}
        // Algorithm: SMARCHCHKBCI Instructions: 27 {{{
        1'b1:  begin
          // Instruction: INST0_IDLE_PH_1 INST_POINTER: 0 {{{
@@ -4992,37 +5296,68 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
        endcase
     end 
 
+//---------------------
+//-- Microcode array --
+//---------------------
+// [start] : microcode array {{{
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+       if (~BIST_ASYNC_RESETN) begin
+             INSTRUCTION0_REG       <= 47'b00000000000000000000000000000000000000000000000;
+             INSTRUCTION1_REG       <= 47'b00000000000000000000000000000000000000000000000;
+             INSTRUCTION2_REG       <= 47'b00000000000000000000000000000000000000000000000;
+             INSTRUCTION3_REG       <= 47'b00000000000000000000000000000000000000000000000;
+             INSTRUCTION4_REG       <= 47'b00000000000000000000000000000000000000000000000;
+             INSTRUCTION5_REG       <= 47'b00000000000000000000000000000000000000000000000;
+             INSTRUCTION6_REG       <= 47'b00000000000000000000000000000000000000000000000;
+             INSTRUCTION7_REG       <= 47'b00000000000000000000000000000000000000000000000;
+       end
+       else
+          if (BIST_SHIFT_LONG) begin
+             INSTRUCTION0_REG       <= {INSTRUCTION0_REG[45:0], INST_POINTER_SO};
+             INSTRUCTION1_REG       <= {INSTRUCTION1_REG[45:0], INSTRUCTION0_REG[46]};
+             INSTRUCTION2_REG       <= {INSTRUCTION2_REG[45:0], INSTRUCTION1_REG[46]};
+             INSTRUCTION3_REG       <= {INSTRUCTION3_REG[45:0], INSTRUCTION2_REG[46]};
+             INSTRUCTION4_REG       <= {INSTRUCTION4_REG[45:0], INSTRUCTION3_REG[46]};
+             INSTRUCTION5_REG       <= {INSTRUCTION5_REG[45:0], INSTRUCTION4_REG[46]};
+             INSTRUCTION6_REG       <= {INSTRUCTION6_REG[45:0], INSTRUCTION5_REG[46]};
+             INSTRUCTION7_REG       <= {INSTRUCTION7_REG[45:0], INSTRUCTION6_REG[46]};
+          end
+       end
+// [end]   : microcode array }}}
+
+
 //------------------------------------------------
 //-- Select hardcoded or softcoded instructions --
 //------------------------------------------------
 // [start] : hard vs soft code {{{
-    assign INSTRUCTION0             =  INSTRUCTION0_WIRE ;           
-    assign INSTRUCTION1             =  INSTRUCTION1_WIRE ;           
-    assign INSTRUCTION2             =  INSTRUCTION2_WIRE ;           
-    assign INSTRUCTION3             =  INSTRUCTION3_WIRE ;           
-    assign INSTRUCTION4             =  INSTRUCTION4_WIRE ;           
-    assign INSTRUCTION5             =  INSTRUCTION5_WIRE ;           
-    assign INSTRUCTION6             =  INSTRUCTION6_WIRE ;           
-    assign INSTRUCTION7             =  INSTRUCTION7_WIRE ;           
-    assign INSTRUCTION8             =  INSTRUCTION8_WIRE ;           
-    assign INSTRUCTION9             =  INSTRUCTION9_WIRE ;           
-    assign INSTRUCTION10            =  INSTRUCTION10_WIRE ;           
-    assign INSTRUCTION11            =  INSTRUCTION11_WIRE ;           
-    assign INSTRUCTION12            =  INSTRUCTION12_WIRE ;           
-    assign INSTRUCTION13            =  INSTRUCTION13_WIRE ;           
-    assign INSTRUCTION14            =  INSTRUCTION14_WIRE ;           
-    assign INSTRUCTION15            =  INSTRUCTION15_WIRE ;           
-    assign INSTRUCTION16            =  INSTRUCTION16_WIRE ;           
-    assign INSTRUCTION17            =  INSTRUCTION17_WIRE ;           
-    assign INSTRUCTION18            =  INSTRUCTION18_WIRE ;           
-    assign INSTRUCTION19            =  INSTRUCTION19_WIRE ;           
-    assign INSTRUCTION20            =  INSTRUCTION20_WIRE ;           
-    assign INSTRUCTION21            =  INSTRUCTION21_WIRE ;           
-    assign INSTRUCTION22            =  INSTRUCTION22_WIRE ;           
-    assign INSTRUCTION23            =  INSTRUCTION23_WIRE ;           
-    assign INSTRUCTION24            =  INSTRUCTION24_WIRE ;           
-    assign INSTRUCTION25            =  INSTRUCTION25_WIRE ;           
-    assign INSTRUCTION26            =  INSTRUCTION26_WIRE ;           
+    assign INSTRUCTION0             = ( (DEFAULT_MODE & (~MEM_ARRAY_DUMP_MODE)) | (~BIST_MICROCODE_EN) ) ? INSTRUCTION0_WIRE :  INSTRUCTION0_REG ;
+    assign INSTRUCTION1             = ( (DEFAULT_MODE & (~MEM_ARRAY_DUMP_MODE)) | (~BIST_MICROCODE_EN) ) ? INSTRUCTION1_WIRE :  INSTRUCTION1_REG ;
+    assign INSTRUCTION2             = ( (DEFAULT_MODE & (~MEM_ARRAY_DUMP_MODE)) | (~BIST_MICROCODE_EN) ) ? INSTRUCTION2_WIRE :  INSTRUCTION2_REG ;
+    assign INSTRUCTION3             = ( (DEFAULT_MODE & (~MEM_ARRAY_DUMP_MODE)) | (~BIST_MICROCODE_EN) ) ? INSTRUCTION3_WIRE :  INSTRUCTION3_REG ;
+    assign INSTRUCTION4             = ( (DEFAULT_MODE & (~MEM_ARRAY_DUMP_MODE)) | (~BIST_MICROCODE_EN) ) ? INSTRUCTION4_WIRE :  INSTRUCTION4_REG ;
+    assign INSTRUCTION5             = ( (DEFAULT_MODE & (~MEM_ARRAY_DUMP_MODE)) | (~BIST_MICROCODE_EN) ) ? INSTRUCTION5_WIRE :  INSTRUCTION5_REG ;
+    assign INSTRUCTION6             = ( (DEFAULT_MODE & (~MEM_ARRAY_DUMP_MODE)) | (~BIST_MICROCODE_EN) ) ? INSTRUCTION6_WIRE :  INSTRUCTION6_REG ;
+    assign INSTRUCTION7             = ( (DEFAULT_MODE & (~MEM_ARRAY_DUMP_MODE)) | (~BIST_MICROCODE_EN) ) ? INSTRUCTION7_WIRE :  INSTRUCTION7_REG ;
+    assign INSTRUCTION8             =  INSTRUCTION8_WIRE ;
+    assign INSTRUCTION9             =  INSTRUCTION9_WIRE ;
+    assign INSTRUCTION10            =  INSTRUCTION10_WIRE ;
+    assign INSTRUCTION11            =  INSTRUCTION11_WIRE ;
+    assign INSTRUCTION12            =  INSTRUCTION12_WIRE ;
+    assign INSTRUCTION13            =  INSTRUCTION13_WIRE ;
+    assign INSTRUCTION14            =  INSTRUCTION14_WIRE ;
+    assign INSTRUCTION15            =  INSTRUCTION15_WIRE ;
+    assign INSTRUCTION16            =  INSTRUCTION16_WIRE ;
+    assign INSTRUCTION17            =  INSTRUCTION17_WIRE ;
+    assign INSTRUCTION18            =  INSTRUCTION18_WIRE ;
+    assign INSTRUCTION19            =  INSTRUCTION19_WIRE ;
+    assign INSTRUCTION20            =  INSTRUCTION20_WIRE ;
+    assign INSTRUCTION21            =  INSTRUCTION21_WIRE ;
+    assign INSTRUCTION22            =  INSTRUCTION22_WIRE ;
+    assign INSTRUCTION23            =  INSTRUCTION23_WIRE ;
+    assign INSTRUCTION24            =  INSTRUCTION24_WIRE ;
+    assign INSTRUCTION25            =  INSTRUCTION25_WIRE ;
+    assign INSTRUCTION26            =  INSTRUCTION26_WIRE ;
 // [end]   : hard vs soft code }}}
 
     wire             RESET_REG_SETUP1_BISTON;
@@ -5072,7 +5407,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
        if (INST_POINTER_SYNC_RESET) begin
            INST_POINTER             <= 5'b00000; 
        end else begin
-          if (BIST_SHIFT_SHORT) begin
+          if (BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE)) begin
              INST_POINTER           <= {INST_POINTER[3:0], INST_POINTER_SI};
           end else begin
              if (LAST_TICK & (~BIST_HOLD)) begin
@@ -5082,16 +5417,29 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl (
        end
     end
 
-    assign INST_POINTER_SO          = INST_POINTER[4];
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+      if (~BIST_ASYNC_RESETN)
+        INST_POINTER_SHADOW         <= 5'b00000;
+      else
+      if (BIST_SHIFT_SHORT) begin
+        INST_POINTER_SHADOW         <= {INST_POINTER_SHADOW[3:0], INST_POINTER_SI};
+      end else
+      if (~BIST_HOLD) begin
+        INST_POINTER_SHADOW         <= INST_POINTER;
+      end
+    end
+
+    assign INST_POINTER_SO          = SELECT_SHADOW_STATE ? INST_POINTER_SHADOW[4] : INST_POINTER[4];
     // Checkerboard phase enable for the SMarchCHKB family of algorithms.
     always_comb begin
         case (MBISTPG_ALGO_SEL_INT) 
-             1'b0: CHKBCI_PHASE_INT = 1'b0; // Algorithm: INTELLVPMOVIFX
+             1'b0: CHKBCI_PHASE_INT = 1'b0; // Algorithm: INTELLVPMOVIFASTX
              1'b1: CHKBCI_PHASE_INT = (INST_POINTER > 5'b00101) & (INST_POINTER < 5'b1011); // Algorithm: SMARCHCHKBCI
         endcase
     end     
  
-    assign CHKBCI_PHASE = CHKBCI_PHASE_INT;
+    assign CHKBCI_PHASE = CHKBCI_PHASE_INT & (~BIST_MICROCODE_EN);
  
     function automatic [4:0] INC_POINTER;
     input            [4:0] INST_POINTER;
@@ -5160,6 +5508,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_add_gen (
   input wire SI,
   input wire BIST_SHIFT_SHORT,
   input wire BIST_HOLD,
+  input wire SELECT_SHADOW_STATE,
   input wire LAST_TICK,
   input wire MBISTPG_REDUCED_ADDR_CNT_EN,
   input wire  ESOE_RESET,
@@ -5173,6 +5522,10 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_add_gen (
   input wire INH_LAST_ADDR_CNT,
   input wire MBISTPG_ALGO_SEL,
   input wire MEM_ARRAY_DUMP_MODE,
+  input wire RESET_REG_SETUP1,
+  input wire DEFAULT_MODE,
+  input wire BIST_MICROCODE_EN,
+  input wire SELECT_COMMON_ADD_MIN_MAX,
   output wire SO,
   output wire Y0_MINMAX_TRIGGER,
   output wire Y1_MINMAX_TRIGGER,
@@ -5185,13 +5538,19 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_add_gen (
     wire MBISTPG_ALGO_SEL_INT;
     reg    [7:0]     AX_ADD_REG, AX_ADD_WIRE;
     reg    [7:0]     BX_ADD_REG, BX_ADD_WIRE;
+    reg    [7:0]     AX_ADD_REG_SHADOW;
+    reg    [7:0]     BX_ADD_REG_SHADOW;
     reg    [2:0]     AY_ADD_REG, AY_ADD_WIRE;
     reg    [2:0]     BY_ADD_REG, BY_ADD_WIRE;
+    reg    [2:0]     AY_ADD_REG_SHADOW;
+    reg    [2:0]     BY_ADD_REG_SHADOW;
+    wire             A_EQUALS_B_TRIGGER_TO_BUF;
     wire    [7:0]    AX_MASK;   
     wire    [7:0]    BX_MASK;
     wire    [2:0]    AY_MASK;   
     wire    [2:0]    BY_MASK;
-    wire   [13:0]    A_SCAN_REGISTER, B_SCAN_REGISTER;
+    reg    [13:0]    A_SCAN_REGISTER, B_SCAN_REGISTER;
+    reg    [13:0]    A_SCAN_REGISTER_SHADOW, B_SCAN_REGISTER_SHADOW;
     reg    [13:0]    A_SCAN_WIRE, B_SCAN_WIRE;
     wire   [1:0]     SELECT_REG;
     wire             ENABLE_A_ADD_REG, ENABLE_B_ADD_REG;
@@ -5212,14 +5571,16 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_add_gen (
     reg    [2:0]     NEXT_Y_ADD_COUNT;
     wire   [2:0]     Y_ADD_CNT;
     wire   [2:0]     Y_ADD_CNT_TO_BUF;
-    wire   [2:0]     Y_ADD_CNT_MAX, Y_ADD_CNT_MIN;
+    reg    [2:0]     Y_ADD_CNT_MAX, Y_ADD_CNT_MIN; 
+    reg    [2:0]     Y_ADD_CNT_MAX_SHADOW, Y_ADD_CNT_MIN_SHADOW; 
     wire   [1:0]     Y_ADD_ROT_OUT;
     wire   [1:0]     Y_ADD_ROT_IN_REG;
     wire   [7:0]     X_R, X_RP, X_RCO, X_RCI;
     reg   [7:0]      NEXT_X_ADD_COUNT;
     wire   [7:0]     X_ADD_CNT_TO_BUF;
     wire   [7:0]     X_ADD_CNT;
-    wire   [7:0]     X_ADD_CNT_MAX, X_ADD_CNT_MIN;
+    reg    [7:0]     X_ADD_CNT_MAX, X_ADD_CNT_MIN; 
+    reg    [7:0]     X_ADD_CNT_MAX_SHADOW, X_ADD_CNT_MIN_SHADOW; 
     wire   [2:0]     X_ADD_ROT_OUT;
     wire   [1:0]     X_ADD_ROT_IN_REG;
     
@@ -5275,6 +5636,10 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_add_gen (
     wire             A_SCAN_REGISTER_SO;
     wire             B_SCAN_REGISTER_SO;
  
+    wire             X_ADD_CNT_MIN_SI;
+    wire             X_ADD_CNT_MAX_SI;
+    wire             X_ADD_CNT_MIN_SO;
+    wire             X_ADD_CNT_MAX_SO;
     wire             AX_ROT_RT_OUT_SELECTED;
     wire             AX_ROT_RT_IN_SELECTED;
     reg              AX_ROT_IN_SELECTED;
@@ -5286,6 +5651,10 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_add_gen (
     reg    [7:0]     X_ADD_REG_MAX_DEFAULT;
     reg    [2:0]     X_ADD_ROT_OUT_DEFAULT; 
     reg    [1:0]     X_ADD_ROT_IN_DEFAULT;
+    wire             Y_ADD_CNT_MIN_SI;
+    wire             Y_ADD_CNT_MAX_SI;
+    wire             Y_ADD_CNT_MIN_SO;
+    wire             Y_ADD_CNT_MAX_SO;
     wire             AY_ROT_RT_OUT_SELECTED;
     wire             AY_ROT_RT_IN_SELECTED;
     wire   [1:0]     Y_ADD_ROT_IN_SELECTED; 
@@ -5302,7 +5671,17 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_add_gen (
     assign B_ADD_REG_SI             =  (BIST_SHIFT_SHORT) ? A_SCAN_REGISTER_SO :
                                                             BX_ADD_REG[7];
 
-    assign SO        = B_SCAN_REGISTER_SO;
+    assign X_ADD_CNT_MIN_SI = B_SCAN_REGISTER_SO;
+    assign X_ADD_CNT_MIN_SO = X_ADD_CNT_MIN[7];
+    assign X_ADD_CNT_MAX_SI = X_ADD_CNT_MIN_SO;
+    assign X_ADD_CNT_MAX_SO = X_ADD_CNT_MAX[7];
+
+    assign Y_ADD_CNT_MIN_SI = X_ADD_CNT_MAX_SO;
+    assign Y_ADD_CNT_MIN_SO = Y_ADD_CNT_MIN[2];
+    assign Y_ADD_CNT_MAX_SI = Y_ADD_CNT_MIN_SO;
+    assign Y_ADD_CNT_MAX_SO = Y_ADD_CNT_MAX[2];
+
+    assign SO        = SELECT_SHADOW_STATE ? Y_ADD_CNT_MAX_SHADOW[2] : Y_ADD_CNT_MAX_SO;
 
     always_comb begin
     case ({BIST_SWITCH_ADDRESS_EN, SELECT_REG})
@@ -5324,7 +5703,11 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_add_gen (
     assign X0_MINMAX_TRIGGER        = X0_MINMAX_TRIGGER_INT;
     assign X1_MINMAX_TRIGGER        = X1_MINMAX_TRIGGER_INT;
  
-    assign A_EQUALS_B_TRIGGER       = 1'b0;
+    assign A_EQUALS_B_TRIGGER_TO_BUF               =  (AX_ADD_REG == BX_ADD_REG) &  (AY_ADD_REG == BY_ADD_REG);
+    i0sbfn000ab1n02x5 tessent_persistent_cell_A_EQUALS_B_TRIGGER (
+        .a           (A_EQUALS_B_TRIGGER_TO_BUF),
+        .o           (A_EQUALS_B_TRIGGER)
+    );    
  
     assign Y0_MASK   = (Y0_SEGMENT_DEF == 1'b1)    ? 3'b001 :
                                                                     3'b000 ;
@@ -5529,25 +5912,77 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_add_gen (
 //----------------------------------------------
     always_comb begin
        case (MBISTPG_ALGO_SEL_INT)
-          // Algorithm: INTELLVPMOVIFX Type: CUSTOM
+          // Algorithm: INTELLVPMOVIFASTX Type: CUSTOM
           1'b0:      X_ADD_REG_MIN_DEFAULT         = 8'b00000000;
           // Algorithm: SMARCHCHKBCI Type: IC
           1'b1:      X_ADD_REG_MIN_DEFAULT         = 8'b00000000;
        endcase
     end
       
-    assign X_ADD_CNT_MIN            = X_ADD_REG_MIN_DEFAULT;
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+       if (~BIST_ASYNC_RESETN)
+        X_ADD_CNT_MIN               <= 8'b00000000;
+       else
+       if (RESET_REG_SETUP1 & ( (DEFAULT_MODE & (~MEM_ARRAY_DUMP_MODE)) | (~BIST_MICROCODE_EN) | (~SELECT_COMMON_ADD_MIN_MAX) )) begin
+          X_ADD_CNT_MIN             <= X_ADD_REG_MIN_DEFAULT; 
+       end
+       else begin 
+          if ((BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE))) begin
+             X_ADD_CNT_MIN          <= {X_ADD_CNT_MIN[6:0], X_ADD_CNT_MIN_SI};
+          end
+       end
+    end
+
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN)
+            X_ADD_CNT_MIN_SHADOW    <= 8'b00000000;
+        else
+        if (BIST_SHIFT_SHORT) begin
+            X_ADD_CNT_MIN_SHADOW    <= {X_ADD_CNT_MIN_SHADOW[6:0], B_SCAN_REGISTER_SO};
+        end else
+        if (~BIST_HOLD) begin
+            X_ADD_CNT_MIN_SHADOW    <= X_ADD_CNT_MIN;
+        end
+    end
  
     always_comb begin
        case (MBISTPG_ALGO_SEL_INT)
-          // Algorithm: INTELLVPMOVIFX Type: CUSTOM
+          // Algorithm: INTELLVPMOVIFASTX Type: CUSTOM
           1'b0:      X_ADD_REG_MAX_DEFAULT         = 8'b11111111;
           // Algorithm: SMARCHCHKBCI Type: IC
           1'b1:      X_ADD_REG_MAX_DEFAULT         = MBISTPG_REDUCED_ADDR_CNT_EN ? 8'b01111111 : 8'b11111111;
        endcase
     end
  
-    assign X_ADD_CNT_MAX            = X_ADD_REG_MAX_DEFAULT;
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+       if (~BIST_ASYNC_RESETN)
+        X_ADD_CNT_MAX               <= 8'b00000000;
+       else
+       if (RESET_REG_SETUP1 & ( (DEFAULT_MODE & (~MEM_ARRAY_DUMP_MODE)) | (~BIST_MICROCODE_EN) | (~SELECT_COMMON_ADD_MIN_MAX) )) begin
+          X_ADD_CNT_MAX             <= X_ADD_REG_MAX_DEFAULT; 
+       end
+       else begin 
+          if ((BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE))) begin
+             X_ADD_CNT_MAX          <= {X_ADD_CNT_MAX[6:0], X_ADD_CNT_MAX_SI};
+          end
+       end
+    end
+
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN)
+            X_ADD_CNT_MAX_SHADOW    <= 8'b00000000;
+        else
+        if (BIST_SHIFT_SHORT) begin
+            X_ADD_CNT_MAX_SHADOW    <= {X_ADD_CNT_MAX_SHADOW[6:0], X_ADD_CNT_MIN_SHADOW[7]};
+        end else
+        if (~BIST_HOLD) begin
+            X_ADD_CNT_MAX_SHADOW    <= X_ADD_CNT_MAX;
+        end
+    end
 //----------------------------------------
 // Select out bit X register            --
 //----------------------------------------
@@ -5663,25 +6098,77 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_add_gen (
 //----------------------------------------------
     always_comb begin
        case (MBISTPG_ALGO_SEL_INT)
-          // Algorithm: INTELLVPMOVIFX Type: CUSTOM
+          // Algorithm: INTELLVPMOVIFASTX Type: CUSTOM
           1'b0:      Y_ADD_REG_MIN_DEFAULT         = 3'b000;
           // Algorithm: SMARCHCHKBCI Type: IC
           1'b1:      Y_ADD_REG_MIN_DEFAULT         = 3'b000;
        endcase
     end 
  
-    assign Y_ADD_CNT_MIN            = Y_ADD_REG_MIN_DEFAULT;
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+       if (~BIST_ASYNC_RESETN)
+        Y_ADD_CNT_MIN               <= 3'b000;
+       else
+       if (RESET_REG_SETUP1 & ( (DEFAULT_MODE & (~MEM_ARRAY_DUMP_MODE)) | (~BIST_MICROCODE_EN) | (~SELECT_COMMON_ADD_MIN_MAX) )) begin
+          Y_ADD_CNT_MIN             <= Y_ADD_REG_MIN_DEFAULT; 
+       end
+       else begin 
+          if ((BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE))) begin
+             Y_ADD_CNT_MIN          <= {Y_ADD_CNT_MIN[1:0], Y_ADD_CNT_MIN_SI};
+          end
+       end
+    end
+
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN)
+            Y_ADD_CNT_MIN_SHADOW    <= 3'b000;
+        else
+        if (BIST_SHIFT_SHORT) begin
+            Y_ADD_CNT_MIN_SHADOW    <= {Y_ADD_CNT_MIN_SHADOW[1:0], X_ADD_CNT_MAX_SHADOW[7]};
+        end else
+        if (~BIST_HOLD) begin
+            Y_ADD_CNT_MIN_SHADOW    <= Y_ADD_CNT_MIN;
+        end
+    end
  
     always_comb begin
        case (MBISTPG_ALGO_SEL_INT)
-          // Algorithm: INTELLVPMOVIFX Type: CUSTOM
+          // Algorithm: INTELLVPMOVIFASTX Type: CUSTOM
           1'b0:      Y_ADD_REG_MAX_DEFAULT         = 3'b111;
           // Algorithm: SMARCHCHKBCI Type: IC
           1'b1:      Y_ADD_REG_MAX_DEFAULT         = MBISTPG_REDUCED_ADDR_CNT_EN ? 3'b011 : 3'b111;
        endcase
     end
  
-    assign Y_ADD_CNT_MAX            = Y_ADD_REG_MAX_DEFAULT;
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+       if (~BIST_ASYNC_RESETN)
+        Y_ADD_CNT_MAX               <= 3'b000;
+       else
+       if (RESET_REG_SETUP1 & ( (DEFAULT_MODE & (~MEM_ARRAY_DUMP_MODE)) | (~BIST_MICROCODE_EN) | (~SELECT_COMMON_ADD_MIN_MAX) )) begin
+          Y_ADD_CNT_MAX             <= Y_ADD_REG_MAX_DEFAULT; 
+       end
+       else begin 
+          if ((BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE))) begin
+             Y_ADD_CNT_MAX          <= {Y_ADD_CNT_MAX[1:0], Y_ADD_CNT_MAX_SI};
+          end
+       end
+    end
+
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN)
+            Y_ADD_CNT_MAX_SHADOW    <= 3'b000;
+        else
+        if (BIST_SHIFT_SHORT) begin
+            Y_ADD_CNT_MAX_SHADOW    <= {Y_ADD_CNT_MAX_SHADOW[1:0], Y_ADD_CNT_MIN_SHADOW[2]};
+        end else
+        if (~BIST_HOLD) begin
+            Y_ADD_CNT_MAX_SHADOW    <= Y_ADD_CNT_MAX;
+        end
+    end
    
 //----------------------------------------
 // Select out bit Y register            --
@@ -5834,7 +6321,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_add_gen (
 //------------------------------------
     always_comb begin
         case (MBISTPG_ALGO_SEL_INT) 
-            1'b0:    AX_ADD_WIRE   = 8'b00000000; // Algorithm: INTELLVPMOVIFX
+            1'b0:    AX_ADD_WIRE   = 8'b11111111; // Algorithm: INTELLVPMOVIFASTX, MAXROW
             1'b1:    AX_ADD_WIRE   = 8'b00000000; // Algorithm: SMARCHCHKBCI
         endcase            
     end
@@ -5862,7 +6349,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_add_gen (
         if (ESOE_RESET)
             AX_ADD_REG              <= 8'b00000000;
         else
-        if (BIST_SHIFT_SHORT | (LAST_TICK & (~BIST_HOLD) & ROT_LF_A_ADD_REG & BIST_RUN))
+        if ((BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE)) | (LAST_TICK & (~BIST_HOLD) & ROT_LF_A_ADD_REG & BIST_RUN))
             AX_ADD_REG              <= (AX_MASK & {AX_ADD_REG[6:0], AX_ROT_IN_SELECTED}) | ((~AX_MASK) & AX_ADD_REG);
         else
         if (LAST_TICK & (~BIST_HOLD) & ROT_RT_A_ADD_REG & BIST_RUN)
@@ -5885,12 +6372,24 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_add_gen (
         end
     end 
 
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN)
+            AX_ADD_REG_SHADOW       <= 8'b00000000;
+        else
+        if (BIST_SHIFT_SHORT)
+            AX_ADD_REG_SHADOW       <= {AX_ADD_REG_SHADOW[6:0], AY_ADD_REG_SHADOW[2]};
+        else
+        if (~BIST_HOLD)
+            AX_ADD_REG_SHADOW       <= AX_ADD_REG;
+    end
+
 //------------------------------------
 //-- ADDRESS REGISTER A : Y SEGMENT --
 //------------------------------------
     always_comb begin
         case (MBISTPG_ALGO_SEL_INT) 
-        1'b0:        AY_ADD_WIRE    = 3'b000; // Algorithm: INTELLVPMOVIFX
+        1'b0:        AY_ADD_WIRE    = 3'b111; // Algorithm: INTELLVPMOVIFASTX, MAXCOLUMN
         1'b1:        AY_ADD_WIRE    = 3'b000; // Algorithm: SMARCHCHKBCI
         endcase
     end
@@ -5913,7 +6412,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_add_gen (
         if (ESOE_RESET)
             AY_ADD_REG              <= 3'b000;
         else
-        if (BIST_SHIFT_SHORT | (LAST_TICK & (~BIST_HOLD) & ROT_LF_A_ADD_REG & BIST_RUN))
+        if ((BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE)) | (LAST_TICK & (~BIST_HOLD) & ROT_LF_A_ADD_REG & BIST_RUN))
             AY_ADD_REG              <= (AY_MASK & {AY_ADD_REG[1:0], AY_ROT_IN_SELECTED}) | ((~AY_MASK) & AY_ADD_REG);
         else
         if (LAST_TICK & (~BIST_HOLD) & ROT_RT_A_ADD_REG & BIST_RUN)
@@ -5936,12 +6435,24 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_add_gen (
         end
     end 
 
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN)
+            AY_ADD_REG_SHADOW       <= 3'b000;
+        else
+        if (BIST_SHIFT_SHORT)
+            AY_ADD_REG_SHADOW       <= {AY_ADD_REG_SHADOW[1:0], A_ADD_REG_SI};
+        else
+        if (~BIST_HOLD)
+            AY_ADD_REG_SHADOW       <= AY_ADD_REG;
+    end
+
 //------------------------------------
 //-- ADDRESS REGISTER B : X SEGMENT --
 //------------------------------------
     always_comb begin
         case (MBISTPG_ALGO_SEL_INT) 
-        1'b0:        BX_ADD_WIRE    = 8'b00000000; // Algorithm: INTELLVPMOVIFX
+        1'b0:        BX_ADD_WIRE    = 8'b00000000; // Algorithm: INTELLVPMOVIFASTX
         1'b1:        BX_ADD_WIRE    = 8'b00000000; // Algorithm: SMARCHCHKBCI
         endcase
     end
@@ -5969,7 +6480,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_add_gen (
         if (ESOE_RESET)
             BX_ADD_REG              <= 8'b00000000;
         else
-        if (BIST_SHIFT_SHORT | (LAST_TICK & (~BIST_HOLD) & ROT_LF_B_ADD_REG & BIST_RUN))
+        if ((BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE)) | (LAST_TICK & (~BIST_HOLD) & ROT_LF_B_ADD_REG & BIST_RUN))
             BX_ADD_REG              <= (BX_MASK & {BX_ADD_REG[6:0], BX_ROT_IN_SELECTED}) | ((~BX_MASK) & BX_ADD_REG);
         else begin
           if ( ENABLE_B_ADD_REG & BIST_RUN & (~BIST_HOLD)) 
@@ -5989,12 +6500,24 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_add_gen (
         end
     end 
 
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN)
+            BX_ADD_REG_SHADOW       <= 8'b00000000;
+        else
+        if (BIST_SHIFT_SHORT)
+            BX_ADD_REG_SHADOW       <= {BX_ADD_REG_SHADOW[6:0], BY_ADD_REG_SHADOW[2]};
+        else
+        if (~BIST_HOLD)
+            BX_ADD_REG_SHADOW       <= BX_ADD_REG;
+    end
+
 //------------------------------------
 //-- ADDRESS REGISTER B : Y SEGMENT --
 //------------------------------------
     always_comb begin
         case (MBISTPG_ALGO_SEL_INT) 
-        1'b0:        BY_ADD_WIRE    = 3'b000; // Algorithm: INTELLVPMOVIFX
+        1'b0:        BY_ADD_WIRE    = 3'b000; // Algorithm: INTELLVPMOVIFASTX
         1'b1:        BY_ADD_WIRE    = 3'b000; // Algorithm: SMARCHCHKBCI
         endcase
     end
@@ -6017,7 +6540,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_add_gen (
         if (ESOE_RESET)
             BY_ADD_REG              <= 3'b000;
         else
-        if (BIST_SHIFT_SHORT | (LAST_TICK & (~BIST_HOLD) & ROT_LF_B_ADD_REG & BIST_RUN))
+        if ((BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE)) | (LAST_TICK & (~BIST_HOLD) & ROT_LF_B_ADD_REG & BIST_RUN))
             BY_ADD_REG              <= (BY_MASK & {BY_ADD_REG[1:0], BY_ROT_IN_SELECTED}) | ((~BY_MASK) & BY_ADD_REG);
         else begin
           if ( ENABLE_B_ADD_REG & BIST_RUN & (~BIST_HOLD))
@@ -6037,6 +6560,18 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_add_gen (
         end 
     end 
 
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN)
+            BY_ADD_REG_SHADOW       <= 3'b000;
+        else
+        if (BIST_SHIFT_SHORT)
+            BY_ADD_REG_SHADOW       <= {BY_ADD_REG_SHADOW[1:0], B_ADD_REG_SI};
+        else
+        if (~BIST_HOLD)
+            BY_ADD_REG_SHADOW       <= BY_ADD_REG;
+    end
+
 //------------------------------------------------
 //-- ADDRESS REGISTER A : CARRY-IN & X0Y0 SETUP --
 //------------------------------------------------
@@ -6046,17 +6581,43 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_add_gen (
     assign A_Y0_ADD_SEGMENT_LINK_REG               = A_SCAN_REGISTER[11:9];
     assign A_X0_SEGMENT_DEF_REG     = A_SCAN_REGISTER[12:12];
     assign A_Y0_SEGMENT_DEF_REG     = A_SCAN_REGISTER[13:13];
-    assign A_SCAN_REGISTER_SI       = AX_ADD_REG[7];
-    assign A_SCAN_REGISTER_SO       = A_SCAN_REGISTER_SI; 
+    assign A_SCAN_REGISTER_SI       = SELECT_SHADOW_STATE ? AX_ADD_REG_SHADOW[7] : AX_ADD_REG[7];
+    assign A_SCAN_REGISTER_SO       = SELECT_SHADOW_STATE ? A_SCAN_REGISTER_SHADOW[13] : A_SCAN_REGISTER[13];
 
     always_comb begin
        case (MBISTPG_ALGO_SEL_INT) 
-       1'b0:         A_SCAN_WIRE    = {1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b1, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0};
+       1'b0:         A_SCAN_WIRE    = {1'b1, 1'b1, 1'b1, 1'b1, 1'b0, 1'b1, 1'b1, 1'b1, 1'b0, 1'b0, 1'b0, 1'b1, 1'b0, 1'b0};
        1'b1:         A_SCAN_WIRE    = {1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b1, 1'b0};
        endcase   
     end
 
-    assign A_SCAN_REGISTER          = A_SCAN_WIRE;         
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN)
+            A_SCAN_REGISTER <= 14'b00000000000000;
+        else
+        if (RESET_REG_SETUP1 & ( (DEFAULT_MODE & (~MEM_ARRAY_DUMP_MODE)) | (~BIST_MICROCODE_EN) )) begin
+            A_SCAN_REGISTER <= A_SCAN_WIRE;      
+        end   
+        else begin
+            if ((BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE))) begin
+                A_SCAN_REGISTER     <= {A_SCAN_REGISTER[12:0], A_SCAN_REGISTER_SI};
+            end
+        end    
+    end
+
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN)
+            A_SCAN_REGISTER_SHADOW <= 14'b00000000000000;
+        else
+        if (BIST_SHIFT_SHORT) begin
+            A_SCAN_REGISTER_SHADOW                 <= {A_SCAN_REGISTER_SHADOW[12:0], A_SCAN_REGISTER_SI};
+        end else
+        if (~BIST_HOLD) begin
+            A_SCAN_REGISTER_SHADOW                 <= A_SCAN_REGISTER;
+        end
+    end
 
 //------------------------------------------------
 //-- ADDRESS REGISTER B : CARRY-IN & X0Y0 SETUP --
@@ -6067,8 +6628,8 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_add_gen (
     assign B_Y0_ADD_SEGMENT_LINK_REG               = B_SCAN_REGISTER[11:9];
     assign B_X0_SEGMENT_DEF_REG     = B_SCAN_REGISTER[12:12];
     assign B_Y0_SEGMENT_DEF_REG     = B_SCAN_REGISTER[13:13];
-    assign B_SCAN_REGISTER_SI       = BX_ADD_REG[7];
-    assign B_SCAN_REGISTER_SO       = B_SCAN_REGISTER_SI;
+    assign B_SCAN_REGISTER_SI       = SELECT_SHADOW_STATE ? BX_ADD_REG_SHADOW[7] : BX_ADD_REG[7];
+    assign B_SCAN_REGISTER_SO       = SELECT_SHADOW_STATE ? B_SCAN_REGISTER_SHADOW[13] : B_SCAN_REGISTER[13];
 
     always_comb begin
        case (MBISTPG_ALGO_SEL_INT) 
@@ -6077,7 +6638,33 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_add_gen (
        endcase
     end
 
-    assign B_SCAN_REGISTER          = B_SCAN_WIRE;       
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN)
+            B_SCAN_REGISTER <= 14'b00000000000000;
+        else
+        if (RESET_REG_SETUP1 & ( (DEFAULT_MODE & (~MEM_ARRAY_DUMP_MODE)) | (~BIST_MICROCODE_EN) )) begin
+            B_SCAN_REGISTER <= B_SCAN_WIRE;      
+        end   
+        else begin
+            if ((BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE))) begin
+                B_SCAN_REGISTER <= {B_SCAN_REGISTER[12:0], B_SCAN_REGISTER_SI};
+            end
+        end    
+    end
+
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN)
+            B_SCAN_REGISTER_SHADOW <= 14'b00000000000000;
+        else
+        if (BIST_SHIFT_SHORT) begin
+            B_SCAN_REGISTER_SHADOW <= {B_SCAN_REGISTER_SHADOW[12:0], B_SCAN_REGISTER_SI};
+        end else
+        if (~BIST_HOLD) begin
+            B_SCAN_REGISTER_SHADOW <= B_SCAN_REGISTER;
+        end
+    end
 endmodule // firebird7_in_gate1_tessent_mbist_c1_controller_add_gen
   
  
@@ -6093,6 +6680,8 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_fsm (
   input wire BIST_ON,
   input wire BIST_HOLD_R,
   input wire BYPASS_RUN_STATE,
+  input wire SAR_INIT_MODE,
+  input wire INHIBIT_FSM_RESET,
   input wire BIST_ASYNC_RESETN,
   input wire LAST_STATE_DONE_PIPELINED,
   input wire PAUSETOEND_ALGO_MODE,
@@ -6129,7 +6718,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_fsm (
     // Main State Machine
     //-------------------
 
-    assign RESET     = ((~BIST_ON) | BIST_HOLD_R) & (~PAUSETOEND_ALGO_MODE_REG);
+    assign RESET     = (((~BIST_ON) | BIST_HOLD_R) & (~PAUSETOEND_ALGO_MODE_REG)) & (~INHIBIT_FSM_RESET);
  
     assign BIST_IDLE                = (STATE == MAIN_STATE_IDLE);
     assign BIST_IDLE_PULSE          = (~RESET) & BIST_IDLE;
@@ -6277,6 +6866,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen (
   input wire  MEM_BYPASS_EN,
   input wire  SI,
   input wire  BIST_SHIFT_SHORT,
+  input wire  SELECT_SHADOW_STATE,
   input wire  BIST_HOLD_R_INT,
   input wire  RESET_REG_DEFAULT_MODE,
   input wire [5:0] OP_SELECT_CMD,
@@ -6290,6 +6880,9 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen (
   input wire BIST_ALGO_SEL_CNT, 
   input wire MBISTPG_ALGO_SEL,
   input wire  MEM_ARRAY_DUMP_MODE,
+  input wire  STOP_AND_RESUME_EN,
+  input wire  CMP_EN,
+  input wire  INH_DATA_CMP,
   output wire  LAST_TICK,
   output wire  LAST_TICK_PIPELINED,
   output wire [1:0] OPSET_SELECT_DECODED,
@@ -6307,10 +6900,16 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen (
     wire             MBISTPG_ALGO_SEL_INT;
     reg  [1:0]       LAST_TICK_REG;
     wire             OPERATION_LAST_TICK_REG;
+
+    reg               STRETCH_TICK;
+    wire              STRETCH_TICK_IN;
+    reg               CMP_EN_PIPE1;
+    reg               CMP_EN_PIPE2;
  
     reg  [2:0]       JCNT;
  
     wire  [5:0]      JCNT_FROM, JCNT_TO;
+    reg  [2:0]       JCNT_SHADOW;
     wire             JCNT_SI;
     wire             JCNT_SO;
     wire              RESET_JCNT;
@@ -6858,6 +7457,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen (
     wire             OPSET_SELECT_REG_SI;
    
     reg              OPSET_SELECT_REG;
+    reg              OPSET_SELECT_REG_SHADOW;
     wire              OPSET_SELECT_WIRE;     
  
      
@@ -6873,16 +7473,37 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen (
     assign OPSET_SELECT_DECODED    = DEFAULT_OPSET_SEL;
  
     assign BIST_COLLAR_OPSET_SELECT = OPSET_SELECT_REG;
-    assign SO                       = OPSET_SELECT_REG;
+    assign SO                       = SELECT_SHADOW_STATE ? OPSET_SELECT_REG_SHADOW : OPSET_SELECT_REG;
+
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN) begin
+            CMP_EN_PIPE1            <= 1'b0;
+            CMP_EN_PIPE2            <= 1'b0;
+        end else
+        begin
+            CMP_EN_PIPE1            <= CMP_EN;
+            CMP_EN_PIPE2            <= CMP_EN_PIPE1;
+        end
+    end
+
+    assign STRETCH_TICK_IN          = (DEFAULT_STROBEDATAOUT_SELECTED | STRETCH_TICK) & (~(~STOP_AND_RESUME_EN | CMP_EN_PIPE2 | INH_DATA_CMP));
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN)
+            STRETCH_TICK            <= 1'b0;
+        else
+            STRETCH_TICK            <= STRETCH_TICK_IN;
+    end
 
     assign SIGNAL_GEN_ENABLE        = BIST_RUN;
-    assign SIGNAL_GEN_HOLD          = BIST_HOLD_R_INT;
+    assign SIGNAL_GEN_HOLD          = BIST_HOLD_R_INT | (~BIST_RUN) | STRETCH_TICK;
     assign LAST_OPERATION_DONE      = LAST_STATE_DONE;
 
     //----------------
     // Johnson Counter
     //----------------
-    assign RESET_JCNT               = (OPERATION_LAST_TICK_REG | LAST_OPERATION_DONE | (~SIGNAL_GEN_ENABLE)) & (~BIST_HOLD_R_INT);
+    assign RESET_JCNT               = (OPERATION_LAST_TICK_REG | LAST_OPERATION_DONE | ((~SIGNAL_GEN_ENABLE) & (~STOP_AND_RESUME_EN))) & (~BIST_HOLD_R_INT);
     assign JCNT_SI   = SI;
     //synopsys sync_set_reset "RESET_JCNT"
     // synopsys async_set_reset "BIST_ASYNC_RESETN"
@@ -6890,7 +7511,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen (
         if (~BIST_ASYNC_RESETN)
             JCNT     <= 3'b000;
         else
-        if (BIST_SHIFT_SHORT) begin 
+        if (BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE)) begin 
             JCNT     <= {JCNT[1:0], JCNT_SI};
         end else
         if (RESET_JCNT) begin
@@ -6901,6 +7522,24 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen (
         end
     end
     assign JCNT_SO   = JCNT[2];
+
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+       if (~BIST_ASYNC_RESETN)
+           JCNT_SHADOW <= 3'b000;
+       else
+       if (BIST_HOLD_R_INT) begin
+         if (BIST_SHIFT_SHORT) 
+            JCNT_SHADOW             <= {JCNT_SHADOW[1:0], JCNT_SI};
+       end else begin 
+         if (RESET_JCNT) begin
+            JCNT_SHADOW             <= 3'b000;
+         end
+         else if ((~SIGNAL_GEN_HOLD) ) begin
+            JCNT_SHADOW             <= {JCNT[1:0],~JCNT[2]};
+         end
+       end
+    end
  
     assign JCNT_FROM                = {~JCNT[1:0], JCNT, ~JCNT[2]};
     assign JCNT_TO                  = {JCNT, ~JCNT};
@@ -8115,9 +8754,7 @@ wire DEFAULT_STROBEDATAOUT_PIPE_RST;
        if (DEFAULT_STROBEDATAOUT_PIPE_RST) begin
           DEFAULT_STROBEDATAOUT_PIPE <= 1'b0;
        end else begin
-          if (~SIGNAL_GEN_HOLD) begin
              DEFAULT_STROBEDATAOUT_PIPE[0] <= DEFAULT_STROBEDATAOUT;
-          end
        end
     end
  
@@ -8243,7 +8880,7 @@ wire DEFAULT_STROBEDATAOUT_PIPE_RST;
         
         
       
-    assign RESET_LAST_TICK_REG      = ~SIGNAL_GEN_ENABLE;
+    assign RESET_LAST_TICK_REG      = ~SIGNAL_GEN_ENABLE & (~STOP_AND_RESUME_EN);
     //-----------------------
     // LAST_TICK_D
     //-----------------------
@@ -8276,22 +8913,35 @@ wire DEFAULT_STROBEDATAOUT_PIPE_RST;
     //--------------------------
     // OPERATION SELECT REGISTER
     //--------------------------
-    assign OPSET_SELECT_WIRE = 1'b0; // OperationSet: SYNCCUSTOM
+    assign OPSET_SELECT_WIRE = STOP_AND_RESUME_EN ? 1'b0 : 1'b0; // OperationSet: SYNCCUSTOM, SYNCCUSTOM
 
     // synopsys async_set_reset "BIST_ASYNC_RESETN"
      always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
        if (~BIST_ASYNC_RESETN)
              OPSET_SELECT_REG <= 1'b0;
        else
-        if (RESET_REG_DEFAULT_MODE & BIST_ALGO_SEL_CNT & (~MEM_ARRAY_DUMP_MODE)) begin 
+        if (RESET_REG_DEFAULT_MODE & BIST_ALGO_SEL_CNT) begin
           OPSET_SELECT_REG <=  OPSET_SELECT_WIRE ;
         end
         else begin
-          if (BIST_SHIFT_SHORT) begin
+          if (BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE)) begin
              OPSET_SELECT_REG <= OPSET_SELECT_REG_SI;
           end
         end          
       end  
+
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN)
+            OPSET_SELECT_REG_SHADOW <= 1'b0;
+        else
+        if (BIST_SHIFT_SHORT) begin
+             OPSET_SELECT_REG_SHADOW <= JCNT_SHADOW[2];
+        end else
+        if (~SIGNAL_GEN_HOLD) begin
+             OPSET_SELECT_REG_SHADOW <= OPSET_SELECT_REG;
+        end
+     end  
   
 endmodule // firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen
      
@@ -8325,6 +8975,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl (
   input wire LAST_TICK,
   input wire BIST_SHIFT_SHORT,
   input wire BIST_RUN,
+  input wire SELECT_SHADOW_STATE,
   input wire [1:0] OPSET_SELECT_DECODED,
   input wire MBISTPG_ALGO_SEL,
   input wire OPSET_INVERT_EDATA,
@@ -8340,26 +8991,39 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl (
   output wire [3:0] EDATA_CMD_MODIFIED,
   output wire INH_LAST_ADDR_CNT_MODIFIED,
   output wire INH_DATA_CMP_MODIFIED,
+  output wire INH_DATA_CMP_MODIFIED_PRE_PIPE,
   output wire SO
 );
     wire             MBISTPG_ALGO_SEL_INT;
     reg    [1:0]     LOOP_A_CNTR;
     reg    [1:0]     LOOP_B_CNTR;
+    reg    [1:0]     LOOP_A_CNTR_SHADOW;
+    reg    [1:0]     LOOP_B_CNTR_SHADOW;
     wire             LOOP_A_CNTR_SI;
     wire             LOOP_A_CNTR_SO;
     wire             LOOP_B_CNTR_SI;
     wire             LOOP_B_CNTR_SO;
     
-    wire   [1:0]     CNTR_A_MAX_REG;   
-    wire   [4:0]     CNTR_A_LOOP_POINTER_REG;
-    wire   [4:0]     CNTR_A_LOOP1_REG;
-    wire   [4:0]     CNTR_A_LOOP2_REG;
-    wire   [4:0]     CNTR_A_LOOP3_REG;
-    wire   [1:0]     CNTR_B_MAX_REG;  
-    wire   [4:0]     CNTR_B_LOOP_POINTER_REG;
-    wire   [4:0]     CNTR_B_LOOP1_REG;
-    wire   [4:0]     CNTR_B_LOOP2_REG;
-    wire   [4:0]     CNTR_B_LOOP3_REG;
+    reg    [1:0]     CNTR_A_MAX_REG;
+    reg    [4:0]     CNTR_A_LOOP_POINTER_REG;
+    reg    [4:0]     CNTR_A_LOOP1_REG;
+    reg    [4:0]     CNTR_A_LOOP2_REG;
+    reg    [4:0]     CNTR_A_LOOP3_REG;
+    reg    [1:0]     CNTR_A_MAX_REG_SHADOW;
+    reg    [4:0]     CNTR_A_LOOP_POINTER_REG_SHADOW;
+    reg    [4:0]     CNTR_A_LOOP1_REG_SHADOW;
+    reg    [4:0]     CNTR_A_LOOP2_REG_SHADOW;
+    reg    [4:0]     CNTR_A_LOOP3_REG_SHADOW;
+    reg    [1:0]     CNTR_B_MAX_REG;
+    reg    [4:0]     CNTR_B_LOOP_POINTER_REG;
+    reg    [4:0]     CNTR_B_LOOP1_REG;
+    reg    [4:0]     CNTR_B_LOOP2_REG;
+    reg    [4:0]     CNTR_B_LOOP3_REG;
+    reg    [1:0]     CNTR_B_MAX_REG_SHADOW;
+    reg    [4:0]     CNTR_B_LOOP_POINTER_REG_SHADOW;
+    reg    [4:0]     CNTR_B_LOOP1_REG_SHADOW;
+    reg    [4:0]     CNTR_B_LOOP2_REG_SHADOW;
+    reg    [4:0]     CNTR_B_LOOP3_REG_SHADOW;
     reg    [1:0]     CNTR_A_MAX_WIRE;
     reg    [4:0]     CNTR_A_LOOP_POINTER_WIRE;
     reg    [4:0]     CNTR_A_LOOP1_WIRE;
@@ -8396,7 +9060,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl (
     wire   [4:0]     CNTR_A_LOOP_REG_SEL;
     wire   [4:0]     CNTR_B_LOOP_REG_SEL;
 
-    assign SO        = LOOP_B_CNTR_SO;
+    assign SO        = SELECT_SHADOW_STATE ? LOOP_B_CNTR_SHADOW[1] : LOOP_B_CNTR_SO;
     assign LOOPCOUNTMAX_TRIGGER     = (INC_CNTR_BA & CNTR_A_MAX & CNTR_B_MAX) |
                                       (INC_CNTR_A  & CNTR_A_MAX)              |
                                       (INC_CNTR_B  & CNTR_B_MAX)              ;
@@ -8421,13 +9085,13 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl (
     //---------------
     // LOOP COUNTER A
     //---------------
-    assign LOOP_A_CNTR_SI = SI;
+    assign LOOP_A_CNTR_SI           = CNTR_B_LOOP3_REG[4];
     // synopsys async_set_reset "BIST_ASYNC_RESETN"
     always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
        if (~BIST_ASYNC_RESETN)
           LOOP_A_CNTR               <= 2'b00;
        else
-       if (BIST_SHIFT_SHORT) begin
+       if (BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE)) begin
           LOOP_A_CNTR               <= {LOOP_A_CNTR[0:0],LOOP_A_CNTR_SI};
        end else begin
           if (RESET_CNTR_A) begin
@@ -8441,6 +9105,19 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl (
     end
     assign LOOP_A_CNTR_SO = LOOP_A_CNTR[1];
 
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+       if (~BIST_ASYNC_RESETN)
+          LOOP_A_CNTR_SHADOW        <= 2'b00;
+       else
+       if (BIST_SHIFT_SHORT) begin
+          LOOP_A_CNTR_SHADOW        <= {LOOP_A_CNTR_SHADOW[0:0], CNTR_B_LOOP3_REG_SHADOW[4]};
+       end else
+       if (~BIST_HOLD) begin
+          LOOP_A_CNTR_SHADOW        <= LOOP_A_CNTR;
+       end
+    end
+
     //---------------
     // LOOP COUNTER B
     //---------------
@@ -8451,7 +9128,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl (
        if (~BIST_ASYNC_RESETN)
           LOOP_B_CNTR               <= 2'b00;
        else
-       if (BIST_SHIFT_SHORT) begin
+       if (BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE)) begin
           LOOP_B_CNTR               <= {LOOP_B_CNTR[0:0],LOOP_B_CNTR_SI};
        end else begin
           if (RESET_CNTR_B) begin
@@ -8464,6 +9141,19 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl (
        end
     end
     assign LOOP_B_CNTR_SO = LOOP_B_CNTR[1];
+
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+       if (~BIST_ASYNC_RESETN)
+          LOOP_B_CNTR_SHADOW        <= 2'b00;
+       else
+       if (BIST_SHIFT_SHORT) begin
+          LOOP_B_CNTR_SHADOW        <= {LOOP_B_CNTR_SHADOW[0:0], LOOP_A_CNTR_SHADOW[1]};
+       end else
+       if (~BIST_HOLD) begin
+          LOOP_B_CNTR_SHADOW        <= LOOP_B_CNTR;
+       end
+    end
  
 
     assign CNTR_A_LOOP_REG_SEL     = (LOOP_A_CNTR == 2'b00) ? 5'b00000          :
@@ -8495,6 +9185,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl (
  
     assign INH_DATA_CMP_MODIFIED_INT              = ((LOOP_B_CNTR != 2'b00) | (LOOP_A_CNTR != 2'b00))         ? INH_DATA_CMP_NESTED_LOOP_FLIP              : 
                                                                                                                    INH_DATA_CMP             ;
+   assign INH_DATA_CMP_MODIFIED_PRE_PIPE          = INH_DATA_CMP_MODIFIED_INT;
     // synopsys async_set_reset "BIST_ASYNC_RESETN"
     always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
        if (~BIST_ASYNC_RESETN)
@@ -8515,7 +9206,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl (
        case (MBISTPG_ALGO_SEL_INT) 
           1'b0:  begin           
             CNTR_A_MAX_WIRE        = 2'b11;
-            CNTR_A_LOOP_POINTER_WIRE              = 5'b00010;
+            CNTR_A_LOOP_POINTER_WIRE              = 5'b00001;
             CNTR_A_LOOP1_WIRE[4]   = 1'b1;
             CNTR_A_LOOP1_WIRE[3]   = 1'b1;
             CNTR_A_LOOP1_WIRE[2]   = 1'b0;
@@ -8554,23 +9245,71 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl (
        endcase
     
     end
-    assign CNTR_A_MAX_REG          = CNTR_A_MAX_WIRE;
-    assign CNTR_A_LOOP_POINTER_REG                = CNTR_A_LOOP_POINTER_WIRE;  
-    assign CNTR_A_LOOP1_REG[4]     = CNTR_A_LOOP1_WIRE[4]; 
-    assign CNTR_A_LOOP1_REG[3]     = CNTR_A_LOOP1_WIRE[3];
-    assign CNTR_A_LOOP1_REG[2]     = CNTR_A_LOOP1_WIRE[2]; 
-    assign CNTR_A_LOOP1_REG[1]     = CNTR_A_LOOP1_WIRE[1];
-    assign CNTR_A_LOOP1_REG[0]     = CNTR_A_LOOP1_WIRE[0];
-    assign CNTR_A_LOOP2_REG[4]     = CNTR_A_LOOP2_WIRE[4]; 
-    assign CNTR_A_LOOP2_REG[3]     = CNTR_A_LOOP2_WIRE[3];
-    assign CNTR_A_LOOP2_REG[2]     = CNTR_A_LOOP2_WIRE[2]; 
-    assign CNTR_A_LOOP2_REG[1]     = CNTR_A_LOOP2_WIRE[1];
-    assign CNTR_A_LOOP2_REG[0]     = CNTR_A_LOOP2_WIRE[0];
-    assign CNTR_A_LOOP3_REG[4]     = CNTR_A_LOOP3_WIRE[4]; 
-    assign CNTR_A_LOOP3_REG[3]     = CNTR_A_LOOP3_WIRE[3];
-    assign CNTR_A_LOOP3_REG[2]     = CNTR_A_LOOP3_WIRE[2]; 
-    assign CNTR_A_LOOP3_REG[1]     = CNTR_A_LOOP3_WIRE[1];
-    assign CNTR_A_LOOP3_REG[0]     = CNTR_A_LOOP3_WIRE[0];
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+       if (~BIST_ASYNC_RESETN) begin
+            CNTR_A_MAX_REG         <= 2'b00;
+            CNTR_A_LOOP_POINTER_REG               <= 5'b00000;
+            CNTR_A_LOOP1_REG       <= 5'b00000;
+            CNTR_A_LOOP2_REG       <= 5'b00000;
+            CNTR_A_LOOP3_REG       <= 5'b00000;
+      end
+      else
+        if (RESET_REG_DEFAULT_MODE) begin
+            CNTR_A_MAX_REG         <= CNTR_A_MAX_WIRE;
+            CNTR_A_LOOP_POINTER_REG               <= CNTR_A_LOOP_POINTER_WIRE;  
+            CNTR_A_LOOP1_REG[4]    <= CNTR_A_LOOP1_WIRE[4]; 
+            CNTR_A_LOOP1_REG[3]    <= CNTR_A_LOOP1_WIRE[3];
+            CNTR_A_LOOP1_REG[2]    <= CNTR_A_LOOP1_WIRE[2]; 
+            CNTR_A_LOOP1_REG[1]    <= CNTR_A_LOOP1_WIRE[1];
+            CNTR_A_LOOP1_REG[0]    <= CNTR_A_LOOP1_WIRE[0];
+            CNTR_A_LOOP2_REG[4]    <= CNTR_A_LOOP2_WIRE[4]; 
+            CNTR_A_LOOP2_REG[3]    <= CNTR_A_LOOP2_WIRE[3];
+            CNTR_A_LOOP2_REG[2]    <= CNTR_A_LOOP2_WIRE[2]; 
+            CNTR_A_LOOP2_REG[1]    <= CNTR_A_LOOP2_WIRE[1];
+            CNTR_A_LOOP2_REG[0]    <= CNTR_A_LOOP2_WIRE[0];
+            CNTR_A_LOOP3_REG[4]    <= CNTR_A_LOOP3_WIRE[4]; 
+            CNTR_A_LOOP3_REG[3]    <= CNTR_A_LOOP3_WIRE[3];
+            CNTR_A_LOOP3_REG[2]    <= CNTR_A_LOOP3_WIRE[2]; 
+            CNTR_A_LOOP3_REG[1]    <= CNTR_A_LOOP3_WIRE[1];
+            CNTR_A_LOOP3_REG[0]    <= CNTR_A_LOOP3_WIRE[0];
+        end   
+        else begin
+            if (BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE)) begin
+             CNTR_A_MAX_REG        <= {CNTR_A_MAX_REG[0:0],SI};
+             CNTR_A_LOOP_POINTER_REG              <= {CNTR_A_LOOP_POINTER_REG[3:0],CNTR_A_MAX_REG[1]};
+             CNTR_A_LOOP1_REG      <= {CNTR_A_LOOP1_REG[3:0],CNTR_A_LOOP_POINTER_REG[4]};
+             CNTR_A_LOOP2_REG      <= {CNTR_A_LOOP2_REG[3:0],CNTR_A_LOOP1_REG[4]};
+             CNTR_A_LOOP3_REG      <= {CNTR_A_LOOP3_REG[3:0],CNTR_A_LOOP2_REG[4]};
+            end
+        
+        end    
+    end
+
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+      if (~BIST_ASYNC_RESETN) begin
+        CNTR_A_MAX_REG_SHADOW      <= 2'b00;
+        CNTR_A_LOOP_POINTER_REG_SHADOW            <= 5'b00000;
+        CNTR_A_LOOP1_REG_SHADOW    <= 5'b00000;
+        CNTR_A_LOOP2_REG_SHADOW    <= 5'b00000;
+        CNTR_A_LOOP3_REG_SHADOW    <= 5'b00000;
+      end else
+      if (BIST_SHIFT_SHORT) begin
+        CNTR_A_MAX_REG_SHADOW      <= {CNTR_A_MAX_REG_SHADOW[0:0],SI};
+        CNTR_A_LOOP_POINTER_REG_SHADOW            <= {CNTR_A_LOOP_POINTER_REG_SHADOW[3:0],CNTR_A_MAX_REG_SHADOW[1]};
+        CNTR_A_LOOP1_REG_SHADOW    <= {CNTR_A_LOOP1_REG_SHADOW[3:0],CNTR_A_LOOP_POINTER_REG_SHADOW[4]};
+        CNTR_A_LOOP2_REG_SHADOW    <= {CNTR_A_LOOP2_REG_SHADOW[3:0],CNTR_A_LOOP1_REG_SHADOW[4]};
+        CNTR_A_LOOP3_REG_SHADOW    <= {CNTR_A_LOOP3_REG_SHADOW[3:0],CNTR_A_LOOP2_REG_SHADOW[4]};
+      end else
+      if (~BIST_HOLD) begin
+        CNTR_A_MAX_REG_SHADOW      <= CNTR_A_MAX_REG;
+        CNTR_A_LOOP_POINTER_REG_SHADOW            <= CNTR_A_LOOP_POINTER_REG;
+        CNTR_A_LOOP1_REG_SHADOW    <= CNTR_A_LOOP1_REG;
+        CNTR_A_LOOP2_REG_SHADOW    <= CNTR_A_LOOP2_REG;
+        CNTR_A_LOOP3_REG_SHADOW    <= CNTR_A_LOOP3_REG;
+      end
+    end
     
     //-------------------------
     // LOOP COUNTER B REGISTERS
@@ -8618,23 +9357,70 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl (
        endcase
     
     end
-    assign CNTR_B_MAX_REG          = CNTR_B_MAX_WIRE;
-    assign CNTR_B_LOOP_POINTER_REG                = CNTR_B_LOOP_POINTER_WIRE;  
-    assign CNTR_B_LOOP1_REG[4]     = CNTR_B_LOOP1_WIRE[4]; 
-    assign CNTR_B_LOOP1_REG[3]     = CNTR_B_LOOP1_WIRE[3];
-    assign CNTR_B_LOOP1_REG[2]     = CNTR_B_LOOP1_WIRE[2]; 
-    assign CNTR_B_LOOP1_REG[1]     = CNTR_B_LOOP1_WIRE[1];
-    assign CNTR_B_LOOP1_REG[0]     = CNTR_B_LOOP1_WIRE[0];
-    assign CNTR_B_LOOP2_REG[4]     = CNTR_B_LOOP2_WIRE[4]; 
-    assign CNTR_B_LOOP2_REG[3]     = CNTR_B_LOOP2_WIRE[3];
-    assign CNTR_B_LOOP2_REG[2]     = CNTR_B_LOOP2_WIRE[2]; 
-    assign CNTR_B_LOOP2_REG[1]     = CNTR_B_LOOP2_WIRE[1];
-    assign CNTR_B_LOOP2_REG[0]     = CNTR_B_LOOP2_WIRE[0];
-    assign CNTR_B_LOOP3_REG[4]     = CNTR_B_LOOP3_WIRE[4]; 
-    assign CNTR_B_LOOP3_REG[3]     = CNTR_B_LOOP3_WIRE[3];
-    assign CNTR_B_LOOP3_REG[2]     = CNTR_B_LOOP3_WIRE[2]; 
-    assign CNTR_B_LOOP3_REG[1]     = CNTR_B_LOOP3_WIRE[1];
-    assign CNTR_B_LOOP3_REG[0]     = CNTR_B_LOOP3_WIRE[0];
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+       if (~BIST_ASYNC_RESETN) begin
+        CNTR_B_MAX_REG             <= 2'b00;
+        CNTR_B_LOOP_POINTER_REG    <= 5'b00000;
+        CNTR_B_LOOP1_REG           <= 5'b00000;
+        CNTR_B_LOOP2_REG           <= 5'b00000;
+        CNTR_B_LOOP3_REG           <= 5'b00000;
+        end
+        else
+        if (RESET_REG_DEFAULT_MODE) begin
+            CNTR_B_MAX_REG         <= CNTR_B_MAX_WIRE;
+            CNTR_B_LOOP_POINTER_REG               <= CNTR_B_LOOP_POINTER_WIRE;  
+            CNTR_B_LOOP1_REG[4]    <= CNTR_B_LOOP1_WIRE[4]; 
+            CNTR_B_LOOP1_REG[3]    <= CNTR_B_LOOP1_WIRE[3];
+            CNTR_B_LOOP1_REG[2]    <= CNTR_B_LOOP1_WIRE[2]; 
+            CNTR_B_LOOP1_REG[1]    <= CNTR_B_LOOP1_WIRE[1];
+            CNTR_B_LOOP1_REG[0]    <= CNTR_B_LOOP1_WIRE[0];
+            CNTR_B_LOOP2_REG[4]    <= CNTR_B_LOOP2_WIRE[4]; 
+            CNTR_B_LOOP2_REG[3]    <= CNTR_B_LOOP2_WIRE[3];
+            CNTR_B_LOOP2_REG[2]    <= CNTR_B_LOOP2_WIRE[2]; 
+            CNTR_B_LOOP2_REG[1]    <= CNTR_B_LOOP2_WIRE[1];
+            CNTR_B_LOOP2_REG[0]    <= CNTR_B_LOOP2_WIRE[0];
+            CNTR_B_LOOP3_REG[4]    <= CNTR_B_LOOP3_WIRE[4]; 
+            CNTR_B_LOOP3_REG[3]    <= CNTR_B_LOOP3_WIRE[3];
+            CNTR_B_LOOP3_REG[2]    <= CNTR_B_LOOP3_WIRE[2]; 
+            CNTR_B_LOOP3_REG[1]    <= CNTR_B_LOOP3_WIRE[1];
+            CNTR_B_LOOP3_REG[0]    <= CNTR_B_LOOP3_WIRE[0];
+        end   
+        else begin
+            if (BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE)) begin
+             CNTR_B_MAX_REG        <= {CNTR_B_MAX_REG[0:0],CNTR_A_LOOP3_REG[4]};
+             CNTR_B_LOOP_POINTER_REG              <= {CNTR_B_LOOP_POINTER_REG[3:0],CNTR_B_MAX_REG[1]};
+             CNTR_B_LOOP1_REG      <= {CNTR_B_LOOP1_REG[3:0],CNTR_B_LOOP_POINTER_REG[4]};
+             CNTR_B_LOOP2_REG      <= {CNTR_B_LOOP2_REG[3:0],CNTR_B_LOOP1_REG[4]};
+             CNTR_B_LOOP3_REG      <= {CNTR_B_LOOP3_REG[3:0],CNTR_B_LOOP2_REG[4]};
+            end
+        end    
+    end
+
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+      if (~BIST_ASYNC_RESETN) begin
+        CNTR_B_MAX_REG_SHADOW      <= 2'b00;
+        CNTR_B_LOOP_POINTER_REG_SHADOW            <= 5'b00000;
+        CNTR_B_LOOP1_REG_SHADOW    <= 5'b00000;
+        CNTR_B_LOOP2_REG_SHADOW    <= 5'b00000;
+        CNTR_B_LOOP3_REG_SHADOW    <= 5'b00000;
+      end else
+      if (BIST_SHIFT_SHORT) begin
+        CNTR_B_MAX_REG_SHADOW      <= {CNTR_B_MAX_REG_SHADOW[0:0],CNTR_A_LOOP3_REG_SHADOW[4]};
+        CNTR_B_LOOP_POINTER_REG_SHADOW            <= {CNTR_B_LOOP_POINTER_REG_SHADOW[3:0],CNTR_B_MAX_REG_SHADOW[1]};
+        CNTR_B_LOOP1_REG_SHADOW    <= {CNTR_B_LOOP1_REG_SHADOW[3:0],CNTR_B_LOOP_POINTER_REG_SHADOW[4]};
+        CNTR_B_LOOP2_REG_SHADOW    <= {CNTR_B_LOOP2_REG_SHADOW[3:0],CNTR_B_LOOP1_REG_SHADOW[4]};
+        CNTR_B_LOOP3_REG_SHADOW    <= {CNTR_B_LOOP3_REG_SHADOW[3:0],CNTR_B_LOOP2_REG_SHADOW[4]};
+      end else
+      if (~BIST_HOLD) begin
+        CNTR_B_MAX_REG_SHADOW      <= CNTR_B_MAX_REG;
+        CNTR_B_LOOP_POINTER_REG_SHADOW            <= CNTR_B_LOOP_POINTER_REG;
+        CNTR_B_LOOP1_REG_SHADOW    <= CNTR_B_LOOP1_REG;
+        CNTR_B_LOOP2_REG_SHADOW    <= CNTR_B_LOOP2_REG;
+        CNTR_B_LOOP3_REG_SHADOW    <= CNTR_B_LOOP3_REG;
+      end
+    end
 
     //-----------------------------
     // Increment Counter A function
@@ -8669,6 +9455,137 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl (
     endfunction
 endmodule // firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl
  
+/*------------------------------------------------------------------------------
+     Module      :  firebird7_in_gate1_tessent_mbist_c1_controller_counter_a
+ 
+     Description :  This module contains the general counter A.
+ 
+---------------------------------------------------------------------------- */
+ 
+module firebird7_in_gate1_tessent_mbist_c1_controller_counter_a (
+  input wire BIST_CLK,
+  input wire BIST_HOLD,
+  input wire BIST_ASYNC_RESETN,
+  input wire BIST_SHIFT_SHORT,
+  input wire SELECT_SHADOW_STATE,
+  input wire RESET_REG_DEFAULT_MODE,
+  input wire RESET_REG_SETUP1,
+  input wire COUNTERA_CMD,
+  input wire LAST_TICK,
+  input wire BIST_RUN,
+  input wire SI,
+  input wire LAST_STATE_DONE_INT,
+  input wire MEM_ARRAY_DUMP_MODE,
+  input wire ESOE_RESET,
+  input wire MBISTPG_ALGO_SEL,
+  output wire COUNTERA_ENDCOUNT_TRIGGER,
+  output wire SO
+);
+ 
+    wire             MBISTPG_ALGO_SEL_INT;
+    wire             ENABLE_CNT_CMD;
+    wire             CNT_ENABLE;
+    wire             RESET_COUNTERA;
+    reg    [3:0]     COUNTERA_CNT;
+    reg    [3:0]     COUNTERA_CNT_SHADOW;
+    reg    [3:0]     COUNTERA_REG;
+    reg    [3:0]     COUNTERA_WIRE;
+    wire   [3:0]     COUNTERA_MAX;
+    
+
+    //---------
+    //Main code
+    //---------
+ 
+    assign COUNTERA_ENDCOUNT_TRIGGER               = ENABLE_CNT_CMD & (COUNTERA_CNT == COUNTERA_MAX);
+ 
+    assign ENABLE_CNT_CMD           = (COUNTERA_CMD == 1'b1);
+ 
+    assign CNT_ENABLE               = (~BIST_HOLD) & ENABLE_CNT_CMD & LAST_TICK;
+ 
+    assign RESET_COUNTERA           = (RESET_REG_SETUP1 & (~MEM_ARRAY_DUMP_MODE)) | (CNT_ENABLE & COUNTERA_ENDCOUNT_TRIGGER) | ESOE_RESET;
+    
+ 
+    assign MBISTPG_ALGO_SEL_INT  =   MBISTPG_ALGO_SEL ;    
+
+    //
+    //  COUNTER A                                                       
+    //
+    // synopsys sync_set_reset "RESET_COUNTERA"
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN)
+            COUNTERA_CNT            <= 4'b0000;
+        else
+        if (RESET_COUNTERA)
+            COUNTERA_CNT            <= 4'b0000;
+        else
+        if (BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE))
+            COUNTERA_CNT            <= {COUNTERA_CNT[2:0], SI};
+        else
+        if (CNT_ENABLE)
+            COUNTERA_CNT            <= NEXT_COUNTERA_CNT(COUNTERA_CNT);
+    end
+
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN)
+            COUNTERA_CNT_SHADOW     <= 4'b0000;
+        else
+        if (BIST_SHIFT_SHORT) begin
+            COUNTERA_CNT_SHADOW     <= {COUNTERA_CNT_SHADOW[2:0], SI};
+        end else
+        if (~BIST_HOLD) begin
+            COUNTERA_CNT_SHADOW     <= COUNTERA_CNT;
+        end
+    end
+
+    wire COUNTERA_CNT_SO;
+    assign COUNTERA_CNT_SO = SELECT_SHADOW_STATE ? COUNTERA_CNT_SHADOW[3] : COUNTERA_CNT[3];
+
+    //
+    //  COUNTER A END COUNT                                              
+    //
+    always_comb begin
+        case (MBISTPG_ALGO_SEL_INT) 
+            1'b0: COUNTERA_WIRE     = 4'b0000; // Algorithm: INTELLVPMOVIFASTX
+            1'b1: COUNTERA_WIRE     = 4'b1111; // Algorithm: SMARCHCHKBCI
+        endcase
+    end
+
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN)
+            COUNTERA_REG            <= 4'b0000;
+        else
+        if (RESET_REG_DEFAULT_MODE & (~MEM_ARRAY_DUMP_MODE))
+            COUNTERA_REG            <= COUNTERA_WIRE;          
+        else
+        if (BIST_SHIFT_SHORT)
+            COUNTERA_REG            <= {COUNTERA_REG[2:0], COUNTERA_CNT_SO};
+    end
+
+    assign COUNTERA_MAX = COUNTERA_REG;
+
+    //-------------------
+    // Increment function
+    //-------------------
+    function automatic [3:0] NEXT_COUNTERA_CNT;
+    input [3:0]      COUNTERA_CNT;
+    reg              TOGGLE;
+       begin
+          NEXT_COUNTERA_CNT[0]      = ~COUNTERA_CNT[0];
+          TOGGLE = 1;
+          for (integer i=1; i<=3; i=i+1) begin
+             TOGGLE                 = TOGGLE & COUNTERA_CNT[i-1];
+             NEXT_COUNTERA_CNT[i]   = COUNTERA_CNT[i] ^ TOGGLE;
+          end
+       end
+    endfunction
+
+    assign SO        = COUNTERA_REG[3];
+
+endmodule // firebird7_in_gate1_tessent_mbist_c1_controller_counter_a
  
 /*------------------------------------------------------------------------------
      Module      :  firebird7_in_gate1_tessent_mbist_c1_controller_delaycounter
@@ -8682,6 +9599,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_delaycounter (
   input wire BIST_HOLD,
   input wire BIST_ASYNC_RESETN,
   input wire BIST_SHIFT_SHORT,
+  input wire SELECT_SHADOW_STATE,
   input wire RESET_REG_DEFAULT_MODE,
   input wire RESET_REG_SETUP1,
   input wire BIST_ALGO_SEL_CNT,
@@ -8707,6 +9625,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_delaycounter (
  
     reg    [7:0]     DELAYCOUNTER_CNT;
     reg    [7:0]     DELAYCOUNTER_REG;
+    reg    [7:0]     DELAYCOUNTER_CNT_SHADOW;
     wire             DELAYCOUNTER_REG_RST;
     reg    [7:0]     DELAYCOUNTER_WIRE;
  
@@ -8742,21 +9661,37 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_delaycounter (
         if (RESET_DELAYCOUNTER)
             DELAYCOUNTER_CNT        <= 8'b00000000;
         else
-        if (BIST_SHIFT_SHORT)
+        if (BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE))
             DELAYCOUNTER_CNT        <= {DELAYCOUNTER_CNT[6:0], SI};
         else
         if (CNT_ENABLE)
             DELAYCOUNTER_CNT        <= NEXT_DELAYCOUNTER_CNT(DELAYCOUNTER_CNT);
+    end
+
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN)
+            DELAYCOUNTER_CNT_SHADOW                <= 8'b00000000; 
+        else
+        if (BIST_SHIFT_SHORT) begin
+            DELAYCOUNTER_CNT_SHADOW                <= {DELAYCOUNTER_CNT_SHADOW[6:0], SI};
+        end else
+        if (~BIST_HOLD) begin
+            DELAYCOUNTER_CNT_SHADOW                <= DELAYCOUNTER_CNT;
+        end
     end
     //
     //  DELAY COUNTER END COUNT                                          
     //
     always_comb begin
         case (MBISTPG_ALGO_SEL_INT) 
-            1'b0: DELAYCOUNTER_WIRE                = 8'b11111111; // Algorithm: INTELLVPMOVIFX
+            1'b0: DELAYCOUNTER_WIRE                = 8'b11111111; // Algorithm: INTELLVPMOVIFASTX
             1'b1: DELAYCOUNTER_WIRE                = 8'b11111111; // Algorithm: SMARCHCHKBCI
         endcase
     end
+
+    wire DELAYCOUNTER_REG_SI;
+    assign DELAYCOUNTER_REG_SI = SELECT_SHADOW_STATE ? DELAYCOUNTER_CNT_SHADOW[7] : DELAYCOUNTER_CNT[7];
 
     assign DELAYCOUNTER_REG_RST     = RESET_REG_DEFAULT_MODE & (~MEM_ARRAY_DUMP_MODE);
     // synopsys async_set_reset "BIST_ASYNC_RESETN"
@@ -8768,7 +9703,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_delaycounter (
             DELAYCOUNTER_REG        <= DELAYCOUNTER_WIRE;       
         else
         if (BIST_SHIFT_SHORT)
-            DELAYCOUNTER_REG        <= {DELAYCOUNTER_REG[6:0], DELAYCOUNTER_CNT[7]};
+            DELAYCOUNTER_REG        <= {DELAYCOUNTER_REG[6:0], DELAYCOUNTER_REG_SI};
     end
 
     //-------------------
@@ -8811,6 +9746,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_data_gen (
   input wire [1:0] OPSET_SELECT_DECODED,
   input wire BIST_RUN,
   input wire BIST_SHIFT_SHORT,
+  input wire SELECT_SHADOW_STATE,
   input wire SI,
   input wire BIST_ALGO_SEL_CNT,
   input wire MBISTPG_ALGO_SEL,
@@ -8861,12 +9797,16 @@ reg BIST_SWITCH_ADDRESS_EN_PIPELINED;
     reg    [3:0]     EDATA_CMD_PIPE_0;
     reg    [3:0]     EDATA_REG;
     reg    [3:0]     WDATA_REG;
+    reg    [3:0]     EDATA_REG_SHADOW;
+    reg    [3:0]     WDATA_REG_SHADOW;
     reg              X_ADDR_BIT_SEL_REG;
+    reg              X_ADDR_BIT_SEL_REG_SHADOW;
     reg              Y_ADDR_BIT_SEL_REG;
+    reg              Y_ADDR_BIT_SEL_REG_SHADOW;
     reg              X_ADDR_BIT_SEL_WIRE;
     reg              Y_ADDR_BIT_SEL_WIRE;
 
-    assign SO        = Y_ADDR_BIT_SEL_REG;
+    assign SO        = SELECT_SHADOW_STATE ? Y_ADDR_BIT_SEL_REG_SHADOW : Y_ADDR_BIT_SEL_REG;
     assign MBISTPG_ALGO_SEL_INT  = MBISTPG_ALGO_SEL ;    
 
     //
@@ -8942,9 +9882,9 @@ reg BIST_SWITCH_ADDRESS_EN_PIPELINED;
     assign WDATA_INV_FDBK           = (WDATA_CMD_SELECTED == 4'b0110) |
                                       (WDATA_CMD_SELECTED == 4'b0111) ;
  
-    assign WDATA_SHIFT              = (BIST_SHIFT_SHORT) | ( LAST_TICK & WDATA_ROT & BIST_RUN);
+    assign WDATA_SHIFT              = (BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE)) | ( LAST_TICK & WDATA_ROT & BIST_RUN);
     
-    assign WDATA_SI                 = (BIST_SHIFT_SHORT) ? SI :
+    assign WDATA_SI                 = (BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE)) ? SI :
                                                          WDATA_ROT & (WDATA_INV_FDBK ^ WDATA_REG[3]);
  
     // synopsys async_set_reset "BIST_ASYNC_RESETN"
@@ -8954,12 +9894,25 @@ reg BIST_SWITCH_ADDRESS_EN_PIPELINED;
         else
         if (RESET_REG_DEFAULT_MODE & BIST_ALGO_SEL_CNT)
             case (MBISTPG_ALGO_SEL_INT) 
-            1'b0: WDATA_REG         <= 4'b0000; // Algorithm: INTELLVPMOVIFX
+            1'b0: WDATA_REG         <= 4'b0000; // Algorithm: INTELLVPMOVIFASTX
             1'b1: WDATA_REG         <= 4'b1010; // Algorithm: SMARCHCHKBCI
             endcase
         else
         if (WDATA_SHIFT)
             WDATA_REG               <= {WDATA_REG[2:0], WDATA_SI};    
+    end
+
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN)
+            WDATA_REG_SHADOW        <= 4'b0000;
+        else
+        if (BIST_SHIFT_SHORT) begin
+            WDATA_REG_SHADOW        <= {WDATA_REG_SHADOW[2:0], SI};    
+        end else
+        if (~BIST_HOLD) begin
+            WDATA_REG_SHADOW        <= WDATA_REG;
+        end
     end
 
 //--------------------------
@@ -8973,9 +9926,9 @@ reg BIST_SWITCH_ADDRESS_EN_PIPELINED;
     assign EDATA_INV_FDBK           = (EDATA_CMD_SELECTED == 4'b0110) |
                                       (EDATA_CMD_SELECTED == 4'b0111) ;
  
-    assign EDATA_SHIFT              = (BIST_SHIFT_SHORT) | ( LAST_TICK_PIPELINED & EDATA_ROT & BIST_RUN);
+    assign EDATA_SHIFT              = (BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE)) | ( LAST_TICK_PIPELINED & EDATA_ROT & BIST_RUN);
     
-    assign EDATA_SI                 = (BIST_SHIFT_SHORT) ? WDATA_REG[3] :
+    assign EDATA_SI                 = (BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE)) ? WDATA_REG[3] :
                                                         EDATA_ROT & (EDATA_INV_FDBK ^ EDATA_REG[3]);
     
     // synopsys async_set_reset "BIST_ASYNC_RESETN"
@@ -8985,12 +9938,25 @@ reg BIST_SWITCH_ADDRESS_EN_PIPELINED;
         else
         if (RESET_REG_DEFAULT_MODE & BIST_ALGO_SEL_CNT)
             case (MBISTPG_ALGO_SEL_INT) 
-            1'b0: EDATA_REG         <= 4'b0000; // Algorithm: INTELLVPMOVIFX
+            1'b0: EDATA_REG         <= 4'b0000; // Algorithm: INTELLVPMOVIFASTX
             1'b1: EDATA_REG         <= 4'b1010; // Algorithm: SMARCHCHKBCI
             endcase
         else
         if (EDATA_SHIFT)
             EDATA_REG               <= {EDATA_REG[2:0], EDATA_SI};
+    end
+
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN)
+            EDATA_REG_SHADOW        <= 4'b0000;
+        else
+        if (BIST_SHIFT_SHORT) begin
+            EDATA_REG_SHADOW        <= {EDATA_REG_SHADOW[2:0], WDATA_REG_SHADOW[3]};
+        end else
+        if (~BIST_HOLD) begin
+            EDATA_REG_SHADOW        <= EDATA_REG;
+        end
     end
 
 //----------------------------------
@@ -9086,7 +10052,7 @@ reg BIST_SWITCH_ADDRESS_EN_PIPELINED;
     // Select row bit to invert
     always_comb begin
        case (MBISTPG_ALGO_SEL_INT) 
-       1'b0:         X_ADDR_BIT_SEL_WIRE = 1'b0; // Algorithm: INTELLVPMOVIFX
+       1'b0:         X_ADDR_BIT_SEL_WIRE = 1'b0; // Algorithm: INTELLVPMOVIFASTX
        1'b1:         X_ADDR_BIT_SEL_WIRE = 1'b1; // Algorithm: SMARCHCHKBCI
        endcase
     
@@ -9100,16 +10066,29 @@ reg BIST_SWITCH_ADDRESS_EN_PIPELINED;
            X_ADDR_BIT_SEL_REG      <= X_ADDR_BIT_SEL_WIRE;     
         end
         else begin
-            if (BIST_SHIFT_SHORT) begin
+            if (BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE)) begin
              X_ADDR_BIT_SEL_REG    <= {EDATA_REG[3]};
             end        
         end    
+    end
+
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN)
+             X_ADDR_BIT_SEL_REG_SHADOW            <= 1'b0;
+        else
+        if (BIST_SHIFT_SHORT) begin
+            X_ADDR_BIT_SEL_REG_SHADOW              <= EDATA_REG_SHADOW[3];
+        end else
+        if (~BIST_HOLD) begin
+            X_ADDR_BIT_SEL_REG_SHADOW              <= X_ADDR_BIT_SEL_REG;
+        end
     end
  
     // Select column bit to invert
     always_comb begin
        case (MBISTPG_ALGO_SEL_INT) 
-       1'b0:         Y_ADDR_BIT_SEL_WIRE = 1'b0; // Algorithm: INTELLVPMOVIFX
+       1'b0:         Y_ADDR_BIT_SEL_WIRE = 1'b0; // Algorithm: INTELLVPMOVIFASTX
        1'b1:         Y_ADDR_BIT_SEL_WIRE = 1'b0; // Algorithm: SMARCHCHKBCI
        endcase
     
@@ -9124,10 +10103,23 @@ reg BIST_SWITCH_ADDRESS_EN_PIPELINED;
            Y_ADDR_BIT_SEL_REG      <= Y_ADDR_BIT_SEL_WIRE;          
         end   
         else begin
-            if (BIST_SHIFT_SHORT) begin
+            if (BIST_SHIFT_SHORT & (~SELECT_SHADOW_STATE)) begin
              Y_ADDR_BIT_SEL_REG    <= {X_ADDR_BIT_SEL_REG};
             end
         end    
+    end
+
+    // synopsys async_set_reset "BIST_ASYNC_RESETN"
+    always_ff @ (posedge BIST_CLK or negedge BIST_ASYNC_RESETN) begin
+        if (~BIST_ASYNC_RESETN)
+             Y_ADDR_BIT_SEL_REG_SHADOW            <= 1'b0;
+        else
+        if (BIST_SHIFT_SHORT) begin
+            Y_ADDR_BIT_SEL_REG_SHADOW              <= X_ADDR_BIT_SEL_REG_SHADOW;
+        end else
+        if (~BIST_HOLD) begin
+            Y_ADDR_BIT_SEL_REG_SHADOW              <= Y_ADDR_BIT_SEL_REG;
+        end
     end
  
 endmodule // firebird7_in_gate1_tessent_mbist_c1_controller_data_gen

@@ -1,0 +1,3 @@
+DataInPorts {
+  port_naming : secure_red, secure_orange, secure_insysbist;
+}

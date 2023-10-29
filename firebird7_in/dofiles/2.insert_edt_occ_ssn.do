@@ -7,4 +7,8 @@ dofile ./dofiles/2nd_pass/3.Specify_verify_dft_requirements.do
 dofile ./dofiles/2nd_pass/4.Create_process_dft_specification.do
 dofile ./dofiles/2nd_pass/5.Extract_icl.do
 dofile ./dofiles/2nd_pass/6.Synthesize_test_logic.do
+dofile ./dofiles/2nd_pass/7.Create_process_patterns_specification.do
+dofile ./dofiles/2nd_pass/8.Run_check_testbench_simulations.do
+
+exit
 

@@ -7,10 +7,12 @@
    synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_sib_spare_insysbist.vg
    synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_sib_spare_orange.vg
    synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_sib_spare_red.vg
-   synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_red_sec_mux.vg
-   synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_orange_sec_mux.vg
-   synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_insysbist_sec_mux.vg
-   synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_green_sec_mux.vg
+   synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_sti_secure_mux.vg
+   synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_spare_red_secure_mux.vg
+   synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_spare_orange_secure_mux.vg
+   synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux.vg
+   synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_array_pwrmgmt_secure_mux.vg
+   synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_array_trim_fuse_override_secure_mux.vg
    synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_tdr_sti_ctrl.vg
    synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_tdr_spare_red_tdr.vg
    synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_tdr_spare_orange_tdr.vg
@@ -101,6 +103,7 @@
    synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper.vg
    synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper.vg
    synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_mbisr.instrument/firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper.vg
+   synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_diagnosis_ready.vg
    synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_bap.vg
    synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_interface_m1.vg
    synth  ../../tsdb_outdir/instruments  firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_interface_m2.vg

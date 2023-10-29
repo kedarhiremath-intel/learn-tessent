@@ -11,7 +11,7 @@
 #--------------------------------------------------------------------------
 #  File created by: Tessent Shell
 #          Version: 2022.4
-#       Created on: Mon Oct 23 12:51:39 PDT 2023
+#       Created on: Sun Oct 29 14:14:08 PDT 2023
 #--------------------------------------------------------------------------
 
 set ijtag_sdc_dictionary {
@@ -24,9 +24,6 @@ set ijtag_sdc_dictionary {
     }
     data_in2 {
       name secure_insysbist
-    }
-    data_in3 {
-      name secure_green
     }
   }
   firebird7_in_gate1_tessent_sib_sti {

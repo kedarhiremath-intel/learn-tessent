@@ -1,6 +1,4 @@
-read_core_description ./inputs/from_MINT/mbist_algorithms/opset_sram.lvlib
-read_core_description ./inputs/from_MINT/mbist_algorithms/pmovi_sram_fx.lvlib
-read_core_description ./inputs/from_MINT/mbist_algorithms/marchcmin_sram_fx.lvlib
+read_core_description ./inputs/from_MINT/mbist_algorithms/marchc_minext.lvlib
 read_core_description ./inputs/from_MINT/mbist_algorithms/fail_inject_sram.lvlib
 read_core_description ./inputs/from_MINT/mbist_algorithms/addrdec_sram_fx.lvlib
 read_core_description ./inputs/from_MINT/mbist_algorithms/addrdec_row_sram_fastx.lvlib
@@ -75,3 +73,6 @@ read_core_description ./inputs/from_MINT/mbist_algorithms/arraywrite_11_sram_fas
 read_core_description ./inputs/from_MINT/mbist_algorithms/write_one_address.lvlib
 read_core_description ./inputs/from_MINT/mbist_algorithms/arraywrite_addr_range_sram_fx.lvlib
 read_core_description ./inputs/from_MINT/mbist_algorithms/pmovi_sram_fastx.lvlib
+read_core_description ./inputs/from_MINT/mbist_algorithms/marchcmin_sram_fx.lvlib
+read_core_description ./inputs/from_MINT/mbist_algorithms/opset_rom.lvlib
+read_core_description ./inputs/from_MINT/mbist_algorithms/opset_sram.lvlib

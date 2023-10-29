@@ -105,10 +105,19 @@ read_config_data -in_wrapper $spec -from_string "
   }
 "
 
+// DFT security ports for the ScanMux approach to SIB security.
+read_config_data -in_wrapper $spec/IjtagNetwork ./inputs/dft_specs/dft_security.dft_spec
 
 // Step 4. Read the DFT Specifications for the INTEST and EXTEST BISOL, Control TDR and Status TDR.
 read_config_data -in_wrapper $spec/IjtagNetwork/HostScanInterface(sti_client) ./inputs/dft_specs/intest_edt_scan_bi_sol_sib_tdr.dft_spec
 read_config_data -in_wrapper $spec/IjtagNetwork/HostScanInterface(sti_client) ./inputs/dft_specs/extest_edt_scan_bi_sol_sib_tdr.dft_spec
+
+// Here is a procedure I coded to create the ScanMuxes for SIB security. Can you figure out how this works?
+dofile ./inputs/from_FlowAutomation/proc_add_sib_security.do
+
+add_sib_security intest_edt_scan_bi_sol  $SECURE_RED
+add_sib_security extest_edt_scan_bi_sol  $SECURE_RED
+add_sib_security sri                     $SECURE_RED
 
 
 // Step 5. Create a post-insertion procedure for the BISOL connections.
@@ -130,7 +139,7 @@ proc process_dft_specification.post_insertion { root_wrapper args } {
   intercept_connection firebird7_in_gate2_tessent_edt_intest_edt_inst/edt_channels_in[1] -cell_function_name or -input2 u_intest_edt_scan_bi_sol_jam_edt_channels_in_buf_0/o
   intercept_connection firebird7_in_gate2_tessent_edt_intest_edt_inst/edt_channels_in[0] -cell_function_name or -input2 u_intest_edt_scan_bi_sol_jam_edt_channels_in_buf_0/o
 
-  // TIP: You should use "foreach_in_collection" to make the above block of code cleaner.
+  // TIP: You can use "foreach_in_collection" to make the above block of code cleaner.
   //  foreach_in_collection edt_channel_in [get_pins firebird7_in_gate2_tessent_edt_intest_edt_inst/edt_channels_in] {
   //    intercept_connection $edt_channel_in -cell_function_name or -input2 u_intest_edt_scan_bi_sol_jam_edt_channels_in_buf_0/o
   //  }

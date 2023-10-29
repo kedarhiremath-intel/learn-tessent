@@ -135,10 +135,12 @@ read_sverilog { \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_sib_spare_insysbist.sv \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_sib_spare_orange.sv \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_sib_spare_red.sv \
-  ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_red_sec_mux.sv \
-  ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_orange_sec_mux.sv \
-  ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_insysbist_sec_mux.sv \
-  ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_green_sec_mux.sv \
+  ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_sti_secure_mux.sv \
+  ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_spare_red_secure_mux.sv \
+  ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_spare_orange_secure_mux.sv \
+  ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux.sv \
+  ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_array_pwrmgmt_secure_mux.sv \
+  ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_array_trim_fuse_override_secure_mux.sv \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_tdr_sti_ctrl.sv \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_tdr_spare_red_tdr.sv \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_tdr_spare_orange_tdr.sv \
@@ -336,45 +338,65 @@ write -f verilog -output firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_
   [check_modules firebird7_in_gate1_tessent_sib_spare_red]
 set_dont_touch [get_designs firebird7_in_gate1_tessent_sib_spare_red]
 
-current_design firebird7_in_gate1_tessent_scanmux_red_sec_mux
+current_design firebird7_in_gate1_tessent_scanmux_sti_secure_mux
 set size_only_instances [get_cells -filter {is_hierarchical==false} -hierarchical tessent_persistent_cell_* -quiet]
   if {[sizeof_collection $size_only_instances] > 0 } {
     set_size_only -all_instances $size_only_instances
   }
 compile_local
-write -f verilog -output firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_red_sec_mux.vg \
-  [check_modules firebird7_in_gate1_tessent_scanmux_red_sec_mux]
-set_dont_touch [get_designs firebird7_in_gate1_tessent_scanmux_red_sec_mux]
+write -f verilog -output firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_sti_secure_mux.vg \
+  [check_modules firebird7_in_gate1_tessent_scanmux_sti_secure_mux]
+set_dont_touch [get_designs firebird7_in_gate1_tessent_scanmux_sti_secure_mux]
 
-current_design firebird7_in_gate1_tessent_scanmux_orange_sec_mux
+current_design firebird7_in_gate1_tessent_scanmux_spare_red_secure_mux
 set size_only_instances [get_cells -filter {is_hierarchical==false} -hierarchical tessent_persistent_cell_* -quiet]
   if {[sizeof_collection $size_only_instances] > 0 } {
     set_size_only -all_instances $size_only_instances
   }
 compile_local
-write -f verilog -output firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_orange_sec_mux.vg \
-  [check_modules firebird7_in_gate1_tessent_scanmux_orange_sec_mux]
-set_dont_touch [get_designs firebird7_in_gate1_tessent_scanmux_orange_sec_mux]
+write -f verilog -output firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_spare_red_secure_mux.vg \
+  [check_modules firebird7_in_gate1_tessent_scanmux_spare_red_secure_mux]
+set_dont_touch [get_designs firebird7_in_gate1_tessent_scanmux_spare_red_secure_mux]
 
-current_design firebird7_in_gate1_tessent_scanmux_insysbist_sec_mux
+current_design firebird7_in_gate1_tessent_scanmux_spare_orange_secure_mux
 set size_only_instances [get_cells -filter {is_hierarchical==false} -hierarchical tessent_persistent_cell_* -quiet]
   if {[sizeof_collection $size_only_instances] > 0 } {
     set_size_only -all_instances $size_only_instances
   }
 compile_local
-write -f verilog -output firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_insysbist_sec_mux.vg \
-  [check_modules firebird7_in_gate1_tessent_scanmux_insysbist_sec_mux]
-set_dont_touch [get_designs firebird7_in_gate1_tessent_scanmux_insysbist_sec_mux]
+write -f verilog -output firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_spare_orange_secure_mux.vg \
+  [check_modules firebird7_in_gate1_tessent_scanmux_spare_orange_secure_mux]
+set_dont_touch [get_designs firebird7_in_gate1_tessent_scanmux_spare_orange_secure_mux]
 
-current_design firebird7_in_gate1_tessent_scanmux_green_sec_mux
+current_design firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux
 set size_only_instances [get_cells -filter {is_hierarchical==false} -hierarchical tessent_persistent_cell_* -quiet]
   if {[sizeof_collection $size_only_instances] > 0 } {
     set_size_only -all_instances $size_only_instances
   }
 compile_local
-write -f verilog -output firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_green_sec_mux.vg \
-  [check_modules firebird7_in_gate1_tessent_scanmux_green_sec_mux]
-set_dont_touch [get_designs firebird7_in_gate1_tessent_scanmux_green_sec_mux]
+write -f verilog -output firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux.vg \
+  [check_modules firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux]
+set_dont_touch [get_designs firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux]
+
+current_design firebird7_in_gate1_tessent_scanmux_array_pwrmgmt_secure_mux
+set size_only_instances [get_cells -filter {is_hierarchical==false} -hierarchical tessent_persistent_cell_* -quiet]
+  if {[sizeof_collection $size_only_instances] > 0 } {
+    set_size_only -all_instances $size_only_instances
+  }
+compile_local
+write -f verilog -output firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_array_pwrmgmt_secure_mux.vg \
+  [check_modules firebird7_in_gate1_tessent_scanmux_array_pwrmgmt_secure_mux]
+set_dont_touch [get_designs firebird7_in_gate1_tessent_scanmux_array_pwrmgmt_secure_mux]
+
+current_design firebird7_in_gate1_tessent_scanmux_array_trim_fuse_override_secure_mux
+set size_only_instances [get_cells -filter {is_hierarchical==false} -hierarchical tessent_persistent_cell_* -quiet]
+  if {[sizeof_collection $size_only_instances] > 0 } {
+    set_size_only -all_instances $size_only_instances
+  }
+compile_local
+write -f verilog -output firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_array_trim_fuse_override_secure_mux.vg \
+  [check_modules firebird7_in_gate1_tessent_scanmux_array_trim_fuse_override_secure_mux]
+set_dont_touch [get_designs firebird7_in_gate1_tessent_scanmux_array_trim_fuse_override_secure_mux]
 
 current_design firebird7_in_gate1_tessent_tdr_sti_ctrl
 set size_only_instances [get_cells -filter {is_hierarchical==false} -hierarchical tessent_persistent_cell_* -quiet]
@@ -1287,6 +1309,7 @@ set_dont_touch [get_designs firebird7_in_gate1_tessent_mbisr_register_ip783hdsps
 
 # Synthesis of container '../../tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument'
 read_sverilog { \
+  ../../tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_diagnosis_ready.sv \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_bap.sv \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller_assembly.sv \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv \
@@ -1331,6 +1354,12 @@ read_sverilog { \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_interface_m39.sv \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_interface_m40.sv \
 }
+
+current_design firebird7_in_gate1_tessent_mbist_diagnosis_ready
+compile_local -boundary_optimization
+write -f verilog -output firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_diagnosis_ready.vg \
+  [check_modules firebird7_in_gate1_tessent_mbist_diagnosis_ready]
+set_dont_touch [get_designs firebird7_in_gate1_tessent_mbist_diagnosis_ready]
 
 current_design firebird7_in_gate1_tessent_mbist_bap
 set size_only_instances [get_cells -filter {is_hierarchical==false} -hierarchical tessent_persistent_cell_* -quiet]
@@ -1648,6 +1677,7 @@ write -f verilog -output firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_
     firebird7_in_gate1_tessent_mbist_c1_controller_fsm \
     firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen \
     firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl \
+    firebird7_in_gate1_tessent_mbist_c1_controller_counter_a \
     firebird7_in_gate1_tessent_mbist_c1_controller_delaycounter \
     firebird7_in_gate1_tessent_mbist_c1_controller_data_gen \
   }]

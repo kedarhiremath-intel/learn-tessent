@@ -18,7 +18,7 @@ set dft_summary {
               gate1 {
                 Controller {
                   ph0/i/firebird7_in_gate1_tessent_mbist_c1_controller_inst {
-                    bist_clock_period_ns 783.0
+                    bist_clock_period_ns 0.8
                     bist_clock_connection clk
                     module_name firebird7_in_gate1_tessent_mbist_c1_controller
                     design_instance ph0/i/firebird7_in_gate1_tessent_mbist_c1_controller_inst
@@ -28,14 +28,14 @@ set dft_summary {
                     Step {
                       0 {
                         StepInfo {
-                          power_mw 0.16
-                          run_time_ns 25694928.0
-                          test_cycles 32816
+                          power_mw 162.25
+                          run_time_ns 22487.760000000002
+                          test_cycles 28720
                           comparator_location per_interface
                         }
                         MemoryInstance {
                           ph0/i/d/m/g0_b0/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m1
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -53,7 +53,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g10_b10/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m2
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -71,7 +71,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g11_b11/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m3
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -89,7 +89,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g12_b12/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m4
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -107,7 +107,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g13_b13/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m5
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -125,7 +125,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g14_b14/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m6
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -143,7 +143,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g15_b15/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m7
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -161,7 +161,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g16_b16/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m8
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -179,7 +179,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g17_b17/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m9
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -197,7 +197,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g18_b18/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m10
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -215,7 +215,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g19_b19/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m11
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -233,7 +233,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g1_b1/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m12
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -251,7 +251,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g20_b20/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m13
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -269,7 +269,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g21_b21/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m14
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -287,7 +287,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g22_b22/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m15
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -305,7 +305,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g23_b23/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m16
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -323,7 +323,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g24_b24/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m17
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -341,7 +341,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g25_b25/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m18
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -359,7 +359,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g26_b26/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m19
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -377,7 +377,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g27_b27/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m20
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -395,7 +395,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g28_b28/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m21
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -413,7 +413,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g29_b29/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m22
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -431,7 +431,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g2_b2/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m23
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -449,7 +449,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g30_b30/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m24
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -467,7 +467,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g31_b31/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m25
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -485,7 +485,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g3_b3/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m26
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -503,7 +503,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g4_b4/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m27
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -521,7 +521,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g5_b5/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m28
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -539,7 +539,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g6_b6/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m29
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -557,7 +557,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g7_b7/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m30
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -575,7 +575,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g8_b8/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m31
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -593,7 +593,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/d/m/g9_b9/db/gen_100_dRam/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.56
                             interface_id m32
                             template /Core(ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -611,7 +611,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/p/f/m/ram0/gen_100_pRam/mem0_i {
-                            power_mw 0.01
+                            power_mw 8.94
                             interface_id m33
                             template /Core(ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -629,7 +629,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/p/f/m/ram1/gen_100_pRam/mem0_i {
-                            power_mw 0.01
+                            power_mw 8.94
                             interface_id m34
                             template /Core(ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -647,7 +647,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/p/f/m/ram2/gen_100_pRam/mem0_i {
-                            power_mw 0.01
+                            power_mw 8.94
                             interface_id m35
                             template /Core(ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -665,7 +665,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/p/f/m/ram3/gen_100_pRam/mem0_i {
-                            power_mw 0.01
+                            power_mw 8.94
                             interface_id m36
                             template /Core(ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -683,7 +683,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/p/gb1_b/m0/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.12
                             interface_id m37
                             template /Core(ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -701,7 +701,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/p/gb1_b/m1/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.12
                             interface_id m38
                             template /Core(ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -719,7 +719,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/p/gs1_s/m0/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.12
                             interface_id m39
                             template /Core(ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -737,7 +737,7 @@ set dft_summary {
                             test_ports 1
                           }
                           ph0/i/p/gs1_s/m1/mem0_i {
-                            power_mw 0.00
+                            power_mw 3.12
                             interface_id m40
                             template /Core(ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper)/Memory
                             type sram
@@ -757,12 +757,12 @@ set dft_summary {
                         }
                       }
                     }
-                    power_mw 0.16
-                    run_time_ns 25694928.0
-                    test_cycles 32816
+                    power_mw 162.25
+                    run_time_ns 22487.760000000002
+                    test_cycles 28720
                     soft_operation_count 0
-                    flop_count 215
-                    soft_instruction_count 0
+                    flop_count 887
+                    soft_instruction_count 8
                     soft_operation_length 0
                     soft_operation_max_strobe_data_out_pipelines 0
                     soft_operation_signals {}

@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys DC Expert(TM) in wire load mode
 // Version   : Q-2019.12-SP5-1
-// Date      : Tue Oct 24 19:31:02 2023
+// Date      : Sun Oct 29 14:41:36 2023
 /////////////////////////////////////////////////////////////
 
 
@@ -26,11 +26,11 @@ module firebird7_in_gate2_tessent_tdr_sri_ctrl ( ijtag_reset, ijtag_sel,
          tdr_5_, tdr_4_, tdr_3_, tdr_2_, tdr_1_, tdr_0_, n102, n101, n22, n26,
          n30, n34, n38, n42, n46, n50, n54, n58, n62, n66, n70, n74, n103,
          n104, n105, n106, n107, n108, n109, n110, n111, n112, n113, n114,
-         n115, n116, net900, net901, net928, net997, net1819, n117, n118, n119,
-         n120, n121, n122, n123, n124, n125, n126, n127, n128, n129, n130,
-         n131, n132, n133, n134, n135, n136, n137, n138, n139, n140, n141,
-         n142, n143, n144, n145, n146, n147, n148, n149, n150, n151, n152,
-         n153, n154, n155, n156, n157, n158, SYNOPSYS_UNCONNECTED_1,
+         n115, n116, net909, net910, net937, net1006, net1831, n117, n118,
+         n119, n120, n121, n122, n123, n124, n125, n126, n127, n128, n129,
+         n130, n131, n132, n133, n134, n135, n136, n137, n138, n139, n140,
+         n141, n142, n143, n144, n145, n146, n147, n148, n149, n150, n151,
+         n152, n153, n154, n155, n156, n157, n158, SYNOPSYS_UNCONNECTED_1,
          SYNOPSYS_UNCONNECTED_2, SYNOPSYS_UNCONNECTED_3,
          SYNOPSYS_UNCONNECTED_4, SYNOPSYS_UNCONNECTED_5,
          SYNOPSYS_UNCONNECTED_6, SYNOPSYS_UNCONNECTED_7,
@@ -144,12 +144,12 @@ module firebird7_in_gate2_tessent_tdr_sri_ctrl ( ijtag_reset, ijtag_sel,
         ijtag_tck), .o(tdr_3_), .so(SYNOPSYS_UNCONNECTED_26) );
   i0sfuz000ab1d03x6 tdr_reg_7 ( .si(n102), .d(n110), .ssb(n101), .clk(
         ijtag_tck), .o(tdr_7_), .so(SYNOPSYS_UNCONNECTED_27) );
-  i0smdn022ab1n03x4 U119 ( .b(n117), .a(n118), .sa(net901), .o1(n74) );
-  i0sinv000ab1n18x5 U120 ( .a(net1819), .o1(net901) );
-  i0sbff000ab1n42x5 U121 ( .a(net928), .o(net1819) );
+  i0smdn022ab1n03x4 U119 ( .b(n117), .a(n118), .sa(net910), .o1(n74) );
+  i0sinv000ab1n18x5 U120 ( .a(net1831), .o1(net910) );
+  i0sbff000ab1n42x5 U121 ( .a(net937), .o(net1831) );
   i0sinv030ab1n04x5 U122 ( .a(all_test_latch), .o1(n117) );
   i0sinv000ab1n06x5 U123 ( .a(tdr_13_), .o1(n118) );
-  i0smdn022ab1n03x4 U124 ( .b(n119), .a(n120), .sa(net1819), .o1(n42) );
+  i0smdn022ab1n03x4 U124 ( .b(n119), .a(n120), .sa(net1831), .o1(n42) );
   i0sinv030ab1n04x5 U125 ( .a(int_ltest_en_latch), .o1(n120) );
   i0sinv000ab1n06x5 U126 ( .a(tdr_5_), .o1(n119) );
   i0sinv040ab1n03x5 U127 ( .a(tdr_7_), .o1(n157) );
@@ -157,28 +157,28 @@ module firebird7_in_gate2_tessent_tdr_sri_ctrl ( ijtag_reset, ijtag_sel,
   i0sinv040ab1n03x5 U129 ( .a(tdr_2_), .o1(n149) );
   i0sinv040ab1n03x5 U130 ( .a(tdr_6_), .o1(n155) );
   i0sinv040ab1n03x5 U131 ( .a(tdr_4_), .o1(n153) );
-  i0snanp02ab1n03x5 U132 ( .a(ijtag_ue), .b(ijtag_sel), .o1(net928) );
-  i0smbn022ab1n03x5 U133 ( .b(ext_mode_latch), .a(tdr_10_), .sa(net901), .o(
+  i0snanp02ab1n03x5 U132 ( .a(ijtag_ue), .b(ijtag_sel), .o1(net937) );
+  i0smbn022ab1n03x5 U133 ( .b(ext_mode_latch), .a(tdr_10_), .sa(net910), .o(
         n62) );
-  i0smbn022ab1n03x5 U134 ( .b(fscan_clkungate_latch), .a(tdr_0_), .sa(net901), 
+  i0smbn022ab1n03x5 U134 ( .b(fscan_clkungate_latch), .a(tdr_0_), .sa(net910), 
         .o(n22) );
   i0smbn022ab1n03x5 U135 ( .b(occ_kill_clock_en_latch), .a(tdr_12_), .sa(
-        net901), .o(n70) );
-  i0smbn022ab1n03x5 U136 ( .b(tdr_8_), .a(ext_edt_mode_latch), .sa(net1819), 
+        net910), .o(n70) );
+  i0smbn022ab1n03x5 U136 ( .b(tdr_8_), .a(ext_edt_mode_latch), .sa(net1831), 
         .o(n54) );
-  i0smbn022ab1n03x5 U137 ( .b(tdr_11_), .a(se_pipeline_en_latch), .sa(net1819), 
+  i0smbn022ab1n03x5 U137 ( .b(tdr_11_), .a(se_pipeline_en_latch), .sa(net1831), 
         .o(n66) );
-  i0smbn022ab1n03x5 U138 ( .b(tdr_9_), .a(int_mode_latch), .sa(net1819), .o(
+  i0smbn022ab1n03x5 U138 ( .b(tdr_9_), .a(int_mode_latch), .sa(net1831), .o(
         n58) );
   i0sinv000ab1n02x5 U139 ( .a(tdr_10_), .o1(n140) );
   i0sinv000ab1n02x5 U140 ( .a(tdr_9_), .o1(n139) );
   i0sinv000ab1n02x5 U141 ( .a(tdr_0_), .o1(n147) );
-  i0smdn022ab1n03x4 U142 ( .b(n154), .a(n153), .sa(net901), .o1(n38) );
-  i0sinv000ab1n02x5 U143 ( .a(tdr_13_), .o1(net900) );
+  i0smdn022ab1n03x4 U142 ( .b(n154), .a(n153), .sa(net910), .o1(n38) );
+  i0sinv000ab1n02x5 U143 ( .a(tdr_13_), .o1(net909) );
   i0sinv000ab1n02x5 U144 ( .a(tdr_2_), .o1(n132) );
   i0sinv000ab1n02x5 U145 ( .a(tdr_7_), .o1(n137) );
   i0sinv000ab1n02x5 U146 ( .a(tdr_6_), .o1(n136) );
-  i0sinv000ab1n02x5 U147 ( .a(tdr_5_), .o1(net997) );
+  i0sinv000ab1n02x5 U147 ( .a(tdr_5_), .o1(net1006) );
   i0sinv000ab1n02x5 U148 ( .a(tdr_3_), .o1(n133) );
   i0soai012ab1n03x5 U149 ( .b(n146), .c(n148), .a(n121), .o1(n116) );
   i0sorn002ab1n02x7 U150 ( .a(n144), .b(n132), .o(n121) );
@@ -186,10 +186,10 @@ module firebird7_in_gate2_tessent_tdr_sri_ctrl ( ijtag_reset, ijtag_sel,
   i0sorn002ab1n02x7 U152 ( .a(n144), .b(n141), .o(n122) );
   i0soai012ab1n03x5 U153 ( .b(n146), .c(n138), .a(n123), .o1(n109) );
   i0sorn002ab1n02x7 U154 ( .a(n144), .b(n139), .o(n123) );
-  i0soai012ab1n03x5 U155 ( .b(n146), .c(net997), .a(n124), .o1(n112) );
+  i0soai012ab1n03x5 U155 ( .b(n146), .c(net1006), .a(n124), .o1(n112) );
   i0sorn002ab1n02x7 U156 ( .a(n144), .b(n136), .o(n124) );
   i0soai012ab1n03x5 U157 ( .b(n146), .c(n135), .a(n125), .o1(n113) );
-  i0sorn002ab1n02x7 U158 ( .a(n144), .b(net997), .o(n125) );
+  i0sorn002ab1n02x7 U158 ( .a(n144), .b(net1006), .o(n125) );
   i0soai012ab1n03x5 U159 ( .b(n146), .c(n133), .a(n126), .o1(n114) );
   i0sorn002ab1n02x7 U160 ( .a(n144), .b(n135), .o(n126) );
   i0soai012ab1n03x5 U161 ( .b(n146), .c(n132), .a(n127), .o1(n115) );
@@ -202,7 +202,7 @@ module firebird7_in_gate2_tessent_tdr_sri_ctrl ( ijtag_reset, ijtag_sel,
   i0sorn002ab1n02x7 U168 ( .a(n144), .b(n140), .o(n130) );
   i0soai012ab1n03x5 U169 ( .b(n146), .c(n136), .a(n131), .o1(n111) );
   i0sorn002ab1n02x7 U170 ( .a(n144), .b(n137), .o(n131) );
-  i0snorp02ab1n02x5 U171 ( .a(n144), .b(net900), .o1(n143) );
+  i0snorp02ab1n02x5 U171 ( .a(n144), .b(net909), .o1(n143) );
   i0snorp02ab1n03x5 U172 ( .a(n144), .b(n148), .o1(n145) );
   i0sinv000ab1n03x5 U173 ( .a(memory_bypass_en_latch), .o1(n150) );
   i0sinv000ab1n03x5 U174 ( .a(async_set_reset_static_disable_latch), .o1(n152)
@@ -210,7 +210,7 @@ module firebird7_in_gate2_tessent_tdr_sri_ctrl ( ijtag_reset, ijtag_sel,
   i0sinv000ab1n03x5 U175 ( .a(tck_occ_en_latch), .o1(n154) );
   i0sinv000ab1n03x5 U176 ( .a(ext_ltest_en_latch), .o1(n156) );
   i0sinv000ab1n03x5 U177 ( .a(int_edt_mode_latch), .o1(n158) );
-  i0sobai22ab1n02x5 U178 ( .a(ijtag_si), .b(n144), .c(n146), .d(net900), 
+  i0sobai22ab1n02x5 U178 ( .a(ijtag_si), .b(n144), .c(n146), .d(net909), 
         .out0(n104) );
   i0saob012ab1n03x5 U179 ( .b(ijtag_ce), .c(ijtag_sel), .a(n144), .out0(n146)
          );
@@ -219,12 +219,12 @@ module firebird7_in_gate2_tessent_tdr_sri_ctrl ( ijtag_reset, ijtag_sel,
   i0stilo00ab1n02x5 U181 ( .o(n102) );
   i0stihi00ab1n02x5 U182 ( .o(n101) );
   i0soabi12ab1n03x5 U183 ( .b(n146), .c(n142), .a(n143), .out0(n105) );
-  i0smdn022ab1n02x5 U184 ( .b(n150), .a(n149), .sa(net901), .o1(n30) );
-  i0smdn022ab1n02x5 U185 ( .b(n152), .a(n151), .sa(net901), .o1(n34) );
-  i0smdn022ab1n02x5 U186 ( .b(n156), .a(n155), .sa(net901), .o1(n46) );
-  i0smdn022ab1n02x5 U187 ( .b(n158), .a(n157), .sa(net901), .o1(n50) );
+  i0smdn022ab1n02x5 U184 ( .b(n150), .a(n149), .sa(net910), .o1(n30) );
+  i0smdn022ab1n02x5 U185 ( .b(n152), .a(n151), .sa(net910), .o1(n34) );
+  i0smdn022ab1n02x5 U186 ( .b(n156), .a(n155), .sa(net910), .o1(n46) );
+  i0smdn022ab1n02x5 U187 ( .b(n158), .a(n157), .sa(net910), .o1(n50) );
   i0sinv000ab1n02x5 U188 ( .a(tdr_1_), .o1(n148) );
-  i0smbn022ab1n03x5 U189 ( .b(ltest_en_latch), .a(tdr_1_), .sa(net901), .o(n26) );
+  i0smbn022ab1n03x5 U189 ( .b(ltest_en_latch), .a(tdr_1_), .sa(net910), .o(n26) );
   i0soabi12ab1n02x5 U190 ( .b(n146), .c(n147), .a(n145), .out0(n103) );
   i0sinv000ab1n02x5 U191 ( .a(n153), .o1(n134) );
   i0sinv000ab1n03x5 U192 ( .a(n134), .o1(n135) );

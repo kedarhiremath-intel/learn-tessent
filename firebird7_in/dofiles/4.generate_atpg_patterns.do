@@ -1,3 +1,6 @@
+//  NOTE: THIS SCRIPT IS NOT READY YET. STILL A WORK IN PROGRESS.
+
+
 // Enable this script to take parameters, so that you can run the same script to run different scan modes and fault models.
 // The default parameter values are for INTEST Stuck-At ATPG.
 array set params {

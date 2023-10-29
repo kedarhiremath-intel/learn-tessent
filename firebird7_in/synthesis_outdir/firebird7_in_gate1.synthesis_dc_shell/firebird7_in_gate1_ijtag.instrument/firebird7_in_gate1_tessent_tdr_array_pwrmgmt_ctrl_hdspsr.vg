@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys DC Expert(TM) in wire load mode
 // Version   : Q-2019.12-SP5-1
-// Date      : Mon Oct 23 13:02:09 2023
+// Date      : Sun Oct 29 14:19:34 2023
 /////////////////////////////////////////////////////////////
 
 
@@ -14,7 +14,7 @@ module firebird7_in_gate1_tessent_tdr_array_pwrmgmt_ctrl_hdspsr ( ijtag_reset,
   output hdspsr_pwr_mgmt_ovrd_en, hdspsr_fastsleep_override,
          hdspsr_deepsleep_override, hdspsr_async_rst_override, ijtag_so;
   wire   tdr_3_, tdr_2_, tdr_1_, tdr_0_, n36, n20, n26, n32, n38, n39, n40,
-         n41, n42, net725, net727, net729, net732, net734, net916, n43, n44,
+         n41, n42, net731, net733, net735, net738, net740, net922, n43, n44,
          n45, n46, n47, n48, n49, n50, SYNOPSYS_UNCONNECTED_1,
          SYNOPSYS_UNCONNECTED_2, SYNOPSYS_UNCONNECTED_3,
          SYNOPSYS_UNCONNECTED_4, SYNOPSYS_UNCONNECTED_5,
@@ -44,32 +44,32 @@ module firebird7_in_gate1_tessent_tdr_array_pwrmgmt_ctrl_hdspsr ( ijtag_reset,
         .ssb(n36), .clkb(ijtag_tck), .rb(ijtag_reset), .s(n44), .o(
         hdspsr_fastsleep_override), .so(SYNOPSYS_UNCONNECTED_8) );
   i0stilo00ab1n02x5 U45 ( .o(n44) );
-  i0soai222ab1n03x5 U46 ( .a(net725), .b(net734), .c(net727), .d(net732), .e(
-        net729), .f(n43), .o1(n40) );
-  i0snanp03ab1n03x5 U47 ( .a(ijtag_se), .b(ijtag_sel), .c(net729), .o1(net725)
+  i0soai222ab1n03x5 U46 ( .a(net731), .b(net740), .c(net733), .d(net738), .e(
+        net735), .f(n43), .o1(n40) );
+  i0snanp03ab1n03x5 U47 ( .a(ijtag_se), .b(ijtag_sel), .c(net735), .o1(net731)
          );
-  i0sinv040ab1n03x5 U48 ( .a(tdr_3_), .o1(net734) );
-  i0snanp02ab1n03x5 U49 ( .a(net729), .b(net725), .o1(net727) );
-  i0sinv000ab1n06x5 U50 ( .a(tdr_2_), .o1(net732) );
-  i0snanp02ab1n03x5 U51 ( .a(ijtag_ce), .b(ijtag_sel), .o1(net729) );
+  i0sinv040ab1n03x5 U48 ( .a(tdr_3_), .o1(net740) );
+  i0snanp02ab1n03x5 U49 ( .a(net735), .b(net731), .o1(net733) );
+  i0sinv000ab1n06x5 U50 ( .a(tdr_2_), .o1(net738) );
+  i0snanp02ab1n03x5 U51 ( .a(ijtag_ce), .b(ijtag_sel), .o1(net735) );
   i0sinv000ab1n03x5 U52 ( .a(hdspsr_fastsleep_override), .o1(n43) );
-  i0smdn022ab1n02x4 U53 ( .b(n43), .a(net732), .sa(net916), .o1(n32) );
+  i0smdn022ab1n02x4 U53 ( .b(n43), .a(net738), .sa(net922), .o1(n32) );
   i0sinv000ab1n06x5 U54 ( .a(tdr_0_), .o1(n49) );
   i0sinv000ab1n06x5 U55 ( .a(tdr_1_), .o1(n50) );
   i0sinv000ab1n03x5 U56 ( .a(hdspsr_deepsleep_override), .o1(n47) );
-  i0smdn022ab1n03x4 U57 ( .b(n46), .a(net734), .sa(net916), .o1(n38) );
+  i0smdn022ab1n03x4 U57 ( .b(n46), .a(net740), .sa(net922), .o1(n38) );
   i0sinv000ab1n03x5 U58 ( .a(hdspsr_async_rst_override), .o1(n48) );
-  i0soai122ab1n03x5 U59 ( .b(net727), .c(net734), .d(net729), .e(n46), .a(n45), 
+  i0soai122ab1n03x5 U59 ( .b(net733), .c(net740), .d(net735), .e(n46), .a(n45), 
         .o1(n39) );
   i0sinv000ab1n03x5 U60 ( .a(hdspsr_pwr_mgmt_ovrd_en), .o1(n46) );
-  i0sand002ab1n03x5 U61 ( .a(ijtag_ue), .b(ijtag_sel), .o(net916) );
+  i0sand002ab1n03x5 U61 ( .a(ijtag_ue), .b(ijtag_sel), .o(net922) );
   i0stihi00ab1n02x5 U62 ( .o(n36) );
-  i0smdn022ab1n02x4 U63 ( .b(n47), .a(n50), .sa(net916), .o1(n26) );
-  i0smdn022ab1n02x4 U64 ( .b(n48), .a(n49), .sa(net916), .o1(n20) );
-  i0soai222ab1n03x5 U65 ( .a(net725), .b(net732), .c(net727), .d(n50), .e(n47), 
-        .f(net729), .o1(n41) );
-  i0soai222ab1n03x5 U66 ( .a(net725), .b(n50), .c(net727), .d(n49), .e(n48), 
-        .f(net729), .o1(n42) );
-  i0snanb02ab1n03x5 U67 ( .a(net725), .b(ijtag_si), .out0(n45) );
+  i0smdn022ab1n02x4 U63 ( .b(n47), .a(n50), .sa(net922), .o1(n26) );
+  i0smdn022ab1n02x4 U64 ( .b(n48), .a(n49), .sa(net922), .o1(n20) );
+  i0soai222ab1n03x5 U65 ( .a(net731), .b(net738), .c(net733), .d(n50), .e(n47), 
+        .f(net735), .o1(n41) );
+  i0soai222ab1n03x5 U66 ( .a(net731), .b(n50), .c(net733), .d(n49), .e(n48), 
+        .f(net735), .o1(n42) );
+  i0snanb02ab1n03x5 U67 ( .a(net731), .b(ijtag_si), .out0(n45) );
 endmodule
 

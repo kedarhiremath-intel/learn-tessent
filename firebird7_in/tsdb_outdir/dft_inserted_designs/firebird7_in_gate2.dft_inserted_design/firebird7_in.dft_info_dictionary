@@ -1,7 +1,7 @@
 #-------------------------------------------------
 #  File created by: Tessent Shell
 #          Version: 2022.4
-#       Created on: Tue Oct 24 19:30:12 PDT 2023
+#       Created on: Sun Oct 29 14:40:27 PDT 2023
 #-------------------------------------------------
 
  
@@ -173,10 +173,11 @@ set tessent_dft_info_dict {
   }
   modules_with_chains_not_active_by_default {}
   non_scannable_instance_list {
-    firebird7_in_gate1_tessent_scanmux_green_sec_mux_inst
-    firebird7_in_gate1_tessent_scanmux_insysbist_sec_mux_inst
-    firebird7_in_gate1_tessent_scanmux_orange_sec_mux_inst
-    firebird7_in_gate1_tessent_scanmux_red_sec_mux_inst
+    firebird7_in_gate1_tessent_scanmux_array_pwrmgmt_secure_mux_inst
+    firebird7_in_gate1_tessent_scanmux_array_trim_fuse_override_secure_mux_inst
+    firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux_inst
+    firebird7_in_gate1_tessent_scanmux_spare_orange_secure_mux_inst
+    firebird7_in_gate1_tessent_scanmux_spare_red_secure_mux_inst
     firebird7_in_gate1_tessent_sib_array_pwrmgmt_inst
     firebird7_in_gate1_tessent_sib_array_trim_fuse_override_inst
     firebird7_in_gate1_tessent_sib_spare_green_inst
@@ -192,6 +193,9 @@ set tessent_dft_info_dict {
     firebird7_in_gate2_tessent_edt_extest_edt_tdr_inst
     firebird7_in_gate2_tessent_edt_intest_edt_inst
     firebird7_in_gate2_tessent_edt_intest_edt_tdr_inst
+    firebird7_in_gate2_tessent_scanmux_extest_edt_scan_bi_sol_secure_mux_inst
+    firebird7_in_gate2_tessent_scanmux_intest_edt_scan_bi_sol_secure_mux_inst
+    firebird7_in_gate2_tessent_scanmux_sri_secure_mux_inst
     firebird7_in_gate2_tessent_sib_edt_inst
     firebird7_in_gate2_tessent_sib_extest_edt_scan_bi_sol_inst
     firebird7_in_gate2_tessent_sib_intest_edt_scan_bi_sol_inst

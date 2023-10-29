@@ -1,7 +1,7 @@
 # Set environment variables for NetBatch --target $NBPOOL --qslot $NBQSLOT
 setenv NBPOOL zsc14_express
 setenv NBQSLOT /XNE/irw/be
-setenv NBCLASS "SLES12&&32G&&2C"
+setenv NBCLASS "SLES12&&16G&&4C"
 
 
 # For Netbatch and CAD tool license tracking, LM_PROJECT variable must be set

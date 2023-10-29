@@ -1,0 +1,408 @@
+iProcsForModule firebird7_in
+
+iProc BisrChain_load_all_one {} {
+
+   iReset
+   iWrite PD_TOP_bisr_reset 0b1
+   iApply
+
+   iNote "  Enabling power domain group label PD_TOP"
+   iNote "  Disabling BIRA capture"
+   iOverrideScanInterface bisr_chain_PD_TOP -capture off
+   iWrite ph0_i_d_m_g0_b0_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g0_b0_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g10_b10_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g10_b10_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g11_b11_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g11_b11_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g12_b12_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g12_b12_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g13_b13_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g13_b13_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g14_b14_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g14_b14_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g15_b15_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g15_b15_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g16_b16_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g16_b16_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g17_b17_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g17_b17_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g18_b18_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g18_b18_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g19_b19_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g19_b19_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g1_b1_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g1_b1_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g20_b20_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g20_b20_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g21_b21_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g21_b21_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g22_b22_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g22_b22_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g23_b23_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g23_b23_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g24_b24_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g24_b24_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g25_b25_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g25_b25_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g26_b26_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g26_b26_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g27_b27_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g27_b27_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g28_b28_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g28_b28_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g29_b29_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g29_b29_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g2_b2_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g2_b2_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g30_b30_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g30_b30_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g31_b31_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g31_b31_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g3_b3_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g3_b3_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g4_b4_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g4_b4_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g5_b5_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g5_b5_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g6_b6_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g6_b6_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g7_b7_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g7_b7_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g8_b8_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g8_b8_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_d_m_g9_b9_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g9_b9_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_p_f_m_ram0_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b11111111111111111111111111
+   iRead  ph0_i_p_f_m_ram0_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0]
+   iWrite ph0_i_p_f_m_ram1_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b11111111111111111111111111
+   iRead  ph0_i_p_f_m_ram1_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0]
+   iWrite ph0_i_p_f_m_ram2_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b11111111111111111111111111
+   iRead  ph0_i_p_f_m_ram2_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0]
+   iWrite ph0_i_p_f_m_ram3_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b11111111111111111111111111
+   iRead  ph0_i_p_f_m_ram3_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0]
+   iWrite ph0_i_p_gb1_b_m0_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_p_gb1_b_m0_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_p_gb1_b_m1_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_p_gb1_b_m1_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_p_gs1_s_m0_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_p_gs1_s_m0_mem0_i_bisr_inst.ShiftReg[21:0]
+   iWrite ph0_i_p_gs1_s_m1_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_p_gs1_s_m1_mem0_i_bisr_inst.ShiftReg[21:0]
+   iApply
+
+   iOverrideScanInterface bisr_chain_PD_TOP -capture on
+   iApply
+
+
+}
+
+
+iProcsForModule firebird7_in
+
+iProc BisrChain_async_reset_external {} {
+
+   iWrite PD_TOP_bisr_reset 0b1
+   iApply
+
+   iNote "  Enabling asynchronous BISR chain reset"
+   iWrite PD_TOP_bisr_reset 0b0
+   iApply
+
+   iWrite PD_TOP_bisr_reset 0b1
+   iApply
+
+   iNote "  Enabling power domain group label PD_TOP"
+   iNote "  Disabling BIRA capture"
+   iOverrideScanInterface bisr_chain_PD_TOP -capture off
+   iWrite ph0_i_d_m_g0_b0_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g0_b0_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g10_b10_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g10_b10_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g11_b11_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g11_b11_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g12_b12_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g12_b12_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g13_b13_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g13_b13_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g14_b14_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g14_b14_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g15_b15_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g15_b15_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g16_b16_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g16_b16_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g17_b17_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g17_b17_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g18_b18_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g18_b18_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g19_b19_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g19_b19_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g1_b1_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g1_b1_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g20_b20_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g20_b20_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g21_b21_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g21_b21_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g22_b22_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g22_b22_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g23_b23_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g23_b23_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g24_b24_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g24_b24_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g25_b25_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g25_b25_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g26_b26_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g26_b26_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g27_b27_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g27_b27_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g28_b28_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g28_b28_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g29_b29_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g29_b29_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g2_b2_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g2_b2_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g30_b30_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g30_b30_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g31_b31_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g31_b31_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g3_b3_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g3_b3_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g4_b4_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g4_b4_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g5_b5_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g5_b5_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g6_b6_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g6_b6_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g7_b7_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g7_b7_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g8_b8_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g8_b8_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g9_b9_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_d_m_g9_b9_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_p_f_m_ram0_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b11111111111111111111111111
+   iRead  ph0_i_p_f_m_ram0_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b00000000000000000000000000
+   iWrite ph0_i_p_f_m_ram1_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b11111111111111111111111111
+   iRead  ph0_i_p_f_m_ram1_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b00000000000000000000000000
+   iWrite ph0_i_p_f_m_ram2_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b11111111111111111111111111
+   iRead  ph0_i_p_f_m_ram2_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b00000000000000000000000000
+   iWrite ph0_i_p_f_m_ram3_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b11111111111111111111111111
+   iRead  ph0_i_p_f_m_ram3_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b00000000000000000000000000
+   iWrite ph0_i_p_gb1_b_m0_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_p_gb1_b_m0_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_p_gb1_b_m1_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_p_gb1_b_m1_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_p_gs1_s_m0_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_p_gs1_s_m0_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_p_gs1_s_m1_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iRead  ph0_i_p_gs1_s_m1_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iApply
+
+   iOverrideScanInterface bisr_chain_PD_TOP -capture on
+   iApply
+
+
+}
+
+
+iProcsForModule firebird7_in
+
+iProc BisrChain_r1w0_external {} {
+
+   iWrite PD_TOP_bisr_reset 0b1
+   iApply
+
+   iWrite PD_TOP_bisr_reset 0b1
+   iApply
+
+   iNote "  Enabling power domain group label PD_TOP"
+   iNote "  Disabling BIRA capture"
+   iOverrideScanInterface bisr_chain_PD_TOP -capture off
+   iWrite ph0_i_d_m_g0_b0_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g0_b0_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g10_b10_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g10_b10_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g11_b11_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g11_b11_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g12_b12_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g12_b12_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g13_b13_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g13_b13_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g14_b14_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g14_b14_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g15_b15_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g15_b15_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g16_b16_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g16_b16_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g17_b17_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g17_b17_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g18_b18_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g18_b18_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g19_b19_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g19_b19_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g1_b1_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g1_b1_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g20_b20_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g20_b20_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g21_b21_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g21_b21_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g22_b22_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g22_b22_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g23_b23_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g23_b23_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g24_b24_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g24_b24_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g25_b25_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g25_b25_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g26_b26_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g26_b26_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g27_b27_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g27_b27_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g28_b28_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g28_b28_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g29_b29_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g29_b29_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g2_b2_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g2_b2_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g30_b30_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g30_b30_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g31_b31_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g31_b31_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g3_b3_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g3_b3_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g4_b4_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g4_b4_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g5_b5_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g5_b5_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g6_b6_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g6_b6_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g7_b7_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g7_b7_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g8_b8_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g8_b8_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_d_m_g9_b9_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g9_b9_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_p_f_m_ram0_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b00000000000000000000000000
+   iRead  ph0_i_p_f_m_ram0_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b11111111111111111111111111
+   iWrite ph0_i_p_f_m_ram1_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b00000000000000000000000000
+   iRead  ph0_i_p_f_m_ram1_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b11111111111111111111111111
+   iWrite ph0_i_p_f_m_ram2_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b00000000000000000000000000
+   iRead  ph0_i_p_f_m_ram2_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b11111111111111111111111111
+   iWrite ph0_i_p_f_m_ram3_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b00000000000000000000000000
+   iRead  ph0_i_p_f_m_ram3_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b11111111111111111111111111
+   iWrite ph0_i_p_gb1_b_m0_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_p_gb1_b_m0_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_p_gb1_b_m1_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_p_gb1_b_m1_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_p_gs1_s_m0_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_p_gs1_s_m0_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iWrite ph0_i_p_gs1_s_m1_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_p_gs1_s_m1_mem0_i_bisr_inst.ShiftReg[21:0] 0b1111111111111111111111
+   iApply
+
+   iOverrideScanInterface bisr_chain_PD_TOP -capture on
+   iApply
+
+
+}
+
+
+iProcsForModule firebird7_in
+
+iProc BisrChain_r0wx_external {} {
+
+   iWrite PD_TOP_bisr_reset 0b1
+   iApply
+
+   iWrite PD_TOP_bisr_reset 0b1
+   iApply
+
+   iNote "  Enabling power domain group label PD_TOP"
+   iNote "  Disabling BIRA capture"
+   iOverrideScanInterface bisr_chain_PD_TOP -capture off
+   iWrite ph0_i_d_m_g0_b0_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g0_b0_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g10_b10_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g10_b10_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g11_b11_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g11_b11_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g12_b12_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g12_b12_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g13_b13_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g13_b13_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g14_b14_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g14_b14_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g15_b15_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g15_b15_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g16_b16_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g16_b16_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g17_b17_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g17_b17_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g18_b18_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g18_b18_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g19_b19_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g19_b19_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g1_b1_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g1_b1_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g20_b20_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g20_b20_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g21_b21_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g21_b21_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g22_b22_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g22_b22_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g23_b23_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g23_b23_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g24_b24_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g24_b24_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g25_b25_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g25_b25_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g26_b26_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g26_b26_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g27_b27_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g27_b27_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g28_b28_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g28_b28_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g29_b29_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g29_b29_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g2_b2_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g2_b2_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g30_b30_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g30_b30_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g31_b31_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g31_b31_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g3_b3_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g3_b3_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g4_b4_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g4_b4_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g5_b5_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g5_b5_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g6_b6_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g6_b6_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g7_b7_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g7_b7_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g8_b8_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g8_b8_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_d_m_g9_b9_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_d_m_g9_b9_db_gen_100_dRam_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_p_f_m_ram0_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b00000000000000000000000000
+   iRead  ph0_i_p_f_m_ram0_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b00000000000000000000000000
+   iWrite ph0_i_p_f_m_ram1_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b00000000000000000000000000
+   iRead  ph0_i_p_f_m_ram1_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b00000000000000000000000000
+   iWrite ph0_i_p_f_m_ram2_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b00000000000000000000000000
+   iRead  ph0_i_p_f_m_ram2_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b00000000000000000000000000
+   iWrite ph0_i_p_f_m_ram3_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b00000000000000000000000000
+   iRead  ph0_i_p_f_m_ram3_gen_100_pRam_mem0_i_bisr_inst.ShiftReg[25:0] 0b00000000000000000000000000
+   iWrite ph0_i_p_gb1_b_m0_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_p_gb1_b_m0_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_p_gb1_b_m1_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_p_gb1_b_m1_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_p_gs1_s_m0_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_p_gs1_s_m0_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iWrite ph0_i_p_gs1_s_m1_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iRead  ph0_i_p_gs1_s_m1_mem0_i_bisr_inst.ShiftReg[21:0] 0b0000000000000000000000
+   iApply
+
+   iOverrideScanInterface bisr_chain_PD_TOP -capture on
+   iApply
+
+
+}

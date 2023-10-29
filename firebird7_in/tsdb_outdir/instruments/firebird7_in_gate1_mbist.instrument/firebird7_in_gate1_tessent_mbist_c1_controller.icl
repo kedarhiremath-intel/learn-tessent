@@ -12,7 +12,7 @@
 ----------------------------------------------------------------------------------
 -  File created by: Tessent Shell                                                -
 -          Version: 2022.4                                                       -
--       Created on: Mon Oct 23 12:52:11 PDT 2023                                 -
+-       Created on: Sun Oct 29 14:14:41 PDT 2023                                 -
 ----------------------------------------------------------------------------------
 
 
@@ -44,6 +44,12 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
   DataInPort    MBISTPG_MEM_ARRAY_DUMP_MODE {RefEnum OnOff;}
   DataInPort    FL_CNT_MODE[1:0];
   DataInPort    MBISTPG_ALGO_MODE[1:0];
+  DataOutPort   MBISTPG_STABLE { 
+    Enable MBISTPG_EN; 
+    Attribute connection_rule_option = "auxiliary_data_inverse"; 
+    Attribute tessent_memory_bist_function = "diagnosis_ready_status";
+    Attribute forced_high_dft_signal_list = "memory_diagnosis_mode";
+  }
   DataOutPort   MBISTPG_GO   {RefEnum PassFail;}
   DataOutPort   MBISTPG_DONE {RefEnum PassFail;}
   TCKPort       TCK;                       
@@ -606,8 +612,11 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
       ScanInSource   SELECT_COMMON_OPSET_REG[0];
       RefEnum        OnOff;
   }
-  ScanRegister MICROCODE_EN_REG[0:0] {
+  ScanRegister SELECT_COMMON_ADD_MIN_MAX_REG[0:0] {
       ScanInSource   SELECT_COMMON_DATA_PAT_REG[0];
+  }
+  ScanRegister MICROCODE_EN_REG[0:0] {
+      ScanInSource   SELECT_COMMON_ADD_MIN_MAX_REG[0];
   }
   ScanRegister MEM_ARRAY_DUMP_MODE_R[0:0] {
       ScanInSource   MICROCODE_EN_REG[0];
@@ -616,24 +625,568 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
       ScanInSource   MEM_ARRAY_DUMP_MODE_R[0];
   }
   Alias INST_POINTER_REG[4:0] = INST_POINTER_REG_HW[4:0];
-  ScanRegister A_ADD_REG_Y_HW[0:2] {
+  ScanRegister INST0_OPERATION_SELECT_HW[0:5] {
       ScanInSource   INST_POINTER_REG_HW[4];
+  }
+  Alias INST0_OPERATION_SELECT[5:0] = INST0_OPERATION_SELECT_HW[5:0];
+  ScanRegister INST0_ADD_REG_A_EQUALS_B_HW[0:1] {
+      ScanInSource   INST0_OPERATION_SELECT_HW[5];
+  }
+  Alias INST0_ADD_REG_A_EQUALS_B[1:0] = INST0_ADD_REG_A_EQUALS_B_HW[1:0];
+  ScanRegister INST0_Y0_ADD_CMD_HW[0:1] {
+      ScanInSource   INST0_ADD_REG_A_EQUALS_B_HW[1];
+  }
+  Alias INST0_Y0_ADD_CMD[1:0] = INST0_Y0_ADD_CMD_HW[1:0];
+  ScanRegister INST0_Y1_ADD_CMD_HW[0:2] {
+      ScanInSource   INST0_Y0_ADD_CMD_HW[1];
+  }
+  Alias INST0_Y1_ADD_CMD[2:0] = INST0_Y1_ADD_CMD_HW[2:0];
+  ScanRegister INST0_X0_ADD_CMD_HW[0:1] {
+      ScanInSource   INST0_Y1_ADD_CMD_HW[2];
+  }
+  Alias INST0_X0_ADD_CMD[1:0] = INST0_X0_ADD_CMD_HW[1:0];
+  ScanRegister INST0_X1_ADD_CMD_HW[0:2] {
+      ScanInSource   INST0_X0_ADD_CMD_HW[1];
+  }
+  Alias INST0_X1_ADD_CMD[2:0] = INST0_X1_ADD_CMD_HW[2:0];
+  ScanRegister INST0_ADD_SELECT_CMD_HW[0:2] {
+      ScanInSource   INST0_X1_ADD_CMD_HW[2];
+  }
+  Alias INST0_ADD_SELECT_CMD[2:0] = INST0_ADD_SELECT_CMD_HW[2:0];
+  ScanRegister INST0_WRITE_DATA_CMD_HW[0:3] {
+      ScanInSource   INST0_ADD_SELECT_CMD_HW[2];
+  }
+  Alias INST0_WRITE_DATA_CMD[3:0] = INST0_WRITE_DATA_CMD_HW[3:0];
+  ScanRegister INST0_EXPECT_DATA_CMD_HW[0:3] {
+      ScanInSource   INST0_WRITE_DATA_CMD_HW[3];
+  }
+  Alias INST0_EXPECT_DATA_CMD[3:0] = INST0_EXPECT_DATA_CMD_HW[3:0];
+  ScanRegister INST0_REPEATLOOP_CMD_HW[0:1] {
+      ScanInSource   INST0_EXPECT_DATA_CMD_HW[3];
+  }
+  Alias INST0_REPEATLOOP_CMD[1:0] = INST0_REPEATLOOP_CMD_HW[1:0];
+  ScanRegister INST0_INH_LAST_ADDR_CNT[0:0] {
+      ScanInSource   INST0_REPEATLOOP_CMD_HW[1];
+  }
+  ScanRegister INST0_INH_DATA_CMP[0:0] {
+      ScanInSource   INST0_INH_LAST_ADDR_CNT[0];
+  }
+  ScanRegister INST0_COUNTERA_CMD[0:0] {
+      ScanInSource   INST0_INH_DATA_CMP[0];
+  }
+  ScanRegister INST0_DELAYCOUNTER_CMD[0:0] {
+      ScanInSource   INST0_COUNTERA_CMD[0];
+  }
+  ScanRegister INST0_BRANCH_INST_ADDRESS_HW[0:4] {
+      ScanInSource   INST0_DELAYCOUNTER_CMD[0];
+  }
+  Alias INST0_BRANCH_INST_ADDRESS[4:0] = INST0_BRANCH_INST_ADDRESS_HW[4:0];
+  ScanRegister INST0_NEXT_CONDITIONS_HW[0:6] {
+      ScanInSource   INST0_BRANCH_INST_ADDRESS_HW[4];
+  }
+  Alias INST0_NEXT_CONDITIONS[6:0] = INST0_NEXT_CONDITIONS_HW[6:0];
+  ScanRegister INST1_OPERATION_SELECT_HW[0:5] {
+      ScanInSource   INST0_NEXT_CONDITIONS_HW[6];
+  }
+  Alias INST1_OPERATION_SELECT[5:0] = INST1_OPERATION_SELECT_HW[5:0];
+  ScanRegister INST1_ADD_REG_A_EQUALS_B_HW[0:1] {
+      ScanInSource   INST1_OPERATION_SELECT_HW[5];
+  }
+  Alias INST1_ADD_REG_A_EQUALS_B[1:0] = INST1_ADD_REG_A_EQUALS_B_HW[1:0];
+  ScanRegister INST1_Y0_ADD_CMD_HW[0:1] {
+      ScanInSource   INST1_ADD_REG_A_EQUALS_B_HW[1];
+  }
+  Alias INST1_Y0_ADD_CMD[1:0] = INST1_Y0_ADD_CMD_HW[1:0];
+  ScanRegister INST1_Y1_ADD_CMD_HW[0:2] {
+      ScanInSource   INST1_Y0_ADD_CMD_HW[1];
+  }
+  Alias INST1_Y1_ADD_CMD[2:0] = INST1_Y1_ADD_CMD_HW[2:0];
+  ScanRegister INST1_X0_ADD_CMD_HW[0:1] {
+      ScanInSource   INST1_Y1_ADD_CMD_HW[2];
+  }
+  Alias INST1_X0_ADD_CMD[1:0] = INST1_X0_ADD_CMD_HW[1:0];
+  ScanRegister INST1_X1_ADD_CMD_HW[0:2] {
+      ScanInSource   INST1_X0_ADD_CMD_HW[1];
+  }
+  Alias INST1_X1_ADD_CMD[2:0] = INST1_X1_ADD_CMD_HW[2:0];
+  ScanRegister INST1_ADD_SELECT_CMD_HW[0:2] {
+      ScanInSource   INST1_X1_ADD_CMD_HW[2];
+  }
+  Alias INST1_ADD_SELECT_CMD[2:0] = INST1_ADD_SELECT_CMD_HW[2:0];
+  ScanRegister INST1_WRITE_DATA_CMD_HW[0:3] {
+      ScanInSource   INST1_ADD_SELECT_CMD_HW[2];
+  }
+  Alias INST1_WRITE_DATA_CMD[3:0] = INST1_WRITE_DATA_CMD_HW[3:0];
+  ScanRegister INST1_EXPECT_DATA_CMD_HW[0:3] {
+      ScanInSource   INST1_WRITE_DATA_CMD_HW[3];
+  }
+  Alias INST1_EXPECT_DATA_CMD[3:0] = INST1_EXPECT_DATA_CMD_HW[3:0];
+  ScanRegister INST1_REPEATLOOP_CMD_HW[0:1] {
+      ScanInSource   INST1_EXPECT_DATA_CMD_HW[3];
+  }
+  Alias INST1_REPEATLOOP_CMD[1:0] = INST1_REPEATLOOP_CMD_HW[1:0];
+  ScanRegister INST1_INH_LAST_ADDR_CNT[0:0] {
+      ScanInSource   INST1_REPEATLOOP_CMD_HW[1];
+  }
+  ScanRegister INST1_INH_DATA_CMP[0:0] {
+      ScanInSource   INST1_INH_LAST_ADDR_CNT[0];
+  }
+  ScanRegister INST1_COUNTERA_CMD[0:0] {
+      ScanInSource   INST1_INH_DATA_CMP[0];
+  }
+  ScanRegister INST1_DELAYCOUNTER_CMD[0:0] {
+      ScanInSource   INST1_COUNTERA_CMD[0];
+  }
+  ScanRegister INST1_BRANCH_INST_ADDRESS_HW[0:4] {
+      ScanInSource   INST1_DELAYCOUNTER_CMD[0];
+  }
+  Alias INST1_BRANCH_INST_ADDRESS[4:0] = INST1_BRANCH_INST_ADDRESS_HW[4:0];
+  ScanRegister INST1_NEXT_CONDITIONS_HW[0:6] {
+      ScanInSource   INST1_BRANCH_INST_ADDRESS_HW[4];
+  }
+  Alias INST1_NEXT_CONDITIONS[6:0] = INST1_NEXT_CONDITIONS_HW[6:0];
+  ScanRegister INST2_OPERATION_SELECT_HW[0:5] {
+      ScanInSource   INST1_NEXT_CONDITIONS_HW[6];
+  }
+  Alias INST2_OPERATION_SELECT[5:0] = INST2_OPERATION_SELECT_HW[5:0];
+  ScanRegister INST2_ADD_REG_A_EQUALS_B_HW[0:1] {
+      ScanInSource   INST2_OPERATION_SELECT_HW[5];
+  }
+  Alias INST2_ADD_REG_A_EQUALS_B[1:0] = INST2_ADD_REG_A_EQUALS_B_HW[1:0];
+  ScanRegister INST2_Y0_ADD_CMD_HW[0:1] {
+      ScanInSource   INST2_ADD_REG_A_EQUALS_B_HW[1];
+  }
+  Alias INST2_Y0_ADD_CMD[1:0] = INST2_Y0_ADD_CMD_HW[1:0];
+  ScanRegister INST2_Y1_ADD_CMD_HW[0:2] {
+      ScanInSource   INST2_Y0_ADD_CMD_HW[1];
+  }
+  Alias INST2_Y1_ADD_CMD[2:0] = INST2_Y1_ADD_CMD_HW[2:0];
+  ScanRegister INST2_X0_ADD_CMD_HW[0:1] {
+      ScanInSource   INST2_Y1_ADD_CMD_HW[2];
+  }
+  Alias INST2_X0_ADD_CMD[1:0] = INST2_X0_ADD_CMD_HW[1:0];
+  ScanRegister INST2_X1_ADD_CMD_HW[0:2] {
+      ScanInSource   INST2_X0_ADD_CMD_HW[1];
+  }
+  Alias INST2_X1_ADD_CMD[2:0] = INST2_X1_ADD_CMD_HW[2:0];
+  ScanRegister INST2_ADD_SELECT_CMD_HW[0:2] {
+      ScanInSource   INST2_X1_ADD_CMD_HW[2];
+  }
+  Alias INST2_ADD_SELECT_CMD[2:0] = INST2_ADD_SELECT_CMD_HW[2:0];
+  ScanRegister INST2_WRITE_DATA_CMD_HW[0:3] {
+      ScanInSource   INST2_ADD_SELECT_CMD_HW[2];
+  }
+  Alias INST2_WRITE_DATA_CMD[3:0] = INST2_WRITE_DATA_CMD_HW[3:0];
+  ScanRegister INST2_EXPECT_DATA_CMD_HW[0:3] {
+      ScanInSource   INST2_WRITE_DATA_CMD_HW[3];
+  }
+  Alias INST2_EXPECT_DATA_CMD[3:0] = INST2_EXPECT_DATA_CMD_HW[3:0];
+  ScanRegister INST2_REPEATLOOP_CMD_HW[0:1] {
+      ScanInSource   INST2_EXPECT_DATA_CMD_HW[3];
+  }
+  Alias INST2_REPEATLOOP_CMD[1:0] = INST2_REPEATLOOP_CMD_HW[1:0];
+  ScanRegister INST2_INH_LAST_ADDR_CNT[0:0] {
+      ScanInSource   INST2_REPEATLOOP_CMD_HW[1];
+  }
+  ScanRegister INST2_INH_DATA_CMP[0:0] {
+      ScanInSource   INST2_INH_LAST_ADDR_CNT[0];
+  }
+  ScanRegister INST2_COUNTERA_CMD[0:0] {
+      ScanInSource   INST2_INH_DATA_CMP[0];
+  }
+  ScanRegister INST2_DELAYCOUNTER_CMD[0:0] {
+      ScanInSource   INST2_COUNTERA_CMD[0];
+  }
+  ScanRegister INST2_BRANCH_INST_ADDRESS_HW[0:4] {
+      ScanInSource   INST2_DELAYCOUNTER_CMD[0];
+  }
+  Alias INST2_BRANCH_INST_ADDRESS[4:0] = INST2_BRANCH_INST_ADDRESS_HW[4:0];
+  ScanRegister INST2_NEXT_CONDITIONS_HW[0:6] {
+      ScanInSource   INST2_BRANCH_INST_ADDRESS_HW[4];
+  }
+  Alias INST2_NEXT_CONDITIONS[6:0] = INST2_NEXT_CONDITIONS_HW[6:0];
+  ScanRegister INST3_OPERATION_SELECT_HW[0:5] {
+      ScanInSource   INST2_NEXT_CONDITIONS_HW[6];
+  }
+  Alias INST3_OPERATION_SELECT[5:0] = INST3_OPERATION_SELECT_HW[5:0];
+  ScanRegister INST3_ADD_REG_A_EQUALS_B_HW[0:1] {
+      ScanInSource   INST3_OPERATION_SELECT_HW[5];
+  }
+  Alias INST3_ADD_REG_A_EQUALS_B[1:0] = INST3_ADD_REG_A_EQUALS_B_HW[1:0];
+  ScanRegister INST3_Y0_ADD_CMD_HW[0:1] {
+      ScanInSource   INST3_ADD_REG_A_EQUALS_B_HW[1];
+  }
+  Alias INST3_Y0_ADD_CMD[1:0] = INST3_Y0_ADD_CMD_HW[1:0];
+  ScanRegister INST3_Y1_ADD_CMD_HW[0:2] {
+      ScanInSource   INST3_Y0_ADD_CMD_HW[1];
+  }
+  Alias INST3_Y1_ADD_CMD[2:0] = INST3_Y1_ADD_CMD_HW[2:0];
+  ScanRegister INST3_X0_ADD_CMD_HW[0:1] {
+      ScanInSource   INST3_Y1_ADD_CMD_HW[2];
+  }
+  Alias INST3_X0_ADD_CMD[1:0] = INST3_X0_ADD_CMD_HW[1:0];
+  ScanRegister INST3_X1_ADD_CMD_HW[0:2] {
+      ScanInSource   INST3_X0_ADD_CMD_HW[1];
+  }
+  Alias INST3_X1_ADD_CMD[2:0] = INST3_X1_ADD_CMD_HW[2:0];
+  ScanRegister INST3_ADD_SELECT_CMD_HW[0:2] {
+      ScanInSource   INST3_X1_ADD_CMD_HW[2];
+  }
+  Alias INST3_ADD_SELECT_CMD[2:0] = INST3_ADD_SELECT_CMD_HW[2:0];
+  ScanRegister INST3_WRITE_DATA_CMD_HW[0:3] {
+      ScanInSource   INST3_ADD_SELECT_CMD_HW[2];
+  }
+  Alias INST3_WRITE_DATA_CMD[3:0] = INST3_WRITE_DATA_CMD_HW[3:0];
+  ScanRegister INST3_EXPECT_DATA_CMD_HW[0:3] {
+      ScanInSource   INST3_WRITE_DATA_CMD_HW[3];
+  }
+  Alias INST3_EXPECT_DATA_CMD[3:0] = INST3_EXPECT_DATA_CMD_HW[3:0];
+  ScanRegister INST3_REPEATLOOP_CMD_HW[0:1] {
+      ScanInSource   INST3_EXPECT_DATA_CMD_HW[3];
+  }
+  Alias INST3_REPEATLOOP_CMD[1:0] = INST3_REPEATLOOP_CMD_HW[1:0];
+  ScanRegister INST3_INH_LAST_ADDR_CNT[0:0] {
+      ScanInSource   INST3_REPEATLOOP_CMD_HW[1];
+  }
+  ScanRegister INST3_INH_DATA_CMP[0:0] {
+      ScanInSource   INST3_INH_LAST_ADDR_CNT[0];
+  }
+  ScanRegister INST3_COUNTERA_CMD[0:0] {
+      ScanInSource   INST3_INH_DATA_CMP[0];
+  }
+  ScanRegister INST3_DELAYCOUNTER_CMD[0:0] {
+      ScanInSource   INST3_COUNTERA_CMD[0];
+  }
+  ScanRegister INST3_BRANCH_INST_ADDRESS_HW[0:4] {
+      ScanInSource   INST3_DELAYCOUNTER_CMD[0];
+  }
+  Alias INST3_BRANCH_INST_ADDRESS[4:0] = INST3_BRANCH_INST_ADDRESS_HW[4:0];
+  ScanRegister INST3_NEXT_CONDITIONS_HW[0:6] {
+      ScanInSource   INST3_BRANCH_INST_ADDRESS_HW[4];
+  }
+  Alias INST3_NEXT_CONDITIONS[6:0] = INST3_NEXT_CONDITIONS_HW[6:0];
+  ScanRegister INST4_OPERATION_SELECT_HW[0:5] {
+      ScanInSource   INST3_NEXT_CONDITIONS_HW[6];
+  }
+  Alias INST4_OPERATION_SELECT[5:0] = INST4_OPERATION_SELECT_HW[5:0];
+  ScanRegister INST4_ADD_REG_A_EQUALS_B_HW[0:1] {
+      ScanInSource   INST4_OPERATION_SELECT_HW[5];
+  }
+  Alias INST4_ADD_REG_A_EQUALS_B[1:0] = INST4_ADD_REG_A_EQUALS_B_HW[1:0];
+  ScanRegister INST4_Y0_ADD_CMD_HW[0:1] {
+      ScanInSource   INST4_ADD_REG_A_EQUALS_B_HW[1];
+  }
+  Alias INST4_Y0_ADD_CMD[1:0] = INST4_Y0_ADD_CMD_HW[1:0];
+  ScanRegister INST4_Y1_ADD_CMD_HW[0:2] {
+      ScanInSource   INST4_Y0_ADD_CMD_HW[1];
+  }
+  Alias INST4_Y1_ADD_CMD[2:0] = INST4_Y1_ADD_CMD_HW[2:0];
+  ScanRegister INST4_X0_ADD_CMD_HW[0:1] {
+      ScanInSource   INST4_Y1_ADD_CMD_HW[2];
+  }
+  Alias INST4_X0_ADD_CMD[1:0] = INST4_X0_ADD_CMD_HW[1:0];
+  ScanRegister INST4_X1_ADD_CMD_HW[0:2] {
+      ScanInSource   INST4_X0_ADD_CMD_HW[1];
+  }
+  Alias INST4_X1_ADD_CMD[2:0] = INST4_X1_ADD_CMD_HW[2:0];
+  ScanRegister INST4_ADD_SELECT_CMD_HW[0:2] {
+      ScanInSource   INST4_X1_ADD_CMD_HW[2];
+  }
+  Alias INST4_ADD_SELECT_CMD[2:0] = INST4_ADD_SELECT_CMD_HW[2:0];
+  ScanRegister INST4_WRITE_DATA_CMD_HW[0:3] {
+      ScanInSource   INST4_ADD_SELECT_CMD_HW[2];
+  }
+  Alias INST4_WRITE_DATA_CMD[3:0] = INST4_WRITE_DATA_CMD_HW[3:0];
+  ScanRegister INST4_EXPECT_DATA_CMD_HW[0:3] {
+      ScanInSource   INST4_WRITE_DATA_CMD_HW[3];
+  }
+  Alias INST4_EXPECT_DATA_CMD[3:0] = INST4_EXPECT_DATA_CMD_HW[3:0];
+  ScanRegister INST4_REPEATLOOP_CMD_HW[0:1] {
+      ScanInSource   INST4_EXPECT_DATA_CMD_HW[3];
+  }
+  Alias INST4_REPEATLOOP_CMD[1:0] = INST4_REPEATLOOP_CMD_HW[1:0];
+  ScanRegister INST4_INH_LAST_ADDR_CNT[0:0] {
+      ScanInSource   INST4_REPEATLOOP_CMD_HW[1];
+  }
+  ScanRegister INST4_INH_DATA_CMP[0:0] {
+      ScanInSource   INST4_INH_LAST_ADDR_CNT[0];
+  }
+  ScanRegister INST4_COUNTERA_CMD[0:0] {
+      ScanInSource   INST4_INH_DATA_CMP[0];
+  }
+  ScanRegister INST4_DELAYCOUNTER_CMD[0:0] {
+      ScanInSource   INST4_COUNTERA_CMD[0];
+  }
+  ScanRegister INST4_BRANCH_INST_ADDRESS_HW[0:4] {
+      ScanInSource   INST4_DELAYCOUNTER_CMD[0];
+  }
+  Alias INST4_BRANCH_INST_ADDRESS[4:0] = INST4_BRANCH_INST_ADDRESS_HW[4:0];
+  ScanRegister INST4_NEXT_CONDITIONS_HW[0:6] {
+      ScanInSource   INST4_BRANCH_INST_ADDRESS_HW[4];
+  }
+  Alias INST4_NEXT_CONDITIONS[6:0] = INST4_NEXT_CONDITIONS_HW[6:0];
+  ScanRegister INST5_OPERATION_SELECT_HW[0:5] {
+      ScanInSource   INST4_NEXT_CONDITIONS_HW[6];
+  }
+  Alias INST5_OPERATION_SELECT[5:0] = INST5_OPERATION_SELECT_HW[5:0];
+  ScanRegister INST5_ADD_REG_A_EQUALS_B_HW[0:1] {
+      ScanInSource   INST5_OPERATION_SELECT_HW[5];
+  }
+  Alias INST5_ADD_REG_A_EQUALS_B[1:0] = INST5_ADD_REG_A_EQUALS_B_HW[1:0];
+  ScanRegister INST5_Y0_ADD_CMD_HW[0:1] {
+      ScanInSource   INST5_ADD_REG_A_EQUALS_B_HW[1];
+  }
+  Alias INST5_Y0_ADD_CMD[1:0] = INST5_Y0_ADD_CMD_HW[1:0];
+  ScanRegister INST5_Y1_ADD_CMD_HW[0:2] {
+      ScanInSource   INST5_Y0_ADD_CMD_HW[1];
+  }
+  Alias INST5_Y1_ADD_CMD[2:0] = INST5_Y1_ADD_CMD_HW[2:0];
+  ScanRegister INST5_X0_ADD_CMD_HW[0:1] {
+      ScanInSource   INST5_Y1_ADD_CMD_HW[2];
+  }
+  Alias INST5_X0_ADD_CMD[1:0] = INST5_X0_ADD_CMD_HW[1:0];
+  ScanRegister INST5_X1_ADD_CMD_HW[0:2] {
+      ScanInSource   INST5_X0_ADD_CMD_HW[1];
+  }
+  Alias INST5_X1_ADD_CMD[2:0] = INST5_X1_ADD_CMD_HW[2:0];
+  ScanRegister INST5_ADD_SELECT_CMD_HW[0:2] {
+      ScanInSource   INST5_X1_ADD_CMD_HW[2];
+  }
+  Alias INST5_ADD_SELECT_CMD[2:0] = INST5_ADD_SELECT_CMD_HW[2:0];
+  ScanRegister INST5_WRITE_DATA_CMD_HW[0:3] {
+      ScanInSource   INST5_ADD_SELECT_CMD_HW[2];
+  }
+  Alias INST5_WRITE_DATA_CMD[3:0] = INST5_WRITE_DATA_CMD_HW[3:0];
+  ScanRegister INST5_EXPECT_DATA_CMD_HW[0:3] {
+      ScanInSource   INST5_WRITE_DATA_CMD_HW[3];
+  }
+  Alias INST5_EXPECT_DATA_CMD[3:0] = INST5_EXPECT_DATA_CMD_HW[3:0];
+  ScanRegister INST5_REPEATLOOP_CMD_HW[0:1] {
+      ScanInSource   INST5_EXPECT_DATA_CMD_HW[3];
+  }
+  Alias INST5_REPEATLOOP_CMD[1:0] = INST5_REPEATLOOP_CMD_HW[1:0];
+  ScanRegister INST5_INH_LAST_ADDR_CNT[0:0] {
+      ScanInSource   INST5_REPEATLOOP_CMD_HW[1];
+  }
+  ScanRegister INST5_INH_DATA_CMP[0:0] {
+      ScanInSource   INST5_INH_LAST_ADDR_CNT[0];
+  }
+  ScanRegister INST5_COUNTERA_CMD[0:0] {
+      ScanInSource   INST5_INH_DATA_CMP[0];
+  }
+  ScanRegister INST5_DELAYCOUNTER_CMD[0:0] {
+      ScanInSource   INST5_COUNTERA_CMD[0];
+  }
+  ScanRegister INST5_BRANCH_INST_ADDRESS_HW[0:4] {
+      ScanInSource   INST5_DELAYCOUNTER_CMD[0];
+  }
+  Alias INST5_BRANCH_INST_ADDRESS[4:0] = INST5_BRANCH_INST_ADDRESS_HW[4:0];
+  ScanRegister INST5_NEXT_CONDITIONS_HW[0:6] {
+      ScanInSource   INST5_BRANCH_INST_ADDRESS_HW[4];
+  }
+  Alias INST5_NEXT_CONDITIONS[6:0] = INST5_NEXT_CONDITIONS_HW[6:0];
+  ScanRegister INST6_OPERATION_SELECT_HW[0:5] {
+      ScanInSource   INST5_NEXT_CONDITIONS_HW[6];
+  }
+  Alias INST6_OPERATION_SELECT[5:0] = INST6_OPERATION_SELECT_HW[5:0];
+  ScanRegister INST6_ADD_REG_A_EQUALS_B_HW[0:1] {
+      ScanInSource   INST6_OPERATION_SELECT_HW[5];
+  }
+  Alias INST6_ADD_REG_A_EQUALS_B[1:0] = INST6_ADD_REG_A_EQUALS_B_HW[1:0];
+  ScanRegister INST6_Y0_ADD_CMD_HW[0:1] {
+      ScanInSource   INST6_ADD_REG_A_EQUALS_B_HW[1];
+  }
+  Alias INST6_Y0_ADD_CMD[1:0] = INST6_Y0_ADD_CMD_HW[1:0];
+  ScanRegister INST6_Y1_ADD_CMD_HW[0:2] {
+      ScanInSource   INST6_Y0_ADD_CMD_HW[1];
+  }
+  Alias INST6_Y1_ADD_CMD[2:0] = INST6_Y1_ADD_CMD_HW[2:0];
+  ScanRegister INST6_X0_ADD_CMD_HW[0:1] {
+      ScanInSource   INST6_Y1_ADD_CMD_HW[2];
+  }
+  Alias INST6_X0_ADD_CMD[1:0] = INST6_X0_ADD_CMD_HW[1:0];
+  ScanRegister INST6_X1_ADD_CMD_HW[0:2] {
+      ScanInSource   INST6_X0_ADD_CMD_HW[1];
+  }
+  Alias INST6_X1_ADD_CMD[2:0] = INST6_X1_ADD_CMD_HW[2:0];
+  ScanRegister INST6_ADD_SELECT_CMD_HW[0:2] {
+      ScanInSource   INST6_X1_ADD_CMD_HW[2];
+  }
+  Alias INST6_ADD_SELECT_CMD[2:0] = INST6_ADD_SELECT_CMD_HW[2:0];
+  ScanRegister INST6_WRITE_DATA_CMD_HW[0:3] {
+      ScanInSource   INST6_ADD_SELECT_CMD_HW[2];
+  }
+  Alias INST6_WRITE_DATA_CMD[3:0] = INST6_WRITE_DATA_CMD_HW[3:0];
+  ScanRegister INST6_EXPECT_DATA_CMD_HW[0:3] {
+      ScanInSource   INST6_WRITE_DATA_CMD_HW[3];
+  }
+  Alias INST6_EXPECT_DATA_CMD[3:0] = INST6_EXPECT_DATA_CMD_HW[3:0];
+  ScanRegister INST6_REPEATLOOP_CMD_HW[0:1] {
+      ScanInSource   INST6_EXPECT_DATA_CMD_HW[3];
+  }
+  Alias INST6_REPEATLOOP_CMD[1:0] = INST6_REPEATLOOP_CMD_HW[1:0];
+  ScanRegister INST6_INH_LAST_ADDR_CNT[0:0] {
+      ScanInSource   INST6_REPEATLOOP_CMD_HW[1];
+  }
+  ScanRegister INST6_INH_DATA_CMP[0:0] {
+      ScanInSource   INST6_INH_LAST_ADDR_CNT[0];
+  }
+  ScanRegister INST6_COUNTERA_CMD[0:0] {
+      ScanInSource   INST6_INH_DATA_CMP[0];
+  }
+  ScanRegister INST6_DELAYCOUNTER_CMD[0:0] {
+      ScanInSource   INST6_COUNTERA_CMD[0];
+  }
+  ScanRegister INST6_BRANCH_INST_ADDRESS_HW[0:4] {
+      ScanInSource   INST6_DELAYCOUNTER_CMD[0];
+  }
+  Alias INST6_BRANCH_INST_ADDRESS[4:0] = INST6_BRANCH_INST_ADDRESS_HW[4:0];
+  ScanRegister INST6_NEXT_CONDITIONS_HW[0:6] {
+      ScanInSource   INST6_BRANCH_INST_ADDRESS_HW[4];
+  }
+  Alias INST6_NEXT_CONDITIONS[6:0] = INST6_NEXT_CONDITIONS_HW[6:0];
+  ScanRegister INST7_OPERATION_SELECT_HW[0:5] {
+      ScanInSource   INST6_NEXT_CONDITIONS_HW[6];
+  }
+  Alias INST7_OPERATION_SELECT[5:0] = INST7_OPERATION_SELECT_HW[5:0];
+  ScanRegister INST7_ADD_REG_A_EQUALS_B_HW[0:1] {
+      ScanInSource   INST7_OPERATION_SELECT_HW[5];
+  }
+  Alias INST7_ADD_REG_A_EQUALS_B[1:0] = INST7_ADD_REG_A_EQUALS_B_HW[1:0];
+  ScanRegister INST7_Y0_ADD_CMD_HW[0:1] {
+      ScanInSource   INST7_ADD_REG_A_EQUALS_B_HW[1];
+  }
+  Alias INST7_Y0_ADD_CMD[1:0] = INST7_Y0_ADD_CMD_HW[1:0];
+  ScanRegister INST7_Y1_ADD_CMD_HW[0:2] {
+      ScanInSource   INST7_Y0_ADD_CMD_HW[1];
+  }
+  Alias INST7_Y1_ADD_CMD[2:0] = INST7_Y1_ADD_CMD_HW[2:0];
+  ScanRegister INST7_X0_ADD_CMD_HW[0:1] {
+      ScanInSource   INST7_Y1_ADD_CMD_HW[2];
+  }
+  Alias INST7_X0_ADD_CMD[1:0] = INST7_X0_ADD_CMD_HW[1:0];
+  ScanRegister INST7_X1_ADD_CMD_HW[0:2] {
+      ScanInSource   INST7_X0_ADD_CMD_HW[1];
+  }
+  Alias INST7_X1_ADD_CMD[2:0] = INST7_X1_ADD_CMD_HW[2:0];
+  ScanRegister INST7_ADD_SELECT_CMD_HW[0:2] {
+      ScanInSource   INST7_X1_ADD_CMD_HW[2];
+  }
+  Alias INST7_ADD_SELECT_CMD[2:0] = INST7_ADD_SELECT_CMD_HW[2:0];
+  ScanRegister INST7_WRITE_DATA_CMD_HW[0:3] {
+      ScanInSource   INST7_ADD_SELECT_CMD_HW[2];
+  }
+  Alias INST7_WRITE_DATA_CMD[3:0] = INST7_WRITE_DATA_CMD_HW[3:0];
+  ScanRegister INST7_EXPECT_DATA_CMD_HW[0:3] {
+      ScanInSource   INST7_WRITE_DATA_CMD_HW[3];
+  }
+  Alias INST7_EXPECT_DATA_CMD[3:0] = INST7_EXPECT_DATA_CMD_HW[3:0];
+  ScanRegister INST7_REPEATLOOP_CMD_HW[0:1] {
+      ScanInSource   INST7_EXPECT_DATA_CMD_HW[3];
+  }
+  Alias INST7_REPEATLOOP_CMD[1:0] = INST7_REPEATLOOP_CMD_HW[1:0];
+  ScanRegister INST7_INH_LAST_ADDR_CNT[0:0] {
+      ScanInSource   INST7_REPEATLOOP_CMD_HW[1];
+  }
+  ScanRegister INST7_INH_DATA_CMP[0:0] {
+      ScanInSource   INST7_INH_LAST_ADDR_CNT[0];
+  }
+  ScanRegister INST7_COUNTERA_CMD[0:0] {
+      ScanInSource   INST7_INH_DATA_CMP[0];
+  }
+  ScanRegister INST7_DELAYCOUNTER_CMD[0:0] {
+      ScanInSource   INST7_COUNTERA_CMD[0];
+  }
+  ScanRegister INST7_BRANCH_INST_ADDRESS_HW[0:4] {
+      ScanInSource   INST7_DELAYCOUNTER_CMD[0];
+  }
+  Alias INST7_BRANCH_INST_ADDRESS[4:0] = INST7_BRANCH_INST_ADDRESS_HW[4:0];
+  ScanRegister INST7_NEXT_CONDITIONS_HW[0:6] {
+      ScanInSource   INST7_BRANCH_INST_ADDRESS_HW[4];
+  }
+  Alias INST7_NEXT_CONDITIONS[6:0] = INST7_NEXT_CONDITIONS_HW[6:0];
+  ScanMux A_ADD_REG_Y_SI_MUX SelectedBy LONG_SETUP,SHORT_SETUP {
+      2'b01 : INST_POINTER_REG_HW[4];
+      2'b10 : INST7_NEXT_CONDITIONS_HW[6];
+  }
+  ScanRegister A_ADD_REG_Y_HW[0:2] {
+      ScanInSource   A_ADD_REG_Y_SI_MUX;
   }
   Alias A_ADD_REG_Y[2:0] = A_ADD_REG_Y_HW[2:0];
   ScanRegister A_ADD_REG_X_HW[0:7] {
       ScanInSource   A_ADD_REG_Y_HW[2];
   }
   Alias A_ADD_REG_X[7:0] = A_ADD_REG_X_HW[7:0];
-  ScanRegister B_ADD_REG_Y_HW[0:2] {
+  ScanRegister A_X1_ADD_SEG_LINK_REG_HW[0:2] {
       ScanInSource   A_ADD_REG_X_HW[7];
+  }
+  Alias A_X1_ADD_SEG_LINK_REG[2:0] = A_X1_ADD_SEG_LINK_REG_HW[2:0];
+  ScanRegister A_X0_ADD_SEG_LINK_REG_HW[0:2] {
+      ScanInSource   A_X1_ADD_SEG_LINK_REG_HW[2];
+  }
+  Alias A_X0_ADD_SEG_LINK_REG[2:0] = A_X0_ADD_SEG_LINK_REG_HW[2:0];
+  ScanRegister A_Y1_ADD_SEG_LINK_REG_HW[0:2] {
+      ScanInSource   A_X0_ADD_SEG_LINK_REG_HW[2];
+  }
+  Alias A_Y1_ADD_SEG_LINK_REG[2:0] = A_Y1_ADD_SEG_LINK_REG_HW[2:0];
+  ScanRegister A_Y0_ADD_SEG_LINK_REG_HW[0:2] {
+      ScanInSource   A_Y1_ADD_SEG_LINK_REG_HW[2];
+  }
+  Alias A_Y0_ADD_SEG_LINK_REG[2:0] = A_Y0_ADD_SEG_LINK_REG_HW[2:0];
+  ScanRegister A_X0_SEG_DEF_REG[0:0] {
+      ScanInSource   A_Y0_ADD_SEG_LINK_REG_HW[2];
+  }
+  ScanRegister A_Y0_SEG_DEF_REG[0:0] {
+      ScanInSource   A_X0_SEG_DEF_REG[0];
+  }
+  ScanRegister B_ADD_REG_Y_HW[0:2] {
+      ScanInSource   A_Y0_SEG_DEF_REG[0];
   }
   Alias B_ADD_REG_Y[2:0] = B_ADD_REG_Y_HW[2:0];
   ScanRegister B_ADD_REG_X_HW[0:7] {
       ScanInSource   B_ADD_REG_Y_HW[2];
   }
   Alias B_ADD_REG_X[7:0] = B_ADD_REG_X_HW[7:0];
-  ScanRegister JCNT_HW[0:2] {
+  ScanRegister B_X1_ADD_SEG_LINK_REG_HW[0:2] {
       ScanInSource   B_ADD_REG_X_HW[7];
+  }
+  Alias B_X1_ADD_SEG_LINK_REG[2:0] = B_X1_ADD_SEG_LINK_REG_HW[2:0];
+  ScanRegister B_X0_ADD_SEG_LINK_REG_HW[0:2] {
+      ScanInSource   B_X1_ADD_SEG_LINK_REG_HW[2];
+  }
+  Alias B_X0_ADD_SEG_LINK_REG[2:0] = B_X0_ADD_SEG_LINK_REG_HW[2:0];
+  ScanRegister B_Y1_ADD_SEG_LINK_REG_HW[0:2] {
+      ScanInSource   B_X0_ADD_SEG_LINK_REG_HW[2];
+  }
+  Alias B_Y1_ADD_SEG_LINK_REG[2:0] = B_Y1_ADD_SEG_LINK_REG_HW[2:0];
+  ScanRegister B_Y0_ADD_SEG_LINK_REG_HW[0:2] {
+      ScanInSource   B_Y1_ADD_SEG_LINK_REG_HW[2];
+  }
+  Alias B_Y0_ADD_SEG_LINK_REG[2:0] = B_Y0_ADD_SEG_LINK_REG_HW[2:0];
+  ScanRegister B_X0_SEG_DEF_REG[0:0] {
+      ScanInSource   B_Y0_ADD_SEG_LINK_REG_HW[2];
+  }
+  ScanRegister B_Y0_SEG_DEF_REG[0:0] {
+      ScanInSource   B_X0_SEG_DEF_REG[0];
+  }
+  ScanRegister X_ADD_REG_MIN_HW[0:7] {
+      ScanInSource   B_Y0_SEG_DEF_REG[0];
+  }
+  Alias X_ADD_REG_MIN[7:0] = X_ADD_REG_MIN_HW[7:0];
+  ScanRegister X_ADD_REG_MAX_HW[0:7] {
+      ScanInSource   X_ADD_REG_MIN_HW[7];
+  }
+  Alias X_ADD_REG_MAX[7:0] = X_ADD_REG_MAX_HW[7:0];
+  ScanRegister Y_ADD_REG_MIN_HW[0:2] {
+      ScanInSource   X_ADD_REG_MAX_HW[7];
+  }
+  Alias Y_ADD_REG_MIN[2:0] = Y_ADD_REG_MIN_HW[2:0];
+  ScanRegister Y_ADD_REG_MAX_HW[0:2] {
+      ScanInSource   Y_ADD_REG_MIN_HW[2];
+  }
+  Alias Y_ADD_REG_MAX[2:0] = Y_ADD_REG_MAX_HW[2:0];
+  ScanRegister JCNT_HW[0:2] {
+      ScanInSource   Y_ADD_REG_MAX_HW[2];
   }
   Alias JCNT[2:0] = JCNT_HW[2:0];
   ScanRegister OPSET_SELECT_REG[0:0] {
@@ -661,16 +1214,64 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
   ScanRegister Y_ADDR_BIT_SEL_REG[0:0] {
       ScanInSource   X_ADDR_BIT_SEL_REG[0];
   }
-  ScanRegister REPEATLOOP_A_CNTR_REG_HW[0:1] {
+  ScanRegister REPEATLOOP_A_MAX_REG_HW[0:1] {
       ScanInSource   Y_ADDR_BIT_SEL_REG[0];
+  }
+  Alias REPEATLOOP_A_MAX_REG[1:0] = REPEATLOOP_A_MAX_REG_HW[1:0];
+  ScanRegister REPEATLOOP_A_POINTER_REG_HW[0:4] {
+      ScanInSource   REPEATLOOP_A_MAX_REG_HW[1];
+  }
+  Alias REPEATLOOP_A_POINTER_REG[4:0] = REPEATLOOP_A_POINTER_REG_HW[4:0];
+  ScanRegister REPEATLOOP_A_LOOP1_REG_HW[0:4] {
+      ScanInSource   REPEATLOOP_A_POINTER_REG_HW[4];
+  }
+  Alias REPEATLOOP_A_LOOP1_REG[4:0] = REPEATLOOP_A_LOOP1_REG_HW[4:0];
+  ScanRegister REPEATLOOP_A_LOOP2_REG_HW[0:4] {
+      ScanInSource   REPEATLOOP_A_LOOP1_REG_HW[4];
+  }
+  Alias REPEATLOOP_A_LOOP2_REG[4:0] = REPEATLOOP_A_LOOP2_REG_HW[4:0];
+  ScanRegister REPEATLOOP_A_LOOP3_REG_HW[0:4] {
+      ScanInSource   REPEATLOOP_A_LOOP2_REG_HW[4];
+  }
+  Alias REPEATLOOP_A_LOOP3_REG[4:0] = REPEATLOOP_A_LOOP3_REG_HW[4:0];
+  ScanRegister REPEATLOOP_B_MAX_REG_HW[0:1] {
+      ScanInSource   REPEATLOOP_A_LOOP3_REG_HW[4];
+  }
+  Alias REPEATLOOP_B_MAX_REG[1:0] = REPEATLOOP_B_MAX_REG_HW[1:0];
+  ScanRegister REPEATLOOP_B_POINTER_REG_HW[0:4] {
+      ScanInSource   REPEATLOOP_B_MAX_REG_HW[1];
+  }
+  Alias REPEATLOOP_B_POINTER_REG[4:0] = REPEATLOOP_B_POINTER_REG_HW[4:0];
+  ScanRegister REPEATLOOP_B_LOOP1_REG_HW[0:4] {
+      ScanInSource   REPEATLOOP_B_POINTER_REG_HW[4];
+  }
+  Alias REPEATLOOP_B_LOOP1_REG[4:0] = REPEATLOOP_B_LOOP1_REG_HW[4:0];
+  ScanRegister REPEATLOOP_B_LOOP2_REG_HW[0:4] {
+      ScanInSource   REPEATLOOP_B_LOOP1_REG_HW[4];
+  }
+  Alias REPEATLOOP_B_LOOP2_REG[4:0] = REPEATLOOP_B_LOOP2_REG_HW[4:0];
+  ScanRegister REPEATLOOP_B_LOOP3_REG_HW[0:4] {
+      ScanInSource   REPEATLOOP_B_LOOP2_REG_HW[4];
+  }
+  Alias REPEATLOOP_B_LOOP3_REG[4:0] = REPEATLOOP_B_LOOP3_REG_HW[4:0];
+  ScanRegister REPEATLOOP_A_CNTR_REG_HW[0:1] {
+      ScanInSource   REPEATLOOP_B_LOOP3_REG_HW[4];
   }
   Alias REPEATLOOP_A_CNTR_REG[1:0] = REPEATLOOP_A_CNTR_REG_HW[1:0];
   ScanRegister REPEATLOOP_B_CNTR_REG_HW[0:1] {
       ScanInSource   REPEATLOOP_A_CNTR_REG_HW[1];
   }
   Alias REPEATLOOP_B_CNTR_REG[1:0] = REPEATLOOP_B_CNTR_REG_HW[1:0];
+  ScanRegister COUNTERA_CNT_HW[0:3] {
+      ScanInSource   REPEATLOOP_B_CNTR_REG_HW[1];
+  }
+  Alias COUNTERA_CNT[3:0] = COUNTERA_CNT_HW[3:0];
+  ScanRegister COUNTERA_REG_HW[0:3] {
+      ScanInSource   COUNTERA_CNT_HW[3];
+  }
+  Alias COUNTERA_REG[3:0] = COUNTERA_REG_HW[3:0];
   ScanMux MEM39_TO_COLLAR_SI_MUX SelectedBy BIRA_SETUP {
-      1'b0 : REPEATLOOP_B_CNTR_REG_HW[1];
+      1'b0 : COUNTERA_REG_HW[3];
       1'b1 : BIST_SI_Pipeline;
   }
   ScanMux MEM39_GOID_SI_MUX SelectedBy GOID_SETUP {
@@ -960,7 +1561,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
   Attribute     tessent_instrument_container           = "firebird7_in_gate1_mbist";
   Attribute     tessent_instrument_type                = "mentor::memory_bist";
   Attribute     tessent_instrument_subtype             = "controller";
-  Attribute     tessent_signature                      = "3c6e3878070c26573e281e58b1ccc125";
+  Attribute     tessent_signature                      = "e14263b3ca97686806a868989eeb277b";
   Attribute     tessent_ignore_during_icl_verification = "on";
   Attribute     keep_active_during_scan_test           = "false";
   Attribute     tessent_use_in_dft_specification       = "false";

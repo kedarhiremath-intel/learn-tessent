@@ -12,7 +12,7 @@
 ----------------------------------------------------------------------------------
 -  File created by: Tessent Shell                                                -
 -          Version: 2022.4                                                       -
--       Created on: Mon Oct 23 12:52:02 PDT 2023                                 -
+-       Created on: Sun Oct 29 14:14:32 PDT 2023                                 -
 ----------------------------------------------------------------------------------
 
 
@@ -34,7 +34,7 @@
      ConcurrentRead                : OFF 
      ControllerType                : PROG;
      DataOutStage                  : NONE;
-     DefaultAlgorithm              : INTELLVPMOVIFX;
+     DefaultAlgorithm              : INTELLVPMOVIFASTX;
      DefaultOperationSet           : SYNCCUSTOM;
      InternalScanLogic             : OFF;
      LocalComparators              : ON;

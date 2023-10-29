@@ -105,6 +105,7 @@
   set ControllerInfo(MEM_ARRAY_DUMP_MODE) -
   set ControllerInfo(BIST_ASYNC_RESET) -
   set ControllerInfo(LV_TM) `logiclow
+  set ControllerInfo(MBISTPG_STABLE) `open
   set ControllerInfo(MEM_BYPASS_EN) `logiclow
   set ControllerInfo(SCAN_SHIFT_EN) `logiclow
   set ControllerInfo(MCP_BOUNDING_EN) `logiclow
@@ -135,6 +136,7 @@
   connect $ControllerInfo(BIST_SELECT_TEST_DATA) $ControllerInfo(controllerInstancePath)/MBISTPG_TESTDATA_SELECT -group bist_select_test_data
   connect $ControllerInfo(TCK) $ControllerInfo(controllerInstancePath)/TCK -group ijtag
   connect $ControllerInfo(LV_TM) $ControllerInfo(controllerInstancePath)/LV_TM -group scan
+  connect $ControllerInfo(controllerInstancePath)/MBISTPG_STABLE $ControllerInfo(MBISTPG_STABLE) -group stop_and_resume
   connect $ControllerInfo(MEM_BYPASS_EN) $ControllerInfo(controllerInstancePath)/MEM_BYPASS_EN -group scan
   connect $ControllerInfo(MCP_BOUNDING_EN) $ControllerInfo(controllerInstancePath)/MCP_BOUNDING_EN -group scan
   connect $ControllerInfo(BIST_ON) $ControllerInfo(controllerInstancePath)/BIST_ON_TO_COLLAR -condition "$ControllerInfo(create_controller_assembly)" -group bist_on

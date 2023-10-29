@@ -1,0 +1,60 @@
+//-------------------------------------------------
+//  File created by: Tessent Shell
+//          Version: 2022.4
+//       Created on: Sun Oct 29 14:29:27 PDT 2023
+//-------------------------------------------------
+
+
+PatternsSpecification(firebird7_in,gate1,signoff) {
+  Patterns(ICLNetwork) {
+    ICLNetworkVerify(firebird7_in) {
+    }
+  }
+  Patterns(MemoryBisr_BisrChainAccess) {
+    TestStep(BisrChain_load_all_one) {
+      MemoryBisr {
+        run_mode : bisr_chain_access;
+        Controller(.) {
+          BisrChainAccessOptions {
+            default_write_value : all_one;
+          }
+        }
+      }
+    }
+    TestStep(BisrChain_async_reset_external) {
+      MemoryBisr {
+        run_mode : bisr_chain_access;
+        Controller(.) {
+          BisrChainAccessOptions {
+            default_write_value : all_one;
+            default_read_value : all_zero;
+            enable_async_reset : yes;
+            select_bisr_registers : external;
+          }
+        }
+      }
+    }
+    TestStep(BisrChain_r1w0_external) {
+      MemoryBisr {
+        run_mode : bisr_chain_access;
+        Controller(.) {
+          BisrChainAccessOptions {
+            default_write_value : all_zero;
+            default_read_value : all_one;
+          }
+        }
+      }
+    }
+    TestStep(BisrChain_r0wx_external) {
+      MemoryBisr {
+        run_mode : bisr_chain_access;
+        Controller(.) {
+          BisrChainAccessOptions {
+            default_write_value : all_x;
+            default_read_value : all_zero;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,85 @@
+set simulation_dict {
+  version 2
+  top_design_logical_library "work"
+  patterns {
+    ICLNetwork {
+      testbench_module_name      TB
+      current_design_view        full
+      top_design_instance_name   DUT_inst
+      top_module_name_list {}
+      extra_simulation_file_list {}
+      simulation_macro_list {}
+      lower_instances {}
+      file_list {
+         "ICLNetwork.pdl"
+         "ICLNetwork.v"
+         "ICLNetwork.v.0.vec"
+         "ICLNetwork.v.cfg"
+         "ICLNetwork.v.po.name"
+      }
+      icl_time "Sun Oct 29 14:40:24 PDT 2023"
+      sim_data_files ok
+    }
+    MemoryBisr_BisrChainAccess {
+      testbench_module_name      TB
+      current_design_view        full
+      top_design_instance_name   DUT_inst
+      top_module_name_list {}
+      extra_simulation_file_list {}
+      simulation_macro_list {}
+      lower_instances {}
+      file_list {
+         "MemoryBisr_BisrChainAccess.pdl"
+         "MemoryBisr_BisrChainAccess.v"
+         "MemoryBisr_BisrChainAccess.v.0.vec"
+         "MemoryBisr_BisrChainAccess.v.cfg"
+         "MemoryBisr_BisrChainAccess.v.po.name"
+      }
+      icl_time "Sun Oct 29 14:40:24 PDT 2023"
+      sim_data_files ok
+    }
+    SSN {
+      testbench_module_name      TB
+      current_design_view        full
+      top_design_instance_name   DUT_inst
+      top_module_name_list {}
+      extra_simulation_file_list {}
+      simulation_macro_list {}
+      lower_instances {}
+      file_list {
+         "SSN.pdl"
+         "SSN.v"
+         "SSN.v.0.vec"
+         "SSN.v.cfg"
+         "SSN.v.po.name"
+      }
+      icl_time "Sun Oct 29 14:40:24 PDT 2023"
+      sim_data_files ok
+    }
+  }
+
+  design_source_dictionary {
+    read1 {
+      format       "verilog_2001"
+      work_library "work"
+
+      files {
+        "../../dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.vg.gz"
+      }
+      libraries {
+      }
+      extensions {
+      }
+      defines {
+      }
+      incdirs {
+      }
+      options {
+      }
+      modules_dict {
+        firebird7_in {needed_in_views {full ijtag_graybox}}
+      }
+    }
+    logical_design_library_list { work }
+  }
+}

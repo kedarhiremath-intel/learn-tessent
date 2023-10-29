@@ -135,6 +135,9 @@ read_file -format verilog { \
   ../../tsdb_outdir/instruments/firebird7_in_gate2_ijtag.instrument/firebird7_in_gate2_tessent_sib_occ.v \
   ../../tsdb_outdir/instruments/firebird7_in_gate2_ijtag.instrument/firebird7_in_gate2_tessent_sib_edt.v \
   ../../tsdb_outdir/instruments/firebird7_in_gate2_ijtag.instrument/firebird7_in_gate2_tessent_sib_sri_ctrl.v \
+  ../../tsdb_outdir/instruments/firebird7_in_gate2_ijtag.instrument/firebird7_in_gate2_tessent_scanmux_sri_secure_mux.v \
+  ../../tsdb_outdir/instruments/firebird7_in_gate2_ijtag.instrument/firebird7_in_gate2_tessent_scanmux_intest_edt_scan_bi_sol_secure_mux.v \
+  ../../tsdb_outdir/instruments/firebird7_in_gate2_ijtag.instrument/firebird7_in_gate2_tessent_scanmux_extest_edt_scan_bi_sol_secure_mux.v \
   ../../tsdb_outdir/instruments/firebird7_in_gate2_ijtag.instrument/firebird7_in_gate2_tessent_tdr_sri_ctrl.v \
   ../../tsdb_outdir/instruments/firebird7_in_gate2_ijtag.instrument/firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_control.v \
   ../../tsdb_outdir/instruments/firebird7_in_gate2_ijtag.instrument/firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_status.v \
@@ -155,6 +158,12 @@ set_dont_touch [get_designs firebird7_in_gate2_tessent_sib_occ]
 set_dont_touch [get_designs firebird7_in_gate2_tessent_sib_edt]
 
 set_dont_touch [get_designs firebird7_in_gate2_tessent_sib_sri_ctrl]
+
+set_dont_touch [get_designs firebird7_in_gate2_tessent_scanmux_sri_secure_mux]
+
+set_dont_touch [get_designs firebird7_in_gate2_tessent_scanmux_intest_edt_scan_bi_sol_secure_mux]
+
+set_dont_touch [get_designs firebird7_in_gate2_tessent_scanmux_extest_edt_scan_bi_sol_secure_mux]
 
 set_dont_touch [get_designs firebird7_in_gate2_tessent_tdr_sri_ctrl]
 

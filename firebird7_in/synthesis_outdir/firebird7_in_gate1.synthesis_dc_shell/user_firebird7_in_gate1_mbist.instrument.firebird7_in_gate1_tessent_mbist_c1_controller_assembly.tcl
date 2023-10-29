@@ -126,6 +126,7 @@ foreach subDir $synth_subdir_list { file mkdir ${subDir}/ }
 
 # Synthesis of container '../../tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument'
 read_sverilog { \
+  ../../tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_diagnosis_ready.sv \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_bap.sv \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller_assembly.sv \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv \
@@ -170,6 +171,8 @@ read_sverilog { \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_interface_m39.sv \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_interface_m40.sv \
 }
+
+set_dont_touch [get_designs firebird7_in_gate1_tessent_mbist_diagnosis_ready]
 
 set_dont_touch [get_designs firebird7_in_gate1_tessent_mbist_bap]
 
@@ -474,6 +477,7 @@ write -f verilog -output firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_
     firebird7_in_gate1_tessent_mbist_c1_controller_fsm \
     firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen \
     firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl \
+    firebird7_in_gate1_tessent_mbist_c1_controller_counter_a \
     firebird7_in_gate1_tessent_mbist_c1_controller_delaycounter \
     firebird7_in_gate1_tessent_mbist_c1_controller_data_gen \
   }]

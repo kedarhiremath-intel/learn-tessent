@@ -11,7 +11,7 @@
 #--------------------------------------------------------------------------
 #  File created by: Tessent Shell
 #          Version: 2022.4
-#       Created on: Tue Oct 24 19:28:51 PDT 2023
+#       Created on: Sun Oct 29 14:37:19 PDT 2023
 #--------------------------------------------------------------------------
 
 set synthesis_dictionary {
@@ -19,14 +19,7 @@ set synthesis_dictionary {
     read1 {
       format verilog_2001
       work_library work
-      files {
-        ./firebird7_in_gate2_tessent_sib_extest_edt_scan_bi_sol.v ./firebird7_in_gate2_tessent_sib_intest_edt_scan_bi_sol.v
-        ./firebird7_in_gate2_tessent_sib_sri.v ./firebird7_in_gate2_tessent_sib_ssn.v
-        ./firebird7_in_gate2_tessent_sib_occ.v ./firebird7_in_gate2_tessent_sib_edt.v
-        ./firebird7_in_gate2_tessent_sib_sri_ctrl.v ./firebird7_in_gate2_tessent_tdr_sri_ctrl.v
-        ./firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_control.v ./firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_status.v
-        ./firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_control.v ./firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_status.v
-      }
+      files {./firebird7_in_gate2_tessent_sib_extest_edt_scan_bi_sol.v ./firebird7_in_gate2_tessent_sib_intest_edt_scan_bi_sol.v ./firebird7_in_gate2_tessent_sib_sri.v ./firebird7_in_gate2_tessent_sib_ssn.v ./firebird7_in_gate2_tessent_sib_occ.v ./firebird7_in_gate2_tessent_sib_edt.v ./firebird7_in_gate2_tessent_sib_sri_ctrl.v ./firebird7_in_gate2_tessent_scanmux_sri_secure_mux.v ./firebird7_in_gate2_tessent_scanmux_intest_edt_scan_bi_sol_secure_mux.v ./firebird7_in_gate2_tessent_scanmux_extest_edt_scan_bi_sol_secure_mux.v ./firebird7_in_gate2_tessent_tdr_sri_ctrl.v ./firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_control.v ./firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_status.v ./firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_control.v ./firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_status.v}
     }
   }
   designs_dictionary {
@@ -118,6 +111,33 @@ set synthesis_dictionary {
       output_files {
         firebird7_in_gate2_tessent_sib_sri_ctrl.vg {
           module_name_list firebird7_in_gate2_tessent_sib_sri_ctrl
+        }
+      }
+    }
+    firebird7_in_gate2_tessent_scanmux_sri_secure_mux {
+      boundary_optimization off
+      size_only_prefix_list tessent_persistent_cell_
+      output_files {
+        firebird7_in_gate2_tessent_scanmux_sri_secure_mux.vg {
+          module_name_list firebird7_in_gate2_tessent_scanmux_sri_secure_mux
+        }
+      }
+    }
+    firebird7_in_gate2_tessent_scanmux_intest_edt_scan_bi_sol_secure_mux {
+      boundary_optimization off
+      size_only_prefix_list tessent_persistent_cell_
+      output_files {
+        firebird7_in_gate2_tessent_scanmux_intest_edt_scan_bi_sol_secure_mux.vg {
+          module_name_list firebird7_in_gate2_tessent_scanmux_intest_edt_scan_bi_sol_secure_mux
+        }
+      }
+    }
+    firebird7_in_gate2_tessent_scanmux_extest_edt_scan_bi_sol_secure_mux {
+      boundary_optimization off
+      size_only_prefix_list tessent_persistent_cell_
+      output_files {
+        firebird7_in_gate2_tessent_scanmux_extest_edt_scan_bi_sol_secure_mux.vg {
+          module_name_list firebird7_in_gate2_tessent_scanmux_extest_edt_scan_bi_sol_secure_mux
         }
       }
     }

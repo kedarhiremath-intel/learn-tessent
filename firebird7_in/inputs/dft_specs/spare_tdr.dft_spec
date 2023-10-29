@@ -1,42 +1,22 @@
 Sib(spare) {
   Sib(spare_red) {
-    ScanMux(red_sec_mux) {
-      select : DataIn(3);
-      Input(1) {
-        Tdr(spare_red_tdr) {
-          length : 8;
-        }
-      }
+    Tdr(spare_red_tdr) {
+      length : 8;
     }
   }
   Sib(spare_orange) {
-    ScanMux(orange_sec_mux) {
-      select : DataIn(2);
-      Input(1) {
-        Tdr(spare_orange_tdr) {
-          length : 8;
-        }
-      }
+    Tdr(spare_orange_tdr) {
+      length : 8;
     }
   }
   Sib(spare_insysbist) {
-    ScanMux(insysbist_sec_mux) {
-      select : DataIn(1);
-      Input(1) {
-        Tdr(spare_insysbist_tdr) {
-          length : 8;
-        }
-      }
+    Tdr(spare_insysbist_tdr) {
+      length : 8;
     }
   }
   Sib(spare_green) {
-    ScanMux(green_sec_mux) {
-      select : DataIn(0);
-      Input(1) {
-        Tdr(spare_green_tdr) {
-          length : 8;
-        }
-      }
+    Tdr(spare_green_tdr) {
+      length : 8;
     }
   }
 }

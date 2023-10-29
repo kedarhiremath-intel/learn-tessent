@@ -11,7 +11,7 @@
 //--------------------------------------------------------------------------
 //  File created by: Tessent Shell
 //          Version: 2022.4
-//       Created on: Mon Oct 23 12:51:38 PDT 2023
+//       Created on: Sun Oct 29 14:14:07 PDT 2023
 //--------------------------------------------------------------------------
 
 module firebird7_in_gate1_tessent_tdr_sti_ctrl (
@@ -37,7 +37,7 @@ i0sbfn000ab1n02x5 tessent_persistent_cell_nonscan_test ( .a (nonscan_test_latch)
  
 always_ff @ (posedge ijtag_tck) begin
   if (ijtag_ce & ijtag_sel) begin
-    tdr <= { 1'b0};
+    tdr <= { nonscan_test_latch};
   end else if (ijtag_se & ijtag_sel) begin
     tdr <= ijtag_si;
   end

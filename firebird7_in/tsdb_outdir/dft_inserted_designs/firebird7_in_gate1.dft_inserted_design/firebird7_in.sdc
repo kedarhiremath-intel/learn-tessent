@@ -11,7 +11,7 @@
 #--------------------------------------------------------------------------
 #  File created by: Tessent Shell
 #          Version: 2022.4
-#       Created on: Mon Oct 23 12:54:12 PDT 2023
+#       Created on: Sun Oct 29 14:18:21 PDT 2023
 #--------------------------------------------------------------------------
 
 #
@@ -56,7 +56,7 @@ proc tessent_set_default_variables {} {
 
   # Override these array elements to map to your clock names if you define your own clocks
   array set tessent_clock_mapping {
-    tessent_bisr_clock_bisr_clk tessent_bisr_clock_bisr_clk
+    tessent_bisr_clock_PD_TOP_bisr_clk tessent_bisr_clock_PD_TOP_bisr_clk
     tessent_tck tessent_tck
     clk_bbm clk_bbm
   }
@@ -209,7 +209,7 @@ proc tessent_set_default_variables {} {
 proc tessent_create_functional_clocks {} {
 global time_unit_multiplier tessent_clock_mapping tessent_unmapped_functional_clocks
   create_clock [tessent_get_ports [list {clk}]]  \
-    -period [expr 783.0*$time_unit_multiplier] \
+    -period [expr 0.783*$time_unit_multiplier] \
     -name $tessent_clock_mapping(clk_bbm) -add
 
 
@@ -262,7 +262,6 @@ proc tessent_set_ijtag_non_modal {} {
   set_false_path -from [tessent_get_ports [list {secure_red}]] 
   set_false_path -from [tessent_get_ports [list {secure_orange}]] 
   set_false_path -from [tessent_get_ports [list {secure_insysbist}]] 
-  set_false_path -from [tessent_get_ports [list {secure_green}]] 
   
   set scan_resource_sib_list {
     firebird7_in_gate1_tessent_sib_array_pwrmgmt_inst/to_enable_int*
@@ -283,13 +282,13 @@ proc tessent_set_ijtag_non_modal {} {
     # Relaxing capture/shift/update timing with extra_control_setup_hold_cycles value
     set_multicycle_path -setup [expr 1 + $tessent_extra_control_setup_hold_cycles] \
         -from [tessent_get_ports [concat  \
-            {bisr_shift_en} \
+            {PD_TOP_bisr_shift_en} \
             {ijtag_se} \
             {ijtag_ce} \
             {ijtag_ue}]] 
     set_multicycle_path -hold [expr 2 * $tessent_extra_control_setup_hold_cycles] \
         -from [tessent_get_ports [concat  \
-            {bisr_shift_en} \
+            {PD_TOP_bisr_shift_en} \
             {ijtag_se} \
             {ijtag_ce} \
             {ijtag_ue}]] 
@@ -351,9 +350,9 @@ proc tessent_set_memory_bisr_non_modal {} {
   foreach {clock_label mapped_clock} [array get tessent_clock_mapping tessent_bisr_clock*] {
     lappend mapped_bisr_clock_list $mapped_clock
   }
-  create_clock [tessent_get_ports [list {bisr_clk}]]  \
+  create_clock [tessent_get_ports [list {PD_TOP_bisr_clk}]]  \
     -period [expr $BisrCKPeriod*$time_unit_multiplier] \
-    -name $tessent_clock_mapping(tessent_bisr_clock_bisr_clk) -add
+    -name $tessent_clock_mapping(tessent_bisr_clock_PD_TOP_bisr_clk) -add
   
   
   
@@ -362,10 +361,10 @@ proc tessent_set_memory_bisr_non_modal {} {
   
   set_clock_groups -asynchronous -group ${bisrClocks}
   
-  set_input_delay [expr {${bisr_si_delay_percentage} * ${BisrCKPeriod}}] -clock $tessent_clock_mapping(tessent_bisr_clock_bisr_clk) -clock_fall [tessent_get_ports [list {bisr_si}]]
-  set_output_delay [expr {${bisr_so_delay_percentage} * ${BisrCKPeriod}}] -clock $tessent_clock_mapping(tessent_bisr_clock_bisr_clk) [tessent_get_ports [list {bisr_so}]]
-  set_input_delay [expr {${bisr_se_input_delay_percentage} * ${BisrCKPeriod}}] -clock $tessent_clock_mapping(tessent_bisr_clock_bisr_clk) -clock_fall [tessent_get_ports [list {bisr_shift_en}]]
-  set_input_delay [expr {${bisr_control_input_delay_percentage} * ${BisrCKPeriod}}] -clock $tessent_clock_mapping(tessent_bisr_clock_bisr_clk) -clock_fall [tessent_get_ports [list {bisr_reset}]]
+  set_input_delay [expr {${bisr_si_delay_percentage} * ${BisrCKPeriod}}] -clock $tessent_clock_mapping(tessent_bisr_clock_PD_TOP_bisr_clk) -clock_fall [tessent_get_ports [list {PD_TOP_bisr_si}]]
+  set_output_delay [expr {${bisr_so_delay_percentage} * ${BisrCKPeriod}}] -clock $tessent_clock_mapping(tessent_bisr_clock_PD_TOP_bisr_clk) [tessent_get_ports [list {PD_TOP_bisr_so}]]
+  set_input_delay [expr {${bisr_se_input_delay_percentage} * ${BisrCKPeriod}}] -clock $tessent_clock_mapping(tessent_bisr_clock_PD_TOP_bisr_clk) -clock_fall [tessent_get_ports [list {PD_TOP_bisr_shift_en}]]
+  set_input_delay [expr {${bisr_control_input_delay_percentage} * ${BisrCKPeriod}}] -clock $tessent_clock_mapping(tessent_bisr_clock_PD_TOP_bisr_clk) -clock_fall [tessent_get_ports [list {PD_TOP_bisr_reset}]]
   
 }
 proc tessent_set_memory_bist_non_modal {} {  
@@ -414,7 +413,7 @@ proc tessent_set_memory_bist_non_modal {} {
   } else {
     set bap1_tck_clocks [tessent_get_clocks $tessent_clock_mapping(tessent_tck)]
     set all_mbist_clock_pins [all_fanout -flat -endpoints -from [tessent_get_pins [list [dict get $mbist_info bap1 inst]/tessent_persistent_cell_BUF_C_TCK/clkout [dict get $mbist_info bap1 inst]/tessent_persistent_cell_BUF_I_TCK/clkout]]]
-    set all_mbisr_clock_pins [all_fanout -flat -endpoints -from [tessent_get_ports [list "bisr_clk"]]]
+    set all_mbisr_clock_pins [all_fanout -flat -endpoints -from [tessent_get_ports [list "PD_TOP_bisr_clk"]]]
     set_false_path -through $all_mbist_clock_pins -to [get_cells -of_objects $all_mbisr_clock_pins -filter {is_sequential==true && is_hierarchical==false}]
     set_false_path -through $all_mbisr_clock_pins -to [get_cells -of_objects $all_mbist_clock_pins -filter {is_sequential==true && is_hierarchical==false}]
   }
@@ -476,21 +475,22 @@ proc tessent_set_memory_bist_non_modal {} {
   lappend bap1_go_buffers_l [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_MBISTPG_GO/o
   set bap1_done_buffers_l [list]
   lappend bap1_done_buffers_l [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_MBISTPG_DONE/o
+  set bap1_stable_buffers_l [list]
+  lappend bap1_stable_buffers_l [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_MBISTPG_STABLE/o
   
   # Same edge (p->p) timing paths through these controller buffers are false path by protocol
   set_false_path -rise_from $bap1_tck_clocks -rise_to [tessent_get_clocks $tessent_clock_mapping(tessent_tck)]\
-         -through [tessent_get_pins [concat $bap1_go_buffers_l $bap1_done_buffers_l]]
+         -through [tessent_get_pins [concat $bap1_go_buffers_l $bap1_done_buffers_l $bap1_stable_buffers_l]]
   # Opposite edge (n->p) timing paths through these controller buffers are MCP 2 by protocol
   set_multicycle_path 2 -setup -fall_from [tessent_get_clocks $tessent_clock_mapping(tessent_tck)] -rise_to [tessent_get_clocks $tessent_clock_mapping(tessent_tck)]\
-         -through [tessent_get_pins [concat $bap1_go_buffers_l]]
+         -through [tessent_get_pins [concat $bap1_go_buffers_l $bap1_stable_buffers_l]]
   set_multicycle_path 1 -hold  -fall_from [tessent_get_clocks $tessent_clock_mapping(tessent_tck)] -rise_to [tessent_get_clocks $tessent_clock_mapping(tessent_tck)]\
-         -through [tessent_get_pins [concat $bap1_go_buffers_l]]
+         -through [tessent_get_pins [concat $bap1_go_buffers_l $bap1_stable_buffers_l]]
   
   ## Constraints for memory_bist controller 'ph0/i/firebird7_in_gate1_tessent_mbist_c1_controller_inst'
   
   set_multicycle_path -setup 2 \
       -from [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?4? \
@@ -501,7 +501,6 @@ proc tessent_set_memory_bist_non_modal {} {
       -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG*] 
   set_multicycle_path -hold 1 \
       -from [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?4? \
@@ -512,7 +511,6 @@ proc tessent_set_memory_bist_non_modal {} {
       -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG*] 
   set_multicycle_path -setup 2 \
       -from [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?4? \
@@ -523,7 +521,6 @@ proc tessent_set_memory_bist_non_modal {} {
       -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG*] 
   set_multicycle_path -hold 1 \
       -from [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?4? \
@@ -533,27 +530,19 @@ proc tessent_set_memory_bist_non_modal {} {
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_INH_LAST_ADDR_CNT/o] \
       -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG*] 
   set_multicycle_path -setup 2 \
-      -from [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?1? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?2?]] \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?2?] \
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_INH_LAST_ADDR_CNT/o] \
       -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG*] 
   set_multicycle_path -hold 1 \
-      -from [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?1? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?2?]] \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?2?] \
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_INH_LAST_ADDR_CNT/o] \
       -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG*] 
   set_multicycle_path -setup 2 \
-      -from [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?1? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?2?]] \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?2?] \
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_INH_LAST_ADDR_CNT/o] \
       -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG*] 
   set_multicycle_path -hold 1 \
-      -from [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?1? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?2?]] \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?2?] \
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_INH_LAST_ADDR_CNT/o] \
       -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG*] 
   set_multicycle_path -setup 2 \
@@ -677,6 +666,62 @@ proc tessent_set_memory_bist_non_modal {} {
       -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MEM_ARRAY_DUMP_MODE_R*] \
       -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MEM_ARRAY_DUMP_MODE_R*] 
   set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MIN*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MIN*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MIN*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MIN*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MIN*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MIN*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MAX*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MAX*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MAX*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MAX*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MAX*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MAX*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MIN*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MIN*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MIN*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MIN*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MIN*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MIN*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MAX*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MAX*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MAX*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MAX*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MAX*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MAX*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] \
+      -through [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/INSTRUCTION*_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE**] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] \
+      -through [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/INSTRUCTION*_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE**] 
+  set_multicycle_path -setup 2 \
       -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_FSM/STATE*] \
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_BIST_RUN/o] 
   set_multicycle_path -hold 1 \
@@ -694,6 +739,34 @@ proc tessent_set_memory_bist_non_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE** \
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/INST_POINTER*]] \
       -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/LAST_STATE_DONE_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_REG*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] \
+      -through [tessent_get_cells [concat  \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?1? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?0?]] \
+      -to [tessent_get_cells [concat  \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?3? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?2?]] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] \
+      -through [tessent_get_cells [concat  \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?1? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?0?]] \
+      -to [tessent_get_cells [concat  \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?3? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?2?]] 
   set_multicycle_path -setup 2 \
       -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_DELAYCOUNTER/DELAYCOUNTER_REG*] \
       -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
@@ -814,14 +887,12 @@ proc tessent_set_memory_bist_non_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_LOOP_CMD**]] \
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_INH_LAST_ADDR_CNT/o] \
       -to [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?4? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?5? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?6? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?7? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?4? \
@@ -834,14 +905,12 @@ proc tessent_set_memory_bist_non_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_LOOP_CMD**]] \
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_INH_LAST_ADDR_CNT/o] \
       -to [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?4? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?5? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?6? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?7? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?4? \
@@ -854,9 +923,7 @@ proc tessent_set_memory_bist_non_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_LOOP_CMD**]] \
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_INH_LAST_ADDR_CNT/o] \
       -to [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?2? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?2?]] 
   set_multicycle_path -hold 1 \
       -from [tessent_get_cells [concat  \
@@ -864,9 +931,7 @@ proc tessent_set_memory_bist_non_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_LOOP_CMD**]] \
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_INH_LAST_ADDR_CNT/o] \
       -to [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?2? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?2?]] 
   set_multicycle_path -setup 2 \
       -from [tessent_get_cells [concat  \
@@ -880,6 +945,7 @@ proc tessent_set_memory_bist_non_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_SIGNAL_GEN/JCNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_A_CNTR* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_B_CNTR* \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_DELAYCOUNTER/DELAYCOUNTER_CNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/INST_POINTER*]] \
       -through [tessent_get_pins [concat  \
@@ -887,6 +953,7 @@ proc tessent_set_memory_bist_non_modal {} {
           [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_X0_MINMAX_TRIGGER/o \
           [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_Y1_MINMAX_TRIGGER/o \
           [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_Y0_MINMAX_TRIGGER/o \
+          [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_COUNTERA_ENDCOUNT_TRIGGER/o \
           [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_DELAYCOUNTER_ENDCOUNT_TRIGGER/o \
           [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_LOOPCOUNTMAX_TRIGGER/o \
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/tessent_persistent_cell_NEXT_POINTER0/o \
@@ -914,6 +981,7 @@ proc tessent_set_memory_bist_non_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_SIGNAL_GEN/JCNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_A_CNTR* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_B_CNTR* \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_DELAYCOUNTER/DELAYCOUNTER_CNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/INST_POINTER*]] \
       -through [tessent_get_pins [concat  \
@@ -921,6 +989,7 @@ proc tessent_set_memory_bist_non_modal {} {
           [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_X0_MINMAX_TRIGGER/o \
           [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_Y1_MINMAX_TRIGGER/o \
           [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_Y0_MINMAX_TRIGGER/o \
+          [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_COUNTERA_ENDCOUNT_TRIGGER/o \
           [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_DELAYCOUNTER_ENDCOUNT_TRIGGER/o \
           [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_LOOPCOUNTMAX_TRIGGER/o \
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/tessent_persistent_cell_NEXT_POINTER0/o \
@@ -946,6 +1015,7 @@ proc tessent_set_memory_bist_non_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_A_CNTR* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_B_CNTR* \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_DELAYCOUNTER/DELAYCOUNTER_CNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_DATA_GEN/EDATA_REG* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_DATA_GEN/WDATA_REG* \
@@ -961,6 +1031,7 @@ proc tessent_set_memory_bist_non_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_A_CNTR* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_B_CNTR* \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_DELAYCOUNTER/DELAYCOUNTER_CNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_DATA_GEN/EDATA_REG* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_DATA_GEN/WDATA_REG* \
@@ -970,39 +1041,43 @@ proc tessent_set_memory_bist_non_modal {} {
       -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_ADD_REG_SELECT_REG**] \
       -to [tessent_get_cells [concat  \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?0? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?0? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?0? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?0?]] 
+          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?1? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?0? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?1?]] 
   set_multicycle_path -hold 0 \
       -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_ADD_REG_SELECT_REG**] \
       -to [tessent_get_cells [concat  \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?0? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?0? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?0? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?0?]] 
+          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?1? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?0? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?1?]] 
   set_multicycle_path -setup 2 \
       -from [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] \
       -through [tessent_get_cells [concat  \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_A_CNTR* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_B_CNTR*]] \
       -to [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?4? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?5? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?6? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?7? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?4? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?5? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?6? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?7? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?2? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?2?]] 
   set_multicycle_path -hold 1 \
       -from [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] \
@@ -1010,24 +1085,44 @@ proc tessent_set_memory_bist_non_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_A_CNTR* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_B_CNTR*]] \
       -to [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?4? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?5? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?6? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?7? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?4? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?5? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?6? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?7? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?2? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?2?]] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/A_SCAN_REGISTER*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/A_SCAN_REGISTER*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/A_SCAN_REGISTER*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/A_SCAN_REGISTER*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/A_SCAN_REGISTER*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/A_SCAN_REGISTER*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/B_SCAN_REGISTER*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/B_SCAN_REGISTER*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/B_SCAN_REGISTER*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/B_SCAN_REGISTER*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/B_SCAN_REGISTER*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/B_SCAN_REGISTER*] 
   set_multicycle_path -setup 2 \
       -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_SIGNAL_GEN/OPSET_SELECT_REG*] \
       -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
@@ -1040,6 +1135,126 @@ proc tessent_set_memory_bist_non_modal {} {
   set_multicycle_path -hold 0 \
       -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_SIGNAL_GEN/OPSET_SELECT_REG*] \
       -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_SIGNAL_GEN/OPSET_SELECT_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_MAX_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_MAX_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_MAX_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_MAX_REG*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_MAX_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_MAX_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP_POINTER_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP_POINTER_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP_POINTER_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP_POINTER_REG*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP_POINTER_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP_POINTER_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP1_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP1_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP1_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP1_REG*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP1_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP1_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP2_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP2_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP2_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP2_REG*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP2_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP2_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP3_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP3_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP3_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP3_REG*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP3_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP3_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_MAX_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_MAX_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_MAX_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_MAX_REG*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_MAX_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_MAX_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP_POINTER_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP_POINTER_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP_POINTER_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP_POINTER_REG*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP_POINTER_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP_POINTER_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP1_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP1_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP1_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP1_REG*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP1_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP1_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP2_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP2_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP2_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP2_REG*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP2_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP2_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP3_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP3_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP3_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP3_REG*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP3_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP3_REG*] 
   set_multicycle_path -setup 2 \
       -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_DATA_GEN/X_ADDR_BIT_SEL_REG*] \
       -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
@@ -1102,9 +1317,12 @@ proc tessent_set_memory_bist_non_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG*]] 
   set_multicycle_path -setup 2 \
       -from [tessent_get_cells [concat  \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_ADD_REG_SELECT_REG2* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_ADD_REG_SELECT_REG1* \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_ADD_REG_SELECT_REG0* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_A_CNTR* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_B_CNTR* \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_DELAYCOUNTER/DELAYCOUNTER_CNT*]] \
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_INH_LAST_ADDR_CNT/o] \
       -to [tessent_get_cells [concat  \
@@ -1114,9 +1332,12 @@ proc tessent_set_memory_bist_non_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG*]] 
   set_multicycle_path -hold 1 \
       -from [tessent_get_cells [concat  \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_ADD_REG_SELECT_REG2* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_ADD_REG_SELECT_REG1* \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_ADD_REG_SELECT_REG0* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_A_CNTR* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_B_CNTR* \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_DELAYCOUNTER/DELAYCOUNTER_CNT*]] \
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_INH_LAST_ADDR_CNT/o] \
       -to [tessent_get_cells [concat  \
@@ -1947,8 +2168,8 @@ proc tessent_set_memory_bist_modal {} {
   global mbist_info tessent_clock_mapping tessent_apply_mbist_mux_constraints tessent_mbist_create_bap_tck_generated_clock tessent_tck_clocks_list tessent_tck_clocks_group_created 
   
   # Functional top level pins aren't used here.
-  set_false_path -from [remove_from_collection [all_inputs] [tessent_get_ports [list bisr_clk bisr_shift_en bisr_si clk ijtag_ce ijtag_se ijtag_si ijtag_tck ijtag_ue]] ] 
-  set_false_path -to [remove_from_collection [all_outputs] [tessent_get_ports [list bisr_so ijtag_so]] ] 
+  set_false_path -from [remove_from_collection [all_inputs] [tessent_get_ports [list PD_TOP_bisr_clk PD_TOP_bisr_shift_en PD_TOP_bisr_si clk ijtag_ce ijtag_se ijtag_si ijtag_tck ijtag_ue]] ] 
+  set_false_path -to [remove_from_collection [all_outputs] [tessent_get_ports [list PD_TOP_bisr_so ijtag_so]] ] 
     set bap1_interfaces_tck_name bap1_interfaces_tck
     set bap1_tck_name bap1_tck
   if {$tessent_mbist_create_bap_tck_generated_clock} {
@@ -1991,7 +2212,7 @@ proc tessent_set_memory_bist_modal {} {
   } else {
     set bap1_tck_clocks [tessent_get_clocks $tessent_clock_mapping(tessent_tck)]
     set all_mbist_clock_pins [all_fanout -flat -endpoints -from [tessent_get_pins [list [dict get $mbist_info bap1 inst]/tessent_persistent_cell_BUF_C_TCK/clkout [dict get $mbist_info bap1 inst]/tessent_persistent_cell_BUF_I_TCK/clkout]]]
-    set all_mbisr_clock_pins [all_fanout -flat -endpoints -from [tessent_get_ports [list "bisr_clk"]]]
+    set all_mbisr_clock_pins [all_fanout -flat -endpoints -from [tessent_get_ports [list "PD_TOP_bisr_clk"]]]
     set_false_path -through $all_mbist_clock_pins -to [get_cells -of_objects $all_mbisr_clock_pins -filter {is_sequential==true && is_hierarchical==false}]
     set_false_path -through $all_mbisr_clock_pins -to [get_cells -of_objects $all_mbist_clock_pins -filter {is_sequential==true && is_hierarchical==false}]
   }
@@ -2057,21 +2278,22 @@ proc tessent_set_memory_bist_modal {} {
   lappend bap1_go_buffers_l [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_MBISTPG_GO/o
   set bap1_done_buffers_l [list]
   lappend bap1_done_buffers_l [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_MBISTPG_DONE/o
+  set bap1_stable_buffers_l [list]
+  lappend bap1_stable_buffers_l [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_MBISTPG_STABLE/o
   
   # Same edge (p->p) timing paths through these controller buffers are false path by protocol
   set_false_path -rise_from $bap1_tck_clocks -rise_to [tessent_get_clocks $tessent_clock_mapping(tessent_tck)]\
-         -through [tessent_get_pins [concat $bap1_go_buffers_l $bap1_done_buffers_l]]
+         -through [tessent_get_pins [concat $bap1_go_buffers_l $bap1_done_buffers_l $bap1_stable_buffers_l]]
   # Opposite edge (n->p) timing paths through these controller buffers are MCP 2 by protocol
   set_multicycle_path 2 -setup -fall_from [tessent_get_clocks $tessent_clock_mapping(tessent_tck)] -rise_to [tessent_get_clocks $tessent_clock_mapping(tessent_tck)]\
-         -through [tessent_get_pins [concat $bap1_go_buffers_l]]
+         -through [tessent_get_pins [concat $bap1_go_buffers_l $bap1_stable_buffers_l]]
   set_multicycle_path 1 -hold  -fall_from [tessent_get_clocks $tessent_clock_mapping(tessent_tck)] -rise_to [tessent_get_clocks $tessent_clock_mapping(tessent_tck)]\
-         -through [tessent_get_pins [concat $bap1_go_buffers_l]]
+         -through [tessent_get_pins [concat $bap1_go_buffers_l $bap1_stable_buffers_l]]
   
   ## Constraints for memory_bist controller 'ph0/i/firebird7_in_gate1_tessent_mbist_c1_controller_inst'
   
   set_multicycle_path -setup 2 \
       -from [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?4? \
@@ -2082,7 +2304,6 @@ proc tessent_set_memory_bist_modal {} {
       -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG*] 
   set_multicycle_path -hold 1 \
       -from [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?4? \
@@ -2093,7 +2314,6 @@ proc tessent_set_memory_bist_modal {} {
       -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG*] 
   set_multicycle_path -setup 2 \
       -from [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?4? \
@@ -2104,7 +2324,6 @@ proc tessent_set_memory_bist_modal {} {
       -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG*] 
   set_multicycle_path -hold 1 \
       -from [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?4? \
@@ -2114,27 +2333,19 @@ proc tessent_set_memory_bist_modal {} {
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_INH_LAST_ADDR_CNT/o] \
       -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG*] 
   set_multicycle_path -setup 2 \
-      -from [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?1? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?2?]] \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?2?] \
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_INH_LAST_ADDR_CNT/o] \
       -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG*] 
   set_multicycle_path -hold 1 \
-      -from [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?1? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?2?]] \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?2?] \
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_INH_LAST_ADDR_CNT/o] \
       -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG*] 
   set_multicycle_path -setup 2 \
-      -from [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?1? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?2?]] \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?2?] \
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_INH_LAST_ADDR_CNT/o] \
       -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG*] 
   set_multicycle_path -hold 1 \
-      -from [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?1? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?2?]] \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?2?] \
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_INH_LAST_ADDR_CNT/o] \
       -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG*] 
   set_multicycle_path -setup 2 \
@@ -2258,6 +2469,62 @@ proc tessent_set_memory_bist_modal {} {
       -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MEM_ARRAY_DUMP_MODE_R*] \
       -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MEM_ARRAY_DUMP_MODE_R*] 
   set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MIN*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MIN*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MIN*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MIN*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MIN*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MIN*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MAX*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MAX*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MAX*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MAX*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MAX*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/Y_ADD_CNT_MAX*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MIN*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MIN*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MIN*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MIN*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MIN*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MIN*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MAX*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MAX*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MAX*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MAX*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MAX*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/X_ADD_CNT_MAX*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] \
+      -through [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/INSTRUCTION*_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE**] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] \
+      -through [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/INSTRUCTION*_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE**] 
+  set_multicycle_path -setup 2 \
       -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_FSM/STATE*] \
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_BIST_RUN/o] 
   set_multicycle_path -hold 1 \
@@ -2275,6 +2542,34 @@ proc tessent_set_memory_bist_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE** \
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/INST_POINTER*]] \
       -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/LAST_STATE_DONE_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_REG*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] \
+      -through [tessent_get_cells [concat  \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?1? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?0?]] \
+      -to [tessent_get_cells [concat  \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?3? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?2?]] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] \
+      -through [tessent_get_cells [concat  \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?1? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?0?]] \
+      -to [tessent_get_cells [concat  \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?3? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?2?]] 
   set_multicycle_path -setup 2 \
       -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_DELAYCOUNTER/DELAYCOUNTER_REG*] \
       -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
@@ -2395,14 +2690,12 @@ proc tessent_set_memory_bist_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_LOOP_CMD**]] \
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_INH_LAST_ADDR_CNT/o] \
       -to [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?4? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?5? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?6? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?7? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?4? \
@@ -2415,14 +2708,12 @@ proc tessent_set_memory_bist_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_LOOP_CMD**]] \
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_INH_LAST_ADDR_CNT/o] \
       -to [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?4? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?5? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?6? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?7? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?4? \
@@ -2435,9 +2726,7 @@ proc tessent_set_memory_bist_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_LOOP_CMD**]] \
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_INH_LAST_ADDR_CNT/o] \
       -to [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?2? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?2?]] 
   set_multicycle_path -hold 1 \
       -from [tessent_get_cells [concat  \
@@ -2445,9 +2734,7 @@ proc tessent_set_memory_bist_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_LOOP_CMD**]] \
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_INH_LAST_ADDR_CNT/o] \
       -to [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?2? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?2?]] 
   set_multicycle_path -setup 2 \
       -from [tessent_get_cells [concat  \
@@ -2461,6 +2748,7 @@ proc tessent_set_memory_bist_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_SIGNAL_GEN/JCNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_A_CNTR* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_B_CNTR* \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_DELAYCOUNTER/DELAYCOUNTER_CNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/INST_POINTER*]] \
       -through [tessent_get_pins [concat  \
@@ -2468,6 +2756,7 @@ proc tessent_set_memory_bist_modal {} {
           [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_X0_MINMAX_TRIGGER/o \
           [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_Y1_MINMAX_TRIGGER/o \
           [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_Y0_MINMAX_TRIGGER/o \
+          [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_COUNTERA_ENDCOUNT_TRIGGER/o \
           [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_DELAYCOUNTER_ENDCOUNT_TRIGGER/o \
           [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_LOOPCOUNTMAX_TRIGGER/o \
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/tessent_persistent_cell_NEXT_POINTER0/o \
@@ -2495,6 +2784,7 @@ proc tessent_set_memory_bist_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_SIGNAL_GEN/JCNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_A_CNTR* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_B_CNTR* \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_DELAYCOUNTER/DELAYCOUNTER_CNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/INST_POINTER*]] \
       -through [tessent_get_pins [concat  \
@@ -2502,6 +2792,7 @@ proc tessent_set_memory_bist_modal {} {
           [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_X0_MINMAX_TRIGGER/o \
           [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_Y1_MINMAX_TRIGGER/o \
           [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_Y0_MINMAX_TRIGGER/o \
+          [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_COUNTERA_ENDCOUNT_TRIGGER/o \
           [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_DELAYCOUNTER_ENDCOUNT_TRIGGER/o \
           [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_LOOPCOUNTMAX_TRIGGER/o \
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/tessent_persistent_cell_NEXT_POINTER0/o \
@@ -2527,6 +2818,7 @@ proc tessent_set_memory_bist_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_A_CNTR* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_B_CNTR* \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_DELAYCOUNTER/DELAYCOUNTER_CNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_DATA_GEN/EDATA_REG* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_DATA_GEN/WDATA_REG* \
@@ -2542,6 +2834,7 @@ proc tessent_set_memory_bist_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_A_CNTR* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_B_CNTR* \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_DELAYCOUNTER/DELAYCOUNTER_CNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_DATA_GEN/EDATA_REG* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_DATA_GEN/WDATA_REG* \
@@ -2551,39 +2844,43 @@ proc tessent_set_memory_bist_modal {} {
       -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_ADD_REG_SELECT_REG**] \
       -to [tessent_get_cells [concat  \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?0? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?0? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?0? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?0?]] 
+          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?1? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?0? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?1?]] 
   set_multicycle_path -hold 0 \
       -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_ADD_REG_SELECT_REG**] \
       -to [tessent_get_cells [concat  \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?0? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?0? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?0? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?0?]] 
+          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?1? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?0? \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?1?]] 
   set_multicycle_path -setup 2 \
       -from [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] \
       -through [tessent_get_cells [concat  \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_A_CNTR* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_B_CNTR*]] \
       -to [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?4? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?5? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?6? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?7? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?4? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?5? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?6? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?7? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?2? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?2?]] 
   set_multicycle_path -hold 1 \
       -from [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] \
@@ -2591,24 +2888,44 @@ proc tessent_set_memory_bist_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_A_CNTR* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_B_CNTR*]] \
       -to [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?4? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?5? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?6? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AX_ADD_REG_reg?7? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?2? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?3? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?4? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?5? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?6? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BX_ADD_REG_reg?7? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/AY_ADD_REG_reg?2? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?1? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG_reg?2?]] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/A_SCAN_REGISTER*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/A_SCAN_REGISTER*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/A_SCAN_REGISTER*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/A_SCAN_REGISTER*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/A_SCAN_REGISTER*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/A_SCAN_REGISTER*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/B_SCAN_REGISTER*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/B_SCAN_REGISTER*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/B_SCAN_REGISTER*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/B_SCAN_REGISTER*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/B_SCAN_REGISTER*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/B_SCAN_REGISTER*] 
   set_multicycle_path -setup 2 \
       -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_SIGNAL_GEN/OPSET_SELECT_REG*] \
       -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
@@ -2621,6 +2938,126 @@ proc tessent_set_memory_bist_modal {} {
   set_multicycle_path -hold 0 \
       -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_SIGNAL_GEN/OPSET_SELECT_REG*] \
       -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_SIGNAL_GEN/OPSET_SELECT_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_MAX_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_MAX_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_MAX_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_MAX_REG*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_MAX_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_MAX_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP_POINTER_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP_POINTER_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP_POINTER_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP_POINTER_REG*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP_POINTER_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP_POINTER_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP1_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP1_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP1_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP1_REG*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP1_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP1_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP2_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP2_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP2_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP2_REG*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP2_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP2_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP3_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP3_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP3_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP3_REG*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP3_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_A_LOOP3_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_MAX_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_MAX_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_MAX_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_MAX_REG*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_MAX_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_MAX_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP_POINTER_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP_POINTER_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP_POINTER_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP_POINTER_REG*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP_POINTER_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP_POINTER_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP1_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP1_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP1_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP1_REG*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP1_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP1_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP2_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP2_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP2_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP2_REG*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP2_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP2_REG*] 
+  set_multicycle_path -setup 2 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP3_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -hold 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP3_REG*] \
+      -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
+  set_multicycle_path -setup 1 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP3_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP3_REG*] 
+  set_multicycle_path -hold 0 \
+      -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP3_REG*] \
+      -to [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/CNTR_B_LOOP3_REG*] 
   set_multicycle_path -setup 2 \
       -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_DATA_GEN/X_ADDR_BIT_SEL_REG*] \
       -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
@@ -2683,9 +3120,12 @@ proc tessent_set_memory_bist_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG*]] 
   set_multicycle_path -setup 2 \
       -from [tessent_get_cells [concat  \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_ADD_REG_SELECT_REG2* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_ADD_REG_SELECT_REG1* \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_ADD_REG_SELECT_REG0* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_A_CNTR* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_B_CNTR* \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_DELAYCOUNTER/DELAYCOUNTER_CNT*]] \
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_INH_LAST_ADDR_CNT/o] \
       -to [tessent_get_cells [concat  \
@@ -2695,9 +3135,12 @@ proc tessent_set_memory_bist_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_ADD_GEN/BY_ADD_REG*]] 
   set_multicycle_path -hold 1 \
       -from [tessent_get_cells [concat  \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_ADD_REG_SELECT_REG2* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_ADD_REG_SELECT_REG1* \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_POINTER_CNTRL/EXECUTE_ADD_REG_SELECT_REG0* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_A_CNTR* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_B_CNTR* \
+          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT* \
           [dict get $mbist_info mbist1 inst]/MBISTPG_DELAYCOUNTER/DELAYCOUNTER_CNT*]] \
       -through [tessent_get_pins [dict get $mbist_info mbist1 inst]/tessent_persistent_cell_INH_LAST_ADDR_CNT/o] \
       -to [tessent_get_cells [concat  \
@@ -3984,10 +4427,11 @@ proc tessent_get_preserve_instances {select} {
   }
 
   set non_scan_instance_list {
-    firebird7_in_gate1_tessent_scanmux_green_sec_mux_inst
-    firebird7_in_gate1_tessent_scanmux_insysbist_sec_mux_inst
-    firebird7_in_gate1_tessent_scanmux_orange_sec_mux_inst
-    firebird7_in_gate1_tessent_scanmux_red_sec_mux_inst
+    firebird7_in_gate1_tessent_scanmux_array_pwrmgmt_secure_mux_inst
+    firebird7_in_gate1_tessent_scanmux_array_trim_fuse_override_secure_mux_inst
+    firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux_inst
+    firebird7_in_gate1_tessent_scanmux_spare_orange_secure_mux_inst
+    firebird7_in_gate1_tessent_scanmux_spare_red_secure_mux_inst
     firebird7_in_gate1_tessent_sib_array_pwrmgmt_inst
     firebird7_in_gate1_tessent_sib_array_trim_fuse_override_inst
     firebird7_in_gate1_tessent_sib_spare_green_inst
@@ -4084,9 +4528,11 @@ proc tessent_get_preserve_instances {select} {
   }
 
   set icl_design_instance_list {
+    firebird7_in_gate1_tessent_scanmux_sti_secure_mux_inst
     firebird7_in_gate1_tessent_sib_mbist_inst
     firebird7_in_gate1_tessent_tdr_sti_ctrl_inst
     ph0/firebird7_in_gate1_tessent_mbist_bap_inst
+    ph0/firebird7_in_gate1_tessent_mbist_diagnosis_ready_inst
     ph0/i/d/m/g0_b0/db/gen_100_dRam/firebird7_in_gate1_tessent_data_mux_25_inst
     ph0/i/d/m/g0_b0/db/gen_100_dRam/firebird7_in_gate1_tessent_data_mux_65_inst
     ph0/i/d/m/g0_b0/db/gen_100_dRam/mem0_i_interface_inst

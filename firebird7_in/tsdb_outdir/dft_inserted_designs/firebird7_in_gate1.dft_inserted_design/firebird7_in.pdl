@@ -11,7 +11,7 @@
 #--------------------------------------------------------------------------
 #  File created by: Tessent Shell
 #          Version: 2022.4
-#       Created on: Mon Oct 23 12:54:11 PDT 2023
+#       Created on: Sun Oct 29 14:18:20 PDT 2023
 #--------------------------------------------------------------------------
 
 # Consolidated PDL for firebird7_in, design_id gate1 
@@ -68,6 +68,8 @@ iProc firebird7_in_gate1_tessent_mbist_c1_controller_HWDefault {
     {preserve_fuse_register_values {off}}
     {retention_test_phase {all_phases}}
     {bira_en {off}}
+    {failure_limit {0}}
+    {extract_diagnosis_data {off}}
     {check_repair_status {No}}
     {extract_repair_fuse_map {No}}
     {compare_go_id {No}}
@@ -97,6 +99,15 @@ iProc firebird7_in_gate1_tessent_mbist_c1_controller_HWDefault {
       # Clock errors are caught when the 'iClock' is issued, which is done prior to invoking this iProc.
       if { [catch_output {set clockPeriod [get_iclock_option ${icl_instance_path}${controller_instance}.BIST_CLK -period -in ns]} ] || $clockPeriod eq "" } {
         return
+      }
+      if { [string match -nocase $extract_diagnosis_data "on"]} {
+        set extract_diag_data on
+      } else {
+        if { [string match -nocase $extract_diagnosis_data "auto"] && ($failure_limit != 0)} {
+          set extract_diag_data on
+        } else {
+          set extract_diag_data off
+        }
       }
         iNote "Setting up MemoryBist controller $controller_instance"
         iNote  "Releasing asynchronous reset"
@@ -159,11 +170,17 @@ iProc firebird7_in_gate1_tessent_mbist_c1_controller_HWDefault {
       } else {
         iWrite ${controller_instance}.MBISTPG_BIRA_EN 0b0
       }
+      if { $debug_mode } {
+         iWrite ${controller_instance}.FL_CNT_MODE 0b01
+      }
       iRelease ${controller_instance}.BIST_SETUP[1]
       iApply
   # [end]   : Setup Phase }}}
   # [start] : Run phase {{{
       set apply_run_phase yes
+      if { $debug_mode && $extract_diag_data } {
+        set apply_run_phase no
+      }
     if { $apply_run_phase } {
       iTake ${controller_instance}.BIST_SETUP[1]
       iWrite ${controller_instance}.BIST_SETUP[1] 1
@@ -174,6 +191,9 @@ iProc firebird7_in_gate1_tessent_mbist_c1_controller_HWDefault {
       set check_done_pre_exec 1
       if { [regexp -nocase {pause_?to_?pause} $retention_test_phase ] || [regexp -nocase {pause_?to_?end} $retention_test_phase ] } {
         set check_go_pre_exec 0
+        set check_done_pre_exec 0
+      }
+      if { $debug_mode && !$extract_diag_data } {
         set check_done_pre_exec 0
       }
       if { $check_go_pre_exec } {
@@ -205,6 +225,11 @@ iProc firebird7_in_gate1_tessent_mbist_c1_controller_HWDefault {
       }
       set check_go_post_exec 1
       set check_done_post_exec 1
+      if { $debug_mode && ![string match -nocase $failure_limit "off"] } {
+        if { !$extract_diag_data && !$compare_go_id } {
+          set check_done_post_exec 0
+        }
+      }
       if { $check_go_post_exec } {
         if { $compare_go } {
           iNote "Checking GO is PASS after execution completion"
@@ -241,6 +266,9 @@ iProc firebird7_in_gate1_tessent_mbist_c1_controller_HWDefault {
     }
     iWrite ${controller_instance}.RUN_MODE Idle
     iRelease ${controller_instance}.FL_CNT_MODE
+    if { $debug_mode } {
+      iWrite ${controller_instance}.FL_CNT_MODE 0b00
+    }
     if { $do_compare_phase } {
       iRead ${controller_instance}.MBISTPG_GO Ignore
       iRead ${controller_instance}.MBISTPG_DONE Ignore
@@ -248,13 +276,45 @@ iProc firebird7_in_gate1_tessent_mbist_c1_controller_HWDefault {
       iWrite ${controller_instance}.SETUP_MODE Short
       if { $debug_mode } {
         if { $compare_go_id } {
+          if { [string match -nocase $failure_limit "off"] } {
             iWrite ${controller_instance}.SETUP_MODE Long
             iWrite ${controller_instance}.BIST_SETUP2 1
+          }
+        }
+      }
+      if { $debug_mode && ![string match -nocase $failure_limit "off"] } {
+        if { $extract_diag_data } {
+          iWrite ${controller_instance}.FL_CNT_MODE 0b01
         }
       }
       iTake ${controller_instance}.MBISTPG_EN
       iWrite ${controller_instance}.MBISTPG_EN 1
       iApply
+      if { $extract_diag_data } {
+         iNote "Sampling registers containing diagnosis data"
+         iNote "Sampling 3-bit Operation Cycle Counter"
+         iRead ${controller_instance}.JCNT 0b0
+         iNote "Sampling 5-bit Instruction Pointer"
+         iRead ${controller_instance}.INST_POINTER_REG 0b0
+         iNote "Sampling 2-bit RepeatLoop A Counter"
+         iRead ${controller_instance}.REPEATLOOP_A_CNTR_REG 0b0
+         iNote "Sampling 2-bit RepeatLoop B Counter"
+         iRead ${controller_instance}.REPEATLOOP_B_CNTR_REG 0b0
+         iNote "Sampling 4-bit CounterA Counter"
+         iRead ${controller_instance}.COUNTERA_CNT 0b0
+         iNote "Sampling 8-bit DelayCounter"
+         iRead ${controller_instance}.DELAYCOUNTER_CNT 0b0
+         iNote "Sampling 8-bit X-Segment of Address Register A"
+         iRead ${controller_instance}.A_ADD_REG_X 0b0
+         iNote "Sampling 8-bit X-Segment of Address Register B"
+         iRead ${controller_instance}.B_ADD_REG_X 0b0
+         iNote "Sampling 3-bit Y-Segment of Address Register A"
+         iRead ${controller_instance}.A_ADD_REG_Y 0b0
+         iNote "Sampling 3-bit Y-Segment of Address Register B"
+         iRead ${controller_instance}.B_ADD_REG_Y 0b0
+         iNote "Sampling 16-bit Error Counter"
+         iRead ${controller_instance}.STOP_ERROR_CNT_REG 0b0
+      }
       if { [regexp -nocase {non.*repairable} $check_repair_status] } {
          iRead [dict get $memory_instances m1].RA_STATUS_SHADOW_REG 0b0x
          iRead [dict get $memory_instances m2].RA_STATUS_SHADOW_REG 0b0x
@@ -829,6 +889,11 @@ iProc firebird7_in_gate1_tessent_mbist_c1_controller_HWDefault {
           } 
       iWrite ${controller_instance}.MBISTPG_EN 0
       iApply
+      if { $debug_mode && ![string match -nocase $failure_limit "off"] } {
+        if { $extract_diag_data } {
+          iWrite ${controller_instance}.FL_CNT_MODE 0b00
+        }
+      }
     }
     iRelease ${controller_instance}.MBISTPG_EN
     iRunLoop 1 -tck
@@ -895,6 +960,8 @@ iProc firebird7_in_gate1_tessent_mbist_c1_controller_RunTimeProg {
     algorithm
     address_generator
     data_generator
+    countera
+    delaycounter
     {memory_reset {off}}
     {persistent_bist_inputs {off}}
     operation_set
@@ -949,6 +1016,14 @@ iProc firebird7_in_gate1_tessent_mbist_c1_controller_RunTimeProg {
           set extract_diag_data off
         }
       }
+      if { ![string match -nocase "auto*" $failure_limit] } {
+        if { $failure_limit > 0 && !$extract_diag_data } {
+          iWrite ${controller_instance}.MBISTPG_ASYNC_RESETN 0
+          iApply
+          iWrite ${controller_instance}.MBISTPG_ASYNC_RESETN 1
+          iTake ${controller_instance}.MBISTPG_ASYNC_RESETN 
+        }
+      }
         iNote "Setting up MemoryBist controller $controller_instance"
         iNote  "Releasing asynchronous reset"
         iWrite ${controller_instance}.MBISTPG_ASYNC_RESETN 1
@@ -973,15 +1048,856 @@ iProc firebird7_in_gate1_tessent_mbist_c1_controller_RunTimeProg {
       set algo_code 0b0
       set microcode_en 0b0 
       if { $algorithm ne "" } {
-        dict set DefaultAlgo intellvpmovifx {0b0}
+        dict set DefaultAlgo intellvpmovifastx {0b0}
         dict set DefaultAlgo smarchchkbci {0b1}
         set algorithm_l [string tolower ${algorithm}]
         if { [dict exists $DefaultAlgo ${algorithm_l}] } {
           iNote "Selecting algorithm ${algorithm}"
           set algo_code [dict get $DefaultAlgo ${algorithm_l}]
         } else {
-          add_config_message -error -display -config_object $config_path "Invalid algorithm specified : ${algorithm}. The allowed algorithms are [dict keys ${DefaultAlgo}]"
-          return -code error
+          iNote "Loading algorithm $algorithm"
+          set microcode_en 0b1 
+          if { [dict exists $algo_reg_val AlgoSelEnable] } {
+            iWrite ${controller_instance}.ALGO_SEL_CNT_REG 0b[dict get $algo_reg_val AlgoSelEnable]
+          } else {
+            iWrite ${controller_instance}.ALGO_SEL_CNT_REG 0b0
+          }
+          if { [dict exists $algo_reg_val AlgoSelReg] } {
+            iWrite ${controller_instance}.ALGO_SEL_REG 0b[dict get $algo_reg_val AlgoSelReg]
+          } else {
+            iWrite ${controller_instance}.ALGO_SEL_REG 0b0
+          }
+          if { [dict exists $algo_reg_val inst0_operation_select] } {
+            iWrite ${controller_instance}.INST0_OPERATION_SELECT 0b[dict get $algo_reg_val inst0_operation_select]
+          } else {
+            iWrite ${controller_instance}.INST0_OPERATION_SELECT 0b0
+          }
+          if { [dict exists $algo_reg_val inst0_address_a_equals_b] } {
+            iWrite ${controller_instance}.INST0_ADD_REG_A_EQUALS_B 0b[dict get $algo_reg_val inst0_address_a_equals_b]
+          } else {
+            iWrite ${controller_instance}.INST0_ADD_REG_A_EQUALS_B 0b0
+          }
+          if { [dict exists $algo_reg_val inst0_y0_address] } {
+            iWrite ${controller_instance}.INST0_Y0_ADD_CMD 0b[dict get $algo_reg_val inst0_y0_address]
+          } else {
+            iWrite ${controller_instance}.INST0_Y0_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst0_y1_address] } {
+            iWrite ${controller_instance}.INST0_Y1_ADD_CMD 0b[dict get $algo_reg_val inst0_y1_address]
+          } else {
+            iWrite ${controller_instance}.INST0_Y1_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst0_x0_address] } {
+            iWrite ${controller_instance}.INST0_X0_ADD_CMD 0b[dict get $algo_reg_val inst0_x0_address]
+          } else {
+            iWrite ${controller_instance}.INST0_X0_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst0_x1_address] } {
+            iWrite ${controller_instance}.INST0_X1_ADD_CMD 0b[dict get $algo_reg_val inst0_x1_address]
+          } else {
+            iWrite ${controller_instance}.INST0_X1_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst0_address_select] } {
+            iWrite ${controller_instance}.INST0_ADD_SELECT_CMD 0b[dict get $algo_reg_val inst0_address_select]
+          } else {
+            iWrite ${controller_instance}.INST0_ADD_SELECT_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst0_expect_data] } {
+            iWrite ${controller_instance}.INST0_EXPECT_DATA_CMD 0b[dict get $algo_reg_val inst0_expect_data]
+          } else {
+            iWrite ${controller_instance}.INST0_EXPECT_DATA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst0_write_data] } {
+            iWrite ${controller_instance}.INST0_WRITE_DATA_CMD 0b[dict get $algo_reg_val inst0_write_data]
+          } else {
+            iWrite ${controller_instance}.INST0_WRITE_DATA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst0_repeatloopcmd] } {
+            iWrite ${controller_instance}.INST0_REPEATLOOP_CMD 0b[dict get $algo_reg_val inst0_repeatloopcmd]
+          } else {
+            iWrite ${controller_instance}.INST0_REPEATLOOP_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst0_inhibit_last_address_count] } {
+            iWrite ${controller_instance}.INST0_INH_LAST_ADDR_CNT 0b[dict get $algo_reg_val inst0_inhibit_last_address_count]
+          } else {
+            iWrite ${controller_instance}.INST0_INH_LAST_ADDR_CNT 0b0
+          }
+          if { [dict exists $algo_reg_val inst0_inhibit_data_compare] } {
+            iWrite ${controller_instance}.INST0_INH_DATA_CMP 0b[dict get $algo_reg_val inst0_inhibit_data_compare]
+          } else {
+            iWrite ${controller_instance}.INST0_INH_DATA_CMP 0b0
+          }
+          if { [dict exists $algo_reg_val inst0_counter_a] } {
+            iWrite ${controller_instance}.INST0_COUNTERA_CMD 0b[dict get $algo_reg_val inst0_counter_a]
+          } else {
+            iWrite ${controller_instance}.INST0_COUNTERA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst0_delay_counter] } {
+            iWrite ${controller_instance}.INST0_DELAYCOUNTER_CMD 0b[dict get $algo_reg_val inst0_delay_counter]
+          } else {
+            iWrite ${controller_instance}.INST0_DELAYCOUNTER_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst0_branch_to_instruction] } {
+            iWrite ${controller_instance}.INST0_BRANCH_INST_ADDRESS 0b[dict get $algo_reg_val inst0_branch_to_instruction]
+          } else {
+            iWrite ${controller_instance}.INST0_BRANCH_INST_ADDRESS 0b0
+          }
+          if { [dict exists $algo_reg_val inst0_nextconditions] } {
+            iWrite ${controller_instance}.INST0_NEXT_CONDITIONS 0b[dict get $algo_reg_val inst0_nextconditions]
+          } else {
+            iWrite ${controller_instance}.INST0_NEXT_CONDITIONS 0b0
+          }
+          if { [dict exists $algo_reg_val inst1_operation_select] } {
+            iWrite ${controller_instance}.INST1_OPERATION_SELECT 0b[dict get $algo_reg_val inst1_operation_select]
+          } else {
+            iWrite ${controller_instance}.INST1_OPERATION_SELECT 0b0
+          }
+          if { [dict exists $algo_reg_val inst1_address_a_equals_b] } {
+            iWrite ${controller_instance}.INST1_ADD_REG_A_EQUALS_B 0b[dict get $algo_reg_val inst1_address_a_equals_b]
+          } else {
+            iWrite ${controller_instance}.INST1_ADD_REG_A_EQUALS_B 0b0
+          }
+          if { [dict exists $algo_reg_val inst1_y0_address] } {
+            iWrite ${controller_instance}.INST1_Y0_ADD_CMD 0b[dict get $algo_reg_val inst1_y0_address]
+          } else {
+            iWrite ${controller_instance}.INST1_Y0_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst1_y1_address] } {
+            iWrite ${controller_instance}.INST1_Y1_ADD_CMD 0b[dict get $algo_reg_val inst1_y1_address]
+          } else {
+            iWrite ${controller_instance}.INST1_Y1_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst1_x0_address] } {
+            iWrite ${controller_instance}.INST1_X0_ADD_CMD 0b[dict get $algo_reg_val inst1_x0_address]
+          } else {
+            iWrite ${controller_instance}.INST1_X0_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst1_x1_address] } {
+            iWrite ${controller_instance}.INST1_X1_ADD_CMD 0b[dict get $algo_reg_val inst1_x1_address]
+          } else {
+            iWrite ${controller_instance}.INST1_X1_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst1_address_select] } {
+            iWrite ${controller_instance}.INST1_ADD_SELECT_CMD 0b[dict get $algo_reg_val inst1_address_select]
+          } else {
+            iWrite ${controller_instance}.INST1_ADD_SELECT_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst1_expect_data] } {
+            iWrite ${controller_instance}.INST1_EXPECT_DATA_CMD 0b[dict get $algo_reg_val inst1_expect_data]
+          } else {
+            iWrite ${controller_instance}.INST1_EXPECT_DATA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst1_write_data] } {
+            iWrite ${controller_instance}.INST1_WRITE_DATA_CMD 0b[dict get $algo_reg_val inst1_write_data]
+          } else {
+            iWrite ${controller_instance}.INST1_WRITE_DATA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst1_repeatloopcmd] } {
+            iWrite ${controller_instance}.INST1_REPEATLOOP_CMD 0b[dict get $algo_reg_val inst1_repeatloopcmd]
+          } else {
+            iWrite ${controller_instance}.INST1_REPEATLOOP_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst1_inhibit_last_address_count] } {
+            iWrite ${controller_instance}.INST1_INH_LAST_ADDR_CNT 0b[dict get $algo_reg_val inst1_inhibit_last_address_count]
+          } else {
+            iWrite ${controller_instance}.INST1_INH_LAST_ADDR_CNT 0b0
+          }
+          if { [dict exists $algo_reg_val inst1_inhibit_data_compare] } {
+            iWrite ${controller_instance}.INST1_INH_DATA_CMP 0b[dict get $algo_reg_val inst1_inhibit_data_compare]
+          } else {
+            iWrite ${controller_instance}.INST1_INH_DATA_CMP 0b0
+          }
+          if { [dict exists $algo_reg_val inst1_counter_a] } {
+            iWrite ${controller_instance}.INST1_COUNTERA_CMD 0b[dict get $algo_reg_val inst1_counter_a]
+          } else {
+            iWrite ${controller_instance}.INST1_COUNTERA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst1_delay_counter] } {
+            iWrite ${controller_instance}.INST1_DELAYCOUNTER_CMD 0b[dict get $algo_reg_val inst1_delay_counter]
+          } else {
+            iWrite ${controller_instance}.INST1_DELAYCOUNTER_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst1_branch_to_instruction] } {
+            iWrite ${controller_instance}.INST1_BRANCH_INST_ADDRESS 0b[dict get $algo_reg_val inst1_branch_to_instruction]
+          } else {
+            iWrite ${controller_instance}.INST1_BRANCH_INST_ADDRESS 0b0
+          }
+          if { [dict exists $algo_reg_val inst1_nextconditions] } {
+            iWrite ${controller_instance}.INST1_NEXT_CONDITIONS 0b[dict get $algo_reg_val inst1_nextconditions]
+          } else {
+            iWrite ${controller_instance}.INST1_NEXT_CONDITIONS 0b0
+          }
+          if { [dict exists $algo_reg_val inst2_operation_select] } {
+            iWrite ${controller_instance}.INST2_OPERATION_SELECT 0b[dict get $algo_reg_val inst2_operation_select]
+          } else {
+            iWrite ${controller_instance}.INST2_OPERATION_SELECT 0b0
+          }
+          if { [dict exists $algo_reg_val inst2_address_a_equals_b] } {
+            iWrite ${controller_instance}.INST2_ADD_REG_A_EQUALS_B 0b[dict get $algo_reg_val inst2_address_a_equals_b]
+          } else {
+            iWrite ${controller_instance}.INST2_ADD_REG_A_EQUALS_B 0b0
+          }
+          if { [dict exists $algo_reg_val inst2_y0_address] } {
+            iWrite ${controller_instance}.INST2_Y0_ADD_CMD 0b[dict get $algo_reg_val inst2_y0_address]
+          } else {
+            iWrite ${controller_instance}.INST2_Y0_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst2_y1_address] } {
+            iWrite ${controller_instance}.INST2_Y1_ADD_CMD 0b[dict get $algo_reg_val inst2_y1_address]
+          } else {
+            iWrite ${controller_instance}.INST2_Y1_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst2_x0_address] } {
+            iWrite ${controller_instance}.INST2_X0_ADD_CMD 0b[dict get $algo_reg_val inst2_x0_address]
+          } else {
+            iWrite ${controller_instance}.INST2_X0_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst2_x1_address] } {
+            iWrite ${controller_instance}.INST2_X1_ADD_CMD 0b[dict get $algo_reg_val inst2_x1_address]
+          } else {
+            iWrite ${controller_instance}.INST2_X1_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst2_address_select] } {
+            iWrite ${controller_instance}.INST2_ADD_SELECT_CMD 0b[dict get $algo_reg_val inst2_address_select]
+          } else {
+            iWrite ${controller_instance}.INST2_ADD_SELECT_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst2_expect_data] } {
+            iWrite ${controller_instance}.INST2_EXPECT_DATA_CMD 0b[dict get $algo_reg_val inst2_expect_data]
+          } else {
+            iWrite ${controller_instance}.INST2_EXPECT_DATA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst2_write_data] } {
+            iWrite ${controller_instance}.INST2_WRITE_DATA_CMD 0b[dict get $algo_reg_val inst2_write_data]
+          } else {
+            iWrite ${controller_instance}.INST2_WRITE_DATA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst2_repeatloopcmd] } {
+            iWrite ${controller_instance}.INST2_REPEATLOOP_CMD 0b[dict get $algo_reg_val inst2_repeatloopcmd]
+          } else {
+            iWrite ${controller_instance}.INST2_REPEATLOOP_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst2_inhibit_last_address_count] } {
+            iWrite ${controller_instance}.INST2_INH_LAST_ADDR_CNT 0b[dict get $algo_reg_val inst2_inhibit_last_address_count]
+          } else {
+            iWrite ${controller_instance}.INST2_INH_LAST_ADDR_CNT 0b0
+          }
+          if { [dict exists $algo_reg_val inst2_inhibit_data_compare] } {
+            iWrite ${controller_instance}.INST2_INH_DATA_CMP 0b[dict get $algo_reg_val inst2_inhibit_data_compare]
+          } else {
+            iWrite ${controller_instance}.INST2_INH_DATA_CMP 0b0
+          }
+          if { [dict exists $algo_reg_val inst2_counter_a] } {
+            iWrite ${controller_instance}.INST2_COUNTERA_CMD 0b[dict get $algo_reg_val inst2_counter_a]
+          } else {
+            iWrite ${controller_instance}.INST2_COUNTERA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst2_delay_counter] } {
+            iWrite ${controller_instance}.INST2_DELAYCOUNTER_CMD 0b[dict get $algo_reg_val inst2_delay_counter]
+          } else {
+            iWrite ${controller_instance}.INST2_DELAYCOUNTER_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst2_branch_to_instruction] } {
+            iWrite ${controller_instance}.INST2_BRANCH_INST_ADDRESS 0b[dict get $algo_reg_val inst2_branch_to_instruction]
+          } else {
+            iWrite ${controller_instance}.INST2_BRANCH_INST_ADDRESS 0b0
+          }
+          if { [dict exists $algo_reg_val inst2_nextconditions] } {
+            iWrite ${controller_instance}.INST2_NEXT_CONDITIONS 0b[dict get $algo_reg_val inst2_nextconditions]
+          } else {
+            iWrite ${controller_instance}.INST2_NEXT_CONDITIONS 0b0
+          }
+          if { [dict exists $algo_reg_val inst3_operation_select] } {
+            iWrite ${controller_instance}.INST3_OPERATION_SELECT 0b[dict get $algo_reg_val inst3_operation_select]
+          } else {
+            iWrite ${controller_instance}.INST3_OPERATION_SELECT 0b0
+          }
+          if { [dict exists $algo_reg_val inst3_address_a_equals_b] } {
+            iWrite ${controller_instance}.INST3_ADD_REG_A_EQUALS_B 0b[dict get $algo_reg_val inst3_address_a_equals_b]
+          } else {
+            iWrite ${controller_instance}.INST3_ADD_REG_A_EQUALS_B 0b0
+          }
+          if { [dict exists $algo_reg_val inst3_y0_address] } {
+            iWrite ${controller_instance}.INST3_Y0_ADD_CMD 0b[dict get $algo_reg_val inst3_y0_address]
+          } else {
+            iWrite ${controller_instance}.INST3_Y0_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst3_y1_address] } {
+            iWrite ${controller_instance}.INST3_Y1_ADD_CMD 0b[dict get $algo_reg_val inst3_y1_address]
+          } else {
+            iWrite ${controller_instance}.INST3_Y1_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst3_x0_address] } {
+            iWrite ${controller_instance}.INST3_X0_ADD_CMD 0b[dict get $algo_reg_val inst3_x0_address]
+          } else {
+            iWrite ${controller_instance}.INST3_X0_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst3_x1_address] } {
+            iWrite ${controller_instance}.INST3_X1_ADD_CMD 0b[dict get $algo_reg_val inst3_x1_address]
+          } else {
+            iWrite ${controller_instance}.INST3_X1_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst3_address_select] } {
+            iWrite ${controller_instance}.INST3_ADD_SELECT_CMD 0b[dict get $algo_reg_val inst3_address_select]
+          } else {
+            iWrite ${controller_instance}.INST3_ADD_SELECT_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst3_expect_data] } {
+            iWrite ${controller_instance}.INST3_EXPECT_DATA_CMD 0b[dict get $algo_reg_val inst3_expect_data]
+          } else {
+            iWrite ${controller_instance}.INST3_EXPECT_DATA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst3_write_data] } {
+            iWrite ${controller_instance}.INST3_WRITE_DATA_CMD 0b[dict get $algo_reg_val inst3_write_data]
+          } else {
+            iWrite ${controller_instance}.INST3_WRITE_DATA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst3_repeatloopcmd] } {
+            iWrite ${controller_instance}.INST3_REPEATLOOP_CMD 0b[dict get $algo_reg_val inst3_repeatloopcmd]
+          } else {
+            iWrite ${controller_instance}.INST3_REPEATLOOP_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst3_inhibit_last_address_count] } {
+            iWrite ${controller_instance}.INST3_INH_LAST_ADDR_CNT 0b[dict get $algo_reg_val inst3_inhibit_last_address_count]
+          } else {
+            iWrite ${controller_instance}.INST3_INH_LAST_ADDR_CNT 0b0
+          }
+          if { [dict exists $algo_reg_val inst3_inhibit_data_compare] } {
+            iWrite ${controller_instance}.INST3_INH_DATA_CMP 0b[dict get $algo_reg_val inst3_inhibit_data_compare]
+          } else {
+            iWrite ${controller_instance}.INST3_INH_DATA_CMP 0b0
+          }
+          if { [dict exists $algo_reg_val inst3_counter_a] } {
+            iWrite ${controller_instance}.INST3_COUNTERA_CMD 0b[dict get $algo_reg_val inst3_counter_a]
+          } else {
+            iWrite ${controller_instance}.INST3_COUNTERA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst3_delay_counter] } {
+            iWrite ${controller_instance}.INST3_DELAYCOUNTER_CMD 0b[dict get $algo_reg_val inst3_delay_counter]
+          } else {
+            iWrite ${controller_instance}.INST3_DELAYCOUNTER_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst3_branch_to_instruction] } {
+            iWrite ${controller_instance}.INST3_BRANCH_INST_ADDRESS 0b[dict get $algo_reg_val inst3_branch_to_instruction]
+          } else {
+            iWrite ${controller_instance}.INST3_BRANCH_INST_ADDRESS 0b0
+          }
+          if { [dict exists $algo_reg_val inst3_nextconditions] } {
+            iWrite ${controller_instance}.INST3_NEXT_CONDITIONS 0b[dict get $algo_reg_val inst3_nextconditions]
+          } else {
+            iWrite ${controller_instance}.INST3_NEXT_CONDITIONS 0b0
+          }
+          if { [dict exists $algo_reg_val inst4_operation_select] } {
+            iWrite ${controller_instance}.INST4_OPERATION_SELECT 0b[dict get $algo_reg_val inst4_operation_select]
+          } else {
+            iWrite ${controller_instance}.INST4_OPERATION_SELECT 0b0
+          }
+          if { [dict exists $algo_reg_val inst4_address_a_equals_b] } {
+            iWrite ${controller_instance}.INST4_ADD_REG_A_EQUALS_B 0b[dict get $algo_reg_val inst4_address_a_equals_b]
+          } else {
+            iWrite ${controller_instance}.INST4_ADD_REG_A_EQUALS_B 0b0
+          }
+          if { [dict exists $algo_reg_val inst4_y0_address] } {
+            iWrite ${controller_instance}.INST4_Y0_ADD_CMD 0b[dict get $algo_reg_val inst4_y0_address]
+          } else {
+            iWrite ${controller_instance}.INST4_Y0_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst4_y1_address] } {
+            iWrite ${controller_instance}.INST4_Y1_ADD_CMD 0b[dict get $algo_reg_val inst4_y1_address]
+          } else {
+            iWrite ${controller_instance}.INST4_Y1_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst4_x0_address] } {
+            iWrite ${controller_instance}.INST4_X0_ADD_CMD 0b[dict get $algo_reg_val inst4_x0_address]
+          } else {
+            iWrite ${controller_instance}.INST4_X0_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst4_x1_address] } {
+            iWrite ${controller_instance}.INST4_X1_ADD_CMD 0b[dict get $algo_reg_val inst4_x1_address]
+          } else {
+            iWrite ${controller_instance}.INST4_X1_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst4_address_select] } {
+            iWrite ${controller_instance}.INST4_ADD_SELECT_CMD 0b[dict get $algo_reg_val inst4_address_select]
+          } else {
+            iWrite ${controller_instance}.INST4_ADD_SELECT_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst4_expect_data] } {
+            iWrite ${controller_instance}.INST4_EXPECT_DATA_CMD 0b[dict get $algo_reg_val inst4_expect_data]
+          } else {
+            iWrite ${controller_instance}.INST4_EXPECT_DATA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst4_write_data] } {
+            iWrite ${controller_instance}.INST4_WRITE_DATA_CMD 0b[dict get $algo_reg_val inst4_write_data]
+          } else {
+            iWrite ${controller_instance}.INST4_WRITE_DATA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst4_repeatloopcmd] } {
+            iWrite ${controller_instance}.INST4_REPEATLOOP_CMD 0b[dict get $algo_reg_val inst4_repeatloopcmd]
+          } else {
+            iWrite ${controller_instance}.INST4_REPEATLOOP_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst4_inhibit_last_address_count] } {
+            iWrite ${controller_instance}.INST4_INH_LAST_ADDR_CNT 0b[dict get $algo_reg_val inst4_inhibit_last_address_count]
+          } else {
+            iWrite ${controller_instance}.INST4_INH_LAST_ADDR_CNT 0b0
+          }
+          if { [dict exists $algo_reg_val inst4_inhibit_data_compare] } {
+            iWrite ${controller_instance}.INST4_INH_DATA_CMP 0b[dict get $algo_reg_val inst4_inhibit_data_compare]
+          } else {
+            iWrite ${controller_instance}.INST4_INH_DATA_CMP 0b0
+          }
+          if { [dict exists $algo_reg_val inst4_counter_a] } {
+            iWrite ${controller_instance}.INST4_COUNTERA_CMD 0b[dict get $algo_reg_val inst4_counter_a]
+          } else {
+            iWrite ${controller_instance}.INST4_COUNTERA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst4_delay_counter] } {
+            iWrite ${controller_instance}.INST4_DELAYCOUNTER_CMD 0b[dict get $algo_reg_val inst4_delay_counter]
+          } else {
+            iWrite ${controller_instance}.INST4_DELAYCOUNTER_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst4_branch_to_instruction] } {
+            iWrite ${controller_instance}.INST4_BRANCH_INST_ADDRESS 0b[dict get $algo_reg_val inst4_branch_to_instruction]
+          } else {
+            iWrite ${controller_instance}.INST4_BRANCH_INST_ADDRESS 0b0
+          }
+          if { [dict exists $algo_reg_val inst4_nextconditions] } {
+            iWrite ${controller_instance}.INST4_NEXT_CONDITIONS 0b[dict get $algo_reg_val inst4_nextconditions]
+          } else {
+            iWrite ${controller_instance}.INST4_NEXT_CONDITIONS 0b0
+          }
+          if { [dict exists $algo_reg_val inst5_operation_select] } {
+            iWrite ${controller_instance}.INST5_OPERATION_SELECT 0b[dict get $algo_reg_val inst5_operation_select]
+          } else {
+            iWrite ${controller_instance}.INST5_OPERATION_SELECT 0b0
+          }
+          if { [dict exists $algo_reg_val inst5_address_a_equals_b] } {
+            iWrite ${controller_instance}.INST5_ADD_REG_A_EQUALS_B 0b[dict get $algo_reg_val inst5_address_a_equals_b]
+          } else {
+            iWrite ${controller_instance}.INST5_ADD_REG_A_EQUALS_B 0b0
+          }
+          if { [dict exists $algo_reg_val inst5_y0_address] } {
+            iWrite ${controller_instance}.INST5_Y0_ADD_CMD 0b[dict get $algo_reg_val inst5_y0_address]
+          } else {
+            iWrite ${controller_instance}.INST5_Y0_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst5_y1_address] } {
+            iWrite ${controller_instance}.INST5_Y1_ADD_CMD 0b[dict get $algo_reg_val inst5_y1_address]
+          } else {
+            iWrite ${controller_instance}.INST5_Y1_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst5_x0_address] } {
+            iWrite ${controller_instance}.INST5_X0_ADD_CMD 0b[dict get $algo_reg_val inst5_x0_address]
+          } else {
+            iWrite ${controller_instance}.INST5_X0_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst5_x1_address] } {
+            iWrite ${controller_instance}.INST5_X1_ADD_CMD 0b[dict get $algo_reg_val inst5_x1_address]
+          } else {
+            iWrite ${controller_instance}.INST5_X1_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst5_address_select] } {
+            iWrite ${controller_instance}.INST5_ADD_SELECT_CMD 0b[dict get $algo_reg_val inst5_address_select]
+          } else {
+            iWrite ${controller_instance}.INST5_ADD_SELECT_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst5_expect_data] } {
+            iWrite ${controller_instance}.INST5_EXPECT_DATA_CMD 0b[dict get $algo_reg_val inst5_expect_data]
+          } else {
+            iWrite ${controller_instance}.INST5_EXPECT_DATA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst5_write_data] } {
+            iWrite ${controller_instance}.INST5_WRITE_DATA_CMD 0b[dict get $algo_reg_val inst5_write_data]
+          } else {
+            iWrite ${controller_instance}.INST5_WRITE_DATA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst5_repeatloopcmd] } {
+            iWrite ${controller_instance}.INST5_REPEATLOOP_CMD 0b[dict get $algo_reg_val inst5_repeatloopcmd]
+          } else {
+            iWrite ${controller_instance}.INST5_REPEATLOOP_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst5_inhibit_last_address_count] } {
+            iWrite ${controller_instance}.INST5_INH_LAST_ADDR_CNT 0b[dict get $algo_reg_val inst5_inhibit_last_address_count]
+          } else {
+            iWrite ${controller_instance}.INST5_INH_LAST_ADDR_CNT 0b0
+          }
+          if { [dict exists $algo_reg_val inst5_inhibit_data_compare] } {
+            iWrite ${controller_instance}.INST5_INH_DATA_CMP 0b[dict get $algo_reg_val inst5_inhibit_data_compare]
+          } else {
+            iWrite ${controller_instance}.INST5_INH_DATA_CMP 0b0
+          }
+          if { [dict exists $algo_reg_val inst5_counter_a] } {
+            iWrite ${controller_instance}.INST5_COUNTERA_CMD 0b[dict get $algo_reg_val inst5_counter_a]
+          } else {
+            iWrite ${controller_instance}.INST5_COUNTERA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst5_delay_counter] } {
+            iWrite ${controller_instance}.INST5_DELAYCOUNTER_CMD 0b[dict get $algo_reg_val inst5_delay_counter]
+          } else {
+            iWrite ${controller_instance}.INST5_DELAYCOUNTER_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst5_branch_to_instruction] } {
+            iWrite ${controller_instance}.INST5_BRANCH_INST_ADDRESS 0b[dict get $algo_reg_val inst5_branch_to_instruction]
+          } else {
+            iWrite ${controller_instance}.INST5_BRANCH_INST_ADDRESS 0b0
+          }
+          if { [dict exists $algo_reg_val inst5_nextconditions] } {
+            iWrite ${controller_instance}.INST5_NEXT_CONDITIONS 0b[dict get $algo_reg_val inst5_nextconditions]
+          } else {
+            iWrite ${controller_instance}.INST5_NEXT_CONDITIONS 0b0
+          }
+          if { [dict exists $algo_reg_val inst6_operation_select] } {
+            iWrite ${controller_instance}.INST6_OPERATION_SELECT 0b[dict get $algo_reg_val inst6_operation_select]
+          } else {
+            iWrite ${controller_instance}.INST6_OPERATION_SELECT 0b0
+          }
+          if { [dict exists $algo_reg_val inst6_address_a_equals_b] } {
+            iWrite ${controller_instance}.INST6_ADD_REG_A_EQUALS_B 0b[dict get $algo_reg_val inst6_address_a_equals_b]
+          } else {
+            iWrite ${controller_instance}.INST6_ADD_REG_A_EQUALS_B 0b0
+          }
+          if { [dict exists $algo_reg_val inst6_y0_address] } {
+            iWrite ${controller_instance}.INST6_Y0_ADD_CMD 0b[dict get $algo_reg_val inst6_y0_address]
+          } else {
+            iWrite ${controller_instance}.INST6_Y0_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst6_y1_address] } {
+            iWrite ${controller_instance}.INST6_Y1_ADD_CMD 0b[dict get $algo_reg_val inst6_y1_address]
+          } else {
+            iWrite ${controller_instance}.INST6_Y1_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst6_x0_address] } {
+            iWrite ${controller_instance}.INST6_X0_ADD_CMD 0b[dict get $algo_reg_val inst6_x0_address]
+          } else {
+            iWrite ${controller_instance}.INST6_X0_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst6_x1_address] } {
+            iWrite ${controller_instance}.INST6_X1_ADD_CMD 0b[dict get $algo_reg_val inst6_x1_address]
+          } else {
+            iWrite ${controller_instance}.INST6_X1_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst6_address_select] } {
+            iWrite ${controller_instance}.INST6_ADD_SELECT_CMD 0b[dict get $algo_reg_val inst6_address_select]
+          } else {
+            iWrite ${controller_instance}.INST6_ADD_SELECT_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst6_expect_data] } {
+            iWrite ${controller_instance}.INST6_EXPECT_DATA_CMD 0b[dict get $algo_reg_val inst6_expect_data]
+          } else {
+            iWrite ${controller_instance}.INST6_EXPECT_DATA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst6_write_data] } {
+            iWrite ${controller_instance}.INST6_WRITE_DATA_CMD 0b[dict get $algo_reg_val inst6_write_data]
+          } else {
+            iWrite ${controller_instance}.INST6_WRITE_DATA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst6_repeatloopcmd] } {
+            iWrite ${controller_instance}.INST6_REPEATLOOP_CMD 0b[dict get $algo_reg_val inst6_repeatloopcmd]
+          } else {
+            iWrite ${controller_instance}.INST6_REPEATLOOP_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst6_inhibit_last_address_count] } {
+            iWrite ${controller_instance}.INST6_INH_LAST_ADDR_CNT 0b[dict get $algo_reg_val inst6_inhibit_last_address_count]
+          } else {
+            iWrite ${controller_instance}.INST6_INH_LAST_ADDR_CNT 0b0
+          }
+          if { [dict exists $algo_reg_val inst6_inhibit_data_compare] } {
+            iWrite ${controller_instance}.INST6_INH_DATA_CMP 0b[dict get $algo_reg_val inst6_inhibit_data_compare]
+          } else {
+            iWrite ${controller_instance}.INST6_INH_DATA_CMP 0b0
+          }
+          if { [dict exists $algo_reg_val inst6_counter_a] } {
+            iWrite ${controller_instance}.INST6_COUNTERA_CMD 0b[dict get $algo_reg_val inst6_counter_a]
+          } else {
+            iWrite ${controller_instance}.INST6_COUNTERA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst6_delay_counter] } {
+            iWrite ${controller_instance}.INST6_DELAYCOUNTER_CMD 0b[dict get $algo_reg_val inst6_delay_counter]
+          } else {
+            iWrite ${controller_instance}.INST6_DELAYCOUNTER_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst6_branch_to_instruction] } {
+            iWrite ${controller_instance}.INST6_BRANCH_INST_ADDRESS 0b[dict get $algo_reg_val inst6_branch_to_instruction]
+          } else {
+            iWrite ${controller_instance}.INST6_BRANCH_INST_ADDRESS 0b0
+          }
+          if { [dict exists $algo_reg_val inst6_nextconditions] } {
+            iWrite ${controller_instance}.INST6_NEXT_CONDITIONS 0b[dict get $algo_reg_val inst6_nextconditions]
+          } else {
+            iWrite ${controller_instance}.INST6_NEXT_CONDITIONS 0b0
+          }
+          if { [dict exists $algo_reg_val inst7_operation_select] } {
+            iWrite ${controller_instance}.INST7_OPERATION_SELECT 0b[dict get $algo_reg_val inst7_operation_select]
+          } else {
+            iWrite ${controller_instance}.INST7_OPERATION_SELECT 0b0
+          }
+          if { [dict exists $algo_reg_val inst7_address_a_equals_b] } {
+            iWrite ${controller_instance}.INST7_ADD_REG_A_EQUALS_B 0b[dict get $algo_reg_val inst7_address_a_equals_b]
+          } else {
+            iWrite ${controller_instance}.INST7_ADD_REG_A_EQUALS_B 0b0
+          }
+          if { [dict exists $algo_reg_val inst7_y0_address] } {
+            iWrite ${controller_instance}.INST7_Y0_ADD_CMD 0b[dict get $algo_reg_val inst7_y0_address]
+          } else {
+            iWrite ${controller_instance}.INST7_Y0_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst7_y1_address] } {
+            iWrite ${controller_instance}.INST7_Y1_ADD_CMD 0b[dict get $algo_reg_val inst7_y1_address]
+          } else {
+            iWrite ${controller_instance}.INST7_Y1_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst7_x0_address] } {
+            iWrite ${controller_instance}.INST7_X0_ADD_CMD 0b[dict get $algo_reg_val inst7_x0_address]
+          } else {
+            iWrite ${controller_instance}.INST7_X0_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst7_x1_address] } {
+            iWrite ${controller_instance}.INST7_X1_ADD_CMD 0b[dict get $algo_reg_val inst7_x1_address]
+          } else {
+            iWrite ${controller_instance}.INST7_X1_ADD_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst7_address_select] } {
+            iWrite ${controller_instance}.INST7_ADD_SELECT_CMD 0b[dict get $algo_reg_val inst7_address_select]
+          } else {
+            iWrite ${controller_instance}.INST7_ADD_SELECT_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst7_expect_data] } {
+            iWrite ${controller_instance}.INST7_EXPECT_DATA_CMD 0b[dict get $algo_reg_val inst7_expect_data]
+          } else {
+            iWrite ${controller_instance}.INST7_EXPECT_DATA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst7_write_data] } {
+            iWrite ${controller_instance}.INST7_WRITE_DATA_CMD 0b[dict get $algo_reg_val inst7_write_data]
+          } else {
+            iWrite ${controller_instance}.INST7_WRITE_DATA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst7_repeatloopcmd] } {
+            iWrite ${controller_instance}.INST7_REPEATLOOP_CMD 0b[dict get $algo_reg_val inst7_repeatloopcmd]
+          } else {
+            iWrite ${controller_instance}.INST7_REPEATLOOP_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst7_inhibit_last_address_count] } {
+            iWrite ${controller_instance}.INST7_INH_LAST_ADDR_CNT 0b[dict get $algo_reg_val inst7_inhibit_last_address_count]
+          } else {
+            iWrite ${controller_instance}.INST7_INH_LAST_ADDR_CNT 0b0
+          }
+          if { [dict exists $algo_reg_val inst7_inhibit_data_compare] } {
+            iWrite ${controller_instance}.INST7_INH_DATA_CMP 0b[dict get $algo_reg_val inst7_inhibit_data_compare]
+          } else {
+            iWrite ${controller_instance}.INST7_INH_DATA_CMP 0b0
+          }
+          if { [dict exists $algo_reg_val inst7_counter_a] } {
+            iWrite ${controller_instance}.INST7_COUNTERA_CMD 0b[dict get $algo_reg_val inst7_counter_a]
+          } else {
+            iWrite ${controller_instance}.INST7_COUNTERA_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst7_delay_counter] } {
+            iWrite ${controller_instance}.INST7_DELAYCOUNTER_CMD 0b[dict get $algo_reg_val inst7_delay_counter]
+          } else {
+            iWrite ${controller_instance}.INST7_DELAYCOUNTER_CMD 0b0
+          }
+          if { [dict exists $algo_reg_val inst7_branch_to_instruction] } {
+            iWrite ${controller_instance}.INST7_BRANCH_INST_ADDRESS 0b[dict get $algo_reg_val inst7_branch_to_instruction]
+          } else {
+            iWrite ${controller_instance}.INST7_BRANCH_INST_ADDRESS 0b0
+          }
+          if { [dict exists $algo_reg_val inst7_nextconditions] } {
+            iWrite ${controller_instance}.INST7_NEXT_CONDITIONS 0b[dict get $algo_reg_val inst7_nextconditions]
+          } else {
+            iWrite ${controller_instance}.INST7_NEXT_CONDITIONS 0b0
+          }
+          if { [dict exists $algo_reg_val repeatloop_b_loop3] } {
+            iWrite ${controller_instance}.REPEATLOOP_B_LOOP3_REG 0b[dict get $algo_reg_val repeatloop_b_loop3]
+          } else {
+            iWrite ${controller_instance}.REPEATLOOP_B_LOOP3_REG 0b0
+          }
+          if { [dict exists $algo_reg_val repeatloop_b_loop2] } {
+            iWrite ${controller_instance}.REPEATLOOP_B_LOOP2_REG 0b[dict get $algo_reg_val repeatloop_b_loop2]
+          } else {
+            iWrite ${controller_instance}.REPEATLOOP_B_LOOP2_REG 0b0
+          }
+          if { [dict exists $algo_reg_val repeatloop_b_loop1] } {
+            iWrite ${controller_instance}.REPEATLOOP_B_LOOP1_REG 0b[dict get $algo_reg_val repeatloop_b_loop1]
+          } else {
+            iWrite ${controller_instance}.REPEATLOOP_B_LOOP1_REG 0b0
+          }
+          if { [dict exists $algo_reg_val repeatloop_b_pointer] } {
+            iWrite ${controller_instance}.REPEATLOOP_B_POINTER_REG 0b[dict get $algo_reg_val repeatloop_b_pointer]
+          } else {
+            iWrite ${controller_instance}.REPEATLOOP_B_POINTER_REG 0b0
+          }
+          if { [dict exists $algo_reg_val repeatloop_b_max] } {
+            iWrite ${controller_instance}.REPEATLOOP_B_MAX_REG 0b[dict get $algo_reg_val repeatloop_b_max]
+          } else {
+            iWrite ${controller_instance}.REPEATLOOP_B_MAX_REG 0b0
+          }
+          if { [dict exists $algo_reg_val repeatloop_a_loop3] } {
+            iWrite ${controller_instance}.REPEATLOOP_A_LOOP3_REG 0b[dict get $algo_reg_val repeatloop_a_loop3]
+          } else {
+            iWrite ${controller_instance}.REPEATLOOP_A_LOOP3_REG 0b0
+          }
+          if { [dict exists $algo_reg_val repeatloop_a_loop2] } {
+            iWrite ${controller_instance}.REPEATLOOP_A_LOOP2_REG 0b[dict get $algo_reg_val repeatloop_a_loop2]
+          } else {
+            iWrite ${controller_instance}.REPEATLOOP_A_LOOP2_REG 0b0
+          }
+          if { [dict exists $algo_reg_val repeatloop_a_loop1] } {
+            iWrite ${controller_instance}.REPEATLOOP_A_LOOP1_REG 0b[dict get $algo_reg_val repeatloop_a_loop1]
+          } else {
+            iWrite ${controller_instance}.REPEATLOOP_A_LOOP1_REG 0b0
+          }
+          if { [dict exists $algo_reg_val repeatloop_a_pointer] } {
+            iWrite ${controller_instance}.REPEATLOOP_A_POINTER_REG 0b[dict get $algo_reg_val repeatloop_a_pointer]
+          } else {
+            iWrite ${controller_instance}.REPEATLOOP_A_POINTER_REG 0b0
+          }
+          if { [dict exists $algo_reg_val repeatloop_a_max] } {
+            iWrite ${controller_instance}.REPEATLOOP_A_MAX_REG 0b[dict get $algo_reg_val repeatloop_a_max]
+          } else {
+            iWrite ${controller_instance}.REPEATLOOP_A_MAX_REG 0b0
+          }
+          if { [dict exists $algo_reg_val number_y0_bits_b] } {
+            iWrite ${controller_instance}.B_Y0_SEG_DEF_REG 0b[dict get $algo_reg_val number_y0_bits_b]
+          } else {
+            iWrite ${controller_instance}.B_Y0_SEG_DEF_REG 0b0
+          }
+          if { [dict exists $algo_reg_val number_x0_bits_b] } {
+            iWrite ${controller_instance}.B_X0_SEG_DEF_REG 0b[dict get $algo_reg_val number_x0_bits_b]
+          } else {
+            iWrite ${controller_instance}.B_X0_SEG_DEF_REG 0b0
+          }
+          if { [dict exists $algo_reg_val x1_carry_in_b] } {
+            iWrite ${controller_instance}.B_X1_ADD_SEG_LINK_REG 0b[dict get $algo_reg_val x1_carry_in_b]
+            dict set short_chain_const_registers_dict ${controller_instance}.B_X1_ADD_SEG_LINK_REG 0b[dict get $algo_reg_val x1_carry_in_b] 
+          } else {
+            iWrite ${controller_instance}.B_X1_ADD_SEG_LINK_REG 0b0
+            dict set short_chain_const_registers_dict ${controller_instance}.B_X1_ADD_SEG_LINK_REG 0b0 
+          }
+          if { [dict exists $algo_reg_val x0_carry_in_b] } {
+            iWrite ${controller_instance}.B_X0_ADD_SEG_LINK_REG 0b[dict get $algo_reg_val x0_carry_in_b]
+            dict set short_chain_const_registers_dict ${controller_instance}.B_X0_ADD_SEG_LINK_REG 0b[dict get $algo_reg_val x0_carry_in_b] 
+          } else {
+            iWrite ${controller_instance}.B_X0_ADD_SEG_LINK_REG 0b0
+            dict set short_chain_const_registers_dict ${controller_instance}.B_X0_ADD_SEG_LINK_REG 0b0 
+          }
+          if { [dict exists $algo_reg_val y1_carry_in_b] } {
+            iWrite ${controller_instance}.B_Y1_ADD_SEG_LINK_REG 0b[dict get $algo_reg_val y1_carry_in_b]
+            dict set short_chain_const_registers_dict ${controller_instance}.B_Y1_ADD_SEG_LINK_REG 0b[dict get $algo_reg_val y1_carry_in_b] 
+          } else {
+            iWrite ${controller_instance}.B_Y1_ADD_SEG_LINK_REG 0b0
+            dict set short_chain_const_registers_dict ${controller_instance}.B_Y1_ADD_SEG_LINK_REG 0b0 
+          }
+          if { [dict exists $algo_reg_val y0_carry_in_b] } {
+            iWrite ${controller_instance}.B_Y0_ADD_SEG_LINK_REG 0b[dict get $algo_reg_val y0_carry_in_b]
+            dict set short_chain_const_registers_dict ${controller_instance}.B_Y0_ADD_SEG_LINK_REG 0b[dict get $algo_reg_val y0_carry_in_b] 
+          } else {
+            iWrite ${controller_instance}.B_Y0_ADD_SEG_LINK_REG 0b0
+            dict set short_chain_const_registers_dict ${controller_instance}.B_Y0_ADD_SEG_LINK_REG 0b0 
+          }
+          if { [dict exists $algo_reg_val number_y0_bits_a] } {
+            iWrite ${controller_instance}.A_Y0_SEG_DEF_REG 0b[dict get $algo_reg_val number_y0_bits_a]
+          } else {
+            iWrite ${controller_instance}.A_Y0_SEG_DEF_REG 0b0
+          }
+          if { [dict exists $algo_reg_val number_x0_bits_a] } {
+            iWrite ${controller_instance}.A_X0_SEG_DEF_REG 0b[dict get $algo_reg_val number_x0_bits_a]
+          } else {
+            iWrite ${controller_instance}.A_X0_SEG_DEF_REG 0b0
+          }
+          if { [dict exists $algo_reg_val x1_carry_in_a] } {
+            iWrite ${controller_instance}.A_X1_ADD_SEG_LINK_REG 0b[dict get $algo_reg_val x1_carry_in_a]
+            dict set short_chain_const_registers_dict ${controller_instance}.A_X1_ADD_SEG_LINK_REG 0b[dict get $algo_reg_val x1_carry_in_a] 
+          } else {
+            iWrite ${controller_instance}.A_X1_ADD_SEG_LINK_REG 0b0
+            dict set short_chain_const_registers_dict ${controller_instance}.A_X1_ADD_SEG_LINK_REG 0b0 
+          }
+          if { [dict exists $algo_reg_val x0_carry_in_a] } {
+            iWrite ${controller_instance}.A_X0_ADD_SEG_LINK_REG 0b[dict get $algo_reg_val x0_carry_in_a]
+            dict set short_chain_const_registers_dict ${controller_instance}.A_X0_ADD_SEG_LINK_REG 0b[dict get $algo_reg_val x0_carry_in_a] 
+          } else {
+            iWrite ${controller_instance}.A_X0_ADD_SEG_LINK_REG 0b0
+            dict set short_chain_const_registers_dict ${controller_instance}.A_X0_ADD_SEG_LINK_REG 0b0 
+          }
+          if { [dict exists $algo_reg_val y1_carry_in_a] } {
+            iWrite ${controller_instance}.A_Y1_ADD_SEG_LINK_REG 0b[dict get $algo_reg_val y1_carry_in_a]
+            dict set short_chain_const_registers_dict ${controller_instance}.A_Y1_ADD_SEG_LINK_REG 0b[dict get $algo_reg_val y1_carry_in_a] 
+          } else {
+            iWrite ${controller_instance}.A_Y1_ADD_SEG_LINK_REG 0b0
+            dict set short_chain_const_registers_dict ${controller_instance}.A_Y1_ADD_SEG_LINK_REG 0b0 
+          }
+          if { [dict exists $algo_reg_val y0_carry_in_a] } {
+            iWrite ${controller_instance}.A_Y0_ADD_SEG_LINK_REG 0b[dict get $algo_reg_val y0_carry_in_a]
+            dict set short_chain_const_registers_dict ${controller_instance}.A_Y0_ADD_SEG_LINK_REG 0b[dict get $algo_reg_val y0_carry_in_a] 
+          } else {
+            iWrite ${controller_instance}.A_Y0_ADD_SEG_LINK_REG 0b0
+            dict set short_chain_const_registers_dict ${controller_instance}.A_Y0_ADD_SEG_LINK_REG 0b0 
+          }
+          if { [dict exists $algo_reg_val load_row_address_max] } {
+            iWrite ${controller_instance}.X_ADD_REG_MAX 0b[dict get $algo_reg_val load_row_address_max]
+            if {[dict exists $algo_reg_val select_common_address_min_max]} {
+              if {[dict get $algo_reg_val select_common_address_min_max]} {
+                dict set short_chain_const_registers_dict ${controller_instance}.X_ADD_REG_MAX 0b[dict get $algo_reg_val load_row_address_max] 
+              }
+            }
+          } else {
+            iWrite ${controller_instance}.X_ADD_REG_MAX 0b0
+            if {[dict exists $algo_reg_val select_common_address_min_max]} {
+             if {[dict get $algo_reg_val select_common_address_min_max]} {
+                dict set short_chain_const_registers_dict ${controller_instance}.X_ADD_REG_MAX 0b0 
+              }
+            }
+          }
+          if { [dict exists $algo_reg_val load_row_address_min] } {
+            iWrite ${controller_instance}.X_ADD_REG_MIN 0b[dict get $algo_reg_val load_row_address_min]
+            if {[dict exists $algo_reg_val select_common_address_min_max]} {
+              if {[dict get $algo_reg_val select_common_address_min_max]} {
+                dict set short_chain_const_registers_dict ${controller_instance}.X_ADD_REG_MIN 0b[dict get $algo_reg_val load_row_address_min] 
+              }
+            }
+          } else {
+            iWrite ${controller_instance}.X_ADD_REG_MIN 0b0
+            if {[dict exists $algo_reg_val select_common_address_min_max]} {
+             if {[dict get $algo_reg_val select_common_address_min_max]} {
+                dict set short_chain_const_registers_dict ${controller_instance}.X_ADD_REG_MIN 0b0 
+              }
+            }
+          }
+          if { [dict exists $algo_reg_val load_column_address_max] } {
+            iWrite ${controller_instance}.Y_ADD_REG_MAX 0b[dict get $algo_reg_val load_column_address_max]
+            if {[dict exists $algo_reg_val select_common_address_min_max]} {
+              if {[dict get $algo_reg_val select_common_address_min_max]} {
+                dict set short_chain_const_registers_dict ${controller_instance}.Y_ADD_REG_MAX 0b[dict get $algo_reg_val load_column_address_max] 
+              }
+            }
+          } else {
+            iWrite ${controller_instance}.Y_ADD_REG_MAX 0b0
+            if {[dict exists $algo_reg_val select_common_address_min_max]} {
+             if {[dict get $algo_reg_val select_common_address_min_max]} {
+                dict set short_chain_const_registers_dict ${controller_instance}.Y_ADD_REG_MAX 0b0 
+              }
+            }
+          }
+          if { [dict exists $algo_reg_val load_column_address_min] } {
+            iWrite ${controller_instance}.Y_ADD_REG_MIN 0b[dict get $algo_reg_val load_column_address_min]
+            if {[dict exists $algo_reg_val select_common_address_min_max]} {
+              if {[dict get $algo_reg_val select_common_address_min_max]} {
+                dict set short_chain_const_registers_dict ${controller_instance}.Y_ADD_REG_MIN 0b[dict get $algo_reg_val load_column_address_min] 
+              }
+            }
+          } else {
+            iWrite ${controller_instance}.Y_ADD_REG_MIN 0b0
+            if {[dict exists $algo_reg_val select_common_address_min_max]} {
+             if {[dict get $algo_reg_val select_common_address_min_max]} {
+                dict set short_chain_const_registers_dict ${controller_instance}.Y_ADD_REG_MIN 0b0 
+              }
+            }
+          }
+          if { [dict exists $algo_reg_val select_common_address_min_max] } {
+            iWrite ${controller_instance}.SELECT_COMMON_ADD_MIN_MAX_REG 0b[dict get $algo_reg_val select_common_address_min_max]
+          } else {
+            iWrite ${controller_instance}.SELECT_COMMON_ADD_MIN_MAX_REG 0b0
+          }
         }
         set common_algo On
       } else {
@@ -991,6 +1907,8 @@ iProc firebird7_in_gate1_tessent_mbist_c1_controller_RunTimeProg {
       dict set short_chain_const_registers_dict ${controller_instance}.ALGO_SEL_CNT_REG $common_algo
       iWrite ${controller_instance}.ALGO_SEL_REG $algo_code
       dict set short_chain_const_registers_dict ${controller_instance}.ALGO_SEL_REG $algo_code 
+      iWrite ${controller_instance}.MICROCODE_EN_REG $microcode_en
+      dict set short_chain_const_registers_dict ${controller_instance}.MICROCODE_EN_REG $microcode_en
       if { [dict exists $address_generator load_row_address_a] } {
          iWrite ${controller_instance}.A_ADD_REG_X 0b[dict get $address_generator load_row_address_a]
       } else {
@@ -1069,6 +1987,17 @@ iProc firebird7_in_gate1_tessent_mbist_c1_controller_RunTimeProg {
       } else { 
          iWrite ${controller_instance}.SELECT_COMMON_DATA_PAT_REG 0b0
          dict set short_chain_const_registers_dict ${controller_instance}.SELECT_COMMON_DATA_PAT_REG 0b0
+      }
+      if { [dict exists $countera load_counter_a_start_count] } {
+         iWrite ${controller_instance}.COUNTERA_CNT 0b[dict get $countera load_counter_a_start_count]
+      }
+      if { [dict exists $countera load_counter_a_end_count] } {
+         iWrite ${controller_instance}.COUNTERA_REG 0b[dict get $countera load_counter_a_end_count]
+      }
+      if { [dict exists $delaycounter load_delay_counter_end_count] } {
+         iWrite ${controller_instance}.DELAYCOUNTER_REG 0b[dict get $delaycounter load_delay_counter_end_count]
+      } else {
+         iWrite ${controller_instance}.DELAYCOUNTER_REG 0b0
       }
       if { $memory_reset } {
         iNote "Enabling memory reset mode (writing zeros to all memory locations)"
@@ -1469,6 +2398,9 @@ iProc firebird7_in_gate1_tessent_mbist_c1_controller_RunTimeProg {
         set check_go_pre_exec 0
         set check_done_pre_exec 0
       }
+      if { [string match -nocase "auto*" $failure_limit] } {
+        set check_done_pre_exec 0
+      }
       if { $check_go_pre_exec } {
         if { $compare_go } {
           iNote "Checking GO is FAIL before execution"
@@ -1553,6 +2485,8 @@ iProc firebird7_in_gate1_tessent_mbist_c1_controller_RunTimeProg {
          iRead ${controller_instance}.REPEATLOOP_A_CNTR_REG 0b0
          iNote "Sampling 2-bit RepeatLoop B Counter"
          iRead ${controller_instance}.REPEATLOOP_B_CNTR_REG 0b0
+         iNote "Sampling 4-bit CounterA Counter"
+         iRead ${controller_instance}.COUNTERA_CNT 0b0
          iNote "Sampling 8-bit DelayCounter"
          iRead ${controller_instance}.DELAYCOUNTER_CNT 0b0
          iNote "Sampling 8-bit X-Segment of Address Register A"

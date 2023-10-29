@@ -11,7 +11,7 @@
 //--------------------------------------------------------------------------
 //  File created by: Tessent Shell
 //          Version: 2022.4
-//       Created on: Mon Oct 23 12:51:38 PDT 2023
+//       Created on: Sun Oct 29 14:14:07 PDT 2023
 //--------------------------------------------------------------------------
 
 Module firebird7_in_gate1_tessent_tdr_spare_insysbist_tdr {
@@ -35,7 +35,7 @@ Module firebird7_in_gate1_tessent_tdr_spare_insysbist_tdr {
  
   ScanRegister tdr[7:0] {
     ScanInSource     ijtag_si;
-    CaptureSource    8'b00000000;
+    CaptureSource    tdr[7:0];
     ResetValue       8'bXXXXXXXX;
     DefaultLoadValue 8'b00000000;
   }

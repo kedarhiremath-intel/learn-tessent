@@ -1,0 +1,19 @@
+    DefaultsSpecification(user) {
+        DftSpecification {
+            insert_tck_occ_for_scan_tested_instruments : on;
+            compress_concatenated_netlist : on;
+            MemoryBist {
+                //clock_partitioning : per_clock_domain;
+                physical_domain_size_ratio : 100;
+                max_comparators_per_physical_domain : unlimited;
+                memory_interface_reuse_method : non_unique_instances_only;
+                AlgorithmResourceOptions {
+                    soft_instruction_count : 8;
+                }
+                MemoryInterfaceOptions {
+                    scan_bypass_logic : sync_mux;
+                }
+            }
+        }
+    }
+

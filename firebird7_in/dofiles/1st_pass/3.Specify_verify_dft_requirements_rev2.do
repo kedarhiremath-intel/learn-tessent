@@ -1,27 +1,40 @@
 // This script is a basic demonstration of how to specify the MBIST requirements before creating the DFT Specification.
 
+
+// Step 1. Set system mode to "setup".
 set_system_mode setup
 
-add_clocks clk -label clk_bbm -period 783
 
-
-// Step 1. Use the "set_dft_specification_requirements" command to specify the design rules to check, and the instrument types to include in the DFT Specification.
-// Use the "-memory_test on" option to implement MBIST.
+// Step 2. Enable memory BIST and repair.
 set_dft_specification_requirements -memory_test on
 
 
-// Step 2. Load the physical layout information through a standard DEF file.
-// This file must contain the physical locations of the memories.
+// Step 3. Load physical layout information.
 read_def ./inputs/from_SD/firebird7_in.def.gz
 
 
-error ""
+// Step 4. Load power domain information.
+read_upf ./inputs/from_Customer/firebird7_in.upf
 
 
-// Step 3. Specify the default values for MBIST used by the "create_dft_specification" command by reading in a DefaultsSpecification wrapper.
+// Step 5. Change default settings.
 read_config_data ./inputs/from_MINT/intel_mbist_defaults.dft_spec
+read_config_data ./inputs/from_MINT/user_mbist_defaults.dft_spec
 
 
-// Step 4. Designate MBIST partitioning groups to explicitly assign memory instances to MBIST controllers.
+// Step 6. Add clocks.
+add_clocks clk -label clk_bbm -period 783ps
+report_clocks
+
+// Review the functional clock definitions in the Customer-provided SDC:
+// SDC File: ./inputs/from_Customer/firebird7_in.sdc
+// create_clock [get_ports clk] -name clk_bbm -period 783
+
+
+// Step 7. Change memory partitioning.
 dofile ./inputs/from_SD/partition_memories.do
+
+
+// Step 8. Check the design rules.
+check_design_rules
 
