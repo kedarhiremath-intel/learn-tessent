@@ -1,7 +1,11 @@
 //-------------------------------------------------
 //  File created by: Tessent Shell
 //          Version: 2022.4
+<<<<<<< HEAD
+//       Created on: Sun Oct 29 23:51:47 PDT 2023
+=======
 //       Created on: Sun Oct 29 14:15:43 PDT 2023
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 //-------------------------------------------------
 
 
@@ -999,6 +1003,10 @@ DftSpecification(firebird7_in,gate1) {
       AdvancedOptions {
         algorithm : IntelLVPMOVIFastx;
         operation_set : SyncCustom;
+<<<<<<< HEAD
+        extra_algorithms : IntelLVPmarchCExt, IntelLVFailinjFx, IntelLVAddrDecodeFx, IntelLVAddrDecodeRowFastx, IntelLVAddrDecodeRowOnlyFastx, IntelLVArrayIFastx, IntelLVArrayWriteFastx, IntelLVGalColumnFastx, IntelLVGalWRrecColFastx, IntelLVHammer10Fastx, IntelLVMarchCMinusFastx, IntelLVMarchGFastx, IntelLVMarchRAWFastx, IntelLVMarchSLFastx, IntelLVMatspDWOneFastx, IntelLVMatspDWThreeFastx, IntelLVMatspDWTwoFastx, IntelLVMatsppFastx, IntelLVScanFastx, IntelLVSegSelFastx, IntelLVButterflyFastx, IntelLVMarchSRFastx, IntelLVMarchSSFastx, IntelLVButterflyWriteFastx, IntelLVTowalk2Fastx, IntelLVAddrDecodeColumnFastx, IntelLVCellStrFastx, IntelLVGalDiagFastx, IntelLVHammerFastx, IntelLVSlideDiagFx, IntelLVSlideDiagFastxDiagEven, IntelLVSlideDiagFastxRead, IntelLVWalkColFastx, IntelLVAddrDecodeFy, IntelLVButterflyWriteFasty, IntelLVGalWRrecRowFasty, IntelLVHammer10Fasty, IntelLVMarchCMinusFasty, IntelLVMarchGFasty, IntelLVMarchRAWFasty, IntelLVMarchSLFasty, IntelLVMatsppFasty, IntelLVPMOVIFasty, IntelLVScanFasty, IntelLVAddrDecodeColumnFasty, IntelLVAddrDecodeColumnOnlyFasty, IntelLVAddrDecodeRowFasty, IntelLVButterflyFasty, IntelLVMarchSRFasty, IntelLVMarchSSFasty, IntelLVGalRowFasty, IntelLVMatspFasty, IntelLVSlidDiagStressFasty, IntelLVTowalk2Fasty, IntelLVWalkDiagFasty, IntelLVWalkRowFasty, IntelFIFAReadRecoveryFx_FIFA, IntelFIFAWriteNOPTransitionFx_FIFA, IntelFIFAWriteRecoveryFx_FIFA, IntelFIFAWriteTransitionFx_FIFA, IntelLVArrayReadLoopFx_FIFA, IntelLVArrayWriteAndInverseLoopFx_FIFA, IntelLVArrayWriteLoopFx_FIFA, IntelLVArrayWriteReadLoopFx_FIFA, IntelLVArrayDAddressRasterFx, IntelLVPMOVIRasterFastx_NOCDP, IntelLVPMOVIRasterFx_SAR, IntelLVArrayRead10Fastx, IntelLVArrayRead11Fastx, IntelLVArrayReadFastx, IntelLVArrayWrite10Fastx, IntelLVArrayWrite11Fastx, IntelWriteOneAddress, IntelLVArrayWriteAddrRangeFx, IntelLVPMOVIFastx;
+=======
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
         extra_operation_sets : SyncCustom;
         incremental_test_mode : on;
         observation_xor_size : 3;

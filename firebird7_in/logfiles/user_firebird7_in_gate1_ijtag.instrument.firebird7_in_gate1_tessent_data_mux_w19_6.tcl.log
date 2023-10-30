@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+Your job has been queued (JobID 8476316311376830, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
+=======
 Your job has been queued (JobID 8476283042300631, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
                            Design Compiler Graphical 
                                  DC Ultra (TM)
@@ -8047,18 +8051,18 @@ Information: Design 'firebird7_in_gate1_tessent_data_mux_w19_6' has no optimizat
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:09       1.1      0.00       0.0       1.9                          
-    0:00:09       1.1      0.00       0.0       1.9                          
-    0:00:09       1.1      0.00       0.0       1.9                          
-    0:00:09       1.1      0.00       0.0       1.9                          
-    0:00:09       1.1      0.00       0.0       1.9                          
-    0:00:09       1.1      0.00       0.0       1.9                          
-    0:00:09       1.1      0.00       0.0       1.9                          
-    0:00:09       1.1      0.00       0.0       1.9                          
-    0:00:09       1.1      0.00       0.0       1.9                          
-    0:00:09       1.1      0.00       0.0       1.9                          
-    0:00:09       1.1      0.00       0.0       1.9                          
-    0:00:09       1.1      0.00       0.0       1.9                          
+    0:00:10       1.1      0.00       0.0       1.9                          
+    0:00:10       1.1      0.00       0.0       1.9                          
+    0:00:10       1.1      0.00       0.0       1.9                          
+    0:00:11       1.1      0.00       0.0       1.9                          
+    0:00:11       1.1      0.00       0.0       1.9                          
+    0:00:11       1.1      0.00       0.0       1.9                          
+    0:00:11       1.1      0.00       0.0       1.9                          
+    0:00:11       1.1      0.00       0.0       1.9                          
+    0:00:11       1.1      0.00       0.0       1.9                          
+    0:00:11       1.1      0.00       0.0       1.9                          
+    0:00:11       1.1      0.00       0.0       1.9                          
+    0:00:11       1.1      0.00       0.0       1.9                          
 
 
 
@@ -8069,9 +8073,15 @@ Information: Design 'firebird7_in_gate1_tessent_data_mux_w19_6' has no optimizat
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
+<<<<<<< HEAD
+    0:00:11       1.1      0.00       0.0       1.9                          
+    0:00:11       1.1      0.00       0.0       1.9                          
+    0:00:11       1.1      0.00       0.0       1.9                          
+=======
     0:00:09       1.1      0.00       0.0       1.9                          
     0:00:09       1.1      0.00       0.0       1.9                          
     0:00:10       1.1      0.00       0.0       1.9                          
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 
   Beginning Design Rule Fixing  (min_capacitance)
@@ -8081,7 +8091,11 @@ Information: Design 'firebird7_in_gate1_tessent_data_mux_w19_6' has no optimizat
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
+<<<<<<< HEAD
+    0:00:11       1.1      0.00       0.0       1.9                          
+=======
     0:00:10       1.1      0.00       0.0       1.9                          
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -8091,6 +8105,19 @@ Information: Design 'firebird7_in_gate1_tessent_data_mux_w19_6' has no optimizat
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
+<<<<<<< HEAD
+    0:00:11       1.1      0.00       0.0       1.9                          
+    0:00:11       1.1      0.00       0.0       1.9                          
+    0:00:11       1.1      0.00       0.0       1.9                          
+    0:00:11       1.1      0.00       0.0       1.9                          
+    0:00:11       1.1      0.00       0.0       1.9                          
+    0:00:11       1.1      0.00       0.0       1.9                          
+    0:00:11       1.1      0.00       0.0       1.9                          
+    0:00:11       1.1      0.00       0.0       1.9                          
+    0:00:11       1.1      0.00       0.0       1.9                          
+    0:00:11       1.1      0.00       0.0       1.9                          
+    0:00:11       1.1      0.00       0.0       1.9                          
+=======
     0:00:10       1.1      0.00       0.0       1.9                          
     0:00:10       1.1      0.00       0.0       1.9                          
     0:00:10       1.1      0.00       0.0       1.9                          
@@ -8102,6 +8129,7 @@ Information: Design 'firebird7_in_gate1_tessent_data_mux_w19_6' has no optimizat
     0:00:10       1.1      0.00       0.0       1.9                          
     0:00:10       1.1      0.00       0.0       1.9                          
     0:00:10       1.1      0.00       0.0       1.9                          
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -8209,7 +8237,12 @@ exit
 
 Memory usage for this session 2172 Mbytes.
 Memory usage for this session including child processes 2172 Mbytes.
+<<<<<<< HEAD
+CPU usage for this session 20 seconds ( 0.01 hours ).
+Elapsed time for this session 43 seconds ( 0.01 hours ).
+=======
 CPU usage for this session 18 seconds ( 0.01 hours ).
 Elapsed time for this session 51 seconds ( 0.01 hours ).
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 Thank you...

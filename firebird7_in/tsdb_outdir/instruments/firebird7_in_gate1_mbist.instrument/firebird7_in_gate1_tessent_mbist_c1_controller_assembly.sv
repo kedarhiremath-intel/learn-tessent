@@ -11,7 +11,11 @@
 //--------------------------------------------------------------------------
 //  File created by: Tessent Shell
 //          Version: 2022.4
+<<<<<<< HEAD
+//       Created on: Sun Oct 29 23:51:19 PDT 2023
+=======
 //       Created on: Sun Oct 29 14:15:14 PDT 2023
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 //--------------------------------------------------------------------------
 
 
@@ -1823,7 +1827,7 @@ module firebird7_in_gate1_tessent_mbist_c1_controller_assembly(LV_TM, MEM_BYPASS
       .bistEn(bistEn), .toBist(toBist), .fromBist(MBISTPG_SO), .so(so)
   );
   firebird7_in_gate1_tessent_mbist_c1_controller firebird7_in_gate1_tessent_mbist_c1_controller_inst(
-      .MBIST_RA_PRSRV_FUSE_VAL(PRESERVE_FUSE_REGISTER), .MBISTPG_ALGO_SEL(1'b0), 
+      .MBIST_RA_PRSRV_FUSE_VAL(PRESERVE_FUSE_REGISTER), .MBISTPG_ALGO_SEL(7'b0000000), 
       .MBISTPG_ALGO_MODE({BIST_ALGO_MODE1, BIST_ALGO_MODE0}), .MBISTPG_MEM_RST(ENABLE_MEM_RESET), 
       .MBISTPG_REDUCED_ADDR_CNT_EN(REDUCED_ADDRESS_COUNT), .MEM_BYPASS_EN(memory_bypass_to_en), 
       .MCP_BOUNDING_EN(mcp_bounding_to_en), .MEM0_BIST_COLLAR_SO(BIST_SO_ts10), 

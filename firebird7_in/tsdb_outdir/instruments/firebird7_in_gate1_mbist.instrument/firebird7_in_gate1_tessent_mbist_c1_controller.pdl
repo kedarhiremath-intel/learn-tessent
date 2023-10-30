@@ -11,7 +11,11 @@
 #---------------------------------------------------------------------------------
 #  File created by: Tessent Shell                                                -
 #          Version: 2022.4                                                       -
+<<<<<<< HEAD
+#       Created on: Sun Oct 29 23:50:45 PDT 2023                                 -
+=======
 #       Created on: Sun Oct 29 14:14:42 PDT 2023                                 -
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 #---------------------------------------------------------------------------------
 
 
@@ -128,8 +132,87 @@ foreach controller_parent_icl_module [get_instrument_parent_icl_module_list fire
     set algo_code 0b0
     set microcode_en 0b0 
     if { $algorithm ne "" } {
+<<<<<<< HEAD
+      dict set DefaultAlgo intellvpmovifastx {0b0000000}
+      dict set DefaultAlgo intellvpmarchcext {0b0000001}
+      dict set DefaultAlgo intellvfailinjfx {0b0000010}
+      dict set DefaultAlgo intellvaddrdecodefx {0b0000011}
+      dict set DefaultAlgo intellvaddrdecoderowfastx {0b0000100}
+      dict set DefaultAlgo intellvaddrdecoderowonlyfastx {0b0000101}
+      dict set DefaultAlgo intellvarrayifastx {0b0000110}
+      dict set DefaultAlgo intellvarraywritefastx {0b0000111}
+      dict set DefaultAlgo intellvgalcolumnfastx {0b0001000}
+      dict set DefaultAlgo intellvgalwrreccolfastx {0b0001001}
+      dict set DefaultAlgo intellvhammer10fastx {0b0001010}
+      dict set DefaultAlgo intellvmarchcminusfastx {0b0001011}
+      dict set DefaultAlgo intellvmarchgfastx {0b0001100}
+      dict set DefaultAlgo intellvmarchrawfastx {0b0001101}
+      dict set DefaultAlgo intellvmarchslfastx {0b0001110}
+      dict set DefaultAlgo intellvmatspdwonefastx {0b0001111}
+      dict set DefaultAlgo intellvmatspdwthreefastx {0b0010000}
+      dict set DefaultAlgo intellvmatspdwtwofastx {0b0010001}
+      dict set DefaultAlgo intellvmatsppfastx {0b0010010}
+      dict set DefaultAlgo intellvscanfastx {0b0010011}
+      dict set DefaultAlgo intellvsegselfastx {0b0010100}
+      dict set DefaultAlgo intellvbutterflyfastx {0b0010101}
+      dict set DefaultAlgo intellvmarchsrfastx {0b0010110}
+      dict set DefaultAlgo intellvmarchssfastx {0b0010111}
+      dict set DefaultAlgo intellvbutterflywritefastx {0b0011000}
+      dict set DefaultAlgo intellvtowalk2fastx {0b0011001}
+      dict set DefaultAlgo intellvaddrdecodecolumnfastx {0b0011010}
+      dict set DefaultAlgo intellvcellstrfastx {0b0011011}
+      dict set DefaultAlgo intellvgaldiagfastx {0b0011100}
+      dict set DefaultAlgo intellvhammerfastx {0b0011101}
+      dict set DefaultAlgo intellvslidediagfx {0b0011110}
+      dict set DefaultAlgo intellvslidediagfastxdiageven {0b0011111}
+      dict set DefaultAlgo intellvslidediagfastxread {0b0100000}
+      dict set DefaultAlgo intellvwalkcolfastx {0b0100001}
+      dict set DefaultAlgo intellvaddrdecodefy {0b0100010}
+      dict set DefaultAlgo intellvbutterflywritefasty {0b0100011}
+      dict set DefaultAlgo intellvgalwrrecrowfasty {0b0100100}
+      dict set DefaultAlgo intellvhammer10fasty {0b0100101}
+      dict set DefaultAlgo intellvmarchcminusfasty {0b0100110}
+      dict set DefaultAlgo intellvmarchgfasty {0b0100111}
+      dict set DefaultAlgo intellvmarchrawfasty {0b0101000}
+      dict set DefaultAlgo intellvmarchslfasty {0b0101001}
+      dict set DefaultAlgo intellvmatsppfasty {0b0101010}
+      dict set DefaultAlgo intellvpmovifasty {0b0101011}
+      dict set DefaultAlgo intellvscanfasty {0b0101100}
+      dict set DefaultAlgo intellvaddrdecodecolumnfasty {0b0101101}
+      dict set DefaultAlgo intellvaddrdecodecolumnonlyfasty {0b0101110}
+      dict set DefaultAlgo intellvaddrdecoderowfasty {0b0101111}
+      dict set DefaultAlgo intellvbutterflyfasty {0b0110000}
+      dict set DefaultAlgo intellvmarchsrfasty {0b0110001}
+      dict set DefaultAlgo intellvmarchssfasty {0b0110010}
+      dict set DefaultAlgo intellvgalrowfasty {0b0110011}
+      dict set DefaultAlgo intellvmatspfasty {0b0110100}
+      dict set DefaultAlgo intellvsliddiagstressfasty {0b0110101}
+      dict set DefaultAlgo intellvtowalk2fasty {0b0110110}
+      dict set DefaultAlgo intellvwalkdiagfasty {0b0110111}
+      dict set DefaultAlgo intellvwalkrowfasty {0b0111000}
+      dict set DefaultAlgo intelfifareadrecoveryfx_fifa {0b0111001}
+      dict set DefaultAlgo intelfifawritenoptransitionfx_fifa {0b0111010}
+      dict set DefaultAlgo intelfifawriterecoveryfx_fifa {0b0111011}
+      dict set DefaultAlgo intelfifawritetransitionfx_fifa {0b0111100}
+      dict set DefaultAlgo intellvarrayreadloopfx_fifa {0b0111101}
+      dict set DefaultAlgo intellvarraywriteandinverseloopfx_fifa {0b0111110}
+      dict set DefaultAlgo intellvarraywriteloopfx_fifa {0b0111111}
+      dict set DefaultAlgo intellvarraywritereadloopfx_fifa {0b1000000}
+      dict set DefaultAlgo intellvarraydaddressrasterfx {0b1000001}
+      dict set DefaultAlgo intellvpmovirasterfastx_nocdp {0b1000010}
+      dict set DefaultAlgo intellvpmovirasterfx_sar {0b1000011}
+      dict set DefaultAlgo intellvarrayread10fastx {0b1000100}
+      dict set DefaultAlgo intellvarrayread11fastx {0b1000101}
+      dict set DefaultAlgo intellvarrayreadfastx {0b1000110}
+      dict set DefaultAlgo intellvarraywrite10fastx {0b1000111}
+      dict set DefaultAlgo intellvarraywrite11fastx {0b1001000}
+      dict set DefaultAlgo intelwriteoneaddress {0b1001001}
+      dict set DefaultAlgo intellvarraywriteaddrrangefx {0b1001010}
+      dict set DefaultAlgo smarchchkbci {0b1001011}
+=======
       dict set DefaultAlgo intellvpmovifastx {0b0}
       dict set DefaultAlgo smarchchkbci {0b1}
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
       set algorithm_l [string tolower ${algorithm}]
       if { [dict exists $DefaultAlgo ${algorithm_l}] } {
         iNote "Selecting algorithm ${algorithm}"
@@ -227,6 +310,14 @@ foreach controller_parent_icl_module [get_instrument_parent_icl_module_list fire
         } else {
           iWrite ${controller_instance}.INST0_NEXT_CONDITIONS 0b0
         }
+<<<<<<< HEAD
+        if { [dict exists $algo_reg_val inst0_disable_memories_without_groupwriteenable] } {
+          iWrite ${controller_instance}.INST0_DISABLE_GWE 0b[dict get $algo_reg_val inst0_disable_memories_without_groupwriteenable]
+        } else {
+          iWrite ${controller_instance}.INST0_DISABLE_GWE 0b0
+        }
+=======
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
         if { [dict exists $algo_reg_val inst1_operation_select] } {
           iWrite ${controller_instance}.INST1_OPERATION_SELECT 0b[dict get $algo_reg_val inst1_operation_select]
         } else {
@@ -307,6 +398,14 @@ foreach controller_parent_icl_module [get_instrument_parent_icl_module_list fire
         } else {
           iWrite ${controller_instance}.INST1_NEXT_CONDITIONS 0b0
         }
+<<<<<<< HEAD
+        if { [dict exists $algo_reg_val inst1_disable_memories_without_groupwriteenable] } {
+          iWrite ${controller_instance}.INST1_DISABLE_GWE 0b[dict get $algo_reg_val inst1_disable_memories_without_groupwriteenable]
+        } else {
+          iWrite ${controller_instance}.INST1_DISABLE_GWE 0b0
+        }
+=======
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
         if { [dict exists $algo_reg_val inst2_operation_select] } {
           iWrite ${controller_instance}.INST2_OPERATION_SELECT 0b[dict get $algo_reg_val inst2_operation_select]
         } else {
@@ -387,6 +486,14 @@ foreach controller_parent_icl_module [get_instrument_parent_icl_module_list fire
         } else {
           iWrite ${controller_instance}.INST2_NEXT_CONDITIONS 0b0
         }
+<<<<<<< HEAD
+        if { [dict exists $algo_reg_val inst2_disable_memories_without_groupwriteenable] } {
+          iWrite ${controller_instance}.INST2_DISABLE_GWE 0b[dict get $algo_reg_val inst2_disable_memories_without_groupwriteenable]
+        } else {
+          iWrite ${controller_instance}.INST2_DISABLE_GWE 0b0
+        }
+=======
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
         if { [dict exists $algo_reg_val inst3_operation_select] } {
           iWrite ${controller_instance}.INST3_OPERATION_SELECT 0b[dict get $algo_reg_val inst3_operation_select]
         } else {
@@ -467,6 +574,14 @@ foreach controller_parent_icl_module [get_instrument_parent_icl_module_list fire
         } else {
           iWrite ${controller_instance}.INST3_NEXT_CONDITIONS 0b0
         }
+<<<<<<< HEAD
+        if { [dict exists $algo_reg_val inst3_disable_memories_without_groupwriteenable] } {
+          iWrite ${controller_instance}.INST3_DISABLE_GWE 0b[dict get $algo_reg_val inst3_disable_memories_without_groupwriteenable]
+        } else {
+          iWrite ${controller_instance}.INST3_DISABLE_GWE 0b0
+        }
+=======
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
         if { [dict exists $algo_reg_val inst4_operation_select] } {
           iWrite ${controller_instance}.INST4_OPERATION_SELECT 0b[dict get $algo_reg_val inst4_operation_select]
         } else {
@@ -547,6 +662,14 @@ foreach controller_parent_icl_module [get_instrument_parent_icl_module_list fire
         } else {
           iWrite ${controller_instance}.INST4_NEXT_CONDITIONS 0b0
         }
+<<<<<<< HEAD
+        if { [dict exists $algo_reg_val inst4_disable_memories_without_groupwriteenable] } {
+          iWrite ${controller_instance}.INST4_DISABLE_GWE 0b[dict get $algo_reg_val inst4_disable_memories_without_groupwriteenable]
+        } else {
+          iWrite ${controller_instance}.INST4_DISABLE_GWE 0b0
+        }
+=======
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
         if { [dict exists $algo_reg_val inst5_operation_select] } {
           iWrite ${controller_instance}.INST5_OPERATION_SELECT 0b[dict get $algo_reg_val inst5_operation_select]
         } else {
@@ -627,6 +750,14 @@ foreach controller_parent_icl_module [get_instrument_parent_icl_module_list fire
         } else {
           iWrite ${controller_instance}.INST5_NEXT_CONDITIONS 0b0
         }
+<<<<<<< HEAD
+        if { [dict exists $algo_reg_val inst5_disable_memories_without_groupwriteenable] } {
+          iWrite ${controller_instance}.INST5_DISABLE_GWE 0b[dict get $algo_reg_val inst5_disable_memories_without_groupwriteenable]
+        } else {
+          iWrite ${controller_instance}.INST5_DISABLE_GWE 0b0
+        }
+=======
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
         if { [dict exists $algo_reg_val inst6_operation_select] } {
           iWrite ${controller_instance}.INST6_OPERATION_SELECT 0b[dict get $algo_reg_val inst6_operation_select]
         } else {
@@ -707,6 +838,14 @@ foreach controller_parent_icl_module [get_instrument_parent_icl_module_list fire
         } else {
           iWrite ${controller_instance}.INST6_NEXT_CONDITIONS 0b0
         }
+<<<<<<< HEAD
+        if { [dict exists $algo_reg_val inst6_disable_memories_without_groupwriteenable] } {
+          iWrite ${controller_instance}.INST6_DISABLE_GWE 0b[dict get $algo_reg_val inst6_disable_memories_without_groupwriteenable]
+        } else {
+          iWrite ${controller_instance}.INST6_DISABLE_GWE 0b0
+        }
+=======
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
         if { [dict exists $algo_reg_val inst7_operation_select] } {
           iWrite ${controller_instance}.INST7_OPERATION_SELECT 0b[dict get $algo_reg_val inst7_operation_select]
         } else {
@@ -787,6 +926,14 @@ foreach controller_parent_icl_module [get_instrument_parent_icl_module_list fire
         } else {
           iWrite ${controller_instance}.INST7_NEXT_CONDITIONS 0b0
         }
+<<<<<<< HEAD
+        if { [dict exists $algo_reg_val inst7_disable_memories_without_groupwriteenable] } {
+          iWrite ${controller_instance}.INST7_DISABLE_GWE 0b[dict get $algo_reg_val inst7_disable_memories_without_groupwriteenable]
+        } else {
+          iWrite ${controller_instance}.INST7_DISABLE_GWE 0b0
+        }
+=======
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
         if { [dict exists $algo_reg_val repeatloop_b_loop3] } {
           iWrite ${controller_instance}.REPEATLOOP_B_LOOP3_REG 0b[dict get $algo_reg_val repeatloop_b_loop3]
         } else {
@@ -981,7 +1128,7 @@ foreach controller_parent_icl_module [get_instrument_parent_icl_module_list fire
       }
       set common_algo On
     } else {
-      dict set StepAlgo 0 {0b0}
+      dict set StepAlgo 0 {0b0000000}
     }
     iWrite ${controller_instance}.ALGO_SEL_CNT_REG $common_algo
     dict set short_chain_const_registers_dict ${controller_instance}.ALGO_SEL_CNT_REG $common_algo
@@ -1565,7 +1712,11 @@ foreach controller_parent_icl_module [get_instrument_parent_icl_module_list fire
        iRead ${controller_instance}.REPEATLOOP_A_CNTR_REG 0b0
        iNote "Sampling 2-bit RepeatLoop B Counter"
        iRead ${controller_instance}.REPEATLOOP_B_CNTR_REG 0b0
+<<<<<<< HEAD
+       iNote "Sampling 28-bit CounterA Counter"
+=======
        iNote "Sampling 4-bit CounterA Counter"
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
        iRead ${controller_instance}.COUNTERA_CNT 0b0
        iNote "Sampling 8-bit DelayCounter"
        iRead ${controller_instance}.DELAYCOUNTER_CNT 0b0
@@ -2414,7 +2565,11 @@ foreach controller_parent_icl_module [get_instrument_parent_icl_module_list fire
        iRead ${controller_instance}.REPEATLOOP_A_CNTR_REG 0b0
        iNote "Sampling 2-bit RepeatLoop B Counter"
        iRead ${controller_instance}.REPEATLOOP_B_CNTR_REG 0b0
+<<<<<<< HEAD
+       iNote "Sampling 28-bit CounterA Counter"
+=======
        iNote "Sampling 4-bit CounterA Counter"
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
        iRead ${controller_instance}.COUNTERA_CNT 0b0
        iNote "Sampling 8-bit DelayCounter"
        iRead ${controller_instance}.DELAYCOUNTER_CNT 0b0

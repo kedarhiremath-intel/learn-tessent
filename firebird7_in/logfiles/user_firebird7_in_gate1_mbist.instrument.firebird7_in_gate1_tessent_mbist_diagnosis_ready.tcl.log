@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+Your job has been queued (JobID 8564160001174263, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
+=======
 Your job has been queued (JobID 8476216235302219, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
                            Design Compiler Graphical 
                                  DC Ultra (TM)
@@ -1370,16 +1374,28 @@ Inferred memory devices in process
 |       tdr_reg       | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
 ===============================================================================
 
+<<<<<<< HEAD
+Statistics for case statements in always block at line 1951 in file
+=======
 Statistics for case statements in always block at line 1949 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|           1952           |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 682 in file
+=======
 |           1950           |    auto/auto     |
 ===============================================
 
 Inferred memory devices in process
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 681 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1388,7 +1404,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 815 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 814 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1398,7 +1418,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1133 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1132 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ================================================================================
 |    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1407,7 +1431,11 @@ Inferred memory devices in process
 ================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1152 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1151 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1416,7 +1444,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1171 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1170 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1425,7 +1457,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1188 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1187 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ================================================================================
 |    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1434,7 +1470,11 @@ Inferred memory devices in process
 ================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1210 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1209 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1444,7 +1484,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1232 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1231 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1453,7 +1497,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1334 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1333 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1462,7 +1510,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1358 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1357 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =======================================================================================
 |        Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1471,16 +1523,28 @@ Inferred memory devices in process
 =======================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1398 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1397 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
+<<<<<<< HEAD
+|  ALGO_SEL_REG_reg   | Flip-flop |   7   |  Y  | N  | Y  | N  | Y  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1419 in file
+=======
 |  ALGO_SEL_REG_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | Y  | N  | N  |
 ===============================================================================
 
 Inferred memory devices in process
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1418 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ================================================================================
 |    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1489,7 +1553,11 @@ Inferred memory devices in process
 ================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1440 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1439 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =======================================================================================
 |        Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1498,7 +1566,11 @@ Inferred memory devices in process
 =======================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1461 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1460 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==========================================================================================
 |         Register Name          |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1507,7 +1579,11 @@ Inferred memory devices in process
 ==========================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1482 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1481 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =============================================================================================
 |           Register Name           |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1516,7 +1592,11 @@ Inferred memory devices in process
 =============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1503 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1502 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ================================================================================
 |    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1525,7 +1605,11 @@ Inferred memory devices in process
 ================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1524 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1523 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =====================================================================================
 |       Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1534,7 +1618,11 @@ Inferred memory devices in process
 =====================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1539 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1538 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ============================================================================================
 |          Register Name           |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1543,7 +1631,11 @@ Inferred memory devices in process
 ============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1556 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1555 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =================================================================================
 |     Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1552,7 +1644,11 @@ Inferred memory devices in process
 =================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1879 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1877 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1561,7 +1657,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1961 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1959 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1570,7 +1670,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1970 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1968 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1579,7 +1683,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1979 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1977 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1588,7 +1696,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1988 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1986 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1597,7 +1709,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1997 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 1995 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1606,7 +1722,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2006 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2004 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1615,7 +1735,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2015 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2013 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1624,7 +1748,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2024 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2022 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1633,7 +1761,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2033 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2031 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1642,7 +1774,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2042 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2040 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1651,7 +1787,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2051 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2049 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1660,7 +1800,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2060 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2058 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1669,7 +1813,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2069 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2067 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1678,7 +1826,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2078 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2076 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1687,7 +1839,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2087 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2085 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1696,7 +1852,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2096 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2094 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1705,7 +1865,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2105 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2103 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1714,7 +1878,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2114 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2112 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1723,7 +1891,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2123 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2121 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1732,7 +1904,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2132 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2130 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1741,7 +1917,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2141 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2139 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1750,7 +1930,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2150 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2148 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1759,7 +1943,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2159 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2157 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1768,7 +1956,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2168 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2166 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1777,7 +1969,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2177 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2175 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1786,7 +1982,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2186 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2184 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1795,7 +1995,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2195 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2193 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1804,7 +2008,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2204 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2202 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1813,7 +2021,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2213 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2211 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1822,7 +2034,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2222 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2220 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1831,7 +2047,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2231 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2229 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =============================================================================================
 |           Register Name           |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1840,7 +2060,11 @@ Inferred memory devices in process
 =============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2240 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2238 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =============================================================================================
 |           Register Name           |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1849,7 +2073,11 @@ Inferred memory devices in process
 =============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2249 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2247 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =============================================================================================
 |           Register Name           |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1858,7 +2086,11 @@ Inferred memory devices in process
 =============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2258 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2256 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =============================================================================================
 |           Register Name           |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1867,7 +2099,11 @@ Inferred memory devices in process
 =============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2267 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2265 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =============================================================================================
 |           Register Name           |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1876,7 +2112,11 @@ Inferred memory devices in process
 =============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2276 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2274 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =============================================================================================
 |           Register Name           |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1885,7 +2125,11 @@ Inferred memory devices in process
 =============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2285 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2283 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =============================================================================================
 |           Register Name           |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1894,7 +2138,11 @@ Inferred memory devices in process
 =============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2294 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2292 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =============================================================================================
 |           Register Name           |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1903,7 +2151,11 @@ Inferred memory devices in process
 =============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2303 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2301 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =============================================================================================
 |           Register Name           |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1912,7 +2164,11 @@ Inferred memory devices in process
 =============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2312 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2310 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =============================================================================================
 |           Register Name           |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1922,7 +2178,11 @@ Inferred memory devices in process
 =============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2328 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2326 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ================================================================================
 |    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1931,7 +2191,11 @@ Inferred memory devices in process
 ================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2348 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller line 2346 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1940,7 +2204,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp line 2478 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp line 2476 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1949,7 +2217,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp line 2492 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp line 2490 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ====================================================================================
 |      Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1958,7 +2230,11 @@ Inferred memory devices in process
 ====================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp line 2509 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp line 2507 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1967,7 +2243,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp line 2516 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp line 2514 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1976,7 +2256,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp line 2524 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp line 2522 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =================================================================================
 |     Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1985,7 +2269,11 @@ Inferred memory devices in process
 =================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp line 2544 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp line 2542 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -1994,7 +2282,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp line 2569 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp line 2567 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ====================================================================================
 |      Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2003,7 +2295,11 @@ Inferred memory devices in process
 ====================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp line 2582 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp line 2580 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =================================================================================
 |     Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2012,7 +2308,11 @@ Inferred memory devices in process
 =================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp line 2609 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp line 2607 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2021,7 +2321,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp line 2616 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp line 2614 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2030,7 +2334,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp line 2625 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_ctl_comp line 2623 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2038,41 +2346,75 @@ Inferred memory devices in process
 |   FL_CNT_REG_reg    | Flip-flop |  16   |  Y  | N  | Y  | N  | N  | N  | N  |
 ===============================================================================
 
+<<<<<<< HEAD
+Statistics for case statements in always block at line 3983 in file
+=======
 Statistics for case statements in always block at line 3928 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|           3984           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 4247 in file
+=======
 |           3929           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 3967 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|           4248           |    auto/auto     |
+|           4475           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 4495 in file
+=======
 |           3968           |    auto/auto     |
 |           3973           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 3990 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|           4496           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 58971 in file
+=======
 |           3991           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 5435 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          58972           |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 2952 in file
+=======
 |           5436           |    auto/auto     |
 ===============================================
 
 Inferred memory devices in process
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 2947 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==========================================================================================
 |         Register Name          |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2086,7 +2428,11 @@ Inferred memory devices in process
 ==========================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3021 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3016 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===================================================================================================
 |              Register Name              |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2096,7 +2442,11 @@ Inferred memory devices in process
 ===================================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3079 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3074 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =======================================================================================
 |        Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2106,7 +2456,11 @@ Inferred memory devices in process
 =======================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3138 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3133 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =======================================================================================
 |        Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2117,7 +2471,11 @@ Inferred memory devices in process
 =======================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3199 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3194 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =======================================================================================
 |        Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2127,7 +2485,11 @@ Inferred memory devices in process
 =======================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3258 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3253 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =======================================================================================
 |        Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2138,7 +2500,11 @@ Inferred memory devices in process
 =======================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3320 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3315 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===========================================================================================
 |          Register Name          |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2149,7 +2515,11 @@ Inferred memory devices in process
 ===========================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3383 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3378 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ======================================================================================
 |       Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2161,7 +2531,11 @@ Inferred memory devices in process
 ======================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3449 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3444 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ======================================================================================
 |       Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2173,7 +2547,11 @@ Inferred memory devices in process
 ======================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3513 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3508 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =====================================================================================
 |       Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2183,7 +2561,11 @@ Inferred memory devices in process
 =====================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3568 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3563 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =========================================================================================
 |         Register Name         |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2192,7 +2574,11 @@ Inferred memory devices in process
 =========================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3620 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3615 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =========================================================================================
 |         Register Name         |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2201,7 +2587,11 @@ Inferred memory devices in process
 =========================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3672 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3667 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =============================================================================================
 |           Register Name           |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2210,7 +2600,11 @@ Inferred memory devices in process
 =============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3730 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3725 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===========================================================================================
 |          Register Name          |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2223,7 +2617,11 @@ Inferred memory devices in process
 ===========================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3802 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3797 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ============================================================================================
 |          Register Name           |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2238,7 +2636,11 @@ Inferred memory devices in process
 ============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3872 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3867 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2247,11 +2649,38 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 3941 in file
+		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+| DISABLE_GWE_REG_reg | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 58840 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 5304 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ================================================================================
 |    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ================================================================================
+<<<<<<< HEAD
+| INSTRUCTION7_REG_reg | Flip-flop |  48   |  Y  | N  | Y  | N  | N  | N  | N  |
+| INSTRUCTION0_REG_reg | Flip-flop |  48   |  Y  | N  | Y  | N  | N  | N  | N  |
+| INSTRUCTION1_REG_reg | Flip-flop |  48   |  Y  | N  | Y  | N  | N  | N  | N  |
+| INSTRUCTION2_REG_reg | Flip-flop |  48   |  Y  | N  | Y  | N  | N  | N  | N  |
+| INSTRUCTION3_REG_reg | Flip-flop |  48   |  Y  | N  | Y  | N  | N  | N  | N  |
+| INSTRUCTION4_REG_reg | Flip-flop |  48   |  Y  | N  | Y  | N  | N  | N  | N  |
+| INSTRUCTION5_REG_reg | Flip-flop |  48   |  Y  | N  | Y  | N  | N  | N  | N  |
+| INSTRUCTION6_REG_reg | Flip-flop |  48   |  Y  | N  | Y  | N  | N  | N  | N  |
+================================================================================
+
+Inferred memory devices in process
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 58903 in file
+=======
 | INSTRUCTION7_REG_reg | Flip-flop |  47   |  Y  | N  | Y  | N  | N  | N  | N  |
 | INSTRUCTION0_REG_reg | Flip-flop |  47   |  Y  | N  | Y  | N  | N  | N  | N  |
 | INSTRUCTION1_REG_reg | Flip-flop |  47   |  Y  | N  | Y  | N  | N  | N  | N  |
@@ -2264,6 +2693,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 5367 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===================================================================================
 |      Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2272,7 +2702,11 @@ Inferred memory devices in process
 ===================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 58917 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 5381 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ====================================================================================
 |      Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2281,7 +2715,11 @@ Inferred memory devices in process
 ====================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 58939 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 5403 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2290,7 +2728,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 58957 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_pointer_cntrl line 5421 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===================================================================================
 |      Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2298,200 +2740,373 @@ Inferred memory devices in process
 | INST_POINTER_SHADOW_reg | Flip-flop |   5   |  Y  | N  | Y  | N  | N  | N  | N  |
 ===================================================================================
 
+<<<<<<< HEAD
+Statistics for case statements in always block at line 59297 in file
+=======
 Statistics for case statements in always block at line 5686 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          59298           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 59304 in file
+=======
 |           5687           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 5693 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          59305           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 59412 in file
+=======
 |           5694           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 5801 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          59413           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 59436 in file
+=======
 |           5802           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 5825 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          59437           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 59524 in file
+=======
 |           5826           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 5913 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          59525           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 59710 in file
+=======
 |           5914           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 5950 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          59711           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 59898 in file
+=======
 |           5951           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 5989 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          59899           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 59985 in file
+=======
 |           5990           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 6001 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          59986           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 60025 in file
+=======
 |           6002           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 6041 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          60026           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 60114 in file
+=======
 |           6042           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 6055 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          60115           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 60131 in file
+=======
 |           6056           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 6072 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          60132           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 60158 in file
+=======
 |           6073           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 6099 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          60159           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 60344 in file
+=======
 |           6100           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 6136 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          60345           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 60533 in file
+=======
 |           6137           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 6176 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          60534           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 60620 in file
+=======
 |           6177           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 6188 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          60621           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 60644 in file
+=======
 |           6189           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 6212 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          60645           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 60733 in file
+=======
 |           6213           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 6226 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          60734           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 60750 in file
+=======
 |           6227           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 6243 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          60751           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 60829 in file
+=======
 |           6244           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 6322 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          60830           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 60972 in file
+=======
 |           6323           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 6390 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          60973           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 61110 in file
+=======
 |           6391           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 6453 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          61111           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 61250 in file
+=======
 |           6454           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 6518 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          61251           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 61394 in file
+=======
 |           6519           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 6587 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          61395           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 61516 in file
+=======
 |           6588           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 6634 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          61517           |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 59683 in file
+=======
 |           6635           |    auto/auto     |
 ===============================================
 
 Inferred memory devices in process
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 5923 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2500,7 +3115,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 59698 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 5938 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ====================================================================================
 |      Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2509,7 +3128,11 @@ Inferred memory devices in process
 ====================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 59869 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 5960 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2518,7 +3141,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 59884 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 5975 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ====================================================================================
 |      Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2527,7 +3154,11 @@ Inferred memory devices in process
 ====================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 60317 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 6109 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2536,7 +3167,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 60332 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 6124 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ====================================================================================
 |      Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2545,7 +3180,11 @@ Inferred memory devices in process
 ====================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 60503 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 6146 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2554,7 +3193,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 60518 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 6161 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ====================================================================================
 |      Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2563,7 +3206,11 @@ Inferred memory devices in process
 ====================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 60924 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 6342 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2572,7 +3219,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 60958 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 6376 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =================================================================================
 |     Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2581,7 +3232,11 @@ Inferred memory devices in process
 =================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 61062 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 6405 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2590,7 +3245,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 61096 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 6439 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =================================================================================
 |     Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2599,7 +3258,11 @@ Inferred memory devices in process
 =================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 61205 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 6473 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2608,7 +3271,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 61236 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 6504 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =================================================================================
 |     Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2617,7 +3284,11 @@ Inferred memory devices in process
 =================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 61340 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 6533 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2626,7 +3297,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 61371 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 6564 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =================================================================================
 |     Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2635,7 +3310,11 @@ Inferred memory devices in process
 =================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 61477 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 6595 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2644,7 +3323,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 61492 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 6610 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ======================================================================================
 |       Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2653,7 +3336,11 @@ Inferred memory devices in process
 ======================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 61599 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 6642 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2662,7 +3349,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 61614 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_add_gen line 6657 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ======================================================================================
 |       Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2670,16 +3361,28 @@ Inferred memory devices in process
 | B_SCAN_REGISTER_SHADOW_reg | Flip-flop |  14   |  Y  | N  | Y  | N  | N  | N  | N  |
 ======================================================================================
 
+<<<<<<< HEAD
+Statistics for case statements in always block at line 61708 in file
+=======
 Statistics for case statements in always block at line 6751 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          61709           |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_fsm line 61697 in file
+=======
 |           6752           |    auto/auto     |
 ===============================================
 
 Inferred memory devices in process
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_fsm line 6740 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2688,7 +3391,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_fsm line 61788 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_fsm line 6831 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2697,7 +3404,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_fsm line 61800 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_fsm line 6843 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ========================================================================================
 |        Register Name         |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2706,7 +3417,11 @@ Inferred memory devices in process
 ========================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen line 62436 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen line 7479 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2716,7 +3431,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen line 62449 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen line 7492 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2725,7 +3444,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen line 62467 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen line 7510 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2734,7 +3457,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen line 62484 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen line 7527 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2743,7 +3470,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen line 63707 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen line 8750 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==========================================================================================
 |         Register Name          |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2752,7 +3483,11 @@ Inferred memory devices in process
 ==========================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen line 63852 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen line 8895 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2761,7 +3496,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen line 63876 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen line 8919 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ================================================================================
 |    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2770,7 +3509,11 @@ Inferred memory devices in process
 ================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen line 63891 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_signal_gen line 8934 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =======================================================================================
 |        Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2778,24 +3521,43 @@ Inferred memory devices in process
 | OPSET_SELECT_REG_SHADOW_reg | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
 =======================================================================================
 
+<<<<<<< HEAD
+Statistics for case statements in always block at line 64162 in file
+=======
 Statistics for case statements in always block at line 9205 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          64163           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 65699 in file
+=======
 |           9206           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 9317 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          65700           |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl line 64047 in file
+=======
 |           9318           |    auto/auto     |
 ===============================================
 
 Inferred memory devices in process
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl line 9090 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2804,7 +3566,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl line 64066 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl line 9109 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==================================================================================
 |     Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2813,7 +3579,11 @@ Inferred memory devices in process
 ==================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl line 64084 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl line 9127 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2822,7 +3592,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl line 64103 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl line 9146 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==================================================================================
 |     Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2831,7 +3605,11 @@ Inferred memory devices in process
 ==================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl line 64147 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl line 9190 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2840,7 +3618,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl line 65631 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl line 9249 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =======================================================================================
 |        Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2853,7 +3635,11 @@ Inferred memory devices in process
 =======================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl line 65672 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl line 9290 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2866,7 +3652,11 @@ Inferred memory devices in process
 ==============================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl line 67168 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl line 9361 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =======================================================================================
 |        Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2879,7 +3669,11 @@ Inferred memory devices in process
 =======================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl line 67208 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_repeat_loop_cntrl line 9401 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==============================================================================================
 |           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2891,51 +3685,94 @@ Inferred memory devices in process
 |    CNTR_B_LOOP2_REG_SHADOW_reg     | Flip-flop |   5   |  Y  | N  | Y  | N  | N  | N  | N  |
 ==============================================================================================
 
+<<<<<<< HEAD
+Statistics for case statements in always block at line 67356 in file
+=======
 Statistics for case statements in always block at line 9549 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          67357           |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_counter_a line 67323 in file
+=======
 |           9550           |    auto/auto     |
 ===============================================
 
 Inferred memory devices in process
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_counter_a line 9516 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
+<<<<<<< HEAD
+|  COUNTERA_CNT_reg   | Flip-flop |  28   |  Y  | N  | Y  | N  | Y  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_counter_a line 67338 in file
+=======
 |  COUNTERA_CNT_reg   | Flip-flop |   4   |  Y  | N  | Y  | N  | Y  | N  | N  |
 ===============================================================================
 
 Inferred memory devices in process
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_counter_a line 9531 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===================================================================================
 |      Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===================================================================================
+<<<<<<< HEAD
+| COUNTERA_CNT_SHADOW_reg | Flip-flop |  28   |  Y  | N  | Y  | N  | N  | N  | N  |
+===================================================================================
+
+Inferred memory devices in process
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_counter_a line 67439 in file
+=======
 | COUNTERA_CNT_SHADOW_reg | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
 ===================================================================================
 
 Inferred memory devices in process
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_counter_a line 9557 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
+<<<<<<< HEAD
+|  COUNTERA_REG_reg   | Flip-flop |  28   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Statistics for case statements in always block at line 67568 in file
+=======
 |  COUNTERA_REG_reg   | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
 ===============================================================================
 
 Statistics for case statements in always block at line 9686 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          67569           |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_delaycounter line 67539 in file
+=======
 |           9687           |    auto/auto     |
 ===============================================
 
 Inferred memory devices in process
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_delaycounter line 9657 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ================================================================================
 |    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2944,7 +3781,11 @@ Inferred memory devices in process
 ================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_delaycounter line 67554 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_delaycounter line 9672 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =======================================================================================
 |        Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2953,7 +3794,11 @@ Inferred memory devices in process
 =======================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_delaycounter line 67655 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_delaycounter line 9698 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ================================================================================
 |    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -2961,56 +3806,103 @@ Inferred memory devices in process
 | DELAYCOUNTER_REG_reg | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
 ================================================================================
 
+<<<<<<< HEAD
+Statistics for case statements in always block at line 67848 in file
+=======
 Statistics for case statements in always block at line 9891 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          67853           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 67967 in file
+=======
 |           9896           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 9935 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          67972           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 68077 in file
+=======
 |           9940           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 9970 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          68078           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 68095 in file
+=======
 |           9971           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 9988 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          68096           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 68160 in file
+=======
 |           9989           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 10053 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          68161           |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 68271 in file
+=======
 |          10054           |    auto/auto     |
 ===============================================
 
 Statistics for case statements in always block at line 10089 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 	'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
+<<<<<<< HEAD
+|          68272           |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 67794 in file
+=======
 |          10090           |    auto/auto     |
 ===============================================
 
 Inferred memory devices in process
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 9837 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =========================================================================================
 |         Register Name         |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -3019,7 +3911,11 @@ Inferred memory devices in process
 =========================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 67802 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 9845 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ================================================================================================
 |            Register Name             |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -3028,7 +3924,11 @@ Inferred memory devices in process
 ================================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 67820 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 9863 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ================================================================================
 |    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -3037,7 +3937,11 @@ Inferred memory devices in process
 ================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 67848 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 9891 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -3046,7 +3950,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 67938 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 9906 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ================================================================================
 |    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -3055,7 +3963,11 @@ Inferred memory devices in process
 ================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 67967 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 9935 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -3064,7 +3976,11 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 68057 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 9950 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ================================================================================
 |    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -3073,7 +3989,11 @@ Inferred memory devices in process
 ================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 68138 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 10031 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==========================================================================================
 |         Register Name          |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -3082,7 +4002,11 @@ Inferred memory devices in process
 ==========================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 68243 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 10061 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==================================================================================
 |     Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -3091,7 +4015,11 @@ Inferred memory devices in process
 ==================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 68258 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 10076 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =========================================================================================
 |         Register Name         |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -3100,7 +4028,11 @@ Inferred memory devices in process
 =========================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 68355 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 10098 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 ==================================================================================
 |     Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -3109,7 +4041,11 @@ Inferred memory devices in process
 ==================================================================================
 
 Inferred memory devices in process
+<<<<<<< HEAD
+	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 68370 in file
+=======
 	in routine firebird7_in_gate1_tessent_mbist_c1_controller_data_gen line 10113 in file
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 		'/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_mbist.instrument/firebird7_in_gate1_tessent_mbist_c1_controller.sv'.
 =========================================================================================
 |         Register Name         |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -18257,6 +19193,21 @@ Warning: No scan equivalent exists for cell retiming_so_reg (i0slsn080ab1n02x5).
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
+<<<<<<< HEAD
+    0:00:13       2.1      0.00       0.0       0.1                          
+    0:00:14       2.1      0.00       0.0       0.1                          
+    0:00:14       2.1      0.00       0.0       0.1                          
+    0:00:14       2.1      0.00       0.0       0.1                          
+    0:00:14       2.1      0.00       0.0       0.1                          
+    0:00:14       1.7      0.00       0.0       0.1                          
+    0:00:14       1.7      0.00       0.0       0.1                          
+    0:00:14       1.7      0.00       0.0       0.1                          
+    0:00:14       1.7      0.00       0.0       0.1                          
+    0:00:14       1.7      0.00       0.0       0.1                          
+    0:00:14       1.7      0.00       0.0       0.1                          
+    0:00:14       1.7      0.00       0.0       0.1                          
+    0:00:14       1.7      0.00       0.0       0.1                          
+=======
     0:00:09       2.1      0.00       0.0       0.1                          
     0:00:10       2.1      0.00       0.0       0.1                          
     0:00:10       2.1      0.00       0.0       0.1                          
@@ -18270,6 +19221,7 @@ Warning: No scan equivalent exists for cell retiming_so_reg (i0slsn080ab1n02x5).
     0:00:10       1.7      0.00       0.0       0.1                          
     0:00:10       1.7      0.00       0.0       0.1                          
     0:00:10       1.7      0.00       0.0       0.1                          
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 
 
@@ -18280,9 +19232,15 @@ Warning: No scan equivalent exists for cell retiming_so_reg (i0slsn080ab1n02x5).
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
+<<<<<<< HEAD
+    0:00:14       1.7      0.00       0.0       0.1                          
+    0:00:14       1.7      0.00       0.0       0.1                          
+    0:00:14       1.7      0.00       0.0       0.1                          
+=======
     0:00:10       1.7      0.00       0.0       0.1                          
     0:00:10       1.7      0.00       0.0       0.1                          
     0:00:10       1.7      0.00       0.0       0.1                          
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 
   Beginning Design Rule Fixing  (min_capacitance)
@@ -18292,7 +19250,11 @@ Warning: No scan equivalent exists for cell retiming_so_reg (i0slsn080ab1n02x5).
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
+<<<<<<< HEAD
+    0:00:14       1.7      0.00       0.0       0.1                          
+=======
     0:00:10       1.7      0.00       0.0       0.1                          
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -18302,6 +19264,19 @@ Warning: No scan equivalent exists for cell retiming_so_reg (i0slsn080ab1n02x5).
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
+<<<<<<< HEAD
+    0:00:14       1.7      0.00       0.0       0.1                          
+    0:00:14       1.7      0.00       0.0       0.1                          
+    0:00:14       1.7      0.00       0.0       0.1                          
+    0:00:14       1.7      0.00       0.0       0.1                          
+    0:00:14       1.7      0.00       0.0       0.1                          
+    0:00:14       1.7      0.00       0.0       0.1                          
+    0:00:14       1.7      0.00       0.0       0.1                          
+    0:00:14       1.7      0.00       0.0       0.1                          
+    0:00:14       1.7      0.00       0.0       0.1                          
+    0:00:14       1.7      0.00       0.0       0.1                          
+    0:00:14       1.7      0.00       0.0       0.1                          
+=======
     0:00:10       1.7      0.00       0.0       0.1                          
     0:00:10       1.7      0.00       0.0       0.1                          
     0:00:10       1.7      0.00       0.0       0.1                          
@@ -18313,6 +19288,7 @@ Warning: No scan equivalent exists for cell retiming_so_reg (i0slsn080ab1n02x5).
     0:00:10       1.7      0.00       0.0       0.1                          
     0:00:10       1.7      0.00       0.0       0.1                          
     0:00:10       1.7      0.00       0.0       0.1                          
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -18354,9 +19330,16 @@ set_dont_touch [get_designs firebird7_in_gate1_tessent_mbist_c1_controller_assem
 1
 exit
 
+<<<<<<< HEAD
+Memory usage for this session 2384 Mbytes.
+Memory usage for this session including child processes 2384 Mbytes.
+CPU usage for this session 38 seconds ( 0.01 hours ).
+Elapsed time for this session 64 seconds ( 0.02 hours ).
+=======
 Memory usage for this session 2349 Mbytes.
 Memory usage for this session including child processes 2349 Mbytes.
 CPU usage for this session 25 seconds ( 0.01 hours ).
 Elapsed time for this session 51 seconds ( 0.01 hours ).
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 Thank you...

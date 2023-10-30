@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+Your job has been queued (JobID 8476283042377831, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
+=======
 Your job has been queued (JobID 8476283042300638, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
                            Design Compiler Graphical 
                                  DC Ultra (TM)
@@ -7994,17 +7998,17 @@ Information: Design 'firebird7_in_gate1_tessent_data_mux_w3_19' has no optimizat
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
     0:00:09       0.2      0.00       0.0       0.3                          
-    0:00:09       0.2      0.00       0.0       0.3                          
-    0:00:09       0.2      0.00       0.0       0.3                          
-    0:00:09       0.2      0.00       0.0       0.3                          
-    0:00:09       0.2      0.00       0.0       0.3                          
-    0:00:09       0.2      0.00       0.0       0.3                          
-    0:00:09       0.2      0.00       0.0       0.3                          
-    0:00:09       0.2      0.00       0.0       0.3                          
-    0:00:09       0.2      0.00       0.0       0.3                          
-    0:00:09       0.2      0.00       0.0       0.3                          
-    0:00:09       0.2      0.00       0.0       0.3                          
-    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:10       0.2      0.00       0.0       0.3                          
+    0:00:10       0.2      0.00       0.0       0.3                          
+    0:00:10       0.2      0.00       0.0       0.3                          
+    0:00:10       0.2      0.00       0.0       0.3                          
+    0:00:10       0.2      0.00       0.0       0.3                          
+    0:00:10       0.2      0.00       0.0       0.3                          
+    0:00:10       0.2      0.00       0.0       0.3                          
+    0:00:10       0.2      0.00       0.0       0.3                          
+    0:00:10       0.2      0.00       0.0       0.3                          
+    0:00:10       0.2      0.00       0.0       0.3                          
+    0:00:10       0.2      0.00       0.0       0.3                          
 
 
 
@@ -8015,9 +8019,15 @@ Information: Design 'firebird7_in_gate1_tessent_data_mux_w3_19' has no optimizat
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
+<<<<<<< HEAD
+    0:00:10       0.2      0.00       0.0       0.3                          
+    0:00:10       0.2      0.00       0.0       0.3                          
+    0:00:10       0.2      0.00       0.0       0.3                          
+=======
     0:00:09       0.2      0.00       0.0       0.3                          
     0:00:09       0.2      0.00       0.0       0.3                          
     0:00:09       0.2      0.00       0.0       0.3                          
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 
   Beginning Design Rule Fixing  (min_capacitance)
@@ -8209,7 +8219,12 @@ exit
 
 Memory usage for this session 2172 Mbytes.
 Memory usage for this session including child processes 2172 Mbytes.
+<<<<<<< HEAD
+CPU usage for this session 18 seconds ( 0.01 hours ).
+Elapsed time for this session 41 seconds ( 0.01 hours ).
+=======
 CPU usage for this session 17 seconds ( 0.00 hours ).
 Elapsed time for this session 50 seconds ( 0.01 hours ).
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 Thank you...

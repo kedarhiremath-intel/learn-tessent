@@ -1,4 +1,8 @@
+<<<<<<< HEAD:firebird7_in/logfiles/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_spare_red_secure_mux.tcl.log
+Your job has been queued (JobID 8476283042377815, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
+=======
 Your job has been queued (JobID 8476216235302221, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf:firebird7_in/logfiles/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_insysbist_sec_mux.tcl.log
 
                            Design Compiler Graphical 
                                  DC Ultra (TM)
@@ -8210,6 +8214,10 @@ exit
 Memory usage for this session 2172 Mbytes.
 Memory usage for this session including child processes 2172 Mbytes.
 CPU usage for this session 18 seconds ( 0.01 hours ).
+<<<<<<< HEAD:firebird7_in/logfiles/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_spare_red_secure_mux.tcl.log
+Elapsed time for this session 38 seconds ( 0.01 hours ).
+=======
 Elapsed time for this session 47 seconds ( 0.01 hours ).
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf:firebird7_in/logfiles/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_insysbist_sec_mux.tcl.log
 
 Thank you...

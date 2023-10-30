@@ -11,7 +11,11 @@
 //--------------------------------------------------------------------------
 //  File created by: Tessent Shell
 //          Version: 2022.4
+<<<<<<< HEAD:firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_spare_orange_secure_mux.icl
+//       Created on: Sun Oct 29 23:49:35 PDT 2023
+=======
 //       Created on: Sun Oct 29 14:14:07 PDT 2023
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf:firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_green_sec_mux.icl
 //--------------------------------------------------------------------------
 
 Module firebird7_in_gate1_tessent_scanmux_spare_orange_secure_mux {

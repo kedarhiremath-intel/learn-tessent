@@ -11,7 +11,11 @@
 #--------------------------------------------------------------------------
 #  File created by: Tessent Shell
 #          Version: 2022.4
+<<<<<<< HEAD
+#       Created on: Sun Oct 29 23:50:54 PDT 2023
+=======
 #       Created on: Sun Oct 29 14:14:49 PDT 2023
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 #--------------------------------------------------------------------------
 
 
@@ -431,14 +435,46 @@ set firebird7_in_gate1_mbist {
         }
         through {
           cells {
+<<<<<<< HEAD
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?13?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?12?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?11?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?10?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?9?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?8?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?7?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?6?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?5?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?4?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?3?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?2?}
+=======
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
             {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?1?}
             {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?0?}
           }
         }
         to {
           cells {
+<<<<<<< HEAD
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?27?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?26?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?25?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?24?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?23?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?22?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?21?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?20?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?19?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?18?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?17?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?16?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?15?}
+            {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?14?}
+=======
             {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?3?}
             {$tessent_controller_instance/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?2?}
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
           }
         }
         setup 2
@@ -637,6 +673,7 @@ set firebird7_in_gate1_mbist {
             {$tessent_controller_instance/MBISTPG_REPEAT_LOOP_CNTRL/LOOP_B_CNTR*}
             {$tessent_controller_instance/MBISTPG_POINTER_CNTRL/LAST_STATE_DONE_REG*}
             {$tessent_controller_instance/MBISTPG_POINTER_CNTRL/INST_POINTER*}
+            {$tessent_controller_instance/MBISTPG_POINTER_CNTRL/DISABLE_*_REG*}
             {$tessent_controller_instance/MBISTPG_FSM/RUNTEST_EN_REG_reg?0?}
             {$tessent_controller_instance/MBISTPG_FSM/STATE*}
           }

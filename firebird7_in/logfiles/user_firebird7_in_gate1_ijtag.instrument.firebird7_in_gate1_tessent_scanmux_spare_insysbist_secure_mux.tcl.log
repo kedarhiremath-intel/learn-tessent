@@ -1,4 +1,12 @@
+<<<<<<< HEAD
+<<<<<<< HEAD:firebird7_in/logfiles/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux.tcl.log
+Your job has been queued (JobID 8476283042377814, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
+=======
+Your job has been queued (JobID 856353723998502, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf:firebird7_in/logfiles/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_sti_secure_mux.tcl.log
+=======
 Your job has been queued (JobID 856353723998505, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
                            Design Compiler Graphical 
                                  DC Ultra (TM)
@@ -1857,6 +1865,10 @@ set_dont_touch [get_designs firebird7_in_gate1_tessent_sib_spare_orange]
 1
 set_dont_touch [get_designs firebird7_in_gate1_tessent_sib_spare_red]
 1
+<<<<<<< HEAD
+<<<<<<< HEAD:firebird7_in/logfiles/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux.tcl.log
+=======
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 set_dont_touch [get_designs firebird7_in_gate1_tessent_scanmux_sti_secure_mux]
 1
 set_dont_touch [get_designs firebird7_in_gate1_tessent_scanmux_spare_red_secure_mux]
@@ -1866,6 +1878,14 @@ set_dont_touch [get_designs firebird7_in_gate1_tessent_scanmux_spare_orange_secu
 current_design firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux
 Current design is 'firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux'.
 {firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux}
+<<<<<<< HEAD
+=======
+current_design firebird7_in_gate1_tessent_scanmux_sti_secure_mux
+Current design is 'firebird7_in_gate1_tessent_scanmux_sti_secure_mux'.
+{firebird7_in_gate1_tessent_scanmux_sti_secure_mux}
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf:firebird7_in/logfiles/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_sti_secure_mux.tcl.log
+=======
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 set size_only_instances [get_cells -filter {is_hierarchical==false} -hierarchical tessent_persistent_cell_* -quiet]
 if {[sizeof_collection $size_only_instances] > 0 } {
     set_size_only -all_instances $size_only_instances
@@ -7922,6 +7942,10 @@ Warning: Library cell 'i0sfup000ab1d24x5' has a valid function-id,
 
   Beginning Pass 1 Mapping
   ------------------------
+<<<<<<< HEAD
+<<<<<<< HEAD:firebird7_in/logfiles/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux.tcl.log
+=======
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
   Processing 'firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux'
 
   Updating timing information
@@ -7932,12 +7956,31 @@ Information: Design 'firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_m
   -------------------------------
   Structuring 'firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux'
   Mapping 'firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux'
+<<<<<<< HEAD
+=======
+  Processing 'firebird7_in_gate1_tessent_scanmux_sti_secure_mux'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: Design 'firebird7_in_gate1_tessent_scanmux_sti_secure_mux' has no optimization constraints set. (OPT-108)
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+  Structuring 'firebird7_in_gate1_tessent_scanmux_sti_secure_mux'
+  Mapping 'firebird7_in_gate1_tessent_scanmux_sti_secure_mux'
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf:firebird7_in/logfiles/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_sti_secure_mux.tcl.log
+=======
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
                                   TOTAL                                      
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
+<<<<<<< HEAD
+    0:00:09       0.1      0.00       0.0       0.3                          
+=======
     0:00:08       0.1      0.00       0.0       0.3                          
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
     0:00:09       0.1      0.00       0.0       0.3                          
     0:00:09       0.1      0.00       0.0       0.3                          
     0:00:09       0.1      0.00       0.0       0.3                          
@@ -8021,9 +8064,27 @@ Design          Type    Object                  New Name
 Design          Type    Object                  New Name
 --------------------------------------------------------------------------------
 1
+<<<<<<< HEAD
+<<<<<<< HEAD:firebird7_in/logfiles/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux.tcl.log
 write -f verilog -output firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux.vg   [check_modules firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux]
 Current design is 'firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux'.
 Writing verilog file '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux.vg'.
+=======
+write -f verilog -output firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_sti_secure_mux.vg   [check_modules firebird7_in_gate1_tessent_scanmux_sti_secure_mux]
+Current design is 'firebird7_in_gate1_tessent_scanmux_sti_secure_mux'.
+Writing verilog file '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_sti_secure_mux.vg'.
+1
+set_dont_touch [get_designs firebird7_in_gate1_tessent_scanmux_sti_secure_mux]
+1
+set_dont_touch [get_designs firebird7_in_gate1_tessent_scanmux_spare_red_secure_mux]
+1
+set_dont_touch [get_designs firebird7_in_gate1_tessent_scanmux_spare_orange_secure_mux]
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf:firebird7_in/logfiles/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_sti_secure_mux.tcl.log
+=======
+write -f verilog -output firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux.vg   [check_modules firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux]
+Current design is 'firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux'.
+Writing verilog file '/nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux.vg'.
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 1
 set_dont_touch [get_designs firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux]
 1
@@ -8209,7 +8270,16 @@ exit
 
 Memory usage for this session 2172 Mbytes.
 Memory usage for this session including child processes 2172 Mbytes.
+<<<<<<< HEAD
+CPU usage for this session 18 seconds ( 0.01 hours ).
+<<<<<<< HEAD:firebird7_in/logfiles/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux.tcl.log
+Elapsed time for this session 40 seconds ( 0.01 hours ).
+=======
+Elapsed time for this session 47 seconds ( 0.01 hours ).
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf:firebird7_in/logfiles/user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_scanmux_sti_secure_mux.tcl.log
+=======
 CPU usage for this session 17 seconds ( 0.00 hours ).
 Elapsed time for this session 42 seconds ( 0.01 hours ).
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 Thank you...

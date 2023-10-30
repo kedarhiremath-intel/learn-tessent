@@ -761,7 +761,11 @@ set dft_summary {
                     run_time_ns 22487.760000000002
                     test_cycles 28720
                     soft_operation_count 0
+<<<<<<< HEAD
+                    flop_count 974
+=======
                     flop_count 887
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
                     soft_instruction_count 8
                     soft_operation_length 0
                     soft_operation_max_strobe_data_out_pipelines 0

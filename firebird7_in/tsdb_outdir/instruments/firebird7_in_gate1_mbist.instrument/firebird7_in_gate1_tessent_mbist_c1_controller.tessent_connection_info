@@ -97,7 +97,13 @@
   set ControllerInfo(TCK_INTERFACES) -
   set ControllerInfo(TCK) -
   set ControllerInfo(PRESERVE_FUSE_REGISTER) `logiclow
-  set ControllerInfo(MBISTPG_ALGO_SEL) `logiclow
+  set ControllerInfo(MBISTPG_ALGO_SEL0) `logiclow
+  set ControllerInfo(MBISTPG_ALGO_SEL1) `logiclow
+  set ControllerInfo(MBISTPG_ALGO_SEL2) `logiclow
+  set ControllerInfo(MBISTPG_ALGO_SEL3) `logiclow
+  set ControllerInfo(MBISTPG_ALGO_SEL4) `logiclow
+  set ControllerInfo(MBISTPG_ALGO_SEL5) `logiclow
+  set ControllerInfo(MBISTPG_ALGO_SEL6) `logiclow
   set ControllerInfo(BIST_ALGO_MODE1) -
   set ControllerInfo(BIST_ALGO_MODE0) -
   set ControllerInfo(ENABLE_MEM_RESET) `logiclow
@@ -140,7 +146,13 @@
   connect $ControllerInfo(MEM_BYPASS_EN) $ControllerInfo(controllerInstancePath)/MEM_BYPASS_EN -group scan
   connect $ControllerInfo(MCP_BOUNDING_EN) $ControllerInfo(controllerInstancePath)/MCP_BOUNDING_EN -group scan
   connect $ControllerInfo(BIST_ON) $ControllerInfo(controllerInstancePath)/BIST_ON_TO_COLLAR -condition "$ControllerInfo(create_controller_assembly)" -group bist_on
-  connect $ControllerInfo(MBISTPG_ALGO_SEL) $ControllerInfo(controllerInstancePath)/MBISTPG_ALGO_SEL -group algo_sel
+  connect $ControllerInfo(MBISTPG_ALGO_SEL0) $ControllerInfo(controllerInstancePath)/MBISTPG_ALGO_SEL[0] -group algo_sel
+  connect $ControllerInfo(MBISTPG_ALGO_SEL1) $ControllerInfo(controllerInstancePath)/MBISTPG_ALGO_SEL[1] -group algo_sel
+  connect $ControllerInfo(MBISTPG_ALGO_SEL2) $ControllerInfo(controllerInstancePath)/MBISTPG_ALGO_SEL[2] -group algo_sel
+  connect $ControllerInfo(MBISTPG_ALGO_SEL3) $ControllerInfo(controllerInstancePath)/MBISTPG_ALGO_SEL[3] -group algo_sel
+  connect $ControllerInfo(MBISTPG_ALGO_SEL4) $ControllerInfo(controllerInstancePath)/MBISTPG_ALGO_SEL[4] -group algo_sel
+  connect $ControllerInfo(MBISTPG_ALGO_SEL5) $ControllerInfo(controllerInstancePath)/MBISTPG_ALGO_SEL[5] -group algo_sel
+  connect $ControllerInfo(MBISTPG_ALGO_SEL6) $ControllerInfo(controllerInstancePath)/MBISTPG_ALGO_SEL[6] -group algo_sel
   connect $ControllerInfo(BIST_ALGO_MODE1) $ControllerInfo(controllerInstancePath)/MBISTPG_ALGO_MODE[1] -group algo_mode
   connect $ControllerInfo(BIST_ALGO_MODE0) $ControllerInfo(controllerInstancePath)/MBISTPG_ALGO_MODE[0] -group algo_mode
   connect $ControllerInfo(ENABLE_MEM_RESET) $ControllerInfo(controllerInstancePath)/MBISTPG_MEM_RST -group memory_reset

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+Your job has been queued (JobID 8476247232378834, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
+=======
 Your job has been queued (JobID 8476316311299664, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
                            Design Compiler Graphical 
                                  DC Ultra (TM)
@@ -7998,17 +8002,17 @@ Information: Design 'firebird7_in_gate1_tessent_data_mux_w3_21' has no optimizat
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
     0:00:09       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
 
 
 
@@ -8019,9 +8023,9 @@ Information: Design 'firebird7_in_gate1_tessent_data_mux_w3_21' has no optimizat
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:10       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
 
 
   Beginning Design Rule Fixing  (min_capacitance)
@@ -8031,7 +8035,7 @@ Information: Design 'firebird7_in_gate1_tessent_data_mux_w3_21' has no optimizat
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:10       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -8041,17 +8045,17 @@ Information: Design 'firebird7_in_gate1_tessent_data_mux_w3_21' has no optimizat
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:10       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
-    0:00:10       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
+    0:00:09       0.2      0.00       0.0       0.3                          
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -8210,6 +8214,10 @@ exit
 Memory usage for this session 2172 Mbytes.
 Memory usage for this session including child processes 2172 Mbytes.
 CPU usage for this session 18 seconds ( 0.01 hours ).
+<<<<<<< HEAD
+Elapsed time for this session 42 seconds ( 0.01 hours ).
+=======
 Elapsed time for this session 51 seconds ( 0.01 hours ).
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 Thank you...

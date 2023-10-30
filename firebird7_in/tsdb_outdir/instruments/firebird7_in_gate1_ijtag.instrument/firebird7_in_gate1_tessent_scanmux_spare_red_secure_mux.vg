@@ -1,7 +1,11 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys DC Expert(TM) in wire load mode
 // Version   : Q-2019.12-SP5-1
+<<<<<<< HEAD:firebird7_in/tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_spare_red_secure_mux.vg
+// Date      : Sun Oct 29 23:55:03 2023
+=======
 // Date      : Sun Oct 29 14:19:22 2023
+>>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf:firebird7_in/synthesis_outdir/firebird7_in_gate1.synthesis_dc_shell/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_insysbist_sec_mux.vg
 /////////////////////////////////////////////////////////////
 
 
