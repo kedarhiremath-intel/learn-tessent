@@ -12,11 +12,7 @@
             insert_tck_occ_for_scan_tested_instruments : off; // Set "off" to "on"
             compress_concatenated_netlist : off; // Set "off" to "on"
             MemoryBist {
-<<<<<<< HEAD
                 clock_partitioning : per_sync_clock_group; // Set "per_sync_clock_group" to "per_clock_domain"
-=======
-                clock_partitioning : per_sync_clock_group; // Set "per_sync_clock_group" to "per_clock_domain"???
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
                 max_steps_per_controller : 1;
                 max_memories_per_step : unlimited;
                 max_test_time_per_controller : unlimited;
@@ -26,11 +22,7 @@
                 //max_comparators_per_physical_domain : unlimited;
                 //memory_interface_reuse_method : non_unique_instances_only;
                 ControllerOptions {
-<<<<<<< HEAD
                     //algorithm : IntelLVPMOVIFx; // Set to "IntelLVPMOVIFastx"
-=======
-                    //algorithm : IntelLVPMOVIFx;
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
                     operation_set : SyncCustom;
                     gate_bist_clock_in_functional_mode : with_clock_gating_cell;
                     bist_on_async_reset : on;

@@ -74,8 +74,4 @@ read_core_description ./inputs/from_MINT/mbist_algorithms/write_one_address.lvli
 read_core_description ./inputs/from_MINT/mbist_algorithms/arraywrite_addr_range_sram_fx.lvlib
 read_core_description ./inputs/from_MINT/mbist_algorithms/pmovi_sram_fastx.lvlib
 read_core_description ./inputs/from_MINT/mbist_algorithms/marchcmin_sram_fx.lvlib
-<<<<<<< HEAD
-=======
-read_core_description ./inputs/from_MINT/mbist_algorithms/opset_rom.lvlib
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 read_core_description ./inputs/from_MINT/mbist_algorithms/opset_sram.lvlib

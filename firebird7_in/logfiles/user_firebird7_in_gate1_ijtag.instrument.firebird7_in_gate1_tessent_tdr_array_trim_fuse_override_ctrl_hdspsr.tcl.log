@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 Your job has been queued (JobID 8476216235379697, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
-=======
-Your job has been queued (JobID 8476216235302220, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
                            Design Compiler Graphical 
                                  DC Ultra (TM)
@@ -7962,31 +7958,18 @@ Warning: No scan equivalent exists for cell retiming_so_reg (i0slsn080ab1n02x5).
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
     0:00:11      20.0      6.65     216.2       0.1                          
-<<<<<<< HEAD
     0:00:12      19.4      6.20     275.6       0.1                          
     0:00:12      19.4      6.20     275.6       0.1                          
     0:00:12      19.4      6.02     273.6       0.1                          
     0:00:12      19.4      6.02     273.6       0.1                          
     0:00:12      17.0     12.60     392.9       0.1                          
-=======
-    0:00:11      19.4      6.20     275.6       0.1                          
-    0:00:11      19.4      6.20     275.6       0.1                          
-    0:00:11      19.4      6.02     273.6       0.1                          
-    0:00:11      19.4      6.02     273.6       0.1                          
-    0:00:11      17.0     12.60     392.9       0.1                          
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
     0:00:12      17.3      9.65     391.6       0.1                          
     0:00:12      18.0     10.93     354.8       0.1                          
     0:00:12      18.2     10.77     325.5       0.1                          
     0:00:12      17.9      8.79     272.1       0.1                          
     0:00:12      18.1      9.42     285.7       0.1                          
-<<<<<<< HEAD
     0:00:13      18.2      9.32     280.8       0.1                          
     0:00:13      18.0      8.77     262.5       0.1                          
-=======
-    0:00:12      18.2      9.32     280.8       0.1                          
-    0:00:12      18.0      8.77     262.5       0.1                          
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
     0:00:13      18.0      8.67     261.2       0.1                          
     0:00:13      18.0      8.67     261.2       0.1                          
     0:00:13      18.0      8.67     261.2       0.1                          
@@ -8296,10 +8279,6 @@ exit
 Memory usage for this session 2181 Mbytes.
 Memory usage for this session including child processes 2181 Mbytes.
 CPU usage for this session 25 seconds ( 0.01 hours ).
-<<<<<<< HEAD
 Elapsed time for this session 48 seconds ( 0.01 hours ).
-=======
-Elapsed time for this session 55 seconds ( 0.02 hours ).
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 Thank you...

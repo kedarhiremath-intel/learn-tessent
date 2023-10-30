@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 Your job has been queued (JobID 8476247232378841, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
-=======
-Your job has been queued (JobID 856353723998503, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
                            Design Compiler Graphical 
                                  DC Ultra (TM)
@@ -7146,13 +7142,8 @@ Information: Design 'firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x2
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
     0:00:10       7.3      0.00       0.0       0.1                          
-<<<<<<< HEAD
     0:00:10       7.3      0.00       0.0       0.1                          
     0:00:10       7.3      0.00       0.0       0.1                          
-=======
-    0:00:11       7.3      0.00       0.0       0.1                          
-    0:00:11       7.3      0.00       0.0       0.1                          
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
     0:00:11       7.3      0.00       0.0       0.1                          
     0:00:11       7.3      0.00       0.0       0.1                          
     0:00:11       7.2      0.00       0.0       0.1                          
@@ -7271,12 +7262,7 @@ exit
 
 Memory usage for this session 2165 Mbytes.
 Memory usage for this session including child processes 2165 Mbytes.
-<<<<<<< HEAD
 CPU usage for this session 20 seconds ( 0.01 hours ).
 Elapsed time for this session 43 seconds ( 0.01 hours ).
-=======
-CPU usage for this session 19 seconds ( 0.01 hours ).
-Elapsed time for this session 48 seconds ( 0.01 hours ).
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 Thank you...

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 Your job has been queued (JobID 8476316311376833, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
-=======
-Your job has been queued (JobID 8476283042300627, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
                            Design Compiler Graphical 
                                  DC Ultra (TM)
@@ -7931,7 +7927,6 @@ Information: There are 2 other cells with the same violation. (TEST-171)
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
     0:00:10       5.7      5.24       9.1       1.1                          
-<<<<<<< HEAD
     0:00:11       5.5      0.61       1.2       1.1                          
     0:00:11       5.5      0.61       1.2       1.1                          
     0:00:11       5.6      0.00       0.0       1.1                          
@@ -7949,25 +7944,6 @@ Information: There are 2 other cells with the same violation. (TEST-171)
     0:00:11       4.6      0.71       0.7       1.1                          
     0:00:11       4.6      0.71       0.7       1.1                          
     0:00:11       5.0      0.00       0.0       1.1                          
-=======
-    0:00:10       5.5      0.61       1.2       1.1                          
-    0:00:10       5.5      0.61       1.2       1.1                          
-    0:00:10       5.6      0.00       0.0       1.1                          
-    0:00:10       5.6      0.00       0.0       1.1                          
-    0:00:10       4.5     12.47      16.9       1.1                          
-    0:00:10       4.5      7.56      10.9       1.1                          
-    0:00:10       4.6      6.73       6.7       1.1                          
-    0:00:10       4.7      2.47       2.5       1.1                          
-    0:00:10       4.6      0.87       0.9       1.1                          
-    0:00:10       4.6      0.71       0.7       1.1                          
-    0:00:10       4.6      0.71       0.7       1.1                          
-    0:00:10       4.6      0.71       0.7       1.1                          
-    0:00:10       4.6      0.71       0.7       1.1                          
-    0:00:10       4.6      0.71       0.7       1.1                          
-    0:00:10       4.6      0.71       0.7       1.1                          
-    0:00:10       4.6      0.71       0.7       1.1                          
-    0:00:10       5.0      0.00       0.0       1.1                          
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 
 
@@ -7978,13 +7954,8 @@ Information: There are 2 other cells with the same violation. (TEST-171)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-<<<<<<< HEAD
     0:00:11       5.0      0.00       0.0       1.1                          
     0:00:11       5.0      0.00       0.0       1.1                          
-=======
-    0:00:10       5.0      0.00       0.0       1.1                          
-    0:00:10       5.0      0.00       0.0       1.1                          
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
     0:00:11       4.9      0.00       0.0       1.1                          
 
 
@@ -8277,10 +8248,6 @@ exit
 Memory usage for this session 2178 Mbytes.
 Memory usage for this session including child processes 2178 Mbytes.
 CPU usage for this session 19 seconds ( 0.01 hours ).
-<<<<<<< HEAD
 Elapsed time for this session 46 seconds ( 0.01 hours ).
-=======
-Elapsed time for this session 53 seconds ( 0.01 hours ).
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 Thank you...

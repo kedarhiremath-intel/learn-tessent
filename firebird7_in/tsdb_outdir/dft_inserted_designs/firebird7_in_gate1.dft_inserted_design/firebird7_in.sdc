@@ -11,11 +11,7 @@
 #--------------------------------------------------------------------------
 #  File created by: Tessent Shell
 #          Version: 2022.4
-<<<<<<< HEAD
 #       Created on: Sun Oct 29 23:54:12 PDT 2023
-=======
-#       Created on: Sun Oct 29 14:18:21 PDT 2023
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 #--------------------------------------------------------------------------
 
 #
@@ -758,7 +754,6 @@ proc tessent_set_memory_bist_non_modal {} {
   set_multicycle_path -setup 2 \
       -from [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] \
       -through [tessent_get_cells [concat  \
-<<<<<<< HEAD
           [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?13? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?12? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?11? \
@@ -820,21 +815,6 @@ proc tessent_set_memory_bist_non_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?16? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?15? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?14?]] 
-=======
-          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?1? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?0?]] \
-      -to [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?3? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?2?]] 
-  set_multicycle_path -hold 1 \
-      -from [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] \
-      -through [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?1? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?0?]] \
-      -to [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?3? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?2?]] 
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
   set_multicycle_path -setup 2 \
       -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_DELAYCOUNTER/DELAYCOUNTER_REG*] \
       -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 
@@ -2627,7 +2607,6 @@ proc tessent_set_memory_bist_modal {} {
   set_multicycle_path -setup 2 \
       -from [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] \
       -through [tessent_get_cells [concat  \
-<<<<<<< HEAD
           [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?13? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?12? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?11? \
@@ -2689,21 +2668,6 @@ proc tessent_set_memory_bist_modal {} {
           [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?16? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?15? \
           [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?14?]] 
-=======
-          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?1? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?0?]] \
-      -to [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?3? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?2?]] 
-  set_multicycle_path -hold 1 \
-      -from [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] \
-      -through [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?1? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?0?]] \
-      -to [tessent_get_cells [concat  \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?3? \
-          [dict get $mbist_info mbist1 inst]/MBISTPG_COUNTER_A/COUNTERA_CNT_reg?2?]] 
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
   set_multicycle_path -setup 2 \
       -from [tessent_get_cells [dict get $mbist_info mbist1 inst]/MBISTPG_DELAYCOUNTER/DELAYCOUNTER_REG*] \
       -to [tessent_get_clocks $tessent_clock_mapping(clk_bbm)] 

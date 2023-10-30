@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 Your job has been queued (JobID 8476316311376836, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
-=======
-Your job has been queued (JobID 8476247232301763, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
                            Design Compiler Graphical 
                                  DC Ultra (TM)
@@ -7958,7 +7954,6 @@ Warning: No scan equivalent exists for cell retiming_so_reg (i0slsn080ab1n02x5).
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
     0:00:10       3.1      0.00       0.0       0.1                          
-<<<<<<< HEAD
     0:00:11       3.1      0.00       0.0       0.1                          
     0:00:11       3.1      0.00       0.0       0.1                          
     0:00:11       3.1      0.00       0.0       0.1                          
@@ -7971,20 +7966,6 @@ Warning: No scan equivalent exists for cell retiming_so_reg (i0slsn080ab1n02x5).
     0:00:11       2.6      0.00       0.0       0.1                          
     0:00:11       2.6      0.00       0.0       0.1                          
     0:00:11       2.6      0.00       0.0       0.1                          
-=======
-    0:00:10       3.1      0.00       0.0       0.1                          
-    0:00:10       3.1      0.00       0.0       0.1                          
-    0:00:10       3.1      0.00       0.0       0.1                          
-    0:00:10       3.1      0.00       0.0       0.1                          
-    0:00:10       2.6      0.00       0.0       0.1                          
-    0:00:10       2.6      0.00       0.0       0.1                          
-    0:00:10       2.6      0.00       0.0       0.1                          
-    0:00:10       2.6      0.00       0.0       0.1                          
-    0:00:10       2.6      0.00       0.0       0.1                          
-    0:00:10       2.6      0.00       0.0       0.1                          
-    0:00:10       2.6      0.00       0.0       0.1                          
-    0:00:10       2.6      0.00       0.0       0.1                          
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 
 
@@ -7995,15 +7976,9 @@ Warning: No scan equivalent exists for cell retiming_so_reg (i0slsn080ab1n02x5).
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-<<<<<<< HEAD
     0:00:11       2.6      0.00       0.0       0.1                          
     0:00:11       2.6      0.00       0.0       0.1                          
     0:00:11       2.5      0.00       0.0       0.1                          
-=======
-    0:00:10       2.6      0.00       0.0       0.1                          
-    0:00:10       2.6      0.00       0.0       0.1                          
-    0:00:10       2.5      0.00       0.0       0.1                          
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 
   Beginning Design Rule Fixing  (min_capacitance)
@@ -8013,11 +7988,7 @@ Warning: No scan equivalent exists for cell retiming_so_reg (i0slsn080ab1n02x5).
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-<<<<<<< HEAD
     0:00:11       2.5      0.00       0.0       0.1                          
-=======
-    0:00:10       2.5      0.00       0.0       0.1                          
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -8027,7 +7998,6 @@ Warning: No scan equivalent exists for cell retiming_so_reg (i0slsn080ab1n02x5).
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-<<<<<<< HEAD
     0:00:11       2.5      0.00       0.0       0.1                          
     0:00:11       2.5      0.00       0.0       0.1                          
     0:00:11       2.5      0.00       0.0       0.1                          
@@ -8039,19 +8009,6 @@ Warning: No scan equivalent exists for cell retiming_so_reg (i0slsn080ab1n02x5).
     0:00:11       2.5      0.00       0.0       0.1                          
     0:00:11       2.5      0.00       0.0       0.1                          
     0:00:11       2.5      0.00       0.0       0.1                          
-=======
-    0:00:10       2.5      0.00       0.0       0.1                          
-    0:00:10       2.5      0.00       0.0       0.1                          
-    0:00:10       2.5      0.00       0.0       0.1                          
-    0:00:10       2.5      0.00       0.0       0.1                          
-    0:00:10       2.5      0.00       0.0       0.1                          
-    0:00:10       2.5      0.00       0.0       0.1                          
-    0:00:10       2.5      0.00       0.0       0.1                          
-    0:00:10       2.5      0.00       0.0       0.1                          
-    0:00:10       2.5      0.00       0.0       0.1                          
-    0:00:10       2.5      0.00       0.0       0.1                          
-    0:00:10       2.5      0.00       0.0       0.1                          
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -8274,12 +8231,7 @@ exit
 
 Memory usage for this session 2177 Mbytes.
 Memory usage for this session including child processes 2177 Mbytes.
-<<<<<<< HEAD
 CPU usage for this session 20 seconds ( 0.01 hours ).
 Elapsed time for this session 43 seconds ( 0.01 hours ).
-=======
-CPU usage for this session 19 seconds ( 0.01 hours ).
-Elapsed time for this session 44 seconds ( 0.01 hours ).
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 Thank you...

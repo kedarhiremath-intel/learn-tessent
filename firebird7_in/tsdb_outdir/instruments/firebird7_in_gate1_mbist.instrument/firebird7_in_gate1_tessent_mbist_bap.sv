@@ -11,11 +11,7 @@
 //--------------------------------------------------------------------------
 //  File created by: Tessent Shell
 //          Version: 2022.4
-<<<<<<< HEAD
 //       Created on: Sun Oct 29 23:50:52 PDT 2023
-=======
-//       Created on: Sun Oct 29 14:14:48 PDT 2023
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 //--------------------------------------------------------------------------
 
 module firebird7_in_gate1_tessent_mbist_bap (

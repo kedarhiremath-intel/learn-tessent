@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 Your job has been queued (JobID 8476275939378394, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
-=======
-Your job has been queued (JobID 8476283042300634, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
                            Design Compiler Graphical 
                                  DC Ultra (TM)
@@ -8214,10 +8210,6 @@ exit
 Memory usage for this session 2172 Mbytes.
 Memory usage for this session including child processes 2172 Mbytes.
 CPU usage for this session 18 seconds ( 0.01 hours ).
-<<<<<<< HEAD
 Elapsed time for this session 39 seconds ( 0.01 hours ).
-=======
-Elapsed time for this session 51 seconds ( 0.01 hours ).
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 Thank you...

@@ -3,7 +3,6 @@
             insert_tck_occ_for_scan_tested_instruments : on;
             compress_concatenated_netlist : on;
             MemoryBist {
-<<<<<<< HEAD
                 clock_partitioning : per_clock_domain; // NOTE: I am not sure about this one. I need to review this setting.
                 physical_domain_size_ratio : 100;
                 max_comparators_per_physical_domain : unlimited;
@@ -11,12 +10,6 @@
                 ControllerOptions {
                     algorithm : IntelLVPMOVIFastx;
                 }
-=======
-                //clock_partitioning : per_clock_domain;
-                physical_domain_size_ratio : 100;
-                max_comparators_per_physical_domain : unlimited;
-                memory_interface_reuse_method : non_unique_instances_only;
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
                 AlgorithmResourceOptions {
                     soft_instruction_count : 8;
                 }

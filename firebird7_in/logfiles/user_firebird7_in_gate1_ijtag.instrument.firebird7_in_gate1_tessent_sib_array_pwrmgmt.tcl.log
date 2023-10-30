@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 Your job has been queued (JobID 8476247232378835, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
-=======
-Your job has been queued (JobID 8476275939300943, Class SLES12&&16G&&4C, Queue zsc14_express, Slot /XNE/irw/be)
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
                            Design Compiler Graphical 
                                  DC Ultra (TM)
@@ -7920,11 +7916,7 @@ Warning: No scan equivalent exists for cell retiming_so_reg (i0slsn080ab1n02x5).
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-<<<<<<< HEAD
     0:00:10       1.9      5.24       9.1       0.2                          
-=======
-    0:00:11       1.9      5.24       9.1       0.2                          
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
     0:00:11       1.7      0.61       1.2       0.2                          
     0:00:11       1.7      0.61       1.2       0.2                          
     0:00:11       1.8      0.00       0.0       0.2                          
@@ -8224,10 +8216,6 @@ exit
 Memory usage for this session 2177 Mbytes.
 Memory usage for this session including child processes 2177 Mbytes.
 CPU usage for this session 19 seconds ( 0.01 hours ).
-<<<<<<< HEAD
 Elapsed time for this session 43 seconds ( 0.01 hours ).
-=======
-Elapsed time for this session 52 seconds ( 0.01 hours ).
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 
 Thank you...

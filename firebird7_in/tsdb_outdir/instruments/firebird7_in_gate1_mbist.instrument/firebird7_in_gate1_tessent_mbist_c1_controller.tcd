@@ -12,11 +12,7 @@
 ----------------------------------------------------------------------------------
 -  File created by: Tessent Shell                                                -
 -          Version: 2022.4                                                       -
-<<<<<<< HEAD
 -       Created on: Sun Oct 29 23:50:46 PDT 2023                                 -
-=======
--       Created on: Sun Oct 29 14:14:43 PDT 2023                                 -
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 ----------------------------------------------------------------------------------
 
 
@@ -4187,11 +4183,7 @@ Core(firebird7_in_gate1_tessent_mbist_c1_controller) {
             CompStatIDMuxing    : Never;
         } 
         FreezeTestPortAllowed   : Off;
-<<<<<<< HEAD
         controller_flop_count  : 974;
-=======
-        controller_flop_count  : 887;
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
         interface_flop_count   : 6596;
         RedundancyAnalysis  : On;
         SelfRepair          : On;
@@ -4215,11 +4207,7 @@ Core(firebird7_in_gate1_tessent_mbist_c1_controller) {
         AllowCommonOperationSetForStepRange : On;
         AllowCommonDataPatternForStepRange  : On;
         ParallelRetentionTest   : ON;
-<<<<<<< HEAD
         CounterA                : 28;
-=======
-        CounterA                : 4;
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
         DelayCounter            : 8;
         EnableAEqualsBCommand   : ON;
         DataPolarityPresent     : 0;
@@ -7048,13 +7036,8 @@ Core(firebird7_in_gate1_tessent_mbist_c1_controller) {
             RepeatLoopACounter  : %BP%_REPEATLOOP_A_CNTR_REG[1:0];
             RepeatLoopBCounter  : %BP%_REPEATLOOP_B_CNTR_REG[1:0];
             OperationCycleCounter : %BP%_JCNT[2:0];
-<<<<<<< HEAD
             AlgorithmSelect     : %BP%_ALGO_SEL_REG[6:0];
             CounterA            : %BP%_COUNTERA_CNT[27:0];
-=======
-            AlgorithmSelect     : %BP%_ALGO_SEL_REG[0:0];
-            CounterA            : %BP%_COUNTERA_CNT[3:0];
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
             DelayCounter        : %BP%_DELAYCOUNTER_CNT[7:0];
             ErrorCounter        : %BP%_STOP_ERROR_CNT_REG[15:0];
         }
@@ -17480,7 +17463,6 @@ Core(firebird7_in_gate1_tessent_mbist_c1_controller) {
             } 
         } 
         Algorithm ( INTELLVPMOVIFASTX ) { 
-<<<<<<< HEAD
             Type        : CUSTOM; 
             AllowMultiSizeMemParallelTest   : ON;
             TargetMemory                    : ALLCOMPATIBLE;
@@ -17684,8 +17666,6 @@ Core(firebird7_in_gate1_tessent_mbist_c1_controller) {
             } 
         } 
         Algorithm ( INTELLVPMARCHCEXT ) { 
-=======
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
             Type        : CUSTOM; 
             AllowMultiSizeMemParallelTest   : ON;
             TargetMemory                    : ALLCOMPATIBLE;
@@ -17693,15 +17673,15 @@ Core(firebird7_in_gate1_tessent_mbist_c1_controller) {
             TestRegisterSetup { 
                 AddressGenerator {
                     AddressRegister ( A ) {
-                        LoadRowAddress      : MAXROW;
-                        LoadColumnAddress   : MAXCOLUMN;
-                        NumberX0Bits        : 1;
-                        NumberY0Bits        : 1;
+                        LoadRowAddress      : 8'b00000000;
+                        LoadColumnAddress   : 3'b000;
+                        NumberX0Bits        : 0;
+                        NumberY0Bits        : 0;
                         ZCarryIn     : None; 
-                        X1CarryIn     : X0CARRYOUT;
-                        X0CarryIn     : NONE;
-                        Y1CarryIn     : Y0CARRYOUT;
-                        Y0CarryIn     : X1CARRYOUT;
+                        X1CarryIn     : NONE;
+                        X0CarryIn     : None; 
+                        Y1CarryIn     : X1CARRYOUT;
+                        Y0CarryIn     : None; 
                     } 
                     AddressRegister ( B ) {
                         LoadRowAddress      : 8'b00000000;
@@ -17726,6 +17706,40 @@ Core(firebird7_in_gate1_tessent_mbist_c1_controller) {
                 OperationSetSelect          : SYNCCUSTOM; 
             } 
             MicroProgram { 
+                Instruction ( M0_DUMMY ) { 
+                    ApplyToBitSlice         : On;
+                    CheckerBoard            : Off; 
+                    DisableMemoriesWithoutWriteEnable      : Off;
+                    DisableMemoriesWithoutGroupWriteEnable : Off;
+                    DisableMemoriesWithoutReadEnable       : Off;
+                    DisableMemoriesWithoutOutputEnable     : Off;
+                    DisableMemoriesWithoutSelect           : Off;
+                    Add_Reg_A_Equals_B      : Off;
+                    AddressSelectCmd        : Select_A;
+                    BranchToInstruction     : M0_DUMMY;
+                    CounterACmd             : Hold;
+                    DelayCounterCmd         : Hold;
+                    ExpectDataCmd           : Zero;
+                    InhibitDataCompare      : Off;
+                    InhibitLastAddressCount : Off;
+                    InhibitRefresh          : Off;
+                    OperationSelect         : NOOPERATION;
+                    WriteDataCmd            : Zero;
+                    ZAddressCmd      : Hold; 
+                    X1AddressCmd      : LoadMax;
+                    X0AddressCmd      : Hold;
+                    Y1AddressCmd      : LoadMax;
+                    Y0AddressCmd      : Hold;
+                    NextConditions {
+                        Z_EndCount : Off; 
+                        X1_EndCount : Off;
+                        X0_EndCount : Off;
+                        Y1_EndCount : Off;
+                        Y0_EndCount : Off;
+                        CounterAEndCount        : Off;
+                        DelayCounterEndCount    : Off;
+                    } 
+                } 
                 Instruction ( M0_W0 ) { 
                     ApplyToBitSlice         : On;
                     CheckerBoard            : Off; 
@@ -17743,19 +17757,19 @@ Core(firebird7_in_gate1_tessent_mbist_c1_controller) {
                     InhibitDataCompare      : Off;
                     InhibitLastAddressCount : On;
                     InhibitRefresh          : Off;
-                    OperationSelect         : WRITEFASTROW;
+                    OperationSelect         : WRITEDATA;
                     WriteDataCmd            : DataReg;
                     ZAddressCmd      : Hold; 
                     X1AddressCmd      : Decrement;
-                    X0AddressCmd      : Decrement;
+                    X0AddressCmd      : Hold;
                     Y1AddressCmd      : Decrement;
-                    Y0AddressCmd      : Decrement;
+                    Y0AddressCmd      : Hold;
                     NextConditions {
                         Z_EndCount : Off; 
                         X1_EndCount : On;
-                        X0_EndCount : On;
+                        X0_EndCount : Off;
                         Y1_EndCount : On;
-                        Y0_EndCount : On;
+                        Y0_EndCount : Off;
                         CounterAEndCount        : Off;
                         DelayCounterEndCount    : Off;
                     } 
@@ -17781,15 +17795,15 @@ Core(firebird7_in_gate1_tessent_mbist_c1_controller) {
                     WriteDataCmd            : InverseDataReg;
                     ZAddressCmd      : Hold; 
                     X1AddressCmd      : Increment;
-                    X0AddressCmd      : Increment;
+                    X0AddressCmd      : Hold;
                     Y1AddressCmd      : Increment;
-                    Y0AddressCmd      : Increment;
+                    Y0AddressCmd      : Hold;
                     NextConditions {
                         Z_EndCount : Off; 
                         X1_EndCount : On;
-                        X0_EndCount : On;
+                        X0_EndCount : Off;
                         Y1_EndCount : On;
-                        Y0_EndCount : On;
+                        Y0_EndCount : Off;
                         CounterAEndCount        : Off;
                         DelayCounterEndCount    : Off;
                     } 
@@ -17858,17 +17872,10 @@ Core(firebird7_in_gate1_tessent_mbist_c1_controller) {
                     OperationSelect         : READMODIFYWRITEREAD;
                     WriteDataCmd            : DataReg;
                     ZAddressCmd      : Hold; 
-<<<<<<< HEAD
                     X1AddressCmd      : Decrement;
                     X0AddressCmd      : Hold;
                     Y1AddressCmd      : Decrement;
                     Y0AddressCmd      : Hold;
-=======
-                    X1AddressCmd      : LoadMin;
-                    X0AddressCmd      : LoadMin;
-                    Y1AddressCmd      : LoadMin;
-                    Y0AddressCmd      : LoadMin;
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
                     NextConditions {
                         Z_EndCount : Off; 
                         X1_EndCount : On;
@@ -17896,7 +17903,6 @@ Core(firebird7_in_gate1_tessent_mbist_c1_controller) {
                     InhibitDataCompare      : Off;
                     InhibitLastAddressCount : Off;
                     InhibitRefresh          : Off;
-<<<<<<< HEAD
                     OperationSelect         : NOOPERATION;
                     WriteDataCmd            : Zero;
                     ZAddressCmd      : Hold; 
@@ -36323,22 +36329,10 @@ Core(firebird7_in_gate1_tessent_mbist_c1_controller) {
                     Y0AddressCmd      : Increment;
                     NextConditions {
                         Z_EndCount : Off; 
-=======
-                    OperationSelect         : WRITEFASTROW;
-                    WriteDataCmd            : Reset_DataReg;
-                    ZAddressCmd      : Hold; 
-                    X1AddressCmd      : Increment;
-                    X0AddressCmd      : Increment;
-                    Y1AddressCmd      : Increment;
-                    Y0AddressCmd      : Increment;
-                    NextConditions {
-                        Z_EndCount : Off; 
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
                         X1_EndCount : On;
                         X0_EndCount : On;
                         Y1_EndCount : On;
                         Y0_EndCount : On;
-<<<<<<< HEAD
                         CounterAEndCount        : Off;
                         DelayCounterEndCount    : Off;
                     } 
@@ -36416,8 +36410,6 @@ Core(firebird7_in_gate1_tessent_mbist_c1_controller) {
                         X0_EndCount : Off;
                         Y1_EndCount : Off;
                         Y0_EndCount : Off;
-=======
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
                         CounterAEndCount        : Off;
                         DelayCounterEndCount    : Off;
                     } 

@@ -1,35 +1,19 @@
 +-----------------------------------------------------------------------------+
 | Logfile        : netbatch_user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_spare_orange.tcl.log|
-<<<<<<< HEAD
 | Job id         : 8476216235379690           Class: SLES12&&16G&&4C Qslot: /XNE/IRW|
 | User           : khiremat                   Full Id: zsc14_tiers2_vp.8476216235379690|
 | Class Reservation : cores=4,general_ramp=1:duration=60s,memory=16           |
 | Executed on    : scce183702                 Pool : zsc14_nb2_ppm            |
 | Queueing time  : Sun Oct 29 23:54:22 2023                                   |
 | Starting time  : Sun Oct 29 23:54:23 2023          Qwait:   0h:00m:01s      |
-=======
-| Job id         : 8476275939300944           Class: SLES12&&16G&&4C Qslot: /XNE/IRW|
-| User           : khiremat                   Full Id: zsc14_tiers2_vp.8476275939300944|
-| Class Reservation : cores=4,general_ramp=1:duration=60s,memory=16           |
-| Executed on    : scci193106                 Pool : zsc14_nb2_ppm            |
-| Queueing time  : Sun Oct 29 14:19:24 2023                                   |
-| Starting time  : Sun Oct 29 14:19:25 2023          Qwait:   0h:00m:01s      |
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 | Command        : dc_shell -64 -f ./user_firebird7_in_gate1_ijtag.instrument.firebird7_in_gate1_tessent_sib_spare_orange.tcl |
 +-----------------------------------------------------------------------------+
 +-----------------------------------------------------------------------------+
 | Exit Status    : 0                                                          |
-<<<<<<< HEAD
 | Finishing time : Sun Oct 29 23:55:14 2023                                   |
 | CPU time       : Usr 27.483s Sys 1.19s   WC  0h:00m:51s                     |
 | Rusage Stats   : Mem:2211   PF:  577919/335CSv/f:  0/0     Swaps:0          |
 |                :           Msg:    0/0     IOops:  990512/1464Sigs :0          |
-=======
-| Finishing time : Sun Oct 29 14:20:16 2023                                   |
-| CPU time       : Usr 18.765s Sys 0.845s  WC  0h:00m:51s                     |
-| Rusage Stats   : Mem:2193   PF:  572755/0  CSv/f:  0/0     Swaps:0          |
-|                :           Msg:    0/0     IOops:  64/1472 Sigs :0          |
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 | User Groups    : soc, socenv, ipx_general_user, arborcrest_soc, ncsg76,     |
 |                : i1278proc, i1278, intelall, ncsg78, irw, powdermill,       |
 |                : soc73, gdlusers, srvr10nm                                  |

@@ -12,11 +12,7 @@
 ----------------------------------------------------------------------------------
 -  File created by: Tessent Shell                                                -
 -          Version: 2022.4                                                       -
-<<<<<<< HEAD
 -       Created on: Sun Oct 29 23:50:44 PDT 2023                                 -
-=======
--       Created on: Sun Oct 29 14:14:41 PDT 2023                                 -
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
 ----------------------------------------------------------------------------------
 
 
@@ -690,16 +686,11 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
       ScanInSource   INST0_BRANCH_INST_ADDRESS_HW[4];
   }
   Alias INST0_NEXT_CONDITIONS[6:0] = INST0_NEXT_CONDITIONS_HW[6:0];
-<<<<<<< HEAD
   ScanRegister INST0_DISABLE_GWE[0:0] {
       ScanInSource   INST0_NEXT_CONDITIONS_HW[6];
   }
   ScanRegister INST1_OPERATION_SELECT_HW[0:5] {
       ScanInSource   INST0_DISABLE_GWE[0];
-=======
-  ScanRegister INST1_OPERATION_SELECT_HW[0:5] {
-      ScanInSource   INST0_NEXT_CONDITIONS_HW[6];
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
   }
   Alias INST1_OPERATION_SELECT[5:0] = INST1_OPERATION_SELECT_HW[5:0];
   ScanRegister INST1_ADD_REG_A_EQUALS_B_HW[0:1] {
@@ -758,16 +749,11 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
       ScanInSource   INST1_BRANCH_INST_ADDRESS_HW[4];
   }
   Alias INST1_NEXT_CONDITIONS[6:0] = INST1_NEXT_CONDITIONS_HW[6:0];
-<<<<<<< HEAD
   ScanRegister INST1_DISABLE_GWE[0:0] {
       ScanInSource   INST1_NEXT_CONDITIONS_HW[6];
   }
   ScanRegister INST2_OPERATION_SELECT_HW[0:5] {
       ScanInSource   INST1_DISABLE_GWE[0];
-=======
-  ScanRegister INST2_OPERATION_SELECT_HW[0:5] {
-      ScanInSource   INST1_NEXT_CONDITIONS_HW[6];
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
   }
   Alias INST2_OPERATION_SELECT[5:0] = INST2_OPERATION_SELECT_HW[5:0];
   ScanRegister INST2_ADD_REG_A_EQUALS_B_HW[0:1] {
@@ -826,16 +812,11 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
       ScanInSource   INST2_BRANCH_INST_ADDRESS_HW[4];
   }
   Alias INST2_NEXT_CONDITIONS[6:0] = INST2_NEXT_CONDITIONS_HW[6:0];
-<<<<<<< HEAD
   ScanRegister INST2_DISABLE_GWE[0:0] {
       ScanInSource   INST2_NEXT_CONDITIONS_HW[6];
   }
   ScanRegister INST3_OPERATION_SELECT_HW[0:5] {
       ScanInSource   INST2_DISABLE_GWE[0];
-=======
-  ScanRegister INST3_OPERATION_SELECT_HW[0:5] {
-      ScanInSource   INST2_NEXT_CONDITIONS_HW[6];
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
   }
   Alias INST3_OPERATION_SELECT[5:0] = INST3_OPERATION_SELECT_HW[5:0];
   ScanRegister INST3_ADD_REG_A_EQUALS_B_HW[0:1] {
@@ -894,16 +875,11 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
       ScanInSource   INST3_BRANCH_INST_ADDRESS_HW[4];
   }
   Alias INST3_NEXT_CONDITIONS[6:0] = INST3_NEXT_CONDITIONS_HW[6:0];
-<<<<<<< HEAD
   ScanRegister INST3_DISABLE_GWE[0:0] {
       ScanInSource   INST3_NEXT_CONDITIONS_HW[6];
   }
   ScanRegister INST4_OPERATION_SELECT_HW[0:5] {
       ScanInSource   INST3_DISABLE_GWE[0];
-=======
-  ScanRegister INST4_OPERATION_SELECT_HW[0:5] {
-      ScanInSource   INST3_NEXT_CONDITIONS_HW[6];
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
   }
   Alias INST4_OPERATION_SELECT[5:0] = INST4_OPERATION_SELECT_HW[5:0];
   ScanRegister INST4_ADD_REG_A_EQUALS_B_HW[0:1] {
@@ -962,16 +938,11 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
       ScanInSource   INST4_BRANCH_INST_ADDRESS_HW[4];
   }
   Alias INST4_NEXT_CONDITIONS[6:0] = INST4_NEXT_CONDITIONS_HW[6:0];
-<<<<<<< HEAD
   ScanRegister INST4_DISABLE_GWE[0:0] {
       ScanInSource   INST4_NEXT_CONDITIONS_HW[6];
   }
   ScanRegister INST5_OPERATION_SELECT_HW[0:5] {
       ScanInSource   INST4_DISABLE_GWE[0];
-=======
-  ScanRegister INST5_OPERATION_SELECT_HW[0:5] {
-      ScanInSource   INST4_NEXT_CONDITIONS_HW[6];
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
   }
   Alias INST5_OPERATION_SELECT[5:0] = INST5_OPERATION_SELECT_HW[5:0];
   ScanRegister INST5_ADD_REG_A_EQUALS_B_HW[0:1] {
@@ -1030,16 +1001,11 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
       ScanInSource   INST5_BRANCH_INST_ADDRESS_HW[4];
   }
   Alias INST5_NEXT_CONDITIONS[6:0] = INST5_NEXT_CONDITIONS_HW[6:0];
-<<<<<<< HEAD
   ScanRegister INST5_DISABLE_GWE[0:0] {
       ScanInSource   INST5_NEXT_CONDITIONS_HW[6];
   }
   ScanRegister INST6_OPERATION_SELECT_HW[0:5] {
       ScanInSource   INST5_DISABLE_GWE[0];
-=======
-  ScanRegister INST6_OPERATION_SELECT_HW[0:5] {
-      ScanInSource   INST5_NEXT_CONDITIONS_HW[6];
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
   }
   Alias INST6_OPERATION_SELECT[5:0] = INST6_OPERATION_SELECT_HW[5:0];
   ScanRegister INST6_ADD_REG_A_EQUALS_B_HW[0:1] {
@@ -1098,16 +1064,11 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
       ScanInSource   INST6_BRANCH_INST_ADDRESS_HW[4];
   }
   Alias INST6_NEXT_CONDITIONS[6:0] = INST6_NEXT_CONDITIONS_HW[6:0];
-<<<<<<< HEAD
   ScanRegister INST6_DISABLE_GWE[0:0] {
       ScanInSource   INST6_NEXT_CONDITIONS_HW[6];
   }
   ScanRegister INST7_OPERATION_SELECT_HW[0:5] {
       ScanInSource   INST6_DISABLE_GWE[0];
-=======
-  ScanRegister INST7_OPERATION_SELECT_HW[0:5] {
-      ScanInSource   INST6_NEXT_CONDITIONS_HW[6];
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
   }
   Alias INST7_OPERATION_SELECT[5:0] = INST7_OPERATION_SELECT_HW[5:0];
   ScanRegister INST7_ADD_REG_A_EQUALS_B_HW[0:1] {
@@ -1166,18 +1127,12 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
       ScanInSource   INST7_BRANCH_INST_ADDRESS_HW[4];
   }
   Alias INST7_NEXT_CONDITIONS[6:0] = INST7_NEXT_CONDITIONS_HW[6:0];
-<<<<<<< HEAD
   ScanRegister INST7_DISABLE_GWE[0:0] {
       ScanInSource   INST7_NEXT_CONDITIONS_HW[6];
   }
   ScanMux A_ADD_REG_Y_SI_MUX SelectedBy LONG_SETUP,SHORT_SETUP {
       2'b01 : INST_POINTER_REG_HW[4];
       2'b10 : INST7_DISABLE_GWE[0];
-=======
-  ScanMux A_ADD_REG_Y_SI_MUX SelectedBy LONG_SETUP,SHORT_SETUP {
-      2'b01 : INST_POINTER_REG_HW[4];
-      2'b10 : INST7_NEXT_CONDITIONS_HW[6];
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
   }
   ScanRegister A_ADD_REG_Y_HW[0:2] {
       ScanInSource   A_ADD_REG_Y_SI_MUX;
@@ -1332,7 +1287,6 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
       ScanInSource   REPEATLOOP_A_CNTR_REG_HW[1];
   }
   Alias REPEATLOOP_B_CNTR_REG[1:0] = REPEATLOOP_B_CNTR_REG_HW[1:0];
-<<<<<<< HEAD
   ScanRegister COUNTERA_CNT_HW[0:27] {
       ScanInSource   REPEATLOOP_B_CNTR_REG_HW[1];
   }
@@ -1343,18 +1297,6 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
   Alias COUNTERA_REG[27:0] = COUNTERA_REG_HW[27:0];
   ScanMux MEM39_TO_COLLAR_SI_MUX SelectedBy BIRA_SETUP {
       1'b0 : COUNTERA_REG_HW[27];
-=======
-  ScanRegister COUNTERA_CNT_HW[0:3] {
-      ScanInSource   REPEATLOOP_B_CNTR_REG_HW[1];
-  }
-  Alias COUNTERA_CNT[3:0] = COUNTERA_CNT_HW[3:0];
-  ScanRegister COUNTERA_REG_HW[0:3] {
-      ScanInSource   COUNTERA_CNT_HW[3];
-  }
-  Alias COUNTERA_REG[3:0] = COUNTERA_REG_HW[3:0];
-  ScanMux MEM39_TO_COLLAR_SI_MUX SelectedBy BIRA_SETUP {
-      1'b0 : COUNTERA_REG_HW[3];
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
       1'b1 : BIST_SI_Pipeline;
   }
   ScanMux MEM39_GOID_SI_MUX SelectedBy GOID_SETUP {
@@ -1644,11 +1586,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
   Attribute     tessent_instrument_container           = "firebird7_in_gate1_mbist";
   Attribute     tessent_instrument_type                = "mentor::memory_bist";
   Attribute     tessent_instrument_subtype             = "controller";
-<<<<<<< HEAD
   Attribute     tessent_signature                      = "7bb736ac42003a455695c0151131bc4c";
-=======
-  Attribute     tessent_signature                      = "e14263b3ca97686806a868989eeb277b";
->>>>>>> 4e4549e56b67a7b4dea437b7120c3145ada194bf
   Attribute     tessent_ignore_during_icl_verification = "on";
   Attribute     keep_active_during_scan_test           = "false";
   Attribute     tessent_use_in_dft_specification       = "false";
