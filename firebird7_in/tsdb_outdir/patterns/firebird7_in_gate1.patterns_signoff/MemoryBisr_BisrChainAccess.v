@@ -2,7 +2,7 @@
 // Verilog format test patterns produced by Tessent Shell 2022.4
 // Filename       : ./tsdb_outdir/patterns/firebird7_in_gate1.patterns_signoff/MemoryBisr_BisrChainAccess.v
 // Idstamp        : 2022.4:ec94:6099:0:0000
-// Date           : Sun Oct 29 14:29:25 2023
+// Date           : Sun Nov  5 08:49:30 2023
 //
 // Begin_Verify_Section 
 //   format            = Verilog 
@@ -78,7 +78,7 @@ integer     _max_file_cnt;
 reg[256*8:1] _vec_file_name;
 reg[256*8:1] _cfg_file_name;
 integer     _scan_shift_count;
-reg[9:0]    _ibus;
+reg[10:0]    _ibus;
 reg[0:0]    _exp_obus, _msk_obus;
 wire[0:0]   _sim_obus;
 reg[2:0]    _pat_type;
@@ -86,11 +86,12 @@ reg         _tp_num;
 reg         mgcdft_save_signal, mgcdft_restart_signal;
 reg[38:0]   vect;
 
-wire ijtag_tck, ijtag_reset, ijtag_ce, ijtag_se, ijtag_ue, ijtag_sel, 
-     PD_TOP_bisr_si, PD_TOP_bisr_shift_en, PD_TOP_bisr_clk, PD_TOP_bisr_reset, 
-     PD_TOP_bisr_so;
+wire fdfx_powergood, ijtag_tck, ijtag_reset, ijtag_ce, ijtag_se, ijtag_ue, 
+     ijtag_sel, PD_TOP_bisr_si, PD_TOP_bisr_shift_en, PD_TOP_bisr_clk, 
+     PD_TOP_bisr_reset, PD_TOP_bisr_so;
 
 event       before_finish;
+assign fdfx_powergood = _ibus[10];
 assign ijtag_tck = _ibus[9];
 assign ijtag_reset = _ibus[8];
 assign ijtag_ce = _ibus[7];
@@ -469,10 +470,11 @@ always @(compare_exp_sim_obus) begin
 end
 
 reg[38:0]     mem [0:3441479];
-firebird7_in DUT_inst (.ijtag_tck(ijtag_tck), 
-     .ijtag_reset(ijtag_reset), .ijtag_ce(ijtag_ce), 
-     .ijtag_se(ijtag_se), .ijtag_ue(ijtag_ue), 
-     .ijtag_sel(ijtag_sel), .PD_TOP_bisr_si(PD_TOP_bisr_si), 
+firebird7_in DUT_inst (.fdfx_powergood(fdfx_powergood), 
+     .ijtag_tck(ijtag_tck), .ijtag_reset(ijtag_reset), 
+     .ijtag_ce(ijtag_ce), .ijtag_se(ijtag_se), 
+     .ijtag_ue(ijtag_ue), .ijtag_sel(ijtag_sel), 
+     .PD_TOP_bisr_si(PD_TOP_bisr_si), 
      .PD_TOP_bisr_shift_en(PD_TOP_bisr_shift_en), 
      .PD_TOP_bisr_clk(PD_TOP_bisr_clk), 
      .PD_TOP_bisr_reset(PD_TOP_bisr_reset), 
@@ -795,6 +797,7 @@ begin
                1'b1: begin // timeplate 1 - gen_tp1
                   _ibus[9] = 1'b0;
                   _ibus[1] = 1'b0;
+                  _ibus[10] = vect[21];
                   _ibus[8] = vect[19];
                   _ibus[3] = vect[14];
                   _ibus[0] = vect[11];

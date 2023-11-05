@@ -1,0 +1,5 @@
+#set_false_path -from [get_ports fbist_fdfx_powergood]
+#set_false_path -from [get_ports cluster_fbist_tx_reset_b]
+#set_false_path -from [get_ports cluster_fbist_rx_reset_b]
+#set_false_path -from [get_ports cluster_fbist_tx_set_b]
+#set_false_path -from [get_ports cluster_fbist_rx_set_b]

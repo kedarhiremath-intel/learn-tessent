@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys DC Expert(TM) in wire load mode
 // Version   : Q-2019.12-SP5-1
-// Date      : Sun Oct 29 23:55:18 2023
+// Date      : Sun Nov  5 08:34:30 2023
 /////////////////////////////////////////////////////////////
 
 
@@ -16,15 +16,15 @@ module firebird7_in_gate1_tessent_mbist_bap_ctl_sib ( reset, ijtag_select, si,
          SYNOPSYS_UNCONNECTED_2, SYNOPSYS_UNCONNECTED_3,
          SYNOPSYS_UNCONNECTED_4;
 
-  i0sfuz040ab1d02x5 tdr_reg ( .si(n18), .d(n16), .den(n19), .ssb(n17), .clk(
-        tck), .o(tdr), .so(SYNOPSYS_UNCONNECTED_1) );
-  i0sfvz08bab1d03x6 sib_latch_reg ( .si(n18), .d(n12), .ssb(n17), .clkb(tck), 
-        .rb(reset), .s(n18), .o(bistEn_latch), .so(SYNOPSYS_UNCONNECTED_2) );
-  i0sfuz040ab1d02x5 sib_reg ( .si(n18), .d(n13), .den(n19), .ssb(n17), .clk(
-        tck), .o(so), .so(SYNOPSYS_UNCONNECTED_3) );
-  i0sfvz08bab1d03x6 to_enable_int_reg ( .si(n18), .d(bistEn_latch), .ssb(n17), 
+  i0sfvz08bab1d02x5 sib_latch_reg ( .si(n18), .d(n12), .ssb(n17), .clkb(tck), 
+        .rb(reset), .s(n18), .o(bistEn_latch), .so(SYNOPSYS_UNCONNECTED_1) );
+  i0sfvz08bab1d02x5 to_enable_int_reg ( .si(n18), .d(bistEn_latch), .ssb(n17), 
         .clkb(tck), .rb(reset), .s(n18), .o(bistEn), .so(
-        SYNOPSYS_UNCONNECTED_4) );
+        SYNOPSYS_UNCONNECTED_2) );
+  i0sfuz040ab1d02x5 tdr_reg ( .si(n18), .d(n16), .den(n19), .ssb(n17), .clk(
+        tck), .o(tdr), .so(SYNOPSYS_UNCONNECTED_3) );
+  i0sfuz040ab1d02x5 sib_reg ( .si(n18), .d(n13), .den(n19), .ssb(n17), .clk(
+        tck), .o(so), .so(SYNOPSYS_UNCONNECTED_4) );
   i0stilo00ab1n02x5 U3 ( .o(n18) );
   i0stihi00ab1n02x5 U4 ( .o(n17) );
   i0soa0012ab1n02x5 U5 ( .b(capture_en), .c(shift_en), .a(ijtag_select), .o(
@@ -47,13 +47,13 @@ module firebird7_in_gate1_tessent_mbist_bap_sib_0 ( reset, ijtag_select, si,
   wire   to_enable_int, sib_latch, n14, n13, n12, n15, n1, n2, n3,
          SYNOPSYS_UNCONNECTED_1, SYNOPSYS_UNCONNECTED_2;
 
-  i0sfvz08bab1d03x6 to_enable_int_reg ( .si(n14), .d(sib_latch), .ssb(n13), 
+  i0sfvz08bab1d02x5 sib_latch_reg ( .si(n14), .d(n12), .ssb(n13), .clkb(tck), 
+        .rb(reset), .s(n14), .o(sib_latch), .so(SYNOPSYS_UNCONNECTED_1) );
+  i0sfvz08bab1d02x5 to_enable_int_reg ( .si(n14), .d(sib_latch), .ssb(n13), 
         .clkb(tck), .rb(reset), .s(n14), .o(to_enable_int), .so(
-        SYNOPSYS_UNCONNECTED_1) );
+        SYNOPSYS_UNCONNECTED_2) );
   i0sfuq000ab1d02x5 sib_reg ( .si(n14), .d(n15), .ssb(n13), .clk(tck), .o(so)
          );
-  i0sfvz08bab1d03x6 sib_latch_reg ( .si(n14), .d(n12), .ssb(n13), .clkb(tck), 
-        .rb(reset), .s(n14), .o(sib_latch), .so(SYNOPSYS_UNCONNECTED_2) );
   i0stilo00ab1n02x5 U3 ( .o(n14) );
   i0stihi00ab1n02x5 U4 ( .o(n13) );
   i0smbn022ab1n02x5 U5 ( .b(n1), .a(so), .sa(n2), .o(n15) );
@@ -77,12 +77,12 @@ module firebird7_in_gate1_tessent_mbist_bap_sib_1 ( reset, ijtag_select, si,
   wire   to_enable_int, sib_latch, n1, n2, n3, n4, n5, n6, n7,
          SYNOPSYS_UNCONNECTED_1, SYNOPSYS_UNCONNECTED_2;
 
-  i0sfvz08bab1d03x6 to_enable_int_reg ( .si(n7), .d(sib_latch), .ssb(n6), 
+  i0sfvz08bab1d02x5 sib_latch_reg ( .si(n7), .d(n5), .ssb(n6), .clkb(tck), 
+        .rb(reset), .s(n7), .o(sib_latch), .so(SYNOPSYS_UNCONNECTED_1) );
+  i0sfvz08bab1d02x5 to_enable_int_reg ( .si(n7), .d(sib_latch), .ssb(n6), 
         .clkb(tck), .rb(reset), .s(n7), .o(to_enable_int), .so(
-        SYNOPSYS_UNCONNECTED_1) );
+        SYNOPSYS_UNCONNECTED_2) );
   i0sfuq000ab1d02x5 sib_reg ( .si(n7), .d(n4), .ssb(n6), .clk(tck), .o(so) );
-  i0sfvz08bab1d03x6 sib_latch_reg ( .si(n7), .d(n5), .ssb(n6), .clkb(tck), 
-        .rb(reset), .s(n7), .o(sib_latch), .so(SYNOPSYS_UNCONNECTED_2) );
   i0stilo00ab1n02x5 U3 ( .o(n7) );
   i0stihi00ab1n02x5 U4 ( .o(n6) );
   i0smbn022ab1n02x5 U5 ( .b(n1), .a(so), .sa(n2), .o(n4) );
@@ -132,6 +132,44 @@ module firebird7_in_gate1_tessent_mbist_bap_tdr ( reset, ijtag_select, si,
 
   i0smbn022ab1n02x5 tessent_persistent_cell_BIST_ASYNC_RESET_mux ( .b(
         tdr_latch10), .a(reset), .sa(ltest_en), .o(BIST_ASYNC_RESET) );
+  i0sfvz08bab1d02x5 tdr_latch18_reg ( .si(n157), .d(n158), .ssb(n156), .clkb(
+        tck), .rb(reset), .s(n157), .o(BIST_SETUP[2]), .so(
+        SYNOPSYS_UNCONNECTED_1) );
+  i0sfvz08bab1d02x5 tdr_latch17_reg ( .si(n157), .d(n152), .ssb(n156), .clkb(
+        tck), .rb(reset), .s(n157), .o(BIST_SETUP[1]), .so(
+        SYNOPSYS_UNCONNECTED_2) );
+  i0sfvz08bab1d02x5 tdr_latch16_reg ( .si(n157), .d(n146), .ssb(n156), .clkb(
+        tck), .rb(reset), .s(n157), .o(BIST_SETUP[0]), .so(
+        SYNOPSYS_UNCONNECTED_3) );
+  i0sfvz08bab1d02x5 tdr_latch15_reg ( .si(n157), .d(n140), .ssb(n156), .clkb(
+        tck), .rb(reset), .s(n157), .o(TCK_MODE), .so(SYNOPSYS_UNCONNECTED_4)
+         );
+  i0sfvz08bab1d02x5 tdr_latch13_reg ( .si(n157), .d(n128), .ssb(n156), .clkb(
+        tck), .rb(reset), .s(n157), .o(INCLUDE_MEM_RESULTS_REG), .so(
+        SYNOPSYS_UNCONNECTED_5) );
+  i0sfvz08bab1d02x5 tdr_latch12_reg ( .si(n157), .d(n122), .ssb(n156), .clkb(
+        tck), .rb(reset), .s(n157), .o(FL_CNT_MODE1), .so(
+        SYNOPSYS_UNCONNECTED_6) );
+  i0sfvz08bab1d02x5 tdr_latch11_reg ( .si(n157), .d(n116), .ssb(n156), .clkb(
+        tck), .rb(reset), .s(n157), .o(FL_CNT_MODE0), .so(
+        SYNOPSYS_UNCONNECTED_7) );
+  i0sfvz08bab1d02x5 tdr_latch10_reg ( .si(n157), .d(n110), .ssb(n156), .clkb(
+        tck), .rb(reset), .s(n157), .o(tdr_latch10), .so(
+        SYNOPSYS_UNCONNECTED_8) );
+  i0sfvz08bab1d02x5 tdr_latch9_reg ( .si(n157), .d(n104), .ssb(n156), .clkb(
+        tck), .rb(reset), .s(n157), .o(CHECK_REPAIR_NEEDED), .so(
+        SYNOPSYS_UNCONNECTED_9) );
+  i0sfvz08bab1d02x5 tdr_latch8_reg ( .si(n157), .d(n98), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(PRESERVE_FUSE_REGISTER), .so(
+        SYNOPSYS_UNCONNECTED_10) );
+  i0sfvz08bab1d02x5 tdr_latch7_reg ( .si(n157), .d(n92), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(BIST_DIAG_EN), .so(SYNOPSYS_UNCONNECTED_11) );
+  i0sfvz08bab1d02x5 tdr_latch6_reg ( .si(n157), .d(n86), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(BIRA_EN), .so(SYNOPSYS_UNCONNECTED_12) );
+  i0sfvz08bab1d02x5 tdr_latch5_reg ( .si(n157), .d(n80), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(MEM_ARRAY_DUMP_MODE), .so(SYNOPSYS_UNCONNECTED_13)
+         );
+  i0sfvz08bab1d02x5 tdr_latch4_reg ( .si(n157), .d(n74), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(BIST_ALGO_MODE1), .so(SYNOPSYS_UNCONNECTED_14) );
+  i0sfvz08bab1d02x5 tdr_latch3_reg ( .si(n157), .d(n68), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(BIST_ALGO_MODE0), .so(SYNOPSYS_UNCONNECTED_15) );
+  i0sfvz08bab1d02x5 tdr_latch2_reg ( .si(n157), .d(n62), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(BIST_SELECT_TEST_DATA), .so(SYNOPSYS_UNCONNECTED_16) );
+  i0sfvz08bab1d02x5 tdr_latch1_reg ( .si(n157), .d(n56), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(REDUCED_ADDRESS_COUNT), .so(SYNOPSYS_UNCONNECTED_17) );
+  i0sfvz08bab1d02x5 tdr_latch0_reg ( .si(n157), .d(n50), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(ENABLE_MEM_RESET), .so(SYNOPSYS_UNCONNECTED_18) );
   i0sfuq000ab1d02x5 tdr_reg_16 ( .si(n157), .d(n162), .ssb(n156), .clk(tck), 
         .o(n6) );
   i0sfuq000ab1d02x5 tdr_reg_15 ( .si(n157), .d(n163), .ssb(n156), .clk(tck), 
@@ -170,45 +208,8 @@ module firebird7_in_gate1_tessent_mbist_bap_tdr ( reset, ijtag_select, si,
         .o(CHAIN_BYPASS_EN_reg) );
   i0sfuq000ab1d02x5 tdr_reg_17 ( .si(n157), .d(n161), .ssb(n156), .clk(tck), 
         .o(BIST_SETUP_reg[1]) );
-  i0sfvz08bab1d03x6 tdr_latch16_reg ( .si(n157), .d(n146), .ssb(n156), .clkb(
-        tck), .rb(reset), .s(n157), .o(BIST_SETUP[0]), .so(
-        SYNOPSYS_UNCONNECTED_1) );
-  i0sfvz08bab1d03x6 tdr_latch15_reg ( .si(n157), .d(n140), .ssb(n156), .clkb(
-        tck), .rb(reset), .s(n157), .o(TCK_MODE), .so(SYNOPSYS_UNCONNECTED_2)
-         );
-  i0sfvz08bab1d03x6 tdr_latch13_reg ( .si(n157), .d(n128), .ssb(n156), .clkb(
-        tck), .rb(reset), .s(n157), .o(INCLUDE_MEM_RESULTS_REG), .so(
-        SYNOPSYS_UNCONNECTED_3) );
-  i0sfvz08bab1d03x6 tdr_latch12_reg ( .si(n157), .d(n122), .ssb(n156), .clkb(
-        tck), .rb(reset), .s(n157), .o(FL_CNT_MODE1), .so(
-        SYNOPSYS_UNCONNECTED_4) );
-  i0sfvz08bab1d03x6 tdr_latch11_reg ( .si(n157), .d(n116), .ssb(n156), .clkb(
-        tck), .rb(reset), .s(n157), .o(FL_CNT_MODE0), .so(
-        SYNOPSYS_UNCONNECTED_5) );
-  i0sfvz08bab1d03x6 tdr_latch9_reg ( .si(n157), .d(n104), .ssb(n156), .clkb(
-        tck), .rb(reset), .s(n157), .o(CHECK_REPAIR_NEEDED), .so(
-        SYNOPSYS_UNCONNECTED_6) );
-  i0sfvz08bab1d03x6 tdr_latch10_reg ( .si(n157), .d(n110), .ssb(n156), .clkb(
-        tck), .rb(reset), .s(n157), .o(tdr_latch10), .so(
-        SYNOPSYS_UNCONNECTED_7) );
-  i0sfvz08bab1d03x6 tdr_latch18_reg ( .si(n157), .d(n158), .ssb(n156), .clkb(
-        tck), .rb(reset), .s(n157), .o(BIST_SETUP[2]), .so(
-        SYNOPSYS_UNCONNECTED_8) );
-  i0sfvz08bab1d03x6 tdr_latch8_reg ( .si(n157), .d(n98), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(PRESERVE_FUSE_REGISTER), .so(SYNOPSYS_UNCONNECTED_9) );
-  i0sfvz08bab1d03x6 tdr_latch7_reg ( .si(n157), .d(n92), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(BIST_DIAG_EN), .so(SYNOPSYS_UNCONNECTED_10) );
-  i0sfvz08bab1d03x6 tdr_latch6_reg ( .si(n157), .d(n86), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(BIRA_EN), .so(SYNOPSYS_UNCONNECTED_11) );
-  i0sfvz08bab1d03x6 tdr_latch5_reg ( .si(n157), .d(n80), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(MEM_ARRAY_DUMP_MODE), .so(SYNOPSYS_UNCONNECTED_12)
-         );
-  i0sfvz08bab1d03x6 tdr_latch4_reg ( .si(n157), .d(n74), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(BIST_ALGO_MODE1), .so(SYNOPSYS_UNCONNECTED_13) );
-  i0sfvz08bab1d03x6 tdr_latch3_reg ( .si(n157), .d(n68), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(BIST_ALGO_MODE0), .so(SYNOPSYS_UNCONNECTED_14) );
-  i0sfvz08bab1d03x6 tdr_latch2_reg ( .si(n157), .d(n62), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(BIST_SELECT_TEST_DATA), .so(SYNOPSYS_UNCONNECTED_15) );
-  i0sfvz08bab1d03x6 tdr_latch1_reg ( .si(n157), .d(n56), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(REDUCED_ADDRESS_COUNT), .so(SYNOPSYS_UNCONNECTED_16) );
-  i0sfvz08bab1d03x6 tdr_latch0_reg ( .si(n157), .d(n50), .ssb(n156), .clkb(tck), .rb(reset), .s(n157), .o(ENABLE_MEM_RESET), .so(SYNOPSYS_UNCONNECTED_17) );
   i0sfvz08bab1d03x6 tdr_latch14_reg ( .si(n157), .d(n134), .ssb(n156), .clkb(
         tck), .rb(n156), .s(n159), .o(CHAIN_BYPASS_EN), .so(
-        SYNOPSYS_UNCONNECTED_18) );
-  i0sfvz08bab1d03x6 tdr_latch17_reg ( .si(n157), .d(n152), .ssb(n156), .clkb(
-        tck), .rb(reset), .s(n157), .o(BIST_SETUP[1]), .so(
         SYNOPSYS_UNCONNECTED_19) );
   i0stihi00ab1n02x5 U3 ( .o(n156) );
   i0stilo00ab1n02x5 U4 ( .o(n157) );
@@ -225,46 +226,46 @@ module firebird7_in_gate1_tessent_mbist_bap_tdr ( reset, ijtag_select, si,
   i0smbn022ab1n02x5 U12 ( .b(REDUCED_ADDRESS_COUNT), .a(tdr_1_), .sa(n1), .o(
         n56) );
   i0smbn022ab1n02x5 U13 ( .b(ENABLE_MEM_RESET), .a(so), .sa(n1), .o(n50) );
-  i0sao0222ab1n03x5 U14 ( .a(tdr_1_), .b(n2), .c(so), .d(n3), .e(
+  i0sao0222ab1n02x5 U14 ( .a(tdr_1_), .b(n2), .c(so), .d(n3), .e(
         ENABLE_MEM_RESET), .f(n4), .o(n178) );
-  i0sao0222ab1n03x5 U15 ( .a(tdr_2_), .b(n2), .c(tdr_1_), .d(n3), .e(
+  i0sao0222ab1n02x5 U15 ( .a(tdr_2_), .b(n2), .c(tdr_1_), .d(n3), .e(
         REDUCED_ADDRESS_COUNT), .f(n4), .o(n177) );
-  i0sao0222ab1n03x5 U16 ( .a(tdr_3_), .b(n2), .c(tdr_2_), .d(n3), .e(
+  i0sao0222ab1n02x5 U16 ( .a(tdr_3_), .b(n2), .c(tdr_2_), .d(n3), .e(
         BIST_SELECT_TEST_DATA), .f(n4), .o(n176) );
-  i0sao0222ab1n03x5 U17 ( .a(tdr_4_), .b(n2), .c(tdr_3_), .d(n3), .e(
+  i0sao0222ab1n02x5 U17 ( .a(tdr_4_), .b(n2), .c(tdr_3_), .d(n3), .e(
         BIST_ALGO_MODE0), .f(n4), .o(n175) );
-  i0sao0222ab1n03x5 U18 ( .a(tdr_5_), .b(n2), .c(tdr_4_), .d(n3), .e(
+  i0sao0222ab1n02x5 U18 ( .a(tdr_5_), .b(n2), .c(tdr_4_), .d(n3), .e(
         BIST_ALGO_MODE1), .f(n4), .o(n174) );
-  i0sao0222ab1n03x5 U19 ( .a(tdr_6_), .b(n2), .c(tdr_5_), .d(n3), .e(
+  i0sao0222ab1n02x5 U19 ( .a(tdr_6_), .b(n2), .c(tdr_5_), .d(n3), .e(
         MEM_ARRAY_DUMP_MODE), .f(n4), .o(n173) );
-  i0sao0222ab1n03x5 U20 ( .a(tdr_7_), .b(n2), .c(tdr_6_), .d(n3), .e(BIRA_EN), 
+  i0sao0222ab1n02x5 U20 ( .a(tdr_7_), .b(n2), .c(tdr_6_), .d(n3), .e(BIRA_EN), 
         .f(n4), .o(n172) );
-  i0sao0222ab1n03x5 U21 ( .a(tdr_8_), .b(n2), .c(tdr_7_), .d(n3), .e(
+  i0sao0222ab1n02x5 U21 ( .a(tdr_8_), .b(n2), .c(tdr_7_), .d(n3), .e(
         BIST_DIAG_EN), .f(n4), .o(n171) );
-  i0sao0222ab1n03x5 U22 ( .a(n2), .b(tdr_9_), .c(tdr_8_), .d(n3), .e(
+  i0sao0222ab1n02x5 U22 ( .a(n2), .b(tdr_9_), .c(tdr_8_), .d(n3), .e(
         PRESERVE_FUSE_REGISTER), .f(n4), .o(n170) );
-  i0sao0222ab1n03x5 U23 ( .a(n2), .b(tdr_10_), .c(n3), .d(tdr_9_), .e(n4), .f(
+  i0sao0222ab1n02x5 U23 ( .a(n2), .b(tdr_10_), .c(n3), .d(tdr_9_), .e(n4), .f(
         CHECK_REPAIR_NEEDED), .o(n169) );
-  i0sao0222ab1n03x5 U24 ( .a(n2), .b(tdr_11_), .c(n3), .d(tdr_10_), .e(n4), 
+  i0sao0222ab1n02x5 U24 ( .a(n2), .b(tdr_11_), .c(n3), .d(tdr_10_), .e(n4), 
         .f(tdr_latch10), .o(n168) );
-  i0sao0222ab1n03x5 U25 ( .a(n2), .b(tdr_12_), .c(n3), .d(tdr_11_), .e(n4), 
+  i0sao0222ab1n02x5 U25 ( .a(n2), .b(tdr_12_), .c(n3), .d(tdr_11_), .e(n4), 
         .f(FL_CNT_MODE0), .o(n167) );
-  i0sao0222ab1n03x5 U26 ( .a(n2), .b(tdr_13_), .c(n3), .d(tdr_12_), .e(n4), 
+  i0sao0222ab1n02x5 U26 ( .a(n2), .b(tdr_13_), .c(n3), .d(tdr_12_), .e(n4), 
         .f(FL_CNT_MODE1), .o(n166) );
-  i0sao0222ab1n03x5 U27 ( .a(n2), .b(CHAIN_BYPASS_EN_reg), .c(n3), .d(tdr_13_), 
+  i0sao0222ab1n02x5 U27 ( .a(n2), .b(CHAIN_BYPASS_EN_reg), .c(n3), .d(tdr_13_), 
         .e(n4), .f(INCLUDE_MEM_RESULTS_REG), .o(n165) );
-  i0sao0222ab1n03x5 U28 ( .a(n2), .b(tdr_15), .c(n3), .d(CHAIN_BYPASS_EN_reg), 
+  i0sao0222ab1n02x5 U28 ( .a(n2), .b(tdr_15), .c(n3), .d(CHAIN_BYPASS_EN_reg), 
         .e(n4), .f(CHAIN_BYPASS_EN), .o(n164) );
-  i0sao0222ab1n03x5 U29 ( .a(n2), .b(n6), .c(n3), .d(tdr_15), .e(n4), .f(
+  i0sao0222ab1n02x5 U29 ( .a(n2), .b(n6), .c(n3), .d(tdr_15), .e(n4), .f(
         TCK_MODE), .o(n163) );
-  i0sao0222ab1n03x5 U30 ( .a(n2), .b(BIST_SETUP_reg[1]), .c(n3), .d(n6), .e(n4), .f(BIST_SETUP[0]), .o(n162) );
-  i0sao0222ab1n03x5 U31 ( .a(n2), .b(n5), .c(n3), .d(BIST_SETUP_reg[1]), .e(n4), .f(BIST_SETUP[1]), .o(n161) );
-  i0sao0222ab1n03x5 U32 ( .a(si), .b(n2), .c(n5), .d(n3), .e(BIST_SETUP[2]), 
+  i0sao0222ab1n02x5 U30 ( .a(n2), .b(BIST_SETUP_reg[1]), .c(n3), .d(n6), .e(n4), .f(BIST_SETUP[0]), .o(n162) );
+  i0sao0222ab1n02x5 U31 ( .a(n2), .b(n5), .c(n3), .d(BIST_SETUP_reg[1]), .e(n4), .f(BIST_SETUP[1]), .o(n161) );
+  i0sao0222ab1n02x5 U32 ( .a(si), .b(n2), .c(n5), .d(n3), .e(BIST_SETUP[2]), 
         .f(n4), .o(n160) );
   i0snor002ab1n02x5 U33 ( .a(n4), .b(n2), .o1(n3) );
   i0snano22ab1n02x5 U34 ( .b(ijtag_select), .c(shift_en), .a(n4), .out0(n2) );
   i0sand002ab1n02x5 U35 ( .a(capture_en), .b(ijtag_select), .o(n4) );
-  i0sinv000ab1n02x5 U36 ( .a(reset), .o1(n159) );
+  i0sinv000tb1n02x5 U36 ( .a(reset), .o1(n159) );
   i0smbn022ab1n02x5 U37 ( .b(BIST_SETUP[2]), .a(n5), .sa(n1), .o(n158) );
   i0smbn022ab1n02x5 U38 ( .b(BIST_SETUP[1]), .a(BIST_SETUP_reg[1]), .sa(n1), 
         .o(n152) );
@@ -416,22 +417,22 @@ module firebird7_in_gate1_tessent_mbist_bap ( reset, ijtag_select, si,
   i0sfuz080ab1d03x5 fromBist_retime_reg_0 ( .si(n15), .d(fromBist[0]), .ssb(
         n14), .clkb(tck), .o(fromBist_retime_0_), .so(SYNOPSYS_UNCONNECTED_6)
          );
-  i0sfuz080ab1d03x5 retiming_so_reg ( .si(n15), .d(sib_ctl_bypass_so), .ssb(
-        n14), .clkb(tck), .o(so), .so(SYNOPSYS_UNCONNECTED_7) );
-  i0sfuz080ab1d03x5 toBist_reg_0 ( .si(n15), .d(tdr_bypass_so), .ssb(n14), 
-        .clkb(tck), .o(toBist[0]), .so(SYNOPSYS_UNCONNECTED_8) );
-  i0sfvz08bab1d03x6 BIST_HOLD_latch_reg ( .si(n15), .d(n13), .ssb(n14), .clkb(
+  i0sfvz08bab1d02x5 BIST_HOLD_latch_reg ( .si(n15), .d(n13), .ssb(n14), .clkb(
         tck), .rb(reset), .s(n15), .o(BIST_HOLD_latch), .so(
-        SYNOPSYS_UNCONNECTED_9) );
+        SYNOPSYS_UNCONNECTED_7) );
+  i0sfuz080ab1d03x5 retiming_so_reg ( .si(n15), .d(sib_ctl_bypass_so), .ssb(
+        n14), .clkb(tck), .o(so), .so(SYNOPSYS_UNCONNECTED_8) );
+  i0sfuz080ab1d03x5 toBist_reg_0 ( .si(n15), .d(tdr_bypass_so), .ssb(n14), 
+        .clkb(tck), .o(toBist[0]), .so(SYNOPSYS_UNCONNECTED_9) );
   i0stilo00ab1n02x5 U21 ( .o(n15) );
   i0stihi00ab1n02x5 U22 ( .o(n14) );
   i0snand02ab1n02x5 U23 ( .a(n18), .b(n19), .o1(to_mbist_tck_en) );
   i0snona23ab1n02x4 U24 ( .c(BIST_SETUP_int_1_), .d(sib_bist_en_latch_0_), .a(
         ijtag_select), .b(capture_en), .out0(n19) );
-  i0sinv000ab1n02x5 U25 ( .a(n18), .o1(shift_en_R) );
+  i0sinv000tb1n02x5 U25 ( .a(n18), .o1(shift_en_R) );
   i0snand04ab1n02x4 U26 ( .a(sib_bist_en_latch_0_), .b(shift_en), .c(
         ijtag_select_ctl_sib), .d(n20), .o1(n18) );
-  i0sinv000ab1n02x5 U27 ( .a(n20), .o1(n16) );
+  i0sinv000tb1n02x5 U27 ( .a(n20), .o1(n16) );
   i0snor002ab1n02x5 U28 ( .a(BIST_SETUP_int_1_), .b(CHAIN_BYPASS_EN_int), .o1(
         n20) );
   i0smbn022ab1n02x5 U29 ( .b(BIST_HOLD_latch), .a(n21), .sa(n22), .o(n13) );

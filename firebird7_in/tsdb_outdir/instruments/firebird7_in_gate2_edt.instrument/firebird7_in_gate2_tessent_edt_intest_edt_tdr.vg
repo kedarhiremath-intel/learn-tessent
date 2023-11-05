@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys DC Expert(TM) in wire load mode
 // Version   : Q-2019.12-SP5-1
-// Date      : Sun Oct 29 14:41:25 2023
+// Date      : Sun Nov  5 09:03:08 2023
 /////////////////////////////////////////////////////////////
 
 
@@ -20,14 +20,14 @@ module firebird7_in_gate2_tessent_edt_intest_edt_tdr ( ijtag_reset, ijtag_sel,
         edt_low_power_shift_en_latch), .o(edt_low_power_shift_en) );
   i0sbfn000ab1n02x5 tessent_persistent_cell_edt_bypass ( .a(edt_bypass_latch), 
         .o(edt_bypass) );
-  i0sfuz080ab1d03x5 retiming_so_reg ( .si(n21), .d(tdr_0_), .ssb(n20), .clkb(
-        ijtag_tck), .o(ijtag_so), .so(SYNOPSYS_UNCONNECTED_1) );
-  i0sfvz08bab1d03x6 edt_low_power_shift_en_latch_reg ( .si(n21), .d(n22), 
+  i0sfvz08bab1d02x5 edt_low_power_shift_en_latch_reg ( .si(n21), .d(n22), 
         .ssb(n20), .clkb(ijtag_tck), .rb(ijtag_reset), .s(n21), .o(
-        edt_low_power_shift_en_latch), .so(SYNOPSYS_UNCONNECTED_2) );
-  i0sfvz08bab1d03x6 edt_bypass_latch_reg ( .si(n21), .d(n15), .ssb(n20), 
+        edt_low_power_shift_en_latch), .so(SYNOPSYS_UNCONNECTED_1) );
+  i0sfvz08bab1d02x5 edt_bypass_latch_reg ( .si(n21), .d(n15), .ssb(n20), 
         .clkb(ijtag_tck), .rb(ijtag_reset), .s(n21), .o(edt_bypass_latch), 
-        .so(SYNOPSYS_UNCONNECTED_3) );
+        .so(SYNOPSYS_UNCONNECTED_2) );
+  i0sfuz080ab1d03x5 retiming_so_reg ( .si(n21), .d(tdr_0_), .ssb(n20), .clkb(
+        ijtag_tck), .o(ijtag_so), .so(SYNOPSYS_UNCONNECTED_3) );
   i0sfuz040ab1d02x5 tdr_reg_1 ( .si(n21), .d(n16), .den(n23), .ssb(n20), .clk(
         ijtag_tck), .o(tdr_1_), .so(SYNOPSYS_UNCONNECTED_4) );
   i0sfuz040ab1d02x5 tdr_reg_0 ( .si(n21), .d(n9), .den(n23), .ssb(n20), .clk(

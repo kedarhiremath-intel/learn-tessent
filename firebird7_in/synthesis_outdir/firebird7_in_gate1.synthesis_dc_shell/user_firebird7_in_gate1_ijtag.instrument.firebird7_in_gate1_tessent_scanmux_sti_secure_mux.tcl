@@ -128,6 +128,7 @@ foreach subDir $synth_subdir_list { file mkdir ${subDir}/ }
 read_sverilog { \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_sib_array_trim_fuse_override.sv \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_sib_array_pwrmgmt.sv \
+  ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_sib_upm.sv \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_sib_spare.sv \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_sib_sti.sv \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_sib_mbist.sv \
@@ -139,6 +140,7 @@ read_sverilog { \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_spare_red_secure_mux.sv \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_spare_orange_secure_mux.sv \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux.sv \
+  ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_upm_secure_mux.sv \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_array_pwrmgmt_secure_mux.sv \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_scanmux_array_trim_fuse_override_secure_mux.sv \
   ../../tsdb_outdir/instruments/firebird7_in_gate1_ijtag.instrument/firebird7_in_gate1_tessent_tdr_sti_ctrl.sv \
@@ -234,6 +236,8 @@ set_dont_touch [get_designs firebird7_in_gate1_tessent_sib_array_trim_fuse_overr
 
 set_dont_touch [get_designs firebird7_in_gate1_tessent_sib_array_pwrmgmt]
 
+set_dont_touch [get_designs firebird7_in_gate1_tessent_sib_upm]
+
 set_dont_touch [get_designs firebird7_in_gate1_tessent_sib_spare]
 
 set_dont_touch [get_designs firebird7_in_gate1_tessent_sib_sti]
@@ -263,6 +267,8 @@ set_dont_touch [get_designs firebird7_in_gate1_tessent_scanmux_spare_red_secure_
 set_dont_touch [get_designs firebird7_in_gate1_tessent_scanmux_spare_orange_secure_mux]
 
 set_dont_touch [get_designs firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux]
+
+set_dont_touch [get_designs firebird7_in_gate1_tessent_scanmux_upm_secure_mux]
 
 set_dont_touch [get_designs firebird7_in_gate1_tessent_scanmux_array_pwrmgmt_secure_mux]
 

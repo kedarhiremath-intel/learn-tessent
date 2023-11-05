@@ -1,0 +1,30 @@
+current_design dteg_upm_top 
+
+clock -name "dfx_upm_tck"                -period 10  -edge { 0 5 }    -domain grp_dfx_upm_tck           -tag  grp_dfx_upm_tck
+
+reset -name "dfx_upm_trstb"              -value 0 -async
+reset -name "dfx_upm_fdfx_powergood"     -value 0 -async
+
+abstract_port  -ports "dfx_upm_fdfx_powergood" -combo no  -clock VCLK_fbist_fdfx_powergood
+abstract_port  -ports "dfx_upm_trstb"          -combo no  -clock fbist_ijtag_tck
+
+
+
+
+
+#abstract_port  -ports "fbist_ijtag*"                                  -clock fbist_ijtag_tck
+#abstract_port  -ports "fbist_tx_cluster_shift_out"                    -clock fbist_tx_hvm_test_clk
+#
+#set_case_analysis -name "fbist_fscan_rstbypen"  -value 0
+#set_case_analysis -name "*.i_fbist_glue_logic.fbist_rx_test_type[1]" -value 0
+#
+#quasi_static -name "fbist_tx_test_step"
+#
+# CDC
+##qualifier -name "fbist_ijtag_capture" -from_clk fbist_clk_rx -to_clk fbist_ijtag_tck
+# 
+# RDC
+#reset_filter_path -type rdc -from_rst "fbist_fdfx_powergood"             -to_rst fbist_ijtag_reset_b 
+#qualifier -name "fbist_ijtag_update"  -from_rst fbist_ijtag_reset_b      -to_rst fbist_fdfx_powergood -rdc
+##reset_filter_path -type reset_sync02 -from_rst fbist_ijtag_reset_b fbist_fdfx_powergood 
+#

@@ -9,6 +9,7 @@ export NOVAS_HOME='/p/hdk/rtl/cad/x86-64_linux30/synopsys/verdi3/N-2017.12-SP2-6
 export SPYGLASS_HOME='/p/hdk/rtl/cad/x86-64_linux30/synopsys/spyglass/P-2019.06-SP1-1/SPYGLASS_HOME'
 export SYNOPSYS_HOME='/p/hdk/cad/formality/T-2022.03-SP3'
 export SYNOPSYS_LC_HOME='/p/hdk/cad/librarycompiler/T-2022.03-SP3/common'
+export TEAMAKER_DFT_FLOW_HOME='./inputs/from_TEAMaker'
 export VCS_HOME='/p/hdk/rtl/cad/x86-64_linux30/synopsys/vcsmx/L-2016.06-SP1-1'
 export VERDI_HOME='/p/hdk/rtl/cad/x86-64_linux30/synopsys/verdi3/N-2017.12-SP2-6'
 export XDG_CACHE_HOME='/tmp/kdecache-khiremat'

@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys DC Expert(TM) in wire load mode
 // Version   : Q-2019.12-SP5-1
-// Date      : Sun Oct 29 14:41:25 2023
+// Date      : Sun Nov  5 09:03:09 2023
 /////////////////////////////////////////////////////////////
 
 
@@ -87,69 +87,69 @@ module firebird7_in_gate2_tessent_edt_extest_edt_decompressor ( edt_clock,
   i0sfuz080ab1d03x5 lfsm_vec_lockup_reg_1 ( .si(n81), .d(lfsm_vec_1_), .ssb(
         n80), .clkb(edt_clock), .o(lfsm_vec_lockup_1), .so(
         SYNOPSYS_UNCONNECTED_15) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_18 ( .si(n81), .rb(n79), .d(N10), .ssb(n80), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_18 ( .si(n81), .rb(n79), .d(N10), .ssb(n80), 
         .clk(edt_clock), .o(lfsm_vec_18_), .so(SYNOPSYS_UNCONNECTED_16) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_16 ( .si(n81), .rb(n79), .d(N8), .ssb(n80), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_16 ( .si(n81), .rb(n79), .d(N8), .ssb(n80), 
         .clk(edt_clock), .o(lfsm_vec_16_), .so(SYNOPSYS_UNCONNECTED_17) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_22 ( .si(n81), .rb(n79), .d(N13), .ssb(n80), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_22 ( .si(n81), .rb(n79), .d(N13), .ssb(n80), 
         .clk(edt_clock), .o(lfsm_vec_22_), .so(SYNOPSYS_UNCONNECTED_18) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_0 ( .si(n81), .rb(n79), .d(lfsm_vec_1_), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_0 ( .si(n81), .rb(n79), .d(lfsm_vec_1_), 
         .ssb(n80), .clk(edt_clock), .o(lfsm_vec_0_), .so(
         SYNOPSYS_UNCONNECTED_19) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_17 ( .si(n81), .rb(n79), .d(N9), .ssb(n80), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_17 ( .si(n81), .rb(n79), .d(N9), .ssb(n80), 
         .clk(edt_clock), .o(lfsm_vec_17_), .so(SYNOPSYS_UNCONNECTED_20) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_15 ( .si(n81), .rb(n79), .d(N7), .ssb(n80), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_15 ( .si(n81), .rb(n79), .d(N7), .ssb(n80), 
         .clk(edt_clock), .o(lfsm_vec_15_), .so(SYNOPSYS_UNCONNECTED_21) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_23 ( .si(n81), .rb(n79), .d(lfsm_vec_24_), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_23 ( .si(n81), .rb(n79), .d(lfsm_vec_24_), 
         .ssb(n80), .clk(edt_clock), .o(lfsm_vec_23_), .so(
         SYNOPSYS_UNCONNECTED_22) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_21 ( .si(n81), .rb(n79), .d(N12), .ssb(n80), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_21 ( .si(n81), .rb(n79), .d(N12), .ssb(n80), 
         .clk(edt_clock), .o(lfsm_vec_21_), .so(SYNOPSYS_UNCONNECTED_23) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_19 ( .si(n81), .rb(n79), .d(lfsm_vec_20_), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_19 ( .si(n81), .rb(n79), .d(lfsm_vec_20_), 
         .ssb(n80), .clk(edt_clock), .o(lfsm_vec_19_), .so(
         SYNOPSYS_UNCONNECTED_24) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_13 ( .si(n81), .rb(n79), .d(lfsm_vec_14_), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_13 ( .si(n81), .rb(n79), .d(lfsm_vec_14_), 
         .ssb(n80), .clk(edt_clock), .o(lfsm_vec_13_), .so(
         SYNOPSYS_UNCONNECTED_25) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_10 ( .si(n81), .rb(n79), .d(lfsm_vec_11_), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_10 ( .si(n81), .rb(n79), .d(lfsm_vec_11_), 
         .ssb(n80), .clk(edt_clock), .o(lfsm_vec_10_), .so(
         SYNOPSYS_UNCONNECTED_26) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_8 ( .si(n81), .rb(n79), .d(lfsm_vec_9_), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_8 ( .si(n81), .rb(n79), .d(lfsm_vec_9_), 
         .ssb(n80), .clk(edt_clock), .o(lfsm_vec_8_), .so(
         SYNOPSYS_UNCONNECTED_27) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_2 ( .si(n81), .rb(n79), .d(lfsm_vec_3_), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_2 ( .si(n81), .rb(n79), .d(lfsm_vec_3_), 
         .ssb(n80), .clk(edt_clock), .o(lfsm_vec_2_), .so(
         SYNOPSYS_UNCONNECTED_28) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_9 ( .si(n81), .rb(n79), .d(N4), .ssb(n80), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_9 ( .si(n81), .rb(n79), .d(N4), .ssb(n80), 
         .clk(edt_clock), .o(lfsm_vec_9_), .so(SYNOPSYS_UNCONNECTED_29) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_6 ( .si(n81), .rb(n79), .d(lfsm_vec_7_), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_6 ( .si(n81), .rb(n79), .d(lfsm_vec_7_), 
         .ssb(n80), .clk(edt_clock), .o(lfsm_vec_6_), .so(
         SYNOPSYS_UNCONNECTED_30) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_4 ( .si(n81), .rb(n79), .d(lfsm_vec_5_), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_4 ( .si(n81), .rb(n79), .d(lfsm_vec_5_), 
         .ssb(n80), .clk(edt_clock), .o(lfsm_vec_4_), .so(
         SYNOPSYS_UNCONNECTED_31) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_7 ( .si(n81), .rb(n79), .d(N3), .ssb(n80), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_7 ( .si(n81), .rb(n79), .d(N3), .ssb(n80), 
         .clk(edt_clock), .o(lfsm_vec_7_), .so(SYNOPSYS_UNCONNECTED_32) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_5 ( .si(n81), .rb(n79), .d(N2), .ssb(n80), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_5 ( .si(n81), .rb(n79), .d(N2), .ssb(n80), 
         .clk(edt_clock), .o(lfsm_vec_5_), .so(SYNOPSYS_UNCONNECTED_33) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_3 ( .si(n81), .rb(n79), .d(N1), .ssb(n80), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_3 ( .si(n81), .rb(n79), .d(N1), .ssb(n80), 
         .clk(edt_clock), .o(lfsm_vec_3_), .so(SYNOPSYS_UNCONNECTED_34) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_24 ( .si(n81), .rb(n79), .d(N14), .ssb(n80), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_24 ( .si(n81), .rb(n79), .d(N14), .ssb(n80), 
         .clk(edt_clock), .o(lfsm_vec_24_), .so(SYNOPSYS_UNCONNECTED_35) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_20 ( .si(n81), .rb(n79), .d(N11), .ssb(n80), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_20 ( .si(n81), .rb(n79), .d(N11), .ssb(n80), 
         .clk(edt_clock), .o(lfsm_vec_20_), .so(SYNOPSYS_UNCONNECTED_36) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_14 ( .si(n81), .rb(n79), .d(N6), .ssb(n80), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_14 ( .si(n81), .rb(n79), .d(N6), .ssb(n80), 
         .clk(edt_clock), .o(lfsm_vec_14_), .so(SYNOPSYS_UNCONNECTED_37) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_12 ( .si(n81), .rb(n79), .d(N5), .ssb(n80), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_12 ( .si(n81), .rb(n79), .d(N5), .ssb(n80), 
         .clk(edt_clock), .o(lfsm_vec_12_), .so(SYNOPSYS_UNCONNECTED_38) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_11 ( .si(n81), .rb(n79), .d(lfsm_vec_12_), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_11 ( .si(n81), .rb(n79), .d(lfsm_vec_12_), 
         .ssb(n80), .clk(edt_clock), .o(lfsm_vec_11_), .so(
         SYNOPSYS_UNCONNECTED_39) );
-  i0sfuz003ab1d03x5 lfsm_vec_reg_1 ( .si(n81), .rb(n79), .d(N0), .ssb(n80), 
+  i0sfuz003ab1d02x5 lfsm_vec_reg_1 ( .si(n81), .rb(n79), .d(N0), .ssb(n80), 
         .clk(edt_clock), .o(lfsm_vec_1_), .so(SYNOPSYS_UNCONNECTED_40) );
   i0stihi00ab1n02x5 U3 ( .o(n80) );
   i0stilo00ab1n02x5 U4 ( .o(n81) );
-  i0sinv000ab1n02x5 U5 ( .a(edt_update), .o1(n79) );
+  i0sinv000tb1n02x5 U5 ( .a(edt_update), .o1(n79) );
   i0sxor002ab1n02x5 U6 ( .a(lfsm_vec_lockup_8_), .b(n15), .out0(edt_scan_in[4]) );
   i0sxor002ab1n02x5 U7 ( .a(lfsm_vec_lockup_20), .b(lfsm_vec_lockup_19), 
         .out0(n15) );
@@ -293,19 +293,19 @@ module firebird7_in_gate2_tessent_edt_extest_edt_low_power_shift_controller (
   i0sfuz00bab1d02x5 low_power_hold_reg_0_reg_0 ( .si(n32), .rb(n31), .s(
         low_power_hold_reg_sync_set), .d(n5), .ssb(n31), .clk(edt_clock), .o(
         low_power_hold_reg_0_0_), .so(SYNOPSYS_UNCONNECTED_5) );
-  i0sfuz003ab1d03x5 low_power_shift_reg_0_reg_0 ( .si(n32), .rb(n30), .d(
+  i0sfuz003ab1d02x5 low_power_shift_reg_0_reg_0 ( .si(n32), .rb(n30), .d(
         low_power_shift_reg_0_1_), .ssb(n31), .clk(edt_clock), .o(
         low_power_shift_reg_0_0_), .so(SYNOPSYS_UNCONNECTED_6) );
-  i0sfuz003ab1d03x5 low_power_shift_reg_0_reg_4 ( .si(n32), .rb(n30), .d(
+  i0sfuz003ab1d02x5 low_power_shift_reg_0_reg_4 ( .si(n32), .rb(n30), .d(
         edt_channels_in), .ssb(n31), .clk(edt_clock), .o(
         low_power_shift_reg_0_4_), .so(SYNOPSYS_UNCONNECTED_7) );
-  i0sfuz003ab1d03x5 low_power_shift_reg_0_reg_3 ( .si(n32), .rb(n30), .d(
+  i0sfuz003ab1d02x5 low_power_shift_reg_0_reg_3 ( .si(n32), .rb(n30), .d(
         low_power_shift_reg_0_4_), .ssb(n31), .clk(edt_clock), .o(
         low_power_shift_reg_0_3_), .so(SYNOPSYS_UNCONNECTED_8) );
-  i0sfuz003ab1d03x5 low_power_shift_reg_0_reg_2 ( .si(n32), .rb(n30), .d(
+  i0sfuz003ab1d02x5 low_power_shift_reg_0_reg_2 ( .si(n32), .rb(n30), .d(
         low_power_shift_reg_0_3_), .ssb(n31), .clk(edt_clock), .o(
         low_power_shift_reg_0_2_), .so(SYNOPSYS_UNCONNECTED_9) );
-  i0sfuz003ab1d03x5 low_power_shift_reg_0_reg_1 ( .si(n32), .rb(n30), .d(
+  i0sfuz003ab1d02x5 low_power_shift_reg_0_reg_1 ( .si(n32), .rb(n30), .d(
         low_power_shift_reg_0_2_), .ssb(n31), .clk(edt_clock), .o(
         low_power_shift_reg_0_1_), .so(SYNOPSYS_UNCONNECTED_10) );
   i0stihi00ab1n02x5 U3 ( .o(n31) );
@@ -322,7 +322,7 @@ module firebird7_in_gate2_tessent_edt_extest_edt_low_power_shift_controller (
         low_power_shift_reg_0_2_), .sa(edt_update), .o(n13) );
   i0snor002ab1n02x5 U10 ( .a(edt_low_power_shift_en), .b(n30), .o1(
         low_power_hold_reg_sync_set) );
-  i0sinv000ab1n02x5 U11 ( .a(edt_update), .o1(n30) );
+  i0sinv000tb1n02x5 U11 ( .a(edt_update), .o1(n30) );
   i0sand002ab1n02x5 U12 ( .a(edt_decompressor_out[4]), .b(bias_inputs_4_), .o(
         edt_scan_in[4]) );
   i0sand002ab1n02x5 U13 ( .a(edt_decompressor_out[3]), .b(bias_inputs_3_), .o(
@@ -362,16 +362,16 @@ module firebird7_in_gate2_tessent_edt_extest_edt_onehot_decoder_3_to_5 (
   i0soai012ab1n02x5 U3 ( .b(n1), .c(n2), .a(n3), .o1(decoded_masks[4]) );
   i0soai012ab1n02x5 U4 ( .b(encoded_masks[0]), .c(n2), .a(n3), .o1(
         decoded_masks[3]) );
-  i0sinv000ab1n02x5 U5 ( .a(encoded_masks[2]), .o1(n2) );
+  i0sinv000tb1n02x5 U5 ( .a(encoded_masks[2]), .o1(n2) );
   i0soai012ab1n02x5 U6 ( .b(n1), .c(n4), .a(n3), .o1(decoded_masks[2]) );
   i0soai012ab1n02x5 U7 ( .b(encoded_masks[0]), .c(n4), .a(n3), .o1(
         decoded_masks[1]) );
-  i0sinv000ab1n02x5 U8 ( .a(encoded_masks[1]), .o1(n4) );
+  i0sinv000tb1n02x5 U8 ( .a(encoded_masks[1]), .o1(n4) );
   i0soai013ab1n02x4 U9 ( .b(n1), .c(encoded_masks[2]), .d(encoded_masks[1]), 
         .a(n3), .o1(decoded_masks[0]) );
   i0snand02ab1n02x5 U10 ( .a(encoded_masks[1]), .b(encoded_masks[2]), .o1(n3)
          );
-  i0sinv000ab1n02x5 U11 ( .a(encoded_masks[0]), .o1(n1) );
+  i0sinv000tb1n02x5 U11 ( .a(encoded_masks[0]), .o1(n1) );
 endmodule
 
 
@@ -417,40 +417,40 @@ module firebird7_in_gate2_tessent_edt_extest_edt_controller ( edt_clock,
         masks_hold_reg_0_2_}), .decoded_masks({onehot_decoded_masks_0_4_, 
         onehot_decoded_masks_0_3_, onehot_decoded_masks_0_2_, 
         onehot_decoded_masks_0_1_, onehot_decoded_masks_0_0_}) );
+  i0sfuz003ab1d02x5 masks_shift_reg_0_reg_0 ( .si(n25), .rb(n23), .d(
+        masks_shift_reg_0_1_), .ssb(n24), .clk(edt_clock), .o(
+        edt_channels_out_from_controller), .so(SYNOPSYS_UNCONNECTED_1) );
+  i0sfuz003ab1d02x5 masks_shift_reg_0_reg_5 ( .si(n25), .rb(n23), .d(
+        edt_channels_out_from_low_power_shift_control), .ssb(n24), .clk(
+        edt_clock), .o(masks_shift_reg_0_5_), .so(SYNOPSYS_UNCONNECTED_2) );
+  i0sfuz003ab1d02x5 masks_shift_reg_0_reg_4 ( .si(n25), .rb(n23), .d(
+        masks_shift_reg_0_5_), .ssb(n24), .clk(edt_clock), .o(
+        masks_shift_reg_0_4_), .so(SYNOPSYS_UNCONNECTED_3) );
+  i0sfuz003ab1d02x5 masks_shift_reg_0_reg_3 ( .si(n25), .rb(n23), .d(
+        masks_shift_reg_0_4_), .ssb(n24), .clk(edt_clock), .o(
+        masks_shift_reg_0_3_), .so(SYNOPSYS_UNCONNECTED_4) );
+  i0sfuz003ab1d02x5 masks_shift_reg_0_reg_2 ( .si(n25), .rb(n23), .d(
+        masks_shift_reg_0_3_), .ssb(n24), .clk(edt_clock), .o(
+        masks_shift_reg_0_2_), .so(SYNOPSYS_UNCONNECTED_5) );
+  i0sfuz003ab1d02x5 masks_shift_reg_0_reg_1 ( .si(n25), .rb(n23), .d(
+        masks_shift_reg_0_2_), .ssb(n24), .clk(edt_clock), .o(
+        masks_shift_reg_0_1_), .so(SYNOPSYS_UNCONNECTED_6) );
+  i0sfuz040ab1d02x5 masks_hold_reg_0_reg_5 ( .si(n25), .d(masks_shift_reg_0_5_), .den(edt_update), .ssb(n24), .clk(edt_clock), .o(masks_hold_reg_0_5_), .so(
+        SYNOPSYS_UNCONNECTED_7) );
+  i0sfuz040ab1d02x5 masks_hold_reg_0_reg_4 ( .si(n25), .d(masks_shift_reg_0_4_), .den(edt_update), .ssb(n24), .clk(edt_clock), .o(masks_hold_reg_0_4_), .so(
+        SYNOPSYS_UNCONNECTED_8) );
+  i0sfuz040ab1d02x5 masks_hold_reg_0_reg_3 ( .si(n25), .d(masks_shift_reg_0_3_), .den(edt_update), .ssb(n24), .clk(edt_clock), .o(masks_hold_reg_0_3_), .so(
+        SYNOPSYS_UNCONNECTED_9) );
+  i0sfuz040ab1d02x5 masks_hold_reg_0_reg_2 ( .si(n25), .d(masks_shift_reg_0_2_), .den(edt_update), .ssb(n24), .clk(edt_clock), .o(masks_hold_reg_0_2_), .so(
+        SYNOPSYS_UNCONNECTED_10) );
   i0sfuz040ab1d02x5 masks_hold_reg_0_reg_1 ( .si(n25), .d(masks_shift_reg_0_1_), .den(edt_update), .ssb(n24), .clk(edt_clock), .o(masks_hold_reg_0_1_), .so(
-        SYNOPSYS_UNCONNECTED_1) );
+        SYNOPSYS_UNCONNECTED_11) );
   i0sfuz040ab1d02x5 masks_hold_reg_0_reg_0 ( .si(n25), .d(
         edt_channels_out_from_controller), .den(edt_update), .ssb(n24), .clk(
-        edt_clock), .o(masks_hold_reg_0_0_), .so(SYNOPSYS_UNCONNECTED_2) );
-  i0sfuz040ab1d02x5 masks_hold_reg_0_reg_4 ( .si(n25), .d(masks_shift_reg_0_4_), .den(edt_update), .ssb(n24), .clk(edt_clock), .o(masks_hold_reg_0_4_), .so(
-        SYNOPSYS_UNCONNECTED_3) );
-  i0sfuz040ab1d02x5 masks_hold_reg_0_reg_2 ( .si(n25), .d(masks_shift_reg_0_2_), .den(edt_update), .ssb(n24), .clk(edt_clock), .o(masks_hold_reg_0_2_), .so(
-        SYNOPSYS_UNCONNECTED_4) );
-  i0sfuz040ab1d02x5 masks_hold_reg_0_reg_3 ( .si(n25), .d(masks_shift_reg_0_3_), .den(edt_update), .ssb(n24), .clk(edt_clock), .o(masks_hold_reg_0_3_), .so(
-        SYNOPSYS_UNCONNECTED_5) );
-  i0sfuz040ab1d02x5 masks_hold_reg_0_reg_5 ( .si(n25), .d(masks_shift_reg_0_5_), .den(edt_update), .ssb(n24), .clk(edt_clock), .o(masks_hold_reg_0_5_), .so(
-        SYNOPSYS_UNCONNECTED_6) );
-  i0sfuz003ab1d03x5 masks_shift_reg_0_reg_0 ( .si(n25), .rb(n23), .d(
-        masks_shift_reg_0_1_), .ssb(n24), .clk(edt_clock), .o(
-        edt_channels_out_from_controller), .so(SYNOPSYS_UNCONNECTED_7) );
-  i0sfuz003ab1d03x5 masks_shift_reg_0_reg_5 ( .si(n25), .rb(n23), .d(
-        edt_channels_out_from_low_power_shift_control), .ssb(n24), .clk(
-        edt_clock), .o(masks_shift_reg_0_5_), .so(SYNOPSYS_UNCONNECTED_8) );
-  i0sfuz003ab1d03x5 masks_shift_reg_0_reg_4 ( .si(n25), .rb(n23), .d(
-        masks_shift_reg_0_5_), .ssb(n24), .clk(edt_clock), .o(
-        masks_shift_reg_0_4_), .so(SYNOPSYS_UNCONNECTED_9) );
-  i0sfuz003ab1d03x5 masks_shift_reg_0_reg_3 ( .si(n25), .rb(n23), .d(
-        masks_shift_reg_0_4_), .ssb(n24), .clk(edt_clock), .o(
-        masks_shift_reg_0_3_), .so(SYNOPSYS_UNCONNECTED_10) );
-  i0sfuz003ab1d03x5 masks_shift_reg_0_reg_2 ( .si(n25), .rb(n23), .d(
-        masks_shift_reg_0_3_), .ssb(n24), .clk(edt_clock), .o(
-        masks_shift_reg_0_2_), .so(SYNOPSYS_UNCONNECTED_11) );
-  i0sfuz003ab1d03x5 masks_shift_reg_0_reg_1 ( .si(n25), .rb(n23), .d(
-        masks_shift_reg_0_2_), .ssb(n24), .clk(edt_clock), .o(
-        masks_shift_reg_0_1_), .so(SYNOPSYS_UNCONNECTED_12) );
+        edt_clock), .o(masks_hold_reg_0_0_), .so(SYNOPSYS_UNCONNECTED_12) );
   i0stihi00ab1n02x5 U3 ( .o(n24) );
   i0stilo00ab1n02x5 U4 ( .o(n25) );
-  i0sinv000ab1n02x5 U5 ( .a(edt_update), .o1(n23) );
+  i0sinv000tb1n02x5 U5 ( .a(edt_update), .o1(n23) );
   i0smbn022ab1n02x5 U6 ( .b(xor_decoded_masks_0_4_), .a(
         onehot_decoded_masks_0_4_), .sa(masks_hold_reg_0_5_), .o(
         masks_for_compactor_0[4]) );
@@ -584,7 +584,7 @@ module firebird7_in_gate2_tessent_edt_extest_edt ( edt_clock, edt_update,
         edt_scan_out_buf_out_2_, edt_scan_out_buf_out_1_, 
         edt_scan_out_buf_out_0_}), .edt_bypass_in({edt_bypass_in_4_, 
         edt_bypass_in_3_, edt_bypass_in_2_, edt_bypass_in_1_, edt_bypass_in_0_}), .edt_bypass_out(edt_bypass_out) );
-  i0sinv000ab1n02x5 U1 ( .a(edt_clock_buf_out), .o1(n1) );
-  i0sinv030ab1n02x5 U2 ( .a(n1), .o1(n2) );
+  i0sinv000tb1n03x5 U1 ( .a(edt_clock_buf_out), .o1(n1) );
+  i0sinv000tb1n03x5 U2 ( .a(n1), .o1(n2) );
 endmodule
 

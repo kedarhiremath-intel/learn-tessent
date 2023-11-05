@@ -1,0 +1,20 @@
+model i70idvdpmd03m50ashipbm1m3 (
+   enosc,
+   sleep_b,
+   idvdebug_clki,
+   hfbankl
+) (
+   input  (enosc) (array = 63:1) 
+   input  (sleep_b) () 
+   input  (idvdebug_clki) () 
+   output (hfbankl) () 
+
+   (
+      primitive = _undefined (
+         enosc,
+         sleep_b,
+         idv_debug_clki,
+         hfbankl
+      ); 
+   ) 
+) 

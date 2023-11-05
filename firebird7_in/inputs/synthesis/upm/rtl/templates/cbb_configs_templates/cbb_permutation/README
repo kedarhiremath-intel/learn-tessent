@@ -1,0 +1,17 @@
+CBB wrapper top modules name:
+
+1.	upm_cbb_wrapper_dpm_a_top.sv       -- single cbb/dpm_a
+2.	upm_cbb_wrapper_dpm_b_top.sv       -- single cbb/dpm_b
+3.	upm_cbb_wrapper_dpm_c_top.sv       -- single cbb/dpm_c
+4.	upm_cbb_wrapper_dpm_d_top.sv       -- single cbb/dpm_d
+5.	upm_cbb_wrapper_tpm_a_top.sv       -- single cbb/tpm_a
+6.	upm_cbb_wrapper_tpm_b_top.sv       -- single cbb/tpm_b
+7.	upm_cbb_wrapper_tpm_c_top.sv       -- single cbb/tpm_c
+8.	upm_cbb_wrapper_tpm_d_top.sv       -- single cbb/tpm_d
+9.	upm_cbb_wrapper_dpm_top.sv         -- 4 cbb dpm together 
+10.	upm_cbb_wrapper_tpm_top.sv         -- 4 cbb tpm together 
+11.	upm_cbb_wrapper_dpm_tpm_a_top.sv   -- pair: {i70idvtpmd02m50a, i70idvdpmd02m50a}
+12.	upm_cbb_wrapper_dpm_tpm_b_top.sv   -- pair: {i70idvtpmd02m50b, i70idvdpmd02m50b}
+13.	upm_cbb_wrapper_dpm_tpm_c_top.sv   -- pair: {i70idvtpmd02m50c, i70idvdpmd02m50c}
+14.	upm_cbb_wrapper_dpm_tpm_d_top.sv   -- pair: {i70idvtpmd02m50d, i70idvdpmd02m50d}
+

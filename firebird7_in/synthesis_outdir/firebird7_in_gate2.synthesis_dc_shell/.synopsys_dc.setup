@@ -24,11 +24,8 @@ if {[catch {set SYNOPSYS [getenv SYNOPSYS]} errmsg]} {
 #-----------------------------------------------------------------------------------------------------
 # Search Path, Link Library, Target Library
 #-----------------------------------------------------------------------------------------------------
-set ivar(i0s_techlib_attr_value,version) "lib783_i0s_160h_50pp/pdk050_r3v2p0_efv"
+set ivar(i0s_techlib_attr_value,version) "lib783_i0s_160h_50pp/pdk080_r4v2p0_efv"
 set ivar(i0s_techlib_dir) "/p/hdk/cad/stdcells/${ivar(i0s_techlib_attr_value,version)}"
-
-## set ivar(i0m_techlib_attr_value,version) "lib783_i0m_180h_50pp/pdk050_r3v2p0_efv"
-## set ivar(i0m_techlib_dir) "/p/hdk/cad/stdcells/${ivar(i0m_techlib_attr_value,version)}"
 
 set search_path [ list \
    . \
@@ -45,6 +42,7 @@ set search_path [ list \
    ${ivar(i0s_techlib_dir)}/supclk_lvt/lib \
    ${ivar(i0s_techlib_dir)}/supseq_lvt/lib \
    ${ivar(i0s_techlib_dir)}/ctech/source/p1278/160h_i0s_50pp/lvt \
+   ${ivar(i0s_techlib_dir)}/dsiclk_lvt/lib \
    ${SYNOPSYS}/libraries/syn \
 ]
 
@@ -61,6 +59,7 @@ set target_library {
    lib783_i0s_160h_50pp_supbase_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb \
    lib783_i0s_160h_50pp_supclk_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb \
    lib783_i0s_160h_50pp_supseq_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb \
+   lib783_i0s_160h_50pp_dsiclk_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb \
 }
 
 set link_lib_std [ list \
@@ -77,6 +76,7 @@ set link_lib_std [ list \
    lib783_i0s_160h_50pp_supbase_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb \
    lib783_i0s_160h_50pp_supclk_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb \
    lib783_i0s_160h_50pp_supseq_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb \
+   lib783_i0s_160h_50pp_dsiclk_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb \
 ]
 
 set symbol_library "generic.sdb"

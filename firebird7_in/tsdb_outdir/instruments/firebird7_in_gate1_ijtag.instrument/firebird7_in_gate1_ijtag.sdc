@@ -11,7 +11,7 @@
 #--------------------------------------------------------------------------
 #  File created by: Tessent Shell
 #          Version: 2022.4
-#       Created on: Sun Oct 29 23:49:36 PDT 2023
+#       Created on: Sun Nov  5 08:26:33 PST 2023
 #--------------------------------------------------------------------------
 
    
@@ -59,6 +59,11 @@ proc  firebird7_in_gate1_tessent_sib_array_trim_fuse_override {args} {
 }
        
 proc  firebird7_in_gate1_tessent_sib_array_pwrmgmt {args} {
+           
+  create_clock ijtag_tck -period 100.0 -name tessent_tck -add
+}
+       
+proc  firebird7_in_gate1_tessent_sib_upm {args} {
            
   create_clock ijtag_tck -period 100.0 -name tessent_tck -add
 }

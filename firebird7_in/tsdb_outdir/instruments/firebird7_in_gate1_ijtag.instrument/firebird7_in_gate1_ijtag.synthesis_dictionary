@@ -11,7 +11,7 @@
 #--------------------------------------------------------------------------
 #  File created by: Tessent Shell
 #          Version: 2022.4
-#       Created on: Sun Oct 29 23:49:36 PDT 2023
+#       Created on: Sun Nov  5 08:26:33 PST 2023
 #--------------------------------------------------------------------------
 
 set synthesis_dictionary {
@@ -21,12 +21,13 @@ set synthesis_dictionary {
       work_library work
       files {
         ./firebird7_in_gate1_tessent_sib_array_trim_fuse_override.sv ./firebird7_in_gate1_tessent_sib_array_pwrmgmt.sv
-        ./firebird7_in_gate1_tessent_sib_spare.sv ./firebird7_in_gate1_tessent_sib_sti.sv
-        ./firebird7_in_gate1_tessent_sib_mbist.sv ./firebird7_in_gate1_tessent_sib_spare_green.sv
-        ./firebird7_in_gate1_tessent_sib_spare_insysbist.sv ./firebird7_in_gate1_tessent_sib_spare_orange.sv
-        ./firebird7_in_gate1_tessent_sib_spare_red.sv ./firebird7_in_gate1_tessent_scanmux_sti_secure_mux.sv
-        ./firebird7_in_gate1_tessent_scanmux_spare_red_secure_mux.sv ./firebird7_in_gate1_tessent_scanmux_spare_orange_secure_mux.sv
-        ./firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux.sv ./firebird7_in_gate1_tessent_scanmux_array_pwrmgmt_secure_mux.sv
+        ./firebird7_in_gate1_tessent_sib_upm.sv ./firebird7_in_gate1_tessent_sib_spare.sv
+        ./firebird7_in_gate1_tessent_sib_sti.sv ./firebird7_in_gate1_tessent_sib_mbist.sv
+        ./firebird7_in_gate1_tessent_sib_spare_green.sv ./firebird7_in_gate1_tessent_sib_spare_insysbist.sv
+        ./firebird7_in_gate1_tessent_sib_spare_orange.sv ./firebird7_in_gate1_tessent_sib_spare_red.sv
+        ./firebird7_in_gate1_tessent_scanmux_sti_secure_mux.sv ./firebird7_in_gate1_tessent_scanmux_spare_red_secure_mux.sv
+        ./firebird7_in_gate1_tessent_scanmux_spare_orange_secure_mux.sv ./firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux.sv
+        ./firebird7_in_gate1_tessent_scanmux_upm_secure_mux.sv ./firebird7_in_gate1_tessent_scanmux_array_pwrmgmt_secure_mux.sv
         ./firebird7_in_gate1_tessent_scanmux_array_trim_fuse_override_secure_mux.sv ./firebird7_in_gate1_tessent_tdr_sti_ctrl.sv
         ./firebird7_in_gate1_tessent_tdr_spare_red_tdr.sv ./firebird7_in_gate1_tessent_tdr_spare_orange_tdr.sv
         ./firebird7_in_gate1_tessent_tdr_spare_insysbist_tdr.sv ./firebird7_in_gate1_tessent_tdr_spare_green_tdr.sv
@@ -98,6 +99,19 @@ set synthesis_dictionary {
       output_files {
         firebird7_in_gate1_tessent_sib_array_pwrmgmt.vg {
           module_name_list firebird7_in_gate1_tessent_sib_array_pwrmgmt
+        }
+      }
+    }
+    firebird7_in_gate1_tessent_sib_upm {
+      boundary_optimization off
+      size_only_prefix_list tessent_persistent_cell_
+      sdc {
+        file_name firebird7_in_gate1_ijtag.sdc
+        proc_list firebird7_in_gate1_tessent_sib_upm
+      }
+      output_files {
+        firebird7_in_gate1_tessent_sib_upm.vg {
+          module_name_list firebird7_in_gate1_tessent_sib_upm
         }
       }
     }
@@ -225,6 +239,15 @@ set synthesis_dictionary {
       output_files {
         firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux.vg {
           module_name_list firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux
+        }
+      }
+    }
+    firebird7_in_gate1_tessent_scanmux_upm_secure_mux {
+      boundary_optimization off
+      size_only_prefix_list tessent_persistent_cell_
+      output_files {
+        firebird7_in_gate1_tessent_scanmux_upm_secure_mux.vg {
+          module_name_list firebird7_in_gate1_tessent_scanmux_upm_secure_mux
         }
       }
     }

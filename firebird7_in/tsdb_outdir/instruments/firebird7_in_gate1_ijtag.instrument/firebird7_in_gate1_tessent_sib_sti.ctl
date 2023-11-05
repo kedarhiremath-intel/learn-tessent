@@ -1,7 +1,7 @@
 //-------------------------------------------------
 //  File created by: Tessent Shell
 //          Version: 2022.4
-//       Created on: Sun Oct 29 23:49:35 PDT 2023
+//       Created on: Sun Nov  5 08:26:32 PST 2023
 //-------------------------------------------------
 
 
@@ -11,7 +11,7 @@ STIL 1.0 {
 }
 Header {
   Title "CTL for design 'firebird7_in_gate1_tessent_sib_sti'";
-  Date "Sun Oct 29 23:49:35 PDT 2023";
+  Date "Sun Nov 05 08:26:32 PST 2023";
   Source "Tessent Shell 2022.4";
 }
 Signals {

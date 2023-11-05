@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys DC Expert(TM) in wire load mode
 // Version   : Q-2019.12-SP5-1
-// Date      : Sun Oct 29 23:56:00 2023
+// Date      : Sun Nov  5 08:34:16 2023
 /////////////////////////////////////////////////////////////
 
 
@@ -15,32 +15,34 @@ module firebird7_in_gate1_tessent_sib_mbist ( ijtag_reset, ijtag_sel, ijtag_si,
          n21, n22, n23, n24, n25, n26, n27, SYNOPSYS_UNCONNECTED_1,
          SYNOPSYS_UNCONNECTED_2, SYNOPSYS_UNCONNECTED_3;
 
-  i0slsn080ab1n02x5 retiming_so_reg ( .clkb(ijtag_tck), .d(sib), .o(ijtag_so)
+  i0sfhz000ab1d06f5 sib_reg ( .si(n16), .d(n15), .ssb(n13), .clk(ijtag_tck), 
+        .o(sib), .so(SYNOPSYS_UNCONNECTED_1) );
+  i0sfvp08bab1d09x5 sib_latch_reg ( .si(n16), .d(n12), .ssb(n13), .clkb(
+        ijtag_tck), .rb(ijtag_reset), .s(n16), .o(sib_latch), .so(
+        SYNOPSYS_UNCONNECTED_2) );
+  i0slsn080ab1n04x5 retiming_so_reg ( .clkb(ijtag_tck), .d(sib), .o(ijtag_so)
          );
-  i0sfvz08bab1d06x5 sib_latch_reg ( .si(n17), .d(n12), .ssb(n13), .clkb(
-        ijtag_tck), .rb(ijtag_reset), .s(n17), .o(sib_latch), .so(
-        SYNOPSYS_UNCONNECTED_1) );
-  i0sfhz000ab1d12f5 sib_reg ( .si(n17), .d(n15), .ssb(n13), .clk(ijtag_tck), 
-        .o(sib), .so(SYNOPSYS_UNCONNECTED_2) );
-  i0sfvz08bab1d03x6 to_enable_int_reg ( .si(n17), .d(n19), .ssb(n13), .clkb(
-        ijtag_tck), .rb(ijtag_reset), .s(n17), .o(to_enable_int), .so(
+  i0sfvz08bab1d03x6 to_enable_int_reg ( .si(n16), .d(n18), .ssb(n13), .clkb(
+        ijtag_tck), .rb(ijtag_reset), .s(n16), .o(to_enable_int), .so(
         SYNOPSYS_UNCONNECTED_3) );
-  i0stilo00ab1n02x5 U19 ( .o(n17) );
-  i0sinv000ab1n03x5 U20 ( .a(sib), .o1(n18) );
-  i0sao0012ab1n03x7 U21 ( .b(n24), .c(n22), .a(n23), .o(n16) );
-  i0sand002ab1n03x5 U22 ( .a(ijtag_ue), .b(ijtag_sel), .o(n26) );
-  i0sinv000ab1n03x5 U23 ( .a(ijtag_se), .o1(n24) );
-  i0sinv000ab1n03x5 U24 ( .a(ijtag_sel), .o1(n23) );
-  i0sand002ab1n03x5 U25 ( .a(to_enable_int), .b(ijtag_sel), .o(ijtag_to_sel)
+  i0stilo00ab1n02x5 U19 ( .o(n16) );
+  i0sinv030ab1n03x5 U20 ( .a(sib_latch), .o1(n27) );
+  i0sinv000tb1n03x5 U21 ( .a(sib), .o1(n26) );
+  i0sinv000ab1n02x5 U22 ( .a(n27), .o1(n18) );
+  i0snand24ab1n02x5 U23 ( .a(n27), .b(n20), .c(ijtag_si), .d(n21), .o1(n24) );
+  i0snanp02ab1n03x5 U24 ( .a(sib), .b(n22), .o1(n25) );
+  i0sinv000tb1n03x5 U25 ( .a(n18), .o1(n17) );
+  i0smdn022ab1n02x5 U26 ( .b(n26), .a(n17), .sa(n19), .o1(n12) );
+  i0snand03ab1n02x5 U27 ( .a(n24), .b(n25), .c(n23), .o1(n15) );
+  i0sinv000tb1n03x5 U28 ( .a(n22), .o1(n20) );
+  i0snanp02ab1n03x5 U29 ( .a(ijtag_ue), .b(ijtag_sel), .o1(n19) );
+  i0soai012ab1n03x5 U30 ( .b(ijtag_se), .c(ijtag_ce), .a(ijtag_sel), .o1(n22)
          );
-  i0sinv000ab1n03x5 U26 ( .a(ijtag_si), .o1(n21) );
-  i0sinv000ab1n03x5 U27 ( .a(ijtag_from_so), .o1(n20) );
-  i0sinv000ab1n03x5 U28 ( .a(ijtag_ce), .o1(n22) );
-  i0stihi00ab1n02x5 U29 ( .o(n13) );
-  i0smdn022ab1n02x5 U30 ( .b(n27), .a(n18), .sa(n26), .o1(n12) );
-  i0smdn022ab1n03x4 U31 ( .b(n25), .a(n18), .sa(n16), .o1(n15) );
-  i0sinv000ab1n03x5 U32 ( .a(n27), .o1(n19) );
-  i0sinv000ab1n02x5 U33 ( .a(sib_latch), .o1(n27) );
-  i0smd2na2ab1n03x5 U34 ( .c(n22), .b(n21), .a(n20), .sa(sib_latch), .out0(n25) );
+  i0sinv000tb1n03x5 U31 ( .a(ijtag_ce), .o1(n21) );
+  i0stihi00ab1n02x5 U32 ( .o(n13) );
+  i0snanb04ab1n02x5 U33 ( .a(n22), .b(sib_latch), .c(ijtag_from_so), .d(n21), 
+        .out0(n23) );
+  i0sand002ab1n03x5 U34 ( .a(to_enable_int), .b(ijtag_sel), .o(ijtag_to_sel)
+         );
 endmodule
 

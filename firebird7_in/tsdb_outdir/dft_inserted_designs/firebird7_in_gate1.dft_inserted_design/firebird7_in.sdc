@@ -11,7 +11,7 @@
 #--------------------------------------------------------------------------
 #  File created by: Tessent Shell
 #          Version: 2022.4
-#       Created on: Sun Oct 29 23:54:12 PDT 2023
+#       Created on: Sun Nov  5 08:32:25 PST 2023
 #--------------------------------------------------------------------------
 
 #
@@ -272,6 +272,7 @@ proc tessent_set_ijtag_non_modal {} {
     firebird7_in_gate1_tessent_sib_spare_orange_inst/to_enable_int*
     firebird7_in_gate1_tessent_sib_spare_red_inst/to_enable_int*
     firebird7_in_gate1_tessent_sib_sti_inst/to_enable_int*
+    firebird7_in_gate1_tessent_sib_upm_inst/to_enable_int*
   }
   # Relaxing IJTAG select signals
   set_multicycle_path -setup [expr 2 + (3 * $tessent_extra_control_setup_hold_cycles)] \
@@ -4532,6 +4533,7 @@ proc tessent_get_preserve_instances {select} {
     firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux_inst
     firebird7_in_gate1_tessent_scanmux_spare_orange_secure_mux_inst
     firebird7_in_gate1_tessent_scanmux_spare_red_secure_mux_inst
+    firebird7_in_gate1_tessent_scanmux_upm_secure_mux_inst
     firebird7_in_gate1_tessent_sib_array_pwrmgmt_inst
     firebird7_in_gate1_tessent_sib_array_trim_fuse_override_inst
     firebird7_in_gate1_tessent_sib_spare_green_inst
@@ -4539,6 +4541,7 @@ proc tessent_get_preserve_instances {select} {
     firebird7_in_gate1_tessent_sib_spare_insysbist_inst
     firebird7_in_gate1_tessent_sib_spare_orange_inst
     firebird7_in_gate1_tessent_sib_spare_red_inst
+    firebird7_in_gate1_tessent_sib_upm_inst
     firebird7_in_gate1_tessent_tdr_spare_green_tdr_inst
     firebird7_in_gate1_tessent_tdr_spare_insysbist_tdr_inst
     firebird7_in_gate1_tessent_tdr_spare_orange_tdr_inst
@@ -4625,6 +4628,10 @@ proc tessent_get_preserve_instances {select} {
     ph0/i/p/gs1_s/m0/mem0_i_bisr_inst
     ph0/i/p/gs1_s/m1/mem0_i
     ph0/i/p/gs1_s/m1/mem0_i_bisr_inst
+    u_upm_0
+    u_upm_1
+    u_upm_2
+    u_upm_3
   }
 
   set icl_design_instance_list {

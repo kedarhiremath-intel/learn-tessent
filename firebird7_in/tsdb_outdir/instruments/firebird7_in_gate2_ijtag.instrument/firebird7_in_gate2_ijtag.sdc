@@ -11,11 +11,31 @@
 #--------------------------------------------------------------------------
 #  File created by: Tessent Shell
 #          Version: 2022.4
-#       Created on: Sun Oct 29 14:37:19 PDT 2023
+#       Created on: Sun Nov  5 08:58:05 PST 2023
 #--------------------------------------------------------------------------
 
    
    
+       
+proc  firebird7_in_gate2_tessent_tdr_sri_tdr4 {args} {
+           
+  create_clock ijtag_tck -period 100.0 -name tessent_tck -add
+}
+       
+proc  firebird7_in_gate2_tessent_tdr_sri_tdr3 {args} {
+           
+  create_clock ijtag_tck -period 100.0 -name tessent_tck -add
+}
+       
+proc  firebird7_in_gate2_tessent_tdr_sri_tdr2 {args} {
+           
+  create_clock ijtag_tck -period 100.0 -name tessent_tck -add
+}
+       
+proc  firebird7_in_gate2_tessent_tdr_sri_tdr1 {args} {
+           
+  create_clock ijtag_tck -period 100.0 -name tessent_tck -add
+}
        
 proc  firebird7_in_gate2_tessent_tdr_sri_ctrl {args} {
            
@@ -74,6 +94,11 @@ proc  firebird7_in_gate2_tessent_sib_edt {args} {
 }
        
 proc  firebird7_in_gate2_tessent_sib_sri_ctrl {args} {
+           
+  create_clock ijtag_tck -period 100.0 -name tessent_tck -add
+}
+       
+proc  firebird7_in_gate2_tessent_sib_sri_local {args} {
            
   create_clock ijtag_tck -period 100.0 -name tessent_tck -add
 }

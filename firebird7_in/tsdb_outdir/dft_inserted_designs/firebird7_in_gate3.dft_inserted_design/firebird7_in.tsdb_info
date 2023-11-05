@@ -1,7 +1,7 @@
 //-------------------------------------------------
 //  File created by: Tessent Shell
 //          Version: 2022.4
-//       Created on: Sun Oct 29 15:06:03 PDT 2023
+//       Created on: Sun Nov  5 09:30:49 PST 2023
 //-------------------------------------------------
 
 
@@ -9,7 +9,7 @@ TsdbInfo(firebird7_in,gate3) {
   tessent_tool_version : 2022.4;
   tessent_meta_version : 10;
   version : 3;
-  creation_date : Sun Oct 29 22:06:03 GMT 2023;
+  creation_date : Sun Nov 05 17:30:49 GMT 2023;
   creation_user : khiremat;
   creation_step : insert_test_logic;
   level : physical_block;
@@ -18,6 +18,6 @@ TsdbInfo(firebird7_in,gate3) {
   gate_extension : vg;
   interface_has_external_dependencies : 0;
   OpenedTsdbDirectories {
-    /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/tsdb_outdir;
+    /nfs/site/disks/zsc14.xne_irw_003/khiremat/tessent_study_group/learn-tessent/firebird7_in/tsdb_outdir;
   }
 }

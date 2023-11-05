@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys DC Expert(TM) in wire load mode
 // Version   : Q-2019.12-SP5-1
-// Date      : Sun Oct 29 14:41:25 2023
+// Date      : Sun Nov  5 09:03:13 2023
 /////////////////////////////////////////////////////////////
 
 
@@ -9,14 +9,13 @@ module firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe_fsm (
         clock, bus_enable_sync_reset, bus_sync_reset_pulse );
   input clock, bus_enable_sync_reset;
   output bus_sync_reset_pulse;
-  wire   n3, n4, n2, SYNOPSYS_UNCONNECTED_1;
+  wire   n3, n2, SYNOPSYS_UNCONNECTED_1;
 
-  i0sfvz00bab1d06x5 bus_sync_reset_ff_reg ( .si(n3), .d(n3), .ssb(n2), .clk(
-        clock), .rb(n2), .s(bus_enable_sync_reset), .o(n4), .so(
-        SYNOPSYS_UNCONNECTED_1) );
-  i0sbfn000ab1n30x5 U3 ( .a(n4), .o(bus_sync_reset_pulse) );
-  i0stilo00ab1n02x5 U4 ( .o(n3) );
-  i0stihi00ab1n02x5 U5 ( .o(n2) );
+  i0sfvp00bab1d12x5 bus_sync_reset_ff_reg ( .si(n3), .d(n3), .ssb(n2), .clk(
+        clock), .rb(n2), .s(bus_enable_sync_reset), .o(bus_sync_reset_pulse), 
+        .so(SYNOPSYS_UNCONNECTED_1) );
+  i0stilo00ab1n02x5 U3 ( .o(n3) );
+  i0stihi00ab1n02x5 U4 ( .o(n2) );
 endmodule
 
 
@@ -28,30 +27,70 @@ endmodule
   input clock, bus_sync_reset_pulse;
   wire   r0_n_19_, r0_n_18_, r0_n_17_, r0_n_16_, r0_n_15_, r0_n_14_, r0_n_13_,
          r0_n_12_, r0_n_11_, r0_n_10_, r0_n_9_, r0_n_8_, r0_n_7_, r0_n_6_,
-         r0_n_5_, r0_n_4_, r0_n_3_, r0_n_2_, r0_n_1_, r0_n_0_, n99, n44, n47,
-         n50, n53, n56, n59, n62, n65, n68, n71, n74, n77, n80, n83, n86, n89,
-         n92, n95, n98, n101, n1, n2, n3, SYNOPSYS_UNCONNECTED_1,
-         SYNOPSYS_UNCONNECTED_2, SYNOPSYS_UNCONNECTED_3,
-         SYNOPSYS_UNCONNECTED_4, SYNOPSYS_UNCONNECTED_5,
-         SYNOPSYS_UNCONNECTED_6, SYNOPSYS_UNCONNECTED_7,
-         SYNOPSYS_UNCONNECTED_8, SYNOPSYS_UNCONNECTED_9,
-         SYNOPSYS_UNCONNECTED_10, SYNOPSYS_UNCONNECTED_11,
-         SYNOPSYS_UNCONNECTED_12, SYNOPSYS_UNCONNECTED_13,
-         SYNOPSYS_UNCONNECTED_14, SYNOPSYS_UNCONNECTED_15,
-         SYNOPSYS_UNCONNECTED_16, SYNOPSYS_UNCONNECTED_17,
-         SYNOPSYS_UNCONNECTED_18, SYNOPSYS_UNCONNECTED_19,
-         SYNOPSYS_UNCONNECTED_20, SYNOPSYS_UNCONNECTED_21,
-         SYNOPSYS_UNCONNECTED_22, SYNOPSYS_UNCONNECTED_23,
-         SYNOPSYS_UNCONNECTED_24, SYNOPSYS_UNCONNECTED_25,
-         SYNOPSYS_UNCONNECTED_26, SYNOPSYS_UNCONNECTED_27,
-         SYNOPSYS_UNCONNECTED_28, SYNOPSYS_UNCONNECTED_29,
-         SYNOPSYS_UNCONNECTED_30, SYNOPSYS_UNCONNECTED_31,
-         SYNOPSYS_UNCONNECTED_32, SYNOPSYS_UNCONNECTED_33,
-         SYNOPSYS_UNCONNECTED_34, SYNOPSYS_UNCONNECTED_35,
-         SYNOPSYS_UNCONNECTED_36, SYNOPSYS_UNCONNECTED_37,
-         SYNOPSYS_UNCONNECTED_38, SYNOPSYS_UNCONNECTED_39,
-         SYNOPSYS_UNCONNECTED_40;
+         r0_n_5_, r0_n_4_, r0_n_3_, r0_n_2_, r0_n_1_, r0_n_0_, n99, n100, n39,
+         n44, n47, n50, n53, n56, n59, n62, n65, n68, n71, n74, n77, n80, n83,
+         n86, n89, n92, n95, n98, n101, n1, n2, n3, n4, n5,
+         SYNOPSYS_UNCONNECTED_1, SYNOPSYS_UNCONNECTED_2,
+         SYNOPSYS_UNCONNECTED_3, SYNOPSYS_UNCONNECTED_4,
+         SYNOPSYS_UNCONNECTED_5, SYNOPSYS_UNCONNECTED_6,
+         SYNOPSYS_UNCONNECTED_7, SYNOPSYS_UNCONNECTED_8,
+         SYNOPSYS_UNCONNECTED_9, SYNOPSYS_UNCONNECTED_10,
+         SYNOPSYS_UNCONNECTED_11, SYNOPSYS_UNCONNECTED_12,
+         SYNOPSYS_UNCONNECTED_13, SYNOPSYS_UNCONNECTED_14,
+         SYNOPSYS_UNCONNECTED_15, SYNOPSYS_UNCONNECTED_16,
+         SYNOPSYS_UNCONNECTED_17, SYNOPSYS_UNCONNECTED_18,
+         SYNOPSYS_UNCONNECTED_19, SYNOPSYS_UNCONNECTED_20,
+         SYNOPSYS_UNCONNECTED_21, SYNOPSYS_UNCONNECTED_22,
+         SYNOPSYS_UNCONNECTED_23, SYNOPSYS_UNCONNECTED_24,
+         SYNOPSYS_UNCONNECTED_25, SYNOPSYS_UNCONNECTED_26,
+         SYNOPSYS_UNCONNECTED_27, SYNOPSYS_UNCONNECTED_28,
+         SYNOPSYS_UNCONNECTED_29, SYNOPSYS_UNCONNECTED_30,
+         SYNOPSYS_UNCONNECTED_31, SYNOPSYS_UNCONNECTED_32,
+         SYNOPSYS_UNCONNECTED_33, SYNOPSYS_UNCONNECTED_34,
+         SYNOPSYS_UNCONNECTED_35, SYNOPSYS_UNCONNECTED_36,
+         SYNOPSYS_UNCONNECTED_37, SYNOPSYS_UNCONNECTED_38,
+         SYNOPSYS_UNCONNECTED_39, SYNOPSYS_UNCONNECTED_40;
 
+  i0sfhz003ab1d06f5 r0_reg_19 ( .si(n100), .rb(n4), .d(r0_n_19_), .ssb(n99), 
+        .clk(clock), .o(bus_data_out[19]), .so(SYNOPSYS_UNCONNECTED_1) );
+  i0sfhz003ab1d06f5 r0_reg_18 ( .si(n100), .rb(n5), .d(r0_n_18_), .ssb(n99), 
+        .clk(clock), .o(bus_data_out[18]), .so(SYNOPSYS_UNCONNECTED_2) );
+  i0sfhz003ab1d06f5 r0_reg_17 ( .si(n100), .rb(n4), .d(r0_n_17_), .ssb(n99), 
+        .clk(clock), .o(bus_data_out[17]), .so(SYNOPSYS_UNCONNECTED_3) );
+  i0sfhz003ab1d06f5 r0_reg_16 ( .si(n100), .rb(n5), .d(r0_n_16_), .ssb(n99), 
+        .clk(clock), .o(bus_data_out[16]), .so(SYNOPSYS_UNCONNECTED_4) );
+  i0sfhz003ab1d06f5 r0_reg_15 ( .si(n100), .rb(n3), .d(r0_n_15_), .ssb(n99), 
+        .clk(clock), .o(bus_data_out[15]), .so(SYNOPSYS_UNCONNECTED_5) );
+  i0sfhz003ab1d06f5 r0_reg_14 ( .si(n100), .rb(n3), .d(r0_n_14_), .ssb(n99), 
+        .clk(clock), .o(bus_data_out[14]), .so(SYNOPSYS_UNCONNECTED_6) );
+  i0sfhz003ab1d06f5 r0_reg_13 ( .si(n100), .rb(n4), .d(r0_n_13_), .ssb(n99), 
+        .clk(clock), .o(bus_data_out[13]), .so(SYNOPSYS_UNCONNECTED_7) );
+  i0sfhz003ab1d06f5 r0_reg_12 ( .si(n100), .rb(n5), .d(r0_n_12_), .ssb(n99), 
+        .clk(clock), .o(bus_data_out[12]), .so(SYNOPSYS_UNCONNECTED_8) );
+  i0sfhz003ab1d06f5 r0_reg_11 ( .si(n100), .rb(n4), .d(r0_n_11_), .ssb(n99), 
+        .clk(clock), .o(bus_data_out[11]), .so(SYNOPSYS_UNCONNECTED_9) );
+  i0sfhz003ab1d06f5 r0_reg_10 ( .si(n100), .rb(n3), .d(r0_n_10_), .ssb(n99), 
+        .clk(clock), .o(bus_data_out[10]), .so(SYNOPSYS_UNCONNECTED_10) );
+  i0sfhz003ab1d06f5 r0_reg_9 ( .si(n100), .rb(n3), .d(r0_n_9_), .ssb(n99), 
+        .clk(clock), .o(bus_data_out[9]), .so(SYNOPSYS_UNCONNECTED_11) );
+  i0sfhz003ab1d06f5 r0_reg_8 ( .si(n100), .rb(n3), .d(r0_n_8_), .ssb(n99), 
+        .clk(clock), .o(bus_data_out[8]), .so(SYNOPSYS_UNCONNECTED_12) );
+  i0sfhz003ab1d06f5 r0_reg_7 ( .si(n100), .rb(n4), .d(r0_n_7_), .ssb(n99), 
+        .clk(clock), .o(bus_data_out[7]), .so(SYNOPSYS_UNCONNECTED_13) );
+  i0sfhz003ab1d06f5 r0_reg_6 ( .si(n100), .rb(n5), .d(r0_n_6_), .ssb(n99), 
+        .clk(clock), .o(bus_data_out[6]), .so(SYNOPSYS_UNCONNECTED_14) );
+  i0sfhz003ab1d06f5 r0_reg_5 ( .si(n100), .rb(n4), .d(r0_n_5_), .ssb(n99), 
+        .clk(clock), .o(bus_data_out[5]), .so(SYNOPSYS_UNCONNECTED_15) );
+  i0sfhz003ab1d06f5 r0_reg_4 ( .si(n100), .rb(n5), .d(r0_n_4_), .ssb(n99), 
+        .clk(clock), .o(bus_data_out[4]), .so(SYNOPSYS_UNCONNECTED_16) );
+  i0sfhz003ab1d06f5 r0_reg_3 ( .si(n100), .rb(n4), .d(r0_n_3_), .ssb(n99), 
+        .clk(clock), .o(bus_data_out[3]), .so(SYNOPSYS_UNCONNECTED_17) );
+  i0sfhz003ab1d06f5 r0_reg_2 ( .si(n100), .rb(n5), .d(r0_n_2_), .ssb(n99), 
+        .clk(clock), .o(bus_data_out[2]), .so(SYNOPSYS_UNCONNECTED_18) );
+  i0sfhz003ab1d06f5 r0_reg_1 ( .si(n100), .rb(n3), .d(r0_n_1_), .ssb(n99), 
+        .clk(clock), .o(bus_data_out[1]), .so(SYNOPSYS_UNCONNECTED_19) );
+  i0sfhz003ab1d06f5 r0_reg_0 ( .si(n100), .rb(n3), .d(r0_n_0_), .ssb(n99), 
+        .clk(clock), .o(bus_data_out[0]), .so(SYNOPSYS_UNCONNECTED_20) );
   i0snorb02ab1n02x5 U46 ( .a(bus_data_in[0]), .b(bus_sync_reset_pulse), .out0(
         n44) );
   i0snorb02ab1n02x5 U49 ( .a(bus_data_in[1]), .b(bus_sync_reset_pulse), .out0(
@@ -76,106 +115,70 @@ endmodule
         .out0(n74) );
   i0snorb02ab1n02x5 U79 ( .a(bus_data_in[11]), .b(bus_sync_reset_pulse), 
         .out0(n77) );
-  i0snorb02ab1n02x5 U82 ( .a(bus_data_in[12]), .b(bus_sync_reset_pulse), 
-        .out0(n80) );
-  i0snorb02ab1n02x5 U85 ( .a(bus_data_in[13]), .b(bus_sync_reset_pulse), 
-        .out0(n83) );
-  i0snorb02ab1n02x5 U88 ( .a(bus_data_in[14]), .b(bus_sync_reset_pulse), 
-        .out0(n86) );
-  i0snorb02ab1n02x5 U91 ( .a(bus_data_in[15]), .b(bus_sync_reset_pulse), 
-        .out0(n89) );
-  i0snorb02ab1n02x5 U94 ( .a(bus_data_in[16]), .b(bus_sync_reset_pulse), 
-        .out0(n92) );
   i0snorb02ab1n02x5 U97 ( .a(bus_data_in[17]), .b(bus_sync_reset_pulse), 
         .out0(n95) );
-  i0snorb02ab1n02x5 U100 ( .a(bus_data_in[18]), .b(bus_sync_reset_pulse), 
-        .out0(n98) );
   i0snorb02ab1n02x5 U103 ( .a(bus_data_in[19]), .b(bus_sync_reset_pulse), 
         .out0(n101) );
-  i0sfuz00bab1d06x5 r0_reg_18 ( .si(n2), .rb(r0_n_18_), .s(n3), .d(n2), .ssb(
-        n99), .clk(clock), .o(bus_data_out[18]), .so(SYNOPSYS_UNCONNECTED_1)
-         );
-  i0sfuz00bab1d06x5 r0_reg_17 ( .si(n2), .rb(r0_n_17_), .s(n3), .d(n2), .ssb(
-        n99), .clk(clock), .o(bus_data_out[17]), .so(SYNOPSYS_UNCONNECTED_2)
-         );
-  i0sfuz00bab1d06x5 r0_reg_16 ( .si(n2), .rb(r0_n_16_), .s(n3), .d(n2), .ssb(
-        n99), .clk(clock), .o(bus_data_out[16]), .so(SYNOPSYS_UNCONNECTED_3)
-         );
-  i0sfuz00bab1d06x5 r0_reg_15 ( .si(n2), .rb(r0_n_15_), .s(n3), .d(n2), .ssb(
-        n99), .clk(clock), .o(bus_data_out[15]), .so(SYNOPSYS_UNCONNECTED_4)
-         );
-  i0sfuz00bab1d06x5 r0_reg_14 ( .si(n2), .rb(r0_n_14_), .s(n3), .d(n2), .ssb(
-        n99), .clk(clock), .o(bus_data_out[14]), .so(SYNOPSYS_UNCONNECTED_5)
-         );
-  i0sfuz00bab1d06x5 r0_reg_13 ( .si(n2), .rb(r0_n_13_), .s(n3), .d(n2), .ssb(
-        n99), .clk(clock), .o(bus_data_out[13]), .so(SYNOPSYS_UNCONNECTED_6)
-         );
-  i0sfuz00bab1d06x5 r0_reg_12 ( .si(n2), .rb(r0_n_12_), .s(n3), .d(n2), .ssb(
-        n99), .clk(clock), .o(bus_data_out[12]), .so(SYNOPSYS_UNCONNECTED_7)
-         );
-  i0sfuz00bab1d06x5 r0_reg_11 ( .si(n2), .rb(r0_n_11_), .s(n3), .d(n2), .ssb(
-        n99), .clk(clock), .o(bus_data_out[11]), .so(SYNOPSYS_UNCONNECTED_8)
-         );
-  i0sfuz00bab1d06x5 r0_reg_10 ( .si(n2), .rb(r0_n_10_), .s(n3), .d(n2), .ssb(
-        n99), .clk(clock), .o(bus_data_out[10]), .so(SYNOPSYS_UNCONNECTED_9)
-         );
-  i0sfuz00bab1d06x5 r0_reg_9 ( .si(n2), .rb(r0_n_9_), .s(n3), .d(n2), .ssb(n99), .clk(clock), .o(bus_data_out[9]), .so(SYNOPSYS_UNCONNECTED_10) );
-  i0sfuz00bab1d06x5 r0_reg_8 ( .si(n2), .rb(r0_n_8_), .s(n1), .d(n2), .ssb(n99), .clk(clock), .o(bus_data_out[8]), .so(SYNOPSYS_UNCONNECTED_11) );
-  i0sfuz00bab1d06x5 r0_reg_7 ( .si(n2), .rb(r0_n_7_), .s(n1), .d(n2), .ssb(n99), .clk(clock), .o(bus_data_out[7]), .so(SYNOPSYS_UNCONNECTED_12) );
-  i0sfuz00bab1d06x5 r0_reg_6 ( .si(n2), .rb(r0_n_6_), .s(n1), .d(n2), .ssb(n99), .clk(clock), .o(bus_data_out[6]), .so(SYNOPSYS_UNCONNECTED_13) );
-  i0sfuz00bab1d06x5 r0_reg_5 ( .si(n2), .rb(r0_n_5_), .s(n1), .d(n2), .ssb(n99), .clk(clock), .o(bus_data_out[5]), .so(SYNOPSYS_UNCONNECTED_14) );
-  i0sfuz00bab1d06x5 r0_reg_4 ( .si(n2), .rb(r0_n_4_), .s(n1), .d(n2), .ssb(n99), .clk(clock), .o(bus_data_out[4]), .so(SYNOPSYS_UNCONNECTED_15) );
-  i0sfuz00bab1d06x5 r0_reg_3 ( .si(n2), .rb(r0_n_3_), .s(n1), .d(n2), .ssb(n99), .clk(clock), .o(bus_data_out[3]), .so(SYNOPSYS_UNCONNECTED_16) );
-  i0sfuz00bab1d06x5 r0_reg_2 ( .si(n2), .rb(r0_n_2_), .s(n1), .d(n2), .ssb(n99), .clk(clock), .o(bus_data_out[2]), .so(SYNOPSYS_UNCONNECTED_17) );
-  i0sfuz00bab1d06x5 r0_reg_1 ( .si(n2), .rb(r0_n_1_), .s(n1), .d(n2), .ssb(n99), .clk(clock), .o(bus_data_out[1]), .so(SYNOPSYS_UNCONNECTED_18) );
-  i0sfuz080ab1d03x5 r0_n_reg_0 ( .si(n2), .d(n44), .ssb(n99), .clkb(clock), 
-        .o(r0_n_0_), .so(SYNOPSYS_UNCONNECTED_19) );
-  i0sfuz080ab1d03x5 r0_n_reg_1 ( .si(n2), .d(n47), .ssb(n99), .clkb(clock), 
-        .o(r0_n_1_), .so(SYNOPSYS_UNCONNECTED_20) );
-  i0sfuz080ab1d03x5 r0_n_reg_2 ( .si(n2), .d(n50), .ssb(n99), .clkb(clock), 
+  i0sfuz080ab1d12x5 r0_n_reg_2 ( .si(n100), .d(n50), .ssb(n99), .clkb(clock), 
         .o(r0_n_2_), .so(SYNOPSYS_UNCONNECTED_21) );
-  i0sfuz080ab1d03x5 r0_n_reg_3 ( .si(n2), .d(n53), .ssb(n99), .clkb(clock), 
-        .o(r0_n_3_), .so(SYNOPSYS_UNCONNECTED_22) );
-  i0sfuz080ab1d03x5 r0_n_reg_4 ( .si(n2), .d(n56), .ssb(n99), .clkb(clock), 
-        .o(r0_n_4_), .so(SYNOPSYS_UNCONNECTED_23) );
-  i0sfuz080ab1d03x5 r0_n_reg_5 ( .si(n2), .d(n59), .ssb(n99), .clkb(clock), 
-        .o(r0_n_5_), .so(SYNOPSYS_UNCONNECTED_24) );
-  i0sfuz080ab1d03x5 r0_n_reg_6 ( .si(n2), .d(n62), .ssb(n99), .clkb(clock), 
-        .o(r0_n_6_), .so(SYNOPSYS_UNCONNECTED_25) );
-  i0sfuz080ab1d03x5 r0_n_reg_7 ( .si(n2), .d(n65), .ssb(n99), .clkb(clock), 
-        .o(r0_n_7_), .so(SYNOPSYS_UNCONNECTED_26) );
-  i0sfuz080ab1d03x5 r0_n_reg_8 ( .si(n2), .d(n68), .ssb(n99), .clkb(clock), 
-        .o(r0_n_8_), .so(SYNOPSYS_UNCONNECTED_27) );
-  i0sfuz080ab1d03x5 r0_n_reg_9 ( .si(n2), .d(n71), .ssb(n99), .clkb(clock), 
-        .o(r0_n_9_), .so(SYNOPSYS_UNCONNECTED_28) );
-  i0sfuz080ab1d03x5 r0_n_reg_10 ( .si(n2), .d(n74), .ssb(n99), .clkb(clock), 
-        .o(r0_n_10_), .so(SYNOPSYS_UNCONNECTED_29) );
-  i0sfuz080ab1d03x5 r0_n_reg_11 ( .si(n2), .d(n77), .ssb(n99), .clkb(clock), 
-        .o(r0_n_11_), .so(SYNOPSYS_UNCONNECTED_30) );
-  i0sfuz080ab1d03x5 r0_n_reg_12 ( .si(n2), .d(n80), .ssb(n99), .clkb(clock), 
-        .o(r0_n_12_), .so(SYNOPSYS_UNCONNECTED_31) );
-  i0sfuz080ab1d03x5 r0_n_reg_13 ( .si(n2), .d(n83), .ssb(n99), .clkb(clock), 
-        .o(r0_n_13_), .so(SYNOPSYS_UNCONNECTED_32) );
-  i0sfuz080ab1d03x5 r0_n_reg_14 ( .si(n2), .d(n86), .ssb(n99), .clkb(clock), 
+  i0sfuz080ab1d12x5 r0_n_reg_1 ( .si(n100), .d(n47), .ssb(n99), .clkb(clock), 
+        .o(r0_n_1_), .so(SYNOPSYS_UNCONNECTED_22) );
+  i0sfuz080ab1d12x5 r0_n_reg_0 ( .si(n100), .d(n44), .ssb(n99), .clkb(clock), 
+        .o(r0_n_0_), .so(SYNOPSYS_UNCONNECTED_23) );
+  i0sfuz080ab1d12x5 r0_n_reg_6 ( .si(n100), .d(n62), .ssb(n99), .clkb(clock), 
+        .o(r0_n_6_), .so(SYNOPSYS_UNCONNECTED_24) );
+  i0sfuz080ab1d12x5 r0_n_reg_5 ( .si(n100), .d(n59), .ssb(n99), .clkb(clock), 
+        .o(r0_n_5_), .so(SYNOPSYS_UNCONNECTED_25) );
+  i0sfuz080ab1d12x5 r0_n_reg_4 ( .si(n100), .d(n56), .ssb(n99), .clkb(clock), 
+        .o(r0_n_4_), .so(SYNOPSYS_UNCONNECTED_26) );
+  i0sfuz080ab1d12x5 r0_n_reg_3 ( .si(n100), .d(n53), .ssb(n99), .clkb(clock), 
+        .o(r0_n_3_), .so(SYNOPSYS_UNCONNECTED_27) );
+  i0sfuz080ab1d12x5 r0_n_reg_19 ( .si(n100), .d(n101), .ssb(n99), .clkb(clock), 
+        .o(r0_n_19_), .so(SYNOPSYS_UNCONNECTED_28) );
+  i0sfuz080ab1d12x5 r0_n_reg_18 ( .si(n100), .d(n98), .ssb(n99), .clkb(clock), 
+        .o(r0_n_18_), .so(SYNOPSYS_UNCONNECTED_29) );
+  i0sfuz080ab1d12x5 r0_n_reg_17 ( .si(n100), .d(n95), .ssb(n99), .clkb(clock), 
+        .o(r0_n_17_), .so(SYNOPSYS_UNCONNECTED_30) );
+  i0sfuz080ab1d12x5 r0_n_reg_16 ( .si(n100), .d(n92), .ssb(n99), .clkb(clock), 
+        .o(r0_n_16_), .so(SYNOPSYS_UNCONNECTED_31) );
+  i0sfuz080ab1d12x5 r0_n_reg_15 ( .si(n100), .d(n89), .ssb(n99), .clkb(clock), 
+        .o(r0_n_15_), .so(SYNOPSYS_UNCONNECTED_32) );
+  i0sfuz080ab1d12x5 r0_n_reg_14 ( .si(n100), .d(n86), .ssb(n99), .clkb(clock), 
         .o(r0_n_14_), .so(SYNOPSYS_UNCONNECTED_33) );
-  i0sfuz080ab1d03x5 r0_n_reg_15 ( .si(n2), .d(n89), .ssb(n99), .clkb(clock), 
-        .o(r0_n_15_), .so(SYNOPSYS_UNCONNECTED_34) );
-  i0sfuz080ab1d03x5 r0_n_reg_16 ( .si(n2), .d(n92), .ssb(n99), .clkb(clock), 
-        .o(r0_n_16_), .so(SYNOPSYS_UNCONNECTED_35) );
-  i0sfuz080ab1d03x5 r0_n_reg_17 ( .si(n2), .d(n95), .ssb(n99), .clkb(clock), 
-        .o(r0_n_17_), .so(SYNOPSYS_UNCONNECTED_36) );
-  i0sfuz080ab1d03x5 r0_n_reg_18 ( .si(n2), .d(n98), .ssb(n99), .clkb(clock), 
-        .o(r0_n_18_), .so(SYNOPSYS_UNCONNECTED_37) );
-  i0sfuz080ab1d03x5 r0_n_reg_19 ( .si(n2), .d(n101), .ssb(n99), .clkb(clock), 
-        .o(r0_n_19_), .so(SYNOPSYS_UNCONNECTED_38) );
-  i0sfuz00bab1d06x5 r0_reg_0 ( .si(n2), .rb(n1), .s(r0_n_0_), .d(n2), .ssb(n99), .clk(clock), .o(bus_data_out[0]), .so(SYNOPSYS_UNCONNECTED_39) );
-  i0sfuz00bab1d06x5 r0_reg_19 ( .si(n2), .rb(n1), .s(r0_n_19_), .d(n2), .ssb(
-        n99), .clk(clock), .o(bus_data_out[19]), .so(SYNOPSYS_UNCONNECTED_40)
-         );
-  i0stilo00ab1n02x5 U3 ( .o(n2) );
-  i0sinv020ab1n08x5 U4 ( .a(bus_sync_reset_pulse), .o1(n1) );
-  i0sinv020ab1n08x5 U5 ( .a(bus_sync_reset_pulse), .o1(n3) );
-  i0stihi00ab1n02x5 U6 ( .o(n99) );
+  i0sfuz080ab1d12x5 r0_n_reg_13 ( .si(n100), .d(n83), .ssb(n99), .clkb(clock), 
+        .o(r0_n_13_), .so(SYNOPSYS_UNCONNECTED_34) );
+  i0sfuz080ab1d12x5 r0_n_reg_12 ( .si(n100), .d(n80), .ssb(n99), .clkb(clock), 
+        .o(r0_n_12_), .so(SYNOPSYS_UNCONNECTED_35) );
+  i0sfuz080ab1d12x5 r0_n_reg_11 ( .si(n100), .d(n77), .ssb(n99), .clkb(clock), 
+        .o(r0_n_11_), .so(SYNOPSYS_UNCONNECTED_36) );
+  i0sfuz080ab1d12x5 r0_n_reg_10 ( .si(n100), .d(n74), .ssb(n99), .clkb(clock), 
+        .o(r0_n_10_), .so(SYNOPSYS_UNCONNECTED_37) );
+  i0sfuz080ab1d12x5 r0_n_reg_9 ( .si(n100), .d(n71), .ssb(n99), .clkb(clock), 
+        .o(r0_n_9_), .so(SYNOPSYS_UNCONNECTED_38) );
+  i0sfuz080ab1d12x5 r0_n_reg_8 ( .si(n100), .d(n68), .ssb(n99), .clkb(clock), 
+        .o(r0_n_8_), .so(SYNOPSYS_UNCONNECTED_39) );
+  i0sfuz080ab1d12x5 r0_n_reg_7 ( .si(n100), .d(n65), .ssb(n99), .clkb(clock), 
+        .o(r0_n_7_), .so(SYNOPSYS_UNCONNECTED_40) );
+  i0snorb02ab1n02x5 U100 ( .a(bus_data_in[18]), .b(bus_sync_reset_pulse), 
+        .out0(n98) );
+  i0snorb02ab1n02x5 U94 ( .a(bus_data_in[16]), .b(bus_sync_reset_pulse), 
+        .out0(n92) );
+  i0snorb02ab1n02x5 U91 ( .a(bus_data_in[15]), .b(bus_sync_reset_pulse), 
+        .out0(n89) );
+  i0snorb02ab1n02x5 U82 ( .a(bus_data_in[12]), .b(bus_sync_reset_pulse), 
+        .out0(n80) );
+  i0snorb02ab1n02x5 U88 ( .a(bus_data_in[14]), .b(bus_sync_reset_pulse), 
+        .out0(n86) );
+  i0snorb02ab1n02x5 U85 ( .a(bus_data_in[13]), .b(bus_sync_reset_pulse), 
+        .out0(n83) );
+  i0sinv040ab1n04x5 U3 ( .a(bus_sync_reset_pulse), .o1(n39) );
+  i0sinv030tb1n02x5 U4 ( .a(n39), .o1(n1) );
+  i0sinv000ab1n06x5 U5 ( .a(n39), .o1(n2) );
+  i0sinv000ab1n06x5 U6 ( .a(n1), .o1(n5) );
+  i0sinv000ab1n06x5 U7 ( .a(n2), .o1(n3) );
+  i0sinv000ab1n06x5 U8 ( .a(n2), .o1(n4) );
+  i0stihi00ab1n02x5 U9 ( .o(n99) );
+  i0stilo00ab1n02x5 U10 ( .o(n100) );
 endmodule
 
 
@@ -192,6 +195,6 @@ module firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe (
   firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe_datapath datapath ( 
         .clock(bus_clock), .bus_data_in(bus_data_in), .bus_sync_reset_pulse(
         bus_sync_reset_pulse), .bus_data_out(bus_data_out) );
-  i0sinv000ab1n03x5 U2 ( .a(ijtag_reset), .o1(n1) );
+  i0sinv000tb1n03x5 U2 ( .a(ijtag_reset), .o1(n1) );
 endmodule
 

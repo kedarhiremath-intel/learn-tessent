@@ -1,19 +1,19 @@
 +-----------------------------------------------------------------------------+
 | Logfile        : netbatch_user_firebird7_in_gate2_ssn.instrument.firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe.tcl.log|
-| Job id         : 8476247232303956           Class: SLES12&&16G&&4C Qslot: /XNE/IRW|
-| User           : khiremat                   Full Id: zsc14_tiers2_vp.8476247232303956|
+| Job id         : 9111981268267413           Class: SLES12&&16G&&4C Qslot: /XNE/IRW|
+| User           : khiremat                   Full Id: zsc14_tiers2_vp.9111981268267413|
 | Class Reservation : cores=4,general_ramp=1:duration=60s,memory=16           |
-| Executed on    : scci193106                 Pool : zsc14_nb2_ppm            |
-| Queueing time  : Sun Oct 29 14:40:38 2023                                   |
-| Starting time  : Sun Oct 29 14:40:39 2023          Qwait:   0h:00m:01s      |
+| Executed on    : scda041905                 Pool : zsc14_nb2_ppm            |
+| Queueing time  : Sun Nov  5 09:01:19 2023                                   |
+| Starting time  : Sun Nov  5 09:01:20 2023          Qwait:   0h:00m:01s      |
 | Command        : dc_shell -64 -f ./user_firebird7_in_gate2_ssn.instrument.firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe.tcl |
 +-----------------------------------------------------------------------------+
 +-----------------------------------------------------------------------------+
 | Exit Status    : 0                                                          |
-| Finishing time : Sun Oct 29 14:41:26 2023                                   |
-| CPU time       : Usr 21.737s Sys 0.841s  WC  0h:00m:47s                     |
-| Rusage Stats   : Mem:2236   PF:  583859/0  CSv/f:  0/0     Swaps:0          |
-|                :           Msg:    0/0     IOops:  568/1424Sigs :0          |
+| Finishing time : Sun Nov  5 09:03:13 2023                                   |
+| CPU time       : Usr 26.6s   Sys 1.089s  WC  0h:01m:53s                     |
+| Rusage Stats   : Mem:2541   PF:  662329/342CSv/f:  0/0     Swaps:0          |
+|                :           Msg:    0/0     IOops:  1048656/1416Sigs :0          |
 | User Groups    : soc, socenv, ipx_general_user, arborcrest_soc, ncsg76,     |
 |                : i1278proc, i1278, intelall, ncsg78, irw, powdermill,       |
 |                : soc73, gdlusers, srvr10nm                                  |

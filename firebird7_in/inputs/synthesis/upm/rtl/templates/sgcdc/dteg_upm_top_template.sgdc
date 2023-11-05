@@ -1,0 +1,83 @@
+current_design dteg_upm_top 
+
+clock          -name  "dfx_upm_tck"           -period 10  -edge  { 0 5 }        -domain grp_dfx_upm_tck           -tag  grp_dfx_upm_tck
+clock          -name  "dfx_upm_clk_debug"     -period 0.5  -edge { 0 0.25 }    -domain grp_dfx_upm_clk_debug     -tag  grp_dfx_upm_clk_debug
+clock          -name  "dteg_upm_top.UPM_CBB_WRAPPER_to_UPM1_cbb_clk_in"     -period 0.5  -edge { 0 0.25 }    -domain grp_dfx_upm_clk_debug     -tag  grp_cbb_clk
+
+[% IF upm_variables.DFX_UPM_SYS_CTRL_EN == 1 %]
+clock          -name  "dfx_upm_func_clk"     -period 0.5  -edge { 0 0.25 }    -domain grp_dfx_upm_func_clk     -tag  grp_dfx_upm_func_clk
+reset          -name  "dfx_upm_sys_rstn"	 -value 0    -async 
+abstract_port  -ports "dfx_upm_sys_rstn"  	 -clock VCLK_dfx_upm_sys_rstn -direction input
+[% END %]
+
+reset          -name  "dfx_upm_trstb"          -value 0    -async
+reset          -name  "dfx_upm_fdfx_powergood" -value 0    -async 
+
+abstract_port  -ports "dfx_upm_trstb"  -clock VCLK_dfx_upm_tck -direction input
+abstract_port  -ports "dfx_upm_fdfx_powergood"  -clock VCLK_dfx_upm_fdfx_powergood -direction input
+
+# Explanation - trstb in design is async to tck, both assertion and deassertion, since in Tessent
+# TB we dont have a way to disable clock while reset we have to give disable_sva here.
+#
+reset_filter_path -type rdc -from_rst "dfx_upm_trstb"  -to_clock "dfx_upm_tck" -disable_sva
+reset_filter_path -type reset_sync02 -from_rst "dfx_upm_trstb"     -to_clock "dfx_upm_tck" -disable_sva
+#
+reset_filter_path -type rdc -from_rst "dfx_upm_fdfx_powergood"  -to_clock "dfx_upm_tck" -disable_sva
+reset_filter_path -type reset_sync02 -from_rst "dfx_upm_fdfx_powergood"     -to_clock "dfx_upm_tck" -disable_sva
+#
+#
+reset_filter_path -type rdc -from_rst "dfx_upm_fdfx_powergood"  -to_clock "dfx_upm_clk_debug" -disable_sva
+reset_filter_path -type reset_sync02 -from_rst "dfx_upm_fdfx_powergood"     -to_clock "dfx_upm_clk_debug" -disable_sva
+#
+# EXPLANATION - when we assert powergood the HIP clock stops beacuse we pull down sleep_b of the HIP
+# hence reset_filter_path can be used here.
+reset_filter_path -type rdc -from_rst "dfx_upm_fdfx_powergood"  -to_clock "dteg_upm_top.UPM_CBB_WRAPPER_to_UPM1_cbb_clk_in" -disable_sva
+reset_filter_path -type reset_sync02 -from_rst "dfx_upm_fdfx_powergood"     -to_clock "dteg_upm_top.UPM_CBB_WRAPPER_to_UPM1_cbb_clk_in" -disable_sva
+#
+# TRSTB is tap reset , when is tap reset we wont consume the counter clock as the counter is reset also.
+reset_filter_path -type rdc -from_rst "dfx_upm_trstb"  -to_clock "dteg_upm_top.UPM_CBB_WRAPPER_to_UPM1_cbb_clk_in[0]" -disable_sva
+reset_filter_path -type reset_sync02 -from_rst "dfx_upm_trstb"     -to_clock "dteg_upm_top.UPM_CBB_WRAPPER_to_UPM1_cbb_clk_in[0]" -disable_sva
+#
+reset_filter_path -type rdc -from_rst "dfx_upm_trstb"  -to_clock "dteg_upm_top.UPM_CBB_WRAPPER_to_UPM1_cbb_clk_in[1]" -disable_sva
+reset_filter_path -type reset_sync02 -from_rst "dfx_upm_trstb"     -to_clock "dteg_upm_top.UPM_CBB_WRAPPER_to_UPM1_cbb_clk_in[1]" -disable_sva
+#
+qualifier -from_clk "dteg_upm_top.UPM_CBB_WRAPPER_to_UPM1_cbb_clk_in[0]" -to_clk "dfx_upm_tck" -dest_qual "dfx_upm_capture"
+qualifier -from_clk "dteg_upm_top.UPM_CBB_WRAPPER_to_UPM1_cbb_clk_in[1]" -to_clk "dfx_upm_tck" -dest_qual "dfx_upm_capture"
+#
+abstract_port -ports "dfx_upm_update" -clock "dfx_upm_tck" -start
+abstract_port -ports "dfx_upm_shift" -clock "dfx_upm_tck" -start
+abstract_port -ports "dfx_upm_capture" -clock "dfx_upm_tck" -start
+abstract_port -ports "dfx_upm_si" -clock "dfx_upm_tck" -start
+abstract_port -ports "dfx_upm_sel" -clock "dfx_upm_tck" -start
+#
+#
+#
+[% IF upm_variables.DFX_UPM_SYS_CTRL_EN == 1 %]
+#
+#set_case_analysis -name "dteg_upm_top.system_mode"    	-value 1
+#quasi_static -name "dteg_upm_top.u_upm_system_controller.dfx_upm_sys_cbb_ctrl_o"
+#quasi_static -name "dteg_upm_top.u_upm_system_controller.dfx_upm_sys_cbb_pwr_o"
+#quasi_static -name "dteg_upm_top.u_upm_system_controller.dfx_upm_sys_ctrl_o"
+#if {$::current_mode == "SYSTEM" }  then {  set_case_analysis -name "dteg_upm_top.system_mode"		-value 1 }
+#if {$::current_mode == "IJTAG" }  then {  set_case_analysis -name "dteg_upm_top.system_mode"    	-value 0 }
+#
+set_case_analysis -name "dteg_upm_top.system_mode"		-value 1
+reset_filter_path -type rdc -from_rst "dfx_upm_sys_rstn"  -to_clock "dfx_upm_func_clk" -disable_sva
+reset_filter_path -type reset_sync02 -from_rst "dfx_upm_sys_rstn"     -to_clock "dfx_upm_func_clk" -disable_sva
+reset_filter_path -type rdc -from_rst "dfx_upm_fdfx_powergood"  -to_clock "dfx_upm_func_clk" -disable_sva
+reset_filter_path -type reset_sync02 -from_rst "dfx_upm_fdfx_powergood"     -to_clock "dfx_upm_func_clk" -disable_sva
+#
+qualifier -from_clk "dfx_upm_func_clk" -to_clk "dfx_upm_tck" -dest_qual "dfx_upm_capture"
+reset_filter_path -type rdc -from_rst "dfx_upm_sys_rstn" -to_rst "dfx_upm_fdfx_powergood" 
+reset_filter_path -type reset_sync02 -from_rst "dfx_upm_sys_rstn"     -to_clock "dteg_upm_top.UPM_CBB_WRAPPER_to_UPM1_cbb_clk_in[0]" -disable_sva
+reset_filter_path -type reset_sync02 -from_rst "dfx_upm_sys_rstn"     -to_clock "dteg_upm_top.UPM_CBB_WRAPPER_to_UPM1_cbb_clk_in[1]" -disable_sva
+qualifier -from_clk "dteg_upm_top.UPM_CBB_WRAPPER_to_UPM1_cbb_clk_in[0]" -to_clk "dfx_upm_func_clk" -dest_qual "dfx_upm_sys_en"
+qualifier -from_clk "dteg_upm_top.UPM_CBB_WRAPPER_to_UPM1_cbb_clk_in[1]" -to_clk "dfx_upm_func_clk" -dest_qual "dfx_upm_sys_en"
+##
+#
+[% END %]
+#
+[% IF upm_variables.DFX_UPM_DCM_OUT == 1 %]
+clock          -name  "dfx_upm_dcm_out"     -period 0.5  -edge { 0 0.25 }    -domain grp_dfx_upm_clk_debug     -tag  grp_dfx_upm_clock_dcm_out
+[% END %]
+

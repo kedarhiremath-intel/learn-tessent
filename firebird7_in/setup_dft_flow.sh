@@ -4,6 +4,12 @@ setenv NBQSLOT /XNE/irw/be
 setenv NBCLASS "SLES12&&16G&&4C"
 
 
+# Set environment variables for TEAMaker
+setenv TEAMAKER_DFT_FLOW_HOME ./inputs/from_TEAMaker
+setenv TEAMAKER_DFT_WORK_ROOT_PATH ./inputs/from_FlowAutomation
+setenv TEAMAKER_DFT_TECHNOLOGY "p1278d3"
+
+
 # For Netbatch and CAD tool license tracking, LM_PROJECT variable must be set
 setenv LM_PROJECT NCSG
 

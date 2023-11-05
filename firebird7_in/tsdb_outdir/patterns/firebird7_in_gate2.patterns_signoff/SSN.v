@@ -2,7 +2,7 @@
 // Verilog format test patterns produced by Tessent Shell 2022.4
 // Filename       : ./tsdb_outdir/patterns/firebird7_in_gate2.patterns_signoff/SSN.v
 // Idstamp        : 2022.4:ec94:6099:0:0000
-// Date           : Sun Oct 29 14:53:47 2023
+// Date           : Sun Nov  5 09:17:11 2023
 //
 // Begin_Verify_Section 
 //   format            = Verilog 
@@ -109,28 +109,30 @@ real        ts_gen_tp1_ijtag_ctrl_ijtag_ce_force;
 real        ts_gen_tp1_ijtag_ctrl_ijtag_se_force;
 real        ts_gen_tp1_ijtag_ctrl_ijtag_sel_force;
 real        ts_gen_tp1_ijtag_ctrl_ijtag_ue_force;
-reg[29:0]    _ibus;
+reg[30:0]    _ibus;
 reg[19:0]    _exp_obus, _msk_obus;
 wire[19:0]   _sim_obus;
 reg[2:0]    _pat_type;
 reg         _tp_num;
 reg         mgcdft_save_signal, mgcdft_restart_signal;
-reg[78:0]   vect;
+reg[79:0]   vect;
 
-wire ijtag_tck, ijtag_reset, ijtag_ce, ijtag_se, ijtag_ue, ijtag_sel, 
-     PD_TOP_bisr_shift_en, PD_TOP_bisr_clk, PD_TOP_bisr_reset, ssn_bus_clock, 
-     \ssn_bus_in[19] , \ssn_bus_in[18] , \ssn_bus_in[17] , \ssn_bus_in[16] , 
-     \ssn_bus_in[15] , \ssn_bus_in[14] , \ssn_bus_in[13] , \ssn_bus_in[12] , 
-     \ssn_bus_in[11] , \ssn_bus_in[10] , \ssn_bus_in[9] , \ssn_bus_in[8] , 
-     \ssn_bus_in[7] , \ssn_bus_in[6] , \ssn_bus_in[5] , \ssn_bus_in[4] , 
-     \ssn_bus_in[3] , \ssn_bus_in[2] , \ssn_bus_in[1] , \ssn_bus_in[0] , 
-     \ssn_bus_out[19] , \ssn_bus_out[18] , \ssn_bus_out[17] , \ssn_bus_out[16] , 
-     \ssn_bus_out[15] , \ssn_bus_out[14] , \ssn_bus_out[13] , \ssn_bus_out[12] , 
-     \ssn_bus_out[11] , \ssn_bus_out[10] , \ssn_bus_out[9] , \ssn_bus_out[8] , 
-     \ssn_bus_out[7] , \ssn_bus_out[6] , \ssn_bus_out[5] , \ssn_bus_out[4] , 
-     \ssn_bus_out[3] , \ssn_bus_out[2] , \ssn_bus_out[1] , \ssn_bus_out[0] ;
+wire fdfx_powergood, ijtag_tck, ijtag_reset, ijtag_ce, ijtag_se, ijtag_ue, 
+     ijtag_sel, PD_TOP_bisr_shift_en, PD_TOP_bisr_clk, PD_TOP_bisr_reset, 
+     ssn_bus_clock, \ssn_bus_in[19] , \ssn_bus_in[18] , \ssn_bus_in[17] , 
+     \ssn_bus_in[16] , \ssn_bus_in[15] , \ssn_bus_in[14] , \ssn_bus_in[13] , 
+     \ssn_bus_in[12] , \ssn_bus_in[11] , \ssn_bus_in[10] , \ssn_bus_in[9] , 
+     \ssn_bus_in[8] , \ssn_bus_in[7] , \ssn_bus_in[6] , \ssn_bus_in[5] , 
+     \ssn_bus_in[4] , \ssn_bus_in[3] , \ssn_bus_in[2] , \ssn_bus_in[1] , 
+     \ssn_bus_in[0] , \ssn_bus_out[19] , \ssn_bus_out[18] , \ssn_bus_out[17] , 
+     \ssn_bus_out[16] , \ssn_bus_out[15] , \ssn_bus_out[14] , \ssn_bus_out[13] , 
+     \ssn_bus_out[12] , \ssn_bus_out[11] , \ssn_bus_out[10] , \ssn_bus_out[9] , 
+     \ssn_bus_out[8] , \ssn_bus_out[7] , \ssn_bus_out[6] , \ssn_bus_out[5] , 
+     \ssn_bus_out[4] , \ssn_bus_out[3] , \ssn_bus_out[2] , \ssn_bus_out[1] , 
+     \ssn_bus_out[0] ;
 
 event       before_finish;
+assign fdfx_powergood = _ibus[30];
 assign ijtag_tck = _ibus[29];
 assign ijtag_reset = _ibus[28];
 assign ijtag_ce = _ibus[27];
@@ -549,11 +551,11 @@ always @(compare_exp_sim_obus) begin
  end // if _do_compare
 end
 
-reg[78:0]     mem [0:1698957];
-firebird7_in DUT_inst (.ijtag_tck(ijtag_tck), 
-     .ijtag_reset(ijtag_reset), .ijtag_ce(ijtag_ce), 
-     .ijtag_se(ijtag_se), .ijtag_ue(ijtag_ue), 
-     .ijtag_sel(ijtag_sel), 
+reg[79:0]     mem [0:1677720];
+firebird7_in DUT_inst (.fdfx_powergood(fdfx_powergood), 
+     .ijtag_tck(ijtag_tck), .ijtag_reset(ijtag_reset), 
+     .ijtag_ce(ijtag_ce), .ijtag_se(ijtag_se), 
+     .ijtag_ue(ijtag_ue), .ijtag_sel(ijtag_sel), 
      .PD_TOP_bisr_shift_en(PD_TOP_bisr_shift_en), 
      .PD_TOP_bisr_clk(PD_TOP_bisr_clk), 
      .PD_TOP_bisr_reset(PD_TOP_bisr_reset), 
@@ -932,7 +934,7 @@ begin
 
                   _last_time = 0.0 ; 
                   _ibus[20] = 1'b0;
-                  _ibus[29:21] = vect[78:70];
+                  _ibus[30:21] = vect[79:70];
                   _ibus[19:0] = vect[68:49];
                   _exp_obus[19:0] = vect[48:29];
                   _msk_obus[19:0] = vect[28:9];
@@ -974,7 +976,7 @@ begin
 
                   _last_time = 0.0 ; 
                   _ibus[20] = 1'b0;
-                  _ibus[29:28] = vect[78:77];
+                  _ibus[30:28] = vect[79:77];
                   _ibus[22:21] = vect[71:70];
                   _ibus[19:0] = vect[68:49];
                   _exp_obus[19:0] = vect[48:29];

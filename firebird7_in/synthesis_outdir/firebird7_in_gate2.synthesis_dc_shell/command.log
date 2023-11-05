@@ -1,7 +1,7 @@
 #@ # 
 #@ # Running dc_shell Version Q-2019.12-SP5-1 for linux64 -- Sep 02, 2020
-#@ # Date:   Sun Oct 29 14:41:05 2023
-#@ # Run by: khiremat@sccf060703
+#@ # Date:   Sun Nov  5 09:03:00 2023
+#@ # Run by: khiremat@scdg143103
 #@ 
 
 source /p/hdk/cad/designcompiler/Q-2019.12-SP5-1/admin/setup/.synopsys_dc.setup
@@ -6678,8 +6678,8 @@ source /p/hdk/cad/designcompiler/Q-2019.12-SP5-1/admin/setup/.synopsys_dc.setup
 
 #@ # -- End source /p/hdk/cad/designcompiler/Q-2019.12-SP5-1/admin/setup/.synopsys_dc.setup
 
-source /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/synthesis_outdir/firebird7_in_gate2.synthesis_dc_shell/.synopsys_dc.setup
-#@ # -- Starting source /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/synthesis_outdir/firebird7_in_gate2.synthesis_dc_shell/.synopsys_dc.setup
+source /nfs/site/disks/zsc14.xne_irw_003/khiremat/tessent_study_group/learn-tessent/firebird7_in/synthesis_outdir/firebird7_in_gate2.synthesis_dc_shell/.synopsys_dc.setup
+#@ # -- Starting source /nfs/site/disks/zsc14.xne_irw_003/khiremat/tessent_study_group/learn-tessent/firebird7_in/synthesis_outdir/firebird7_in_gate2.synthesis_dc_shell/.synopsys_dc.setup
 
 #@ #=====================================================================================================
 #@ # TEAMaker DFT - Design Compiler Synthesis Setup File
@@ -6707,18 +6707,15 @@ source /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/fire
 #@ #-----------------------------------------------------------------------------------------------------
 #@ # Search Path, Link Library, Target Library
 #@ #-----------------------------------------------------------------------------------------------------
-#@ set ivar(i0s_techlib_attr_value,version) "lib783_i0s_160h_50pp/pdk050_r3v2p0_efv"
+#@ set ivar(i0s_techlib_attr_value,version) "lib783_i0s_160h_50pp/pdk080_r4v2p0_efv"
 #@ set ivar(i0s_techlib_dir) "/p/hdk/cad/stdcells/${ivar(i0s_techlib_attr_value,version)}"
 #@ 
-#@ ## set ivar(i0m_techlib_attr_value,version) "lib783_i0m_180h_50pp/pdk050_r3v2p0_efv"
-#@ ## set ivar(i0m_techlib_dir) "/p/hdk/cad/stdcells/${ivar(i0m_techlib_attr_value,version)}"
-#@ 
-#@ set search_path [ list    .    ${ivar(i0s_techlib_dir)}/base_lvt/lib    ${ivar(i0s_techlib_dir)}/clk_lvt/lib    ${ivar(i0s_techlib_dir)}/dsibase_lvt/lib    ${ivar(i0s_techlib_dir)}/dsihs_lvt/lib    ${ivar(i0s_techlib_dir)}/dsiseq_lvt/lib    ${ivar(i0s_techlib_dir)}/lvl_lvt/lib    ${ivar(i0s_techlib_dir)}/pwm_lvt/lib    ${ivar(i0s_techlib_dir)}/seq_lvt/lib    ${ivar(i0s_techlib_dir)}/spcl_lvt/lib    ${ivar(i0s_techlib_dir)}/supbase_lvt/lib    ${ivar(i0s_techlib_dir)}/supclk_lvt/lib    ${ivar(i0s_techlib_dir)}/supseq_lvt/lib    ${ivar(i0s_techlib_dir)}/ctech/source/p1278/160h_i0s_50pp/lvt    ${SYNOPSYS}/libraries/syn ]
+#@ set search_path [ list    .    ${ivar(i0s_techlib_dir)}/base_lvt/lib    ${ivar(i0s_techlib_dir)}/clk_lvt/lib    ${ivar(i0s_techlib_dir)}/dsibase_lvt/lib    ${ivar(i0s_techlib_dir)}/dsihs_lvt/lib    ${ivar(i0s_techlib_dir)}/dsiseq_lvt/lib    ${ivar(i0s_techlib_dir)}/lvl_lvt/lib    ${ivar(i0s_techlib_dir)}/pwm_lvt/lib    ${ivar(i0s_techlib_dir)}/seq_lvt/lib    ${ivar(i0s_techlib_dir)}/spcl_lvt/lib    ${ivar(i0s_techlib_dir)}/supbase_lvt/lib    ${ivar(i0s_techlib_dir)}/supclk_lvt/lib    ${ivar(i0s_techlib_dir)}/supseq_lvt/lib    ${ivar(i0s_techlib_dir)}/ctech/source/p1278/160h_i0s_50pp/lvt    ${ivar(i0s_techlib_dir)}/dsiclk_lvt/lib    ${SYNOPSYS}/libraries/syn ]
 #@ 
 #@ set target_library {
-#@    lib783_i0s_160h_50pp_base_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_clk_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_dsibase_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_dsihs_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_dsiseq_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_lvl_lvt_tttt_0p650v_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_pwm_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_seq_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_spcl_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_supbase_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_supclk_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_supseq_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb }
+#@    lib783_i0s_160h_50pp_base_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_clk_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_dsibase_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_dsihs_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_dsiseq_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_lvl_lvt_tttt_0p650v_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_pwm_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_seq_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_spcl_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_supbase_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_supclk_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_supseq_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_dsiclk_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb }
 #@ 
-#@ set link_lib_std [ list    *    lib783_i0s_160h_50pp_base_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_clk_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_dsibase_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_dsihs_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_dsiseq_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_lvl_lvt_tttt_0p650v_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_pwm_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_seq_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_spcl_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_supbase_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_supclk_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_supseq_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb ]
+#@ set link_lib_std [ list    *    lib783_i0s_160h_50pp_base_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_clk_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_dsibase_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_dsihs_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_dsiseq_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_lvl_lvt_tttt_0p650v_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_pwm_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_seq_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_spcl_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_supbase_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_supclk_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_supseq_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb    lib783_i0s_160h_50pp_dsiclk_lvt_tttt_0p650v_100c_tttt_cmax_nldm.ldb ]
 #@ 
 #@ set symbol_library "generic.sdb"
 #@ set synthetic_library "standard.sldb dw_foundation.sldb"
@@ -6820,10 +6817,10 @@ source /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/fire
 #@    set_dont_use  $do_not_use
 #@ }
 #@ 
-#@ # -- End source /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/synthesis_outdir/firebird7_in_gate2.synthesis_dc_shell/.synopsys_dc.setup
+#@ # -- End source /nfs/site/disks/zsc14.xne_irw_003/khiremat/tessent_study_group/learn-tessent/firebird7_in/synthesis_outdir/firebird7_in_gate2.synthesis_dc_shell/.synopsys_dc.setup
 
-source -echo -verbose /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/synthesis_outdir/firebird7_in_gate2.synthesis_dc_shell/./user_firebird7_in_gate2_edt.instrument.firebird7_in_gate2_tessent_edt_intest_edt.tcl
-#@ # -- Starting source /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_learn_tessent/firebird7_in/synthesis_outdir/firebird7_in_gate2.synthesis_dc_shell/./user_firebird7_in_gate2_edt.instrument.firebird7_in_gate2_tessent_edt_intest_edt.tcl
+source -echo -verbose /nfs/site/disks/zsc14.xne_irw_003/khiremat/tessent_study_group/learn-tessent/firebird7_in/synthesis_outdir/firebird7_in_gate2.synthesis_dc_shell/./user_firebird7_in_gate2_edt.instrument.firebird7_in_gate2_tessent_edt_intest_edt.tcl
+#@ # -- Starting source /nfs/site/disks/zsc14.xne_irw_003/khiremat/tessent_study_group/learn-tessent/firebird7_in/synthesis_outdir/firebird7_in_gate2.synthesis_dc_shell/./user_firebird7_in_gate2_edt.instrument.firebird7_in_gate2_tessent_edt_intest_edt.tcl
 
 #@ # compile_local {{{
 #@ if { [info commands compile_local] eq "" } {
@@ -6973,12 +6970,10 @@ source -echo -verbose /nfs/site/disks/zsc14.xne_irw_003/khiremat/clean_clone_lea
 #@ 
 #@ set_dont_touch [get_designs firebird7_in_gate2_edt_channel_out_mux_2x1_1]
 #@ exit
-SISW.
-#@ #
-#@ #--------------------------------------------------------------------------
+                                ---------------------------------------------------------
 #@ #  File created by: Tessent Shell
 #@ #          Version: 2022.4
-#@ #       Created on: Sun Oct 29 14:37:19 PDT 2023
+#@ #       Created on: Sun Nov  5 08:58:05 PST 2023
 #@ #--------------------------------------------------------------------------
 #@ 
 #@ proc firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe {args} {
@@ -7036,7 +7031,30 @@ SISW.
 #@ set_dont_touch [get_designs firebird7_in_gate2_tessent_ssn_scan_host_ssh]
 #@ 
 #@ exit
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        gs} {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 me tessent_tck -add
+#@ }
+#@ 
+#@ proc  firebird7_in_gate2_tessent_sib_ssn {args} {
+#@            
+#@   create_clock ijtag_tck -period 100.0 -name tessent_tck -add
+#@ }
+#@ 
+#@ proc  firebird7_in_gate2_tessent_sib_occ {args} {
+#@            
+#@   create_clock ijtag_tck -period 100.0 -name tessent_tck -add
+#@ }
+#@ 
+#@ proc  firebird7_in_gate2_tessent_sib_edt {args} {
+#@            
+#@   create_clock ijtag_tck -period 100.0 -name tessent_tck -add
+#@ }
+#@ 
+#@ proc  firebird7_in_gate2_tessent_sib_sri_ctrl {args} {
+#@            
+#@   create_clock ijtag_tck -period 100.0 -name tessent_tck -add
+#@ }
+#@ 
+#@ proc  firebird7_in_gate2_tessent_sib_sri_local {args} {
 #@            
 #@   create_clock ijtag_tck -period 100.0 -name tessent_tck -add
 #@ }
@@ -7049,9 +7067,35 @@ SISW.
 #@ 
 #@ # -- End source ../../tsdb_outdir/instruments/firebird7_in_gate2_ijtag.instrument/firebird7_in_gate2_ijtag.sdc
 
-#@ firebird7_in_gate2_tessent_tdr_sri_ctrl
+#@ firebird7_in_gate2_tessent_sib_sri
 #@ compile_local
-#@ write -f verilog -output firebird7_in_gate2_ijtag.instrument/firebird7_in_gate2_tessent_tdr_sri_ctrl.vg   [check_modules firebird7_in_gate2_tessent_tdr_sri_ctrl]
+#@ write -f verilog -output firebird7_in_gate2_ijtag.instrument/firebird7_in_gate2_tessent_sib_sri.vg   [check_modules firebird7_in_gate2_tessent_sib_sri]
+#@ set_dont_touch [get_designs firebird7_in_gate2_tessent_sib_sri]
+#@ 
+#@ set_dont_touch [get_designs firebird7_in_gate2_tessent_sib_ssn]
+#@ 
+#@ set_dont_touch [get_designs firebird7_in_gate2_tessent_sib_occ]
+#@ 
+#@ set_dont_touch [get_designs firebird7_in_gate2_tessent_sib_edt]
+#@ 
+#@ set_dont_touch [get_designs firebird7_in_gate2_tessent_sib_sri_ctrl]
+#@ 
+#@ set_dont_touch [get_designs firebird7_in_gate2_tessent_sib_sri_local]
+#@ 
+#@ set_dont_touch [get_designs firebird7_in_gate2_tessent_scanmux_sri_secure_mux]
+#@ 
+#@ set_dont_touch [get_designs firebird7_in_gate2_tessent_scanmux_intest_edt_scan_bi_sol_secure_mux]
+#@ 
+#@ set_dont_touch [get_designs firebird7_in_gate2_tessent_scanmux_extest_edt_scan_bi_sol_secure_mux]
+#@ 
+#@ set_dont_touch [get_designs firebird7_in_gate2_tessent_tdr_sri_tdr4]
+#@ 
+#@ set_dont_touch [get_designs firebird7_in_gate2_tessent_tdr_sri_tdr3]
+#@ 
+#@ set_dont_touch [get_designs firebird7_in_gate2_tessent_tdr_sri_tdr2]
+#@ 
+#@ set_dont_touch [get_designs firebird7_in_gate2_tessent_tdr_sri_tdr1]
+#@ 
 #@ set_dont_touch [get_designs firebird7_in_gate2_tessent_tdr_sri_ctrl]
 #@ 
 #@ set_dont_touch [get_designs firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_control]
@@ -7063,7 +7107,7 @@ SISW.
 #@ set_dont_touch [get_designs firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_status]
 #@ 
 #@ exit
-t_scan_bi_sol_control]
+in_gate2_tessent_tdr_extest_edt_scan_bi_sol_control]
 #@ 
 #@ set_dont_touch [get_designs firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_status]
 #@ 

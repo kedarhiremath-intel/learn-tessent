@@ -1,7 +1,7 @@
 //-------------------------------------------------
 //  File created by: Tessent Shell
 //          Version: 2022.4
-//       Created on: Sun Oct 29 15:06:02 PDT 2023
+//       Created on: Sun Nov  5 09:30:48 PST 2023
 //-------------------------------------------------
 
 
@@ -37,6 +37,9 @@ Module firebird7_in {
    ClockPort clk {
       Attribute tessent_clock_domain_labels = "clk_bbm clk";
       Attribute tessent_clock_periods = "all 783.00ps";
+   }
+   ResetPort fdfx_powergood {
+      ActivePolarity 0;
    }
    DataOutPort firebird7_in_mbist_diag_done {
       Source 
@@ -460,7 +463,6 @@ Module firebird7_in {
       Port PD_TOP_bisr_shift_en;
       Port PD_TOP_bisr_si;
       Port PD_TOP_bisr_so;
-      Port ijtag_reset;
       Port ijtag_tck;
    }
    ScanInterface ijtag {
@@ -477,7 +479,7 @@ Module firebird7_in {
    Attribute test_setup_procfile = "";
    Attribute forced_low_internal_input_port_list = 
        "{firebird7_in_gate2_tessent_ssn_scan_host_ssh_inst/scan_en}";
-   Attribute icl_extraction_date = "Sun Oct 29 14:40:23 PDT 2023";
+   Attribute icl_extraction_date = "Sun Nov  5 09:01:02 PST 2023";
    Attribute created_by_tessent_icl_extract = "true";
    Attribute tessent_design_id = "gate3";
    Attribute tessent_design_level = "physical_block";
@@ -562,6 +564,17 @@ Module firebird7_in {
       Attribute tessent_design_instance = 
           "firebird7_in_gate1_tessent_scanmux_sti_secure_mux_inst";
    }
+   Instance firebird7_in_gate1_tessent_scanmux_upm_secure_mux_inst Of 
+       firebird7_in_gate1_tessent_scanmux_upm_secure_mux {
+      InputPort mux_in0 = 
+          firebird7_in_gate1_tessent_sib_array_pwrmgmt_inst.ijtag_so;
+      InputPort mux_in1 = u_upm_0.dfx_upm_so;
+      InputPort mux_select = secure_red;
+      InputPort enable_in = firebird7_in_gate1_tessent_sib_upm_inst.ijtag_to_sel;
+
+      Attribute tessent_design_instance = 
+          "firebird7_in_gate1_tessent_scanmux_upm_secure_mux_inst";
+   }
    Instance firebird7_in_gate1_tessent_sib_array_pwrmgmt_inst Of 
        firebird7_in_gate1_tessent_sib_array_pwrmgmt {
       InputPort ijtag_reset = ijtag_reset;
@@ -615,8 +628,7 @@ Module firebird7_in {
       InputPort ijtag_reset = ijtag_reset;
       InputPort ijtag_sel = 
           firebird7_in_gate1_tessent_sib_spare_inst.ijtag_to_sel;
-      InputPort ijtag_si = 
-          firebird7_in_gate1_tessent_sib_array_pwrmgmt_inst.ijtag_so;
+      InputPort ijtag_si = firebird7_in_gate1_tessent_sib_upm_inst.ijtag_so;
       InputPort ijtag_ce = ijtag_ce;
       InputPort ijtag_se = ijtag_se;
       InputPort ijtag_ue = ijtag_ue;
@@ -630,8 +642,7 @@ Module firebird7_in {
        firebird7_in_gate1_tessent_sib_spare {
       InputPort ijtag_reset = ijtag_reset;
       InputPort ijtag_sel = ijtag_sel;
-      InputPort ijtag_si = 
-          firebird7_in_gate1_tessent_sib_array_pwrmgmt_inst.ijtag_so;
+      InputPort ijtag_si = firebird7_in_gate1_tessent_sib_upm_inst.ijtag_so;
       InputPort ijtag_ce = ijtag_ce;
       InputPort ijtag_se = ijtag_se;
       InputPort ijtag_ue = ijtag_ue;
@@ -715,13 +726,27 @@ Module firebird7_in {
       Attribute tessent_design_instance = 
           "firebird7_in_gate1_tessent_sib_sti_inst";
    }
+   Instance firebird7_in_gate1_tessent_sib_upm_inst Of 
+       firebird7_in_gate1_tessent_sib_upm {
+      InputPort ijtag_reset = ijtag_reset;
+      InputPort ijtag_sel = ijtag_sel;
+      InputPort ijtag_si = 
+          firebird7_in_gate1_tessent_sib_array_pwrmgmt_inst.ijtag_so;
+      InputPort ijtag_ce = ijtag_ce;
+      InputPort ijtag_se = ijtag_se;
+      InputPort ijtag_ue = ijtag_ue;
+      InputPort ijtag_tck = ijtag_tck;
+      InputPort ijtag_from_so = 
+          firebird7_in_gate1_tessent_scanmux_upm_secure_mux_inst.mux_out;
+      Attribute tessent_design_instance = 
+          "firebird7_in_gate1_tessent_sib_upm_inst";
+   }
    Instance firebird7_in_gate1_tessent_tdr_spare_green_tdr_inst Of 
        firebird7_in_gate1_tessent_tdr_spare_green_tdr {
       InputPort ijtag_reset = ijtag_reset;
       InputPort ijtag_sel = 
           firebird7_in_gate1_tessent_sib_spare_green_inst.ijtag_to_sel;
-      InputPort ijtag_si = 
-          firebird7_in_gate1_tessent_sib_array_pwrmgmt_inst.ijtag_so;
+      InputPort ijtag_si = firebird7_in_gate1_tessent_sib_upm_inst.ijtag_so;
       InputPort ijtag_ce = ijtag_ce;
       InputPort ijtag_se = ijtag_se;
       InputPort ijtag_ue = ijtag_ue;
@@ -885,7 +910,8 @@ Module firebird7_in {
        firebird7_in_gate2_tessent_scanmux_sri_secure_mux {
       InputPort mux_in0 = 
           firebird7_in_gate2_tessent_sib_intest_edt_scan_bi_sol_inst.ijtag_so;
-      InputPort mux_in1 = firebird7_in_gate2_tessent_sib_sri_ctrl_inst.ijtag_so;
+      InputPort mux_in1 = firebird7_in_gate2_tessent_sib_sri_local_inst.ijtag_so;
+
       InputPort mux_select = secure_red;
       InputPort enable_in = firebird7_in_gate2_tessent_sib_sri_inst.ijtag_to_sel;
 
@@ -982,6 +1008,22 @@ Module firebird7_in {
           firebird7_in_gate2_tessent_scanmux_sri_secure_mux_inst.mux_out;
       Attribute tessent_design_instance = 
           "firebird7_in_gate2_tessent_sib_sri_inst";
+   }
+   Instance firebird7_in_gate2_tessent_sib_sri_local_inst Of 
+       firebird7_in_gate2_tessent_sib_sri_local {
+      InputPort ijtag_reset = ijtag_reset;
+      InputPort ijtag_sel = 
+          firebird7_in_gate2_tessent_scanmux_sri_secure_mux_inst.enable_out1;
+      InputPort ijtag_si = firebird7_in_gate2_tessent_sib_sri_ctrl_inst.ijtag_so;
+
+      InputPort ijtag_ce = ijtag_ce;
+      InputPort ijtag_se = ijtag_se;
+      InputPort ijtag_ue = ijtag_ue;
+      InputPort ijtag_tck = ijtag_tck;
+      InputPort ijtag_from_so = 
+          firebird7_in_gate2_tessent_tdr_sri_tdr1_inst.ijtag_so;
+      Attribute tessent_design_instance = 
+          "firebird7_in_gate2_tessent_sib_sri_local_inst";
    }
    Instance firebird7_in_gate2_tessent_sib_ssn_inst Of 
        firebird7_in_gate2_tessent_sib_ssn {
@@ -1256,6 +1298,62 @@ Module firebird7_in {
       InputPort ijtag_tck = ijtag_tck;
       Attribute tessent_design_instance = 
           "firebird7_in_gate2_tessent_tdr_sri_ctrl_inst";
+   }
+   Instance firebird7_in_gate2_tessent_tdr_sri_tdr1_inst Of 
+       firebird7_in_gate2_tessent_tdr_sri_tdr1 {
+      InputPort ijtag_reset = ijtag_reset;
+      InputPort ijtag_sel = 
+          firebird7_in_gate2_tessent_sib_sri_local_inst.ijtag_to_sel;
+      InputPort ijtag_si = firebird7_in_gate2_tessent_tdr_sri_tdr2_inst.ijtag_so;
+
+      InputPort ijtag_ce = ijtag_ce;
+      InputPort ijtag_se = ijtag_se;
+      InputPort ijtag_ue = ijtag_ue;
+      InputPort ijtag_tck = ijtag_tck;
+      Attribute tessent_design_instance = 
+          "firebird7_in_gate2_tessent_tdr_sri_tdr1_inst";
+   }
+   Instance firebird7_in_gate2_tessent_tdr_sri_tdr2_inst Of 
+       firebird7_in_gate2_tessent_tdr_sri_tdr2 {
+      InputPort ijtag_reset = ijtag_reset;
+      InputPort ijtag_sel = 
+          firebird7_in_gate2_tessent_sib_sri_local_inst.ijtag_to_sel;
+      InputPort ijtag_si = firebird7_in_gate2_tessent_tdr_sri_tdr3_inst.ijtag_so;
+
+      InputPort ijtag_ce = ijtag_ce;
+      InputPort ijtag_se = ijtag_se;
+      InputPort ijtag_ue = ijtag_ue;
+      InputPort ijtag_tck = ijtag_tck;
+      Attribute tessent_design_instance = 
+          "firebird7_in_gate2_tessent_tdr_sri_tdr2_inst";
+   }
+   Instance firebird7_in_gate2_tessent_tdr_sri_tdr3_inst Of 
+       firebird7_in_gate2_tessent_tdr_sri_tdr3 {
+      InputPort ijtag_reset = ijtag_reset;
+      InputPort ijtag_sel = 
+          firebird7_in_gate2_tessent_sib_sri_local_inst.ijtag_to_sel;
+      InputPort ijtag_si = firebird7_in_gate2_tessent_tdr_sri_tdr4_inst.ijtag_so;
+
+      InputPort ijtag_ce = ijtag_ce;
+      InputPort ijtag_se = ijtag_se;
+      InputPort ijtag_ue = ijtag_ue;
+      InputPort ijtag_tck = ijtag_tck;
+      Attribute tessent_design_instance = 
+          "firebird7_in_gate2_tessent_tdr_sri_tdr3_inst";
+   }
+   Instance firebird7_in_gate2_tessent_tdr_sri_tdr4_inst Of 
+       firebird7_in_gate2_tessent_tdr_sri_tdr4 {
+      InputPort ijtag_reset = ijtag_reset;
+      InputPort ijtag_sel = 
+          firebird7_in_gate2_tessent_sib_sri_local_inst.ijtag_to_sel;
+      InputPort ijtag_si = firebird7_in_gate2_tessent_sib_sri_ctrl_inst.ijtag_so;
+
+      InputPort ijtag_ce = ijtag_ce;
+      InputPort ijtag_se = ijtag_se;
+      InputPort ijtag_ue = ijtag_ue;
+      InputPort ijtag_tck = ijtag_tck;
+      Attribute tessent_design_instance = 
+          "firebird7_in_gate2_tessent_tdr_sri_tdr4_inst";
    }
    Instance ph0_firebird7_in_gate1_tessent_mbist_bap_inst Of 
        firebird7_in_gate1_tessent_mbist_bap {
@@ -14354,11 +14452,68 @@ Module firebird7_in {
       Attribute tessent_design_instance = 
           "ph0/i/p/gs1_s/m1/mem0_i_interface_inst";
    }
+   Instance u_upm_0 Of dteg_upm_top {
+      InputPort dfx_upm_tck = ijtag_tck;
+      InputPort dfx_upm_trstb = ijtag_reset;
+      InputPort dfx_upm_fdfx_powergood = fdfx_powergood;
+      InputPort dfx_upm_capture = ijtag_ce;
+      InputPort dfx_upm_shift = ijtag_se;
+      InputPort dfx_upm_update = ijtag_ue;
+      InputPort dfx_upm_si = u_upm_1.dfx_upm_so;
+      InputPort dfx_upm_sel = 
+          firebird7_in_gate1_tessent_scanmux_upm_secure_mux_inst.enable_out1;
+      InputPort dfx_upm_iso_n = 
+          firebird7_in_gate2_tessent_tdr_sri_tdr1_inst.ijtag_data_out[0];
+      Attribute tessent_design_instance = "u_upm_0";
+   }
+   Instance u_upm_1 Of dteg_upm_top {
+      InputPort dfx_upm_tck = ijtag_tck;
+      InputPort dfx_upm_trstb = ijtag_reset;
+      InputPort dfx_upm_fdfx_powergood = fdfx_powergood;
+      InputPort dfx_upm_capture = ijtag_ce;
+      InputPort dfx_upm_shift = ijtag_se;
+      InputPort dfx_upm_update = ijtag_ue;
+      InputPort dfx_upm_si = u_upm_2.dfx_upm_so;
+      InputPort dfx_upm_sel = 
+          firebird7_in_gate1_tessent_scanmux_upm_secure_mux_inst.enable_out1;
+      InputPort dfx_upm_iso_n = 
+          firebird7_in_gate2_tessent_tdr_sri_tdr2_inst.ijtag_data_out[0];
+      Attribute tessent_design_instance = "u_upm_1";
+   }
+   Instance u_upm_2 Of dteg_upm_top {
+      InputPort dfx_upm_tck = ijtag_tck;
+      InputPort dfx_upm_trstb = ijtag_reset;
+      InputPort dfx_upm_fdfx_powergood = fdfx_powergood;
+      InputPort dfx_upm_capture = ijtag_ce;
+      InputPort dfx_upm_shift = ijtag_se;
+      InputPort dfx_upm_update = ijtag_ue;
+      InputPort dfx_upm_si = u_upm_3.dfx_upm_so;
+      InputPort dfx_upm_sel = 
+          firebird7_in_gate1_tessent_scanmux_upm_secure_mux_inst.enable_out1;
+      InputPort dfx_upm_iso_n = 
+          firebird7_in_gate2_tessent_tdr_sri_tdr3_inst.ijtag_data_out[0];
+      Attribute tessent_design_instance = "u_upm_2";
+   }
+   Instance u_upm_3 Of dteg_upm_top {
+      InputPort dfx_upm_tck = ijtag_tck;
+      InputPort dfx_upm_trstb = ijtag_reset;
+      InputPort dfx_upm_fdfx_powergood = fdfx_powergood;
+      InputPort dfx_upm_capture = ijtag_ce;
+      InputPort dfx_upm_shift = ijtag_se;
+      InputPort dfx_upm_update = ijtag_ue;
+      InputPort dfx_upm_si = 
+          firebird7_in_gate1_tessent_sib_array_pwrmgmt_inst.ijtag_so;
+      InputPort dfx_upm_sel = 
+          firebird7_in_gate1_tessent_scanmux_upm_secure_mux_inst.enable_out1;
+      InputPort dfx_upm_iso_n = 
+          firebird7_in_gate2_tessent_tdr_sri_tdr4_inst.ijtag_data_out[0];
+      Attribute tessent_design_instance = "u_upm_3";
+   }
 }
 
 // instanced as firebird7_in.firebird7_in_gate1_tessent_scanmux_array_pwrmgmt_secure_mux_inst
 Module firebird7_in_gate1_tessent_scanmux_array_pwrmgmt_secure_mux {
-   // ICL module read from source on or near line 14360 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 14515 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ScanInPort mux_in0;
    ScanInPort mux_in1;
    ScanOutPort mux_out {
@@ -14396,7 +14551,7 @@ Module firebird7_in_gate1_tessent_scanmux_array_pwrmgmt_secure_mux {
 
 // instanced as firebird7_in.firebird7_in_gate1_tessent_scanmux_array_trim_fuse_override_secure_mux_inst
 Module firebird7_in_gate1_tessent_scanmux_array_trim_fuse_override_secure_mux {
-   // ICL module read from source on or near line 14398 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 14553 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ScanInPort mux_in0;
    ScanInPort mux_in1;
    ScanOutPort mux_out {
@@ -14434,7 +14589,7 @@ Module firebird7_in_gate1_tessent_scanmux_array_trim_fuse_override_secure_mux {
 
 // instanced as firebird7_in.firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux_inst
 Module firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux {
-   // ICL module read from source on or near line 14436 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 14591 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ScanInPort mux_in0;
    ScanInPort mux_in1;
    ScanOutPort mux_out {
@@ -14472,7 +14627,7 @@ Module firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux {
 
 // instanced as firebird7_in.firebird7_in_gate1_tessent_scanmux_spare_orange_secure_mux_inst
 Module firebird7_in_gate1_tessent_scanmux_spare_orange_secure_mux {
-   // ICL module read from source on or near line 14474 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 14629 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ScanInPort mux_in0;
    ScanInPort mux_in1;
    ScanOutPort mux_out {
@@ -14510,7 +14665,7 @@ Module firebird7_in_gate1_tessent_scanmux_spare_orange_secure_mux {
 
 // instanced as firebird7_in.firebird7_in_gate1_tessent_scanmux_spare_red_secure_mux_inst
 Module firebird7_in_gate1_tessent_scanmux_spare_red_secure_mux {
-   // ICL module read from source on or near line 14512 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 14667 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ScanInPort mux_in0;
    ScanInPort mux_in1;
    ScanOutPort mux_out {
@@ -14548,7 +14703,7 @@ Module firebird7_in_gate1_tessent_scanmux_spare_red_secure_mux {
 
 // instanced as firebird7_in.firebird7_in_gate1_tessent_scanmux_sti_secure_mux_inst
 Module firebird7_in_gate1_tessent_scanmux_sti_secure_mux {
-   // ICL module read from source on or near line 14550 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 14705 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ScanInPort mux_in0;
    ScanInPort mux_in1;
    ScanOutPort mux_out {
@@ -14584,9 +14739,47 @@ Module firebird7_in_gate1_tessent_scanmux_sti_secure_mux {
    }
 }
 
+// instanced as firebird7_in.firebird7_in_gate1_tessent_scanmux_upm_secure_mux_inst
+Module firebird7_in_gate1_tessent_scanmux_upm_secure_mux {
+   // ICL module read from source on or near line 14743 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   ScanInPort mux_in0;
+   ScanInPort mux_in1;
+   ScanOutPort mux_out {
+      Source M1;
+   }
+   DataInPort mux_select {
+      Attribute tessent_timing = "scan_reconfiguration";
+   }
+   SelectPort enable_in {
+      Attribute connection_rule_option = "allowed_tied_high";
+   }
+   ToSelectPort enable_out0 {
+      Attribute connection_rule_option = "allowed_no_destination";
+   }
+   ToSelectPort enable_out1 {
+      Attribute connection_rule_option = "allowed_no_destination";
+   }
+   ScanInterface In0 {
+      Port mux_in0;
+      Port enable_out0;
+   }
+   ScanInterface In1 {
+      Port mux_in1;
+      Port enable_out1;
+   }
+   Attribute keep_active_during_scan_test = "true";
+   Attribute tessent_use_in_dft_specification = "false";
+   Attribute tessent_instrument_type = "mentor::ijtag_node";
+   Attribute tessent_signature = "d856ad2394f7810be53a60dee531cdd7";
+   ScanMux M1 SelectedBy mux_select {
+      1'b0 : mux_in0;
+      1'b1 : mux_in1;
+   }
+}
+
 // instanced as firebird7_in.firebird7_in_gate1_tessent_sib_array_pwrmgmt_inst
 Module firebird7_in_gate1_tessent_sib_array_pwrmgmt {
-   // ICL module read from source on or near line 14588 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 14781 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -14631,7 +14824,7 @@ Module firebird7_in_gate1_tessent_sib_array_pwrmgmt {
 
 // instanced as firebird7_in.firebird7_in_gate1_tessent_sib_array_trim_fuse_override_inst
 Module firebird7_in_gate1_tessent_sib_array_trim_fuse_override {
-   // ICL module read from source on or near line 14633 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 14826 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -14676,7 +14869,7 @@ Module firebird7_in_gate1_tessent_sib_array_trim_fuse_override {
 
 // instanced as firebird7_in.firebird7_in_gate1_tessent_sib_mbist_inst
 Module firebird7_in_gate1_tessent_sib_mbist {
-   // ICL module read from source on or near line 14678 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 14871 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -14721,7 +14914,7 @@ Module firebird7_in_gate1_tessent_sib_mbist {
 
 // instanced as firebird7_in.firebird7_in_gate1_tessent_sib_spare_green_inst
 Module firebird7_in_gate1_tessent_sib_spare_green {
-   // ICL module read from source on or near line 14723 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 14916 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -14766,7 +14959,7 @@ Module firebird7_in_gate1_tessent_sib_spare_green {
 
 // instanced as firebird7_in.firebird7_in_gate1_tessent_sib_spare_inst
 Module firebird7_in_gate1_tessent_sib_spare {
-   // ICL module read from source on or near line 14768 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 14961 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -14811,7 +15004,7 @@ Module firebird7_in_gate1_tessent_sib_spare {
 
 // instanced as firebird7_in.firebird7_in_gate1_tessent_sib_spare_insysbist_inst
 Module firebird7_in_gate1_tessent_sib_spare_insysbist {
-   // ICL module read from source on or near line 14813 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15006 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -14856,7 +15049,7 @@ Module firebird7_in_gate1_tessent_sib_spare_insysbist {
 
 // instanced as firebird7_in.firebird7_in_gate1_tessent_sib_spare_orange_inst
 Module firebird7_in_gate1_tessent_sib_spare_orange {
-   // ICL module read from source on or near line 14858 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15051 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -14901,7 +15094,7 @@ Module firebird7_in_gate1_tessent_sib_spare_orange {
 
 // instanced as firebird7_in.firebird7_in_gate1_tessent_sib_spare_red_inst
 Module firebird7_in_gate1_tessent_sib_spare_red {
-   // ICL module read from source on or near line 14903 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15096 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -14946,7 +15139,7 @@ Module firebird7_in_gate1_tessent_sib_spare_red {
 
 // instanced as firebird7_in.firebird7_in_gate1_tessent_sib_sti_inst
 Module firebird7_in_gate1_tessent_sib_sti {
-   // ICL module read from source on or near line 14948 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15141 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -15056,9 +15249,54 @@ Module firebird7_in_gate1_tessent_sib_sti {
    }
 }
 
+// instanced as firebird7_in.firebird7_in_gate1_tessent_sib_upm_inst
+Module firebird7_in_gate1_tessent_sib_upm {
+   // ICL module read from source on or near line 15253 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   ResetPort ijtag_reset {
+      ActivePolarity 0;
+   }
+   SelectPort ijtag_sel;
+   ScanInPort ijtag_si;
+   CaptureEnPort ijtag_ce;
+   ShiftEnPort ijtag_se;
+   UpdateEnPort ijtag_ue;
+   TCKPort ijtag_tck;
+   ScanOutPort ijtag_so {
+      Source sib;
+   }
+   ToSelectPort ijtag_to_sel {
+      Attribute connection_rule_option = "allowed_no_destination";
+   }
+   ScanInPort ijtag_from_so {
+      Attribute connection_rule_option = "allowed_no_source";
+   }
+   ScanInterface client {
+      Port ijtag_si;
+      Port ijtag_so;
+      Port ijtag_sel;
+   }
+   ScanInterface host {
+      Port ijtag_from_so;
+      Port ijtag_to_sel;
+   }
+   Attribute keep_active_during_scan_test = "true";
+   Attribute tessent_use_in_dft_specification = "false";
+   Attribute tessent_instrument_type = "mentor::ijtag_node";
+   Attribute tessent_signature = "1c740c6fd485d3e9b7207bc4d9518a95";
+   ScanRegister sib {
+      ScanInSource scan_in_mux;
+      CaptureSource 1'b0;
+      ResetValue 1'b0;
+   }
+   ScanMux scan_in_mux SelectedBy sib {
+      1'b0 : ijtag_si;
+      1'b1 : ijtag_from_so;
+   }
+}
+
 // instanced as firebird7_in.firebird7_in_gate1_tessent_tdr_spare_green_tdr_inst
 Module firebird7_in_gate1_tessent_tdr_spare_green_tdr {
-   // ICL module read from source on or near line 15060 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15298 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -15091,7 +15329,7 @@ Module firebird7_in_gate1_tessent_tdr_spare_green_tdr {
 
 // instanced as firebird7_in.firebird7_in_gate1_tessent_tdr_spare_insysbist_tdr_inst
 Module firebird7_in_gate1_tessent_tdr_spare_insysbist_tdr {
-   // ICL module read from source on or near line 15093 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15331 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -15124,7 +15362,7 @@ Module firebird7_in_gate1_tessent_tdr_spare_insysbist_tdr {
 
 // instanced as firebird7_in.firebird7_in_gate1_tessent_tdr_spare_orange_tdr_inst
 Module firebird7_in_gate1_tessent_tdr_spare_orange_tdr {
-   // ICL module read from source on or near line 15126 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15364 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -15157,7 +15395,7 @@ Module firebird7_in_gate1_tessent_tdr_spare_orange_tdr {
 
 // instanced as firebird7_in.firebird7_in_gate1_tessent_tdr_spare_red_tdr_inst
 Module firebird7_in_gate1_tessent_tdr_spare_red_tdr {
-   // ICL module read from source on or near line 15159 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15397 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -15190,7 +15428,7 @@ Module firebird7_in_gate1_tessent_tdr_spare_red_tdr {
 
 // instanced as firebird7_in.firebird7_in_gate1_tessent_tdr_sti_ctrl_inst
 Module firebird7_in_gate1_tessent_tdr_sti_ctrl {
-   // ICL module read from source on or near line 15192 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15430 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -15232,7 +15470,7 @@ Module firebird7_in_gate1_tessent_tdr_sti_ctrl {
 
 // instanced as firebird7_in.firebird7_in_gate2_tessent_edt_extest_edt_inst
 Module firebird7_in_gate2_tessent_edt_extest_edt {
-   // ICL module read from source on or near line 15234 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15472 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort edt_low_power_shift_en {
       RefEnum OnOffTable;
       Attribute tessent_no_input_constraints = "on";
@@ -15252,7 +15490,7 @@ Module firebird7_in_gate2_tessent_edt_extest_edt {
 
 // instanced as firebird7_in.firebird7_in_gate2_tessent_edt_extest_edt_tdr_inst
 Module firebird7_in_gate2_tessent_edt_extest_edt_tdr {
-   // ICL module read from source on or near line 15254 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15492 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -15297,7 +15535,7 @@ Module firebird7_in_gate2_tessent_edt_extest_edt_tdr {
 
 // instanced as firebird7_in.firebird7_in_gate2_tessent_edt_intest_edt_inst
 Module firebird7_in_gate2_tessent_edt_intest_edt {
-   // ICL module read from source on or near line 15299 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15537 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort edt_low_power_shift_en {
       RefEnum OnOffTable;
       Attribute tessent_no_input_constraints = "on";
@@ -15317,7 +15555,7 @@ Module firebird7_in_gate2_tessent_edt_intest_edt {
 
 // instanced as firebird7_in.firebird7_in_gate2_tessent_edt_intest_edt_tdr_inst
 Module firebird7_in_gate2_tessent_edt_intest_edt_tdr {
-   // ICL module read from source on or near line 15319 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15557 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -15362,7 +15600,7 @@ Module firebird7_in_gate2_tessent_edt_intest_edt_tdr {
 
 // instanced as firebird7_in.firebird7_in_gate2_tessent_occ_clk_inst
 Module firebird7_in_gate2_tessent_occ_clk {
-   // ICL module read from source on or near line 15364 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15602 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort fast_clock {
       Attribute icl_extraction_port_trigger_list = "clock_out";
    }
@@ -15421,7 +15659,7 @@ Module firebird7_in_gate2_tessent_occ_clk {
 
 // instanced as firebird7_in_gate2_tessent_occ_clk.tdr_sib
 Module firebird7_in_gate2_tessent_occ_clk_sib_int {
-   // ICL module read from source on or near line 15423 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15661 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    TCKPort clock;
    ResetPort reset {
       ActivePolarity 0;
@@ -15463,7 +15701,7 @@ Module firebird7_in_gate2_tessent_occ_clk_sib_int {
 
 // instanced as firebird7_in.firebird7_in_gate2_tessent_scanmux_extest_edt_scan_bi_sol_secure_mux_inst
 Module firebird7_in_gate2_tessent_scanmux_extest_edt_scan_bi_sol_secure_mux {
-   // ICL module read from source on or near line 15465 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15703 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ScanInPort mux_in0;
    ScanInPort mux_in1;
    ScanOutPort mux_out {
@@ -15501,7 +15739,7 @@ Module firebird7_in_gate2_tessent_scanmux_extest_edt_scan_bi_sol_secure_mux {
 
 // instanced as firebird7_in.firebird7_in_gate2_tessent_scanmux_intest_edt_scan_bi_sol_secure_mux_inst
 Module firebird7_in_gate2_tessent_scanmux_intest_edt_scan_bi_sol_secure_mux {
-   // ICL module read from source on or near line 15503 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15741 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ScanInPort mux_in0;
    ScanInPort mux_in1;
    ScanOutPort mux_out {
@@ -15539,7 +15777,7 @@ Module firebird7_in_gate2_tessent_scanmux_intest_edt_scan_bi_sol_secure_mux {
 
 // instanced as firebird7_in.firebird7_in_gate2_tessent_scanmux_sri_secure_mux_inst
 Module firebird7_in_gate2_tessent_scanmux_sri_secure_mux {
-   // ICL module read from source on or near line 15541 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15779 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ScanInPort mux_in0;
    ScanInPort mux_in1;
    ScanOutPort mux_out {
@@ -15577,7 +15815,7 @@ Module firebird7_in_gate2_tessent_scanmux_sri_secure_mux {
 
 // instanced as firebird7_in.firebird7_in_gate2_tessent_sib_edt_inst
 Module firebird7_in_gate2_tessent_sib_edt {
-   // ICL module read from source on or near line 15579 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15817 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -15622,7 +15860,7 @@ Module firebird7_in_gate2_tessent_sib_edt {
 
 // instanced as firebird7_in.firebird7_in_gate2_tessent_sib_extest_edt_scan_bi_sol_inst
 Module firebird7_in_gate2_tessent_sib_extest_edt_scan_bi_sol {
-   // ICL module read from source on or near line 15624 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15862 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -15667,7 +15905,7 @@ Module firebird7_in_gate2_tessent_sib_extest_edt_scan_bi_sol {
 
 // instanced as firebird7_in.firebird7_in_gate2_tessent_sib_intest_edt_scan_bi_sol_inst
 Module firebird7_in_gate2_tessent_sib_intest_edt_scan_bi_sol {
-   // ICL module read from source on or near line 15669 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15907 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -15712,7 +15950,7 @@ Module firebird7_in_gate2_tessent_sib_intest_edt_scan_bi_sol {
 
 // instanced as firebird7_in.firebird7_in_gate2_tessent_sib_occ_inst
 Module firebird7_in_gate2_tessent_sib_occ {
-   // ICL module read from source on or near line 15714 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15952 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -15757,7 +15995,7 @@ Module firebird7_in_gate2_tessent_sib_occ {
 
 // instanced as firebird7_in.firebird7_in_gate2_tessent_sib_sri_ctrl_inst
 Module firebird7_in_gate2_tessent_sib_sri_ctrl {
-   // ICL module read from source on or near line 15759 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 15997 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -15802,7 +16040,7 @@ Module firebird7_in_gate2_tessent_sib_sri_ctrl {
 
 // instanced as firebird7_in.firebird7_in_gate2_tessent_sib_sri_inst
 Module firebird7_in_gate2_tessent_sib_sri {
-   // ICL module read from source on or near line 15804 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 16042 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -15846,9 +16084,54 @@ Module firebird7_in_gate2_tessent_sib_sri {
    }
 }
 
+// instanced as firebird7_in.firebird7_in_gate2_tessent_sib_sri_local_inst
+Module firebird7_in_gate2_tessent_sib_sri_local {
+   // ICL module read from source on or near line 16088 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   ResetPort ijtag_reset {
+      ActivePolarity 0;
+   }
+   SelectPort ijtag_sel;
+   ScanInPort ijtag_si;
+   CaptureEnPort ijtag_ce;
+   ShiftEnPort ijtag_se;
+   UpdateEnPort ijtag_ue;
+   TCKPort ijtag_tck;
+   ScanOutPort ijtag_so {
+      Source sib;
+   }
+   ToSelectPort ijtag_to_sel {
+      Attribute connection_rule_option = "allowed_no_destination";
+   }
+   ScanInPort ijtag_from_so {
+      Attribute connection_rule_option = "allowed_no_source";
+   }
+   ScanInterface client {
+      Port ijtag_si;
+      Port ijtag_so;
+      Port ijtag_sel;
+   }
+   ScanInterface host {
+      Port ijtag_from_so;
+      Port ijtag_to_sel;
+   }
+   Attribute keep_active_during_scan_test = "true";
+   Attribute tessent_use_in_dft_specification = "false";
+   Attribute tessent_instrument_type = "mentor::ijtag_node";
+   Attribute tessent_signature = "cf8fba72673514ca2644b8e48c31cd64";
+   ScanRegister sib {
+      ScanInSource scan_in_mux;
+      CaptureSource 1'b0;
+      ResetValue 1'b0;
+   }
+   ScanMux scan_in_mux SelectedBy sib {
+      1'b0 : ijtag_si;
+      1'b1 : ijtag_from_so;
+   }
+}
+
 // instanced as firebird7_in.firebird7_in_gate2_tessent_sib_ssn_inst
 Module firebird7_in_gate2_tessent_sib_ssn {
-   // ICL module read from source on or near line 15850 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 16133 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -15893,7 +16176,7 @@ Module firebird7_in_gate2_tessent_sib_ssn {
 
 // instanced as firebird7_in.firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe_inst
 Module firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe {
-   // ICL module read from source on or near line 15895 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 16178 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -15924,7 +16207,7 @@ Module firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe {
 
 // instanced as firebird7_in.firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe_inst
 Module firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe {
-   // ICL module read from source on or near line 15926 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 16209 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -15961,7 +16244,7 @@ Module firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe {
 
 // instanced as firebird7_in.firebird7_in_gate2_tessent_ssn_scan_host_ssh_inst
 Module firebird7_in_gate2_tessent_ssn_scan_host_ssh {
-   // ICL module read from source on or near line 15963 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 16246 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort bus_clock {
       Attribute function_modifier = "tessent_ssn_clock";
       Attribute forced_high_dft_signal_list = "ssn_en";
@@ -16062,7 +16345,7 @@ Module firebird7_in_gate2_tessent_ssn_scan_host_ssh {
 
 // instanced as firebird7_in_gate2_tessent_ssn_scan_host_ssh.inner
 Module firebird7_in_gate2_tessent_ssn_scan_host_ssh_inner {
-   // ICL module read from source on or near line 16064 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 16347 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -16523,7 +16806,7 @@ Module firebird7_in_gate2_tessent_ssn_scan_host_ssh_inner {
 
 // instanced as firebird7_in.firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_control_inst
 Module firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_control {
-   // ICL module read from source on or near line 16381 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 16664 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -16581,7 +16864,7 @@ Module firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_control {
 
 // instanced as firebird7_in.firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_status_inst
 Module firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_status {
-   // ICL module read from source on or near line 16439 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 16722 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -16623,7 +16906,7 @@ Module firebird7_in_gate2_tessent_tdr_extest_edt_scan_bi_sol_status {
 
 // instanced as firebird7_in.firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_control_inst
 Module firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_control {
-   // ICL module read from source on or near line 16481 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 16764 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -16681,7 +16964,7 @@ Module firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_control {
 
 // instanced as firebird7_in.firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_status_inst
 Module firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_status {
-   // ICL module read from source on or near line 16539 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 16822 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -16723,7 +17006,7 @@ Module firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_status {
 
 // instanced as firebird7_in.firebird7_in_gate2_tessent_tdr_sri_ctrl_inst
 Module firebird7_in_gate2_tessent_tdr_sri_ctrl {
-   // ICL module read from source on or near line 16581 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 16864 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -16896,9 +17179,157 @@ Module firebird7_in_gate2_tessent_tdr_sri_ctrl {
    }
 }
 
+// instanced as firebird7_in.firebird7_in_gate2_tessent_tdr_sri_tdr1_inst
+Module firebird7_in_gate2_tessent_tdr_sri_tdr1 {
+   // ICL module read from source on or near line 17039 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   ResetPort ijtag_reset {
+      ActivePolarity 0;
+   }
+   SelectPort ijtag_sel;
+   ScanInPort ijtag_si;
+   CaptureEnPort ijtag_ce;
+   ShiftEnPort ijtag_se;
+   UpdateEnPort ijtag_ue;
+   TCKPort ijtag_tck;
+   ScanOutPort ijtag_so {
+      Source tdr[0];
+   }
+   DataOutPort ijtag_data_out[0:0] {
+      Source tdr[0];
+      Attribute connection_rule_option = "allowed_no_destination";
+   }
+   ScanInterface client {
+      Port ijtag_si;
+      Port ijtag_so;
+      Port ijtag_sel;
+   }
+   Attribute keep_active_during_scan_test = "true";
+   Attribute tessent_use_in_dft_specification = "false";
+   Attribute tessent_instrument_type = "mentor::ijtag_node";
+   Attribute tessent_instrument_subtype = "tessent_tdr";
+   Attribute tessent_signature = "e149f64b2c0f90ade9ecbd3db899f3b8";
+   ScanRegister tdr[0:0] {
+      ScanInSource ijtag_si;
+      CaptureSource 1'b0;
+      DefaultLoadValue 1'b1;
+      ResetValue 1'b1;
+   }
+}
+
+// instanced as firebird7_in.firebird7_in_gate2_tessent_tdr_sri_tdr2_inst
+Module firebird7_in_gate2_tessent_tdr_sri_tdr2 {
+   // ICL module read from source on or near line 17076 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   ResetPort ijtag_reset {
+      ActivePolarity 0;
+   }
+   SelectPort ijtag_sel;
+   ScanInPort ijtag_si;
+   CaptureEnPort ijtag_ce;
+   ShiftEnPort ijtag_se;
+   UpdateEnPort ijtag_ue;
+   TCKPort ijtag_tck;
+   ScanOutPort ijtag_so {
+      Source tdr[0];
+   }
+   DataOutPort ijtag_data_out[0:0] {
+      Source tdr[0];
+      Attribute connection_rule_option = "allowed_no_destination";
+   }
+   ScanInterface client {
+      Port ijtag_si;
+      Port ijtag_so;
+      Port ijtag_sel;
+   }
+   Attribute keep_active_during_scan_test = "true";
+   Attribute tessent_use_in_dft_specification = "false";
+   Attribute tessent_instrument_type = "mentor::ijtag_node";
+   Attribute tessent_instrument_subtype = "tessent_tdr";
+   Attribute tessent_signature = "6dab573d1a6973778c4431e359a9b048";
+   ScanRegister tdr[0:0] {
+      ScanInSource ijtag_si;
+      CaptureSource 1'b0;
+      DefaultLoadValue 1'b1;
+      ResetValue 1'b1;
+   }
+}
+
+// instanced as firebird7_in.firebird7_in_gate2_tessent_tdr_sri_tdr3_inst
+Module firebird7_in_gate2_tessent_tdr_sri_tdr3 {
+   // ICL module read from source on or near line 17113 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   ResetPort ijtag_reset {
+      ActivePolarity 0;
+   }
+   SelectPort ijtag_sel;
+   ScanInPort ijtag_si;
+   CaptureEnPort ijtag_ce;
+   ShiftEnPort ijtag_se;
+   UpdateEnPort ijtag_ue;
+   TCKPort ijtag_tck;
+   ScanOutPort ijtag_so {
+      Source tdr[0];
+   }
+   DataOutPort ijtag_data_out[0:0] {
+      Source tdr[0];
+      Attribute connection_rule_option = "allowed_no_destination";
+   }
+   ScanInterface client {
+      Port ijtag_si;
+      Port ijtag_so;
+      Port ijtag_sel;
+   }
+   Attribute keep_active_during_scan_test = "true";
+   Attribute tessent_use_in_dft_specification = "false";
+   Attribute tessent_instrument_type = "mentor::ijtag_node";
+   Attribute tessent_instrument_subtype = "tessent_tdr";
+   Attribute tessent_signature = "89782f33636a071480573ad0f386f42e";
+   ScanRegister tdr[0:0] {
+      ScanInSource ijtag_si;
+      CaptureSource 1'b0;
+      DefaultLoadValue 1'b1;
+      ResetValue 1'b1;
+   }
+}
+
+// instanced as firebird7_in.firebird7_in_gate2_tessent_tdr_sri_tdr4_inst
+Module firebird7_in_gate2_tessent_tdr_sri_tdr4 {
+   // ICL module read from source on or near line 17150 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   ResetPort ijtag_reset {
+      ActivePolarity 0;
+   }
+   SelectPort ijtag_sel;
+   ScanInPort ijtag_si;
+   CaptureEnPort ijtag_ce;
+   ShiftEnPort ijtag_se;
+   UpdateEnPort ijtag_ue;
+   TCKPort ijtag_tck;
+   ScanOutPort ijtag_so {
+      Source tdr[0];
+   }
+   DataOutPort ijtag_data_out[0:0] {
+      Source tdr[0];
+      Attribute connection_rule_option = "allowed_no_destination";
+   }
+   ScanInterface client {
+      Port ijtag_si;
+      Port ijtag_so;
+      Port ijtag_sel;
+   }
+   Attribute keep_active_during_scan_test = "true";
+   Attribute tessent_use_in_dft_specification = "false";
+   Attribute tessent_instrument_type = "mentor::ijtag_node";
+   Attribute tessent_instrument_subtype = "tessent_tdr";
+   Attribute tessent_signature = "5669e7db6af76caca2a7d0021576e175";
+   ScanRegister tdr[0:0] {
+      ScanInSource ijtag_si;
+      CaptureSource 1'b0;
+      DefaultLoadValue 1'b1;
+      ResetValue 1'b1;
+   }
+}
+
 // instanced as firebird7_in.ph0_firebird7_in_gate1_tessent_mbist_bap_inst
 Module firebird7_in_gate1_tessent_mbist_bap {
-   // ICL module read from source on or near line 16756 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 17187 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort reset {
       ActivePolarity 0;
    }
@@ -17219,7 +17650,7 @@ Module firebird7_in_gate1_tessent_mbist_bap {
 
 // instanced as firebird7_in.ph0_firebird7_in_gate1_tessent_mbist_diagnosis_ready_inst
 Module firebird7_in_gate1_tessent_mbist_diagnosis_ready {
-   // ICL module read from source on or near line 17077 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 17508 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -17270,7 +17701,7 @@ Module firebird7_in_gate1_tessent_mbist_diagnosis_ready {
 
 // instanced as firebird7_in.ph0_i_d_m_g0_b0_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_25_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_26 {
-   // ICL module read from source on or near line 17128 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 17559 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -17288,7 +17719,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_26 {
 
 // instanced as firebird7_in.ph0_i_d_m_g0_b0_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_65_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_26 {
-   // ICL module read from source on or near line 17146 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 17577 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -17337,7 +17768,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_26 {
 // instanced as firebird7_in.ph0_i_d_m_g8_b8_db_gen_100_dRam_mem0_i
 // instanced as firebird7_in.ph0_i_d_m_g9_b9_db_gen_100_dRam_mem0_i
 Module ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper {
-   // ICL module read from source on or near line 17195 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 17626 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort adr[9:0] {
       Attribute connection_rule_option = "allowed_no_source";
       Attribute tessent_memory_bist_function = "address";
@@ -17389,7 +17820,7 @@ Module ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper {
 Module 
     firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x22m8b1s0c1r2p3d0a2_mem_wrapper 
     {
-   // ICL module read from source on or near line 17246 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 17677 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    CaptureEnPort CLK {
       Attribute function_modifier = "CaptureShiftClock";
       Attribute connection_rule_option = "allowed_tied_low";
@@ -17474,7 +17905,7 @@ Module
 
 // instanced as firebird7_in.ph0_i_d_m_g0_b0_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m1 {
-   // ICL module read from source on or near line 17332 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 17763 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -17607,7 +18038,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m1 {
 
 // instanced as firebird7_in.ph0_i_d_m_g10_b10_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_14_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_15 {
-   // ICL module read from source on or near line 17465 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 17896 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -17625,7 +18056,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_15 {
 
 // instanced as firebird7_in.ph0_i_d_m_g10_b10_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_54_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_15 {
-   // ICL module read from source on or near line 17483 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 17914 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -17643,7 +18074,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_15 {
 
 // instanced as firebird7_in.ph0_i_d_m_g10_b10_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m2 {
-   // ICL module read from source on or near line 17501 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 17932 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -17776,7 +18207,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m2 {
 
 // instanced as firebird7_in.ph0_i_d_m_g11_b11_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_13_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_14 {
-   // ICL module read from source on or near line 17634 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 18065 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -17794,7 +18225,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_14 {
 
 // instanced as firebird7_in.ph0_i_d_m_g11_b11_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_53_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_14 {
-   // ICL module read from source on or near line 17652 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 18083 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -17812,7 +18243,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_14 {
 
 // instanced as firebird7_in.ph0_i_d_m_g11_b11_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m3 {
-   // ICL module read from source on or near line 17670 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 18101 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -17945,7 +18376,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m3 {
 
 // instanced as firebird7_in.ph0_i_d_m_g12_b12_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_11_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_12 {
-   // ICL module read from source on or near line 17803 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 18234 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -17963,7 +18394,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_12 {
 
 // instanced as firebird7_in.ph0_i_d_m_g12_b12_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_51_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_12 {
-   // ICL module read from source on or near line 17821 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 18252 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -17981,7 +18412,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_12 {
 
 // instanced as firebird7_in.ph0_i_d_m_g12_b12_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m4 {
-   // ICL module read from source on or near line 17839 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 18270 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -18114,7 +18545,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m4 {
 
 // instanced as firebird7_in.ph0_i_d_m_g13_b13_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_10_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_11 {
-   // ICL module read from source on or near line 17972 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 18403 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -18132,7 +18563,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_11 {
 
 // instanced as firebird7_in.ph0_i_d_m_g13_b13_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_50_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_11 {
-   // ICL module read from source on or near line 17990 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 18421 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -18150,7 +18581,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_11 {
 
 // instanced as firebird7_in.ph0_i_d_m_g13_b13_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m5 {
-   // ICL module read from source on or near line 18008 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 18439 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -18283,7 +18714,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m5 {
 
 // instanced as firebird7_in.ph0_i_d_m_g14_b14_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_49_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_10 {
-   // ICL module read from source on or near line 18141 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 18572 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -18301,7 +18732,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_10 {
 
 // instanced as firebird7_in.ph0_i_d_m_g14_b14_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_9_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_10 {
-   // ICL module read from source on or near line 18159 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 18590 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -18319,7 +18750,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_10 {
 
 // instanced as firebird7_in.ph0_i_d_m_g14_b14_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m6 {
-   // ICL module read from source on or near line 18177 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 18608 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -18452,7 +18883,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m6 {
 
 // instanced as firebird7_in.ph0_i_d_m_g15_b15_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_48_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_9 {
-   // ICL module read from source on or near line 18310 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 18741 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -18470,7 +18901,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_9 {
 
 // instanced as firebird7_in.ph0_i_d_m_g15_b15_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_8_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_9 {
-   // ICL module read from source on or near line 18328 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 18759 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -18488,7 +18919,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_9 {
 
 // instanced as firebird7_in.ph0_i_d_m_g15_b15_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m7 {
-   // ICL module read from source on or near line 18346 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 18777 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -18621,7 +19052,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m7 {
 
 // instanced as firebird7_in.ph0_i_d_m_g16_b16_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_47_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_8 {
-   // ICL module read from source on or near line 18479 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 18910 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -18639,7 +19070,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_8 {
 
 // instanced as firebird7_in.ph0_i_d_m_g16_b16_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_7_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_8 {
-   // ICL module read from source on or near line 18497 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 18928 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -18657,7 +19088,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_8 {
 
 // instanced as firebird7_in.ph0_i_d_m_g16_b16_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m8 {
-   // ICL module read from source on or near line 18515 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 18946 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -18790,7 +19221,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m8 {
 
 // instanced as firebird7_in.ph0_i_d_m_g17_b17_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_46_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_7 {
-   // ICL module read from source on or near line 18648 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 19079 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -18808,7 +19239,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_7 {
 
 // instanced as firebird7_in.ph0_i_d_m_g17_b17_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_6_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_7 {
-   // ICL module read from source on or near line 18666 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 19097 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -18826,7 +19257,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_7 {
 
 // instanced as firebird7_in.ph0_i_d_m_g17_b17_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m9 {
-   // ICL module read from source on or near line 18684 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 19115 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -18959,7 +19390,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m9 {
 
 // instanced as firebird7_in.ph0_i_d_m_g18_b18_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_45_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_6 {
-   // ICL module read from source on or near line 18817 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 19248 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -18977,7 +19408,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_6 {
 
 // instanced as firebird7_in.ph0_i_d_m_g18_b18_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_5_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_6 {
-   // ICL module read from source on or near line 18835 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 19266 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -18995,7 +19426,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_6 {
 
 // instanced as firebird7_in.ph0_i_d_m_g18_b18_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m10 {
-   // ICL module read from source on or near line 18853 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 19284 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -19128,7 +19559,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m10 {
 
 // instanced as firebird7_in.ph0_i_d_m_g19_b19_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_44_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_5 {
-   // ICL module read from source on or near line 18986 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 19417 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -19146,7 +19577,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_5 {
 
 // instanced as firebird7_in.ph0_i_d_m_g19_b19_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_4_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_5 {
-   // ICL module read from source on or near line 19004 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 19435 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -19164,7 +19595,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_5 {
 
 // instanced as firebird7_in.ph0_i_d_m_g19_b19_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m11 {
-   // ICL module read from source on or near line 19022 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 19453 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -19297,7 +19728,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m11 {
 
 // instanced as firebird7_in.ph0_i_d_m_g1_b1_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_24_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_25 {
-   // ICL module read from source on or near line 19155 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 19586 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -19315,7 +19746,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_25 {
 
 // instanced as firebird7_in.ph0_i_d_m_g1_b1_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_64_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_25 {
-   // ICL module read from source on or near line 19173 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 19604 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -19333,7 +19764,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_25 {
 
 // instanced as firebird7_in.ph0_i_d_m_g1_b1_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m12 {
-   // ICL module read from source on or near line 19191 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 19622 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -19466,7 +19897,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m12 {
 
 // instanced as firebird7_in.ph0_i_d_m_g20_b20_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_3_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_4 {
-   // ICL module read from source on or near line 19324 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 19755 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -19484,7 +19915,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_4 {
 
 // instanced as firebird7_in.ph0_i_d_m_g20_b20_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_43_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_4 {
-   // ICL module read from source on or near line 19342 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 19773 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -19502,7 +19933,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_4 {
 
 // instanced as firebird7_in.ph0_i_d_m_g20_b20_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m13 {
-   // ICL module read from source on or near line 19360 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 19791 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -19635,7 +20066,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m13 {
 
 // instanced as firebird7_in.ph0_i_d_m_g21_b21_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_2_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_3 {
-   // ICL module read from source on or near line 19493 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 19924 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -19653,7 +20084,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_3 {
 
 // instanced as firebird7_in.ph0_i_d_m_g21_b21_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_42_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_3 {
-   // ICL module read from source on or near line 19511 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 19942 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -19671,7 +20102,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_3 {
 
 // instanced as firebird7_in.ph0_i_d_m_g21_b21_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m14 {
-   // ICL module read from source on or near line 19529 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 19960 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -19804,7 +20235,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m14 {
 
 // instanced as firebird7_in.ph0_i_d_m_g22_b22_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_31_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_32 {
-   // ICL module read from source on or near line 19662 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 20093 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -19822,7 +20253,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_32 {
 
 // instanced as firebird7_in.ph0_i_d_m_g22_b22_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_71_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_32 {
-   // ICL module read from source on or near line 19680 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 20111 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -19840,7 +20271,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_32 {
 
 // instanced as firebird7_in.ph0_i_d_m_g22_b22_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m15 {
-   // ICL module read from source on or near line 19698 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 20129 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -19973,7 +20404,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m15 {
 
 // instanced as firebird7_in.ph0_i_d_m_g23_b23_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_30_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_31 {
-   // ICL module read from source on or near line 19831 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 20262 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -19991,7 +20422,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_31 {
 
 // instanced as firebird7_in.ph0_i_d_m_g23_b23_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_70_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_31 {
-   // ICL module read from source on or near line 19849 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 20280 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -20009,7 +20440,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_31 {
 
 // instanced as firebird7_in.ph0_i_d_m_g23_b23_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m16 {
-   // ICL module read from source on or near line 19867 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 20298 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -20142,7 +20573,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m16 {
 
 // instanced as firebird7_in.ph0_i_d_m_g24_b24_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_29_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_30 {
-   // ICL module read from source on or near line 20000 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 20431 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -20160,7 +20591,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_30 {
 
 // instanced as firebird7_in.ph0_i_d_m_g24_b24_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_69_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_30 {
-   // ICL module read from source on or near line 20018 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 20449 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -20178,7 +20609,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_30 {
 
 // instanced as firebird7_in.ph0_i_d_m_g24_b24_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m17 {
-   // ICL module read from source on or near line 20036 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 20467 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -20311,7 +20742,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m17 {
 
 // instanced as firebird7_in.ph0_i_d_m_g25_b25_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_28_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_29 {
-   // ICL module read from source on or near line 20169 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 20600 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -20329,7 +20760,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_29 {
 
 // instanced as firebird7_in.ph0_i_d_m_g25_b25_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_68_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_29 {
-   // ICL module read from source on or near line 20187 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 20618 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -20347,7 +20778,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_29 {
 
 // instanced as firebird7_in.ph0_i_d_m_g25_b25_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m18 {
-   // ICL module read from source on or near line 20205 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 20636 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -20480,7 +20911,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m18 {
 
 // instanced as firebird7_in.ph0_i_d_m_g26_b26_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_27_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_28 {
-   // ICL module read from source on or near line 20338 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 20769 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -20498,7 +20929,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_28 {
 
 // instanced as firebird7_in.ph0_i_d_m_g26_b26_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_67_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_28 {
-   // ICL module read from source on or near line 20356 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 20787 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -20516,7 +20947,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_28 {
 
 // instanced as firebird7_in.ph0_i_d_m_g26_b26_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m19 {
-   // ICL module read from source on or near line 20374 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 20805 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -20649,7 +21080,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m19 {
 
 // instanced as firebird7_in.ph0_i_d_m_g27_b27_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_26_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_27 {
-   // ICL module read from source on or near line 20507 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 20938 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -20667,7 +21098,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_27 {
 
 // instanced as firebird7_in.ph0_i_d_m_g27_b27_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_66_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_27 {
-   // ICL module read from source on or near line 20525 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 20956 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -20685,7 +21116,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_27 {
 
 // instanced as firebird7_in.ph0_i_d_m_g27_b27_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m20 {
-   // ICL module read from source on or near line 20543 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 20974 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -20818,7 +21249,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m20 {
 
 // instanced as firebird7_in.ph0_i_d_m_g28_b28_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_23_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_24 {
-   // ICL module read from source on or near line 20676 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 21107 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -20836,7 +21267,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_24 {
 
 // instanced as firebird7_in.ph0_i_d_m_g28_b28_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_63_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_24 {
-   // ICL module read from source on or near line 20694 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 21125 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -20854,7 +21285,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_24 {
 
 // instanced as firebird7_in.ph0_i_d_m_g28_b28_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m21 {
-   // ICL module read from source on or near line 20712 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 21143 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -20987,7 +21418,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m21 {
 
 // instanced as firebird7_in.ph0_i_d_m_g29_b29_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_12_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_13 {
-   // ICL module read from source on or near line 20845 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 21276 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -21005,7 +21436,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_13 {
 
 // instanced as firebird7_in.ph0_i_d_m_g29_b29_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_52_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_13 {
-   // ICL module read from source on or near line 20863 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 21294 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -21023,7 +21454,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_13 {
 
 // instanced as firebird7_in.ph0_i_d_m_g29_b29_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m22 {
-   // ICL module read from source on or near line 20881 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 21312 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -21156,7 +21587,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m22 {
 
 // instanced as firebird7_in.ph0_i_d_m_g2_b2_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_22_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_23 {
-   // ICL module read from source on or near line 21014 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 21445 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -21174,7 +21605,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_23 {
 
 // instanced as firebird7_in.ph0_i_d_m_g2_b2_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_62_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_23 {
-   // ICL module read from source on or near line 21032 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 21463 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -21192,7 +21623,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_23 {
 
 // instanced as firebird7_in.ph0_i_d_m_g2_b2_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m23 {
-   // ICL module read from source on or near line 21050 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 21481 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -21325,7 +21756,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m23 {
 
 // instanced as firebird7_in.ph0_i_d_m_g30_b30_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_1_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_2 {
-   // ICL module read from source on or near line 21183 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 21614 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -21343,7 +21774,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_2 {
 
 // instanced as firebird7_in.ph0_i_d_m_g30_b30_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_41_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_2 {
-   // ICL module read from source on or near line 21201 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 21632 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -21361,7 +21792,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_2 {
 
 // instanced as firebird7_in.ph0_i_d_m_g30_b30_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m24 {
-   // ICL module read from source on or near line 21219 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 21650 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -21494,7 +21925,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m24 {
 
 // instanced as firebird7_in.ph0_i_d_m_g31_b31_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_0_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_1 {
-   // ICL module read from source on or near line 21352 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 21783 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -21512,7 +21943,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_1 {
 
 // instanced as firebird7_in.ph0_i_d_m_g31_b31_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_40_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_1 {
-   // ICL module read from source on or near line 21370 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 21801 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -21530,7 +21961,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_1 {
 
 // instanced as firebird7_in.ph0_i_d_m_g31_b31_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m25 {
-   // ICL module read from source on or near line 21388 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 21819 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -21663,7 +22094,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m25 {
 
 // instanced as firebird7_in.ph0_i_d_m_g3_b3_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_21_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_22 {
-   // ICL module read from source on or near line 21521 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 21952 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -21681,7 +22112,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_22 {
 
 // instanced as firebird7_in.ph0_i_d_m_g3_b3_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_61_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_22 {
-   // ICL module read from source on or near line 21539 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 21970 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -21699,7 +22130,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_22 {
 
 // instanced as firebird7_in.ph0_i_d_m_g3_b3_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m26 {
-   // ICL module read from source on or near line 21557 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 21988 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -21832,7 +22263,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m26 {
 
 // instanced as firebird7_in.ph0_i_d_m_g4_b4_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_20_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_21 {
-   // ICL module read from source on or near line 21690 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 22121 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -21850,7 +22281,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_21 {
 
 // instanced as firebird7_in.ph0_i_d_m_g4_b4_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_60_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_21 {
-   // ICL module read from source on or near line 21708 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 22139 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -21868,7 +22299,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_21 {
 
 // instanced as firebird7_in.ph0_i_d_m_g4_b4_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m27 {
-   // ICL module read from source on or near line 21726 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 22157 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -22001,7 +22432,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m27 {
 
 // instanced as firebird7_in.ph0_i_d_m_g5_b5_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_19_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_20 {
-   // ICL module read from source on or near line 21859 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 22290 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -22019,7 +22450,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_20 {
 
 // instanced as firebird7_in.ph0_i_d_m_g5_b5_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_59_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_20 {
-   // ICL module read from source on or near line 21877 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 22308 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -22037,7 +22468,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_20 {
 
 // instanced as firebird7_in.ph0_i_d_m_g5_b5_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m28 {
-   // ICL module read from source on or near line 21895 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 22326 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -22170,7 +22601,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m28 {
 
 // instanced as firebird7_in.ph0_i_d_m_g6_b6_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_18_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_19 {
-   // ICL module read from source on or near line 22028 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 22459 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -22188,7 +22619,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_19 {
 
 // instanced as firebird7_in.ph0_i_d_m_g6_b6_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_58_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_19 {
-   // ICL module read from source on or near line 22046 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 22477 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -22206,7 +22637,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_19 {
 
 // instanced as firebird7_in.ph0_i_d_m_g6_b6_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m29 {
-   // ICL module read from source on or near line 22064 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 22495 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -22339,7 +22770,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m29 {
 
 // instanced as firebird7_in.ph0_i_d_m_g7_b7_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_17_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_18 {
-   // ICL module read from source on or near line 22197 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 22628 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -22357,7 +22788,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_18 {
 
 // instanced as firebird7_in.ph0_i_d_m_g7_b7_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_57_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_18 {
-   // ICL module read from source on or near line 22215 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 22646 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -22375,7 +22806,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_18 {
 
 // instanced as firebird7_in.ph0_i_d_m_g7_b7_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m30 {
-   // ICL module read from source on or near line 22233 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 22664 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -22508,7 +22939,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m30 {
 
 // instanced as firebird7_in.ph0_i_d_m_g8_b8_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_16_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_17 {
-   // ICL module read from source on or near line 22366 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 22797 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -22526,7 +22957,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_17 {
 
 // instanced as firebird7_in.ph0_i_d_m_g8_b8_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_56_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_17 {
-   // ICL module read from source on or near line 22384 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 22815 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -22544,7 +22975,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_17 {
 
 // instanced as firebird7_in.ph0_i_d_m_g8_b8_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m31 {
-   // ICL module read from source on or near line 22402 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 22833 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -22677,7 +23108,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m31 {
 
 // instanced as firebird7_in.ph0_i_d_m_g9_b9_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_15_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_16 {
-   // ICL module read from source on or near line 22535 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 22966 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -22695,7 +23126,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_16 {
 
 // instanced as firebird7_in.ph0_i_d_m_g9_b9_db_gen_100_dRam_firebird7_in_gate1_tessent_data_mux_55_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_16 {
-   // ICL module read from source on or near line 22553 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 22984 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -22713,7 +23144,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_16 {
 
 // instanced as firebird7_in.ph0_i_d_m_g9_b9_db_gen_100_dRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m32 {
-   // ICL module read from source on or near line 22571 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 23002 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -22846,7 +23277,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m32 {
 
 // instanced as firebird7_in.ph0_i_firebird7_in_gate1_tessent_mbist_c1_controller_inst
 Module firebird7_in_gate1_tessent_mbist_c1_controller {
-   // ICL module read from source on or near line 22704 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 23135 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort MBISTPG_EN;
    DataInPort LV_TM {
@@ -23396,7 +23827,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
    Attribute tessent_instrument_container = "firebird7_in_gate1_mbist";
    Attribute tessent_instrument_type = "mentor::memory_bist";
    Attribute tessent_instrument_subtype = "controller";
-   Attribute tessent_signature = "e14263b3ca97686806a868989eeb277b";
+   Attribute tessent_signature = "7bb736ac42003a455695c0151131bc4c";
    Attribute tessent_ignore_during_icl_verification = "on";
    Attribute keep_active_during_scan_test = "false";
    Attribute tessent_use_in_dft_specification = "false";
@@ -23407,6 +23838,8 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
    }
    Alias RUN_MODE[2:0] = BIST_SETUP2, BIST_SETUP[1:0] {
       RefEnum RunModes;
+   }
+   Alias ALGO_SEL_REG[6:0] = ALGO_SEL_REG_HW[6:0] {
    }
    Alias INST_POINTER_REG[4:0] = INST_POINTER_REG_HW[4:0] {
    }
@@ -23668,9 +24101,9 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
    }
    Alias REPEATLOOP_B_CNTR_REG[1:0] = REPEATLOOP_B_CNTR_REG_HW[1:0] {
    }
-   Alias COUNTERA_CNT[3:0] = COUNTERA_CNT_HW[3:0] {
+   Alias COUNTERA_CNT[27:0] = COUNTERA_CNT_HW[27:0] {
    }
-   Alias COUNTERA_REG[3:0] = COUNTERA_REG_HW[3:0] {
+   Alias COUNTERA_REG[27:0] = COUNTERA_REG_HW[27:0] {
    }
    Alias MEM39_BIST_COLLAR_SI_INT = MEM39_GOID_SI_MUX {
    }
@@ -23978,11 +24411,11 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
       ScanInSource MEM_SELECT_REG39[0];
       RefEnum OnOff;
    }
-   ScanRegister ALGO_SEL_REG[0:0] {
+   ScanRegister ALGO_SEL_REG_HW[0:6] {
       ScanInSource REDUCED_ADDR_CNT_EN_REG[0];
    }
    ScanRegister ALGO_SEL_CNT_REG[0:0] {
-      ScanInSource ALGO_SEL_REG[0];
+      ScanInSource ALGO_SEL_REG_HW[6];
       RefEnum OnOff;
    }
    ScanRegister SELECT_COMMON_OPSET_REG[0:0] {
@@ -24053,8 +24486,11 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
    ScanRegister INST0_NEXT_CONDITIONS_HW[0:6] {
       ScanInSource INST0_BRANCH_INST_ADDRESS_HW[4];
    }
-   ScanRegister INST1_OPERATION_SELECT_HW[0:5] {
+   ScanRegister INST0_DISABLE_GWE[0:0] {
       ScanInSource INST0_NEXT_CONDITIONS_HW[6];
+   }
+   ScanRegister INST1_OPERATION_SELECT_HW[0:5] {
+      ScanInSource INST0_DISABLE_GWE[0];
    }
    ScanRegister INST1_ADD_REG_A_EQUALS_B_HW[0:1] {
       ScanInSource INST1_OPERATION_SELECT_HW[5];
@@ -24101,8 +24537,11 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
    ScanRegister INST1_NEXT_CONDITIONS_HW[0:6] {
       ScanInSource INST1_BRANCH_INST_ADDRESS_HW[4];
    }
-   ScanRegister INST2_OPERATION_SELECT_HW[0:5] {
+   ScanRegister INST1_DISABLE_GWE[0:0] {
       ScanInSource INST1_NEXT_CONDITIONS_HW[6];
+   }
+   ScanRegister INST2_OPERATION_SELECT_HW[0:5] {
+      ScanInSource INST1_DISABLE_GWE[0];
    }
    ScanRegister INST2_ADD_REG_A_EQUALS_B_HW[0:1] {
       ScanInSource INST2_OPERATION_SELECT_HW[5];
@@ -24149,8 +24588,11 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
    ScanRegister INST2_NEXT_CONDITIONS_HW[0:6] {
       ScanInSource INST2_BRANCH_INST_ADDRESS_HW[4];
    }
-   ScanRegister INST3_OPERATION_SELECT_HW[0:5] {
+   ScanRegister INST2_DISABLE_GWE[0:0] {
       ScanInSource INST2_NEXT_CONDITIONS_HW[6];
+   }
+   ScanRegister INST3_OPERATION_SELECT_HW[0:5] {
+      ScanInSource INST2_DISABLE_GWE[0];
    }
    ScanRegister INST3_ADD_REG_A_EQUALS_B_HW[0:1] {
       ScanInSource INST3_OPERATION_SELECT_HW[5];
@@ -24197,8 +24639,11 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
    ScanRegister INST3_NEXT_CONDITIONS_HW[0:6] {
       ScanInSource INST3_BRANCH_INST_ADDRESS_HW[4];
    }
-   ScanRegister INST4_OPERATION_SELECT_HW[0:5] {
+   ScanRegister INST3_DISABLE_GWE[0:0] {
       ScanInSource INST3_NEXT_CONDITIONS_HW[6];
+   }
+   ScanRegister INST4_OPERATION_SELECT_HW[0:5] {
+      ScanInSource INST3_DISABLE_GWE[0];
    }
    ScanRegister INST4_ADD_REG_A_EQUALS_B_HW[0:1] {
       ScanInSource INST4_OPERATION_SELECT_HW[5];
@@ -24245,8 +24690,11 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
    ScanRegister INST4_NEXT_CONDITIONS_HW[0:6] {
       ScanInSource INST4_BRANCH_INST_ADDRESS_HW[4];
    }
-   ScanRegister INST5_OPERATION_SELECT_HW[0:5] {
+   ScanRegister INST4_DISABLE_GWE[0:0] {
       ScanInSource INST4_NEXT_CONDITIONS_HW[6];
+   }
+   ScanRegister INST5_OPERATION_SELECT_HW[0:5] {
+      ScanInSource INST4_DISABLE_GWE[0];
    }
    ScanRegister INST5_ADD_REG_A_EQUALS_B_HW[0:1] {
       ScanInSource INST5_OPERATION_SELECT_HW[5];
@@ -24293,8 +24741,11 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
    ScanRegister INST5_NEXT_CONDITIONS_HW[0:6] {
       ScanInSource INST5_BRANCH_INST_ADDRESS_HW[4];
    }
-   ScanRegister INST6_OPERATION_SELECT_HW[0:5] {
+   ScanRegister INST5_DISABLE_GWE[0:0] {
       ScanInSource INST5_NEXT_CONDITIONS_HW[6];
+   }
+   ScanRegister INST6_OPERATION_SELECT_HW[0:5] {
+      ScanInSource INST5_DISABLE_GWE[0];
    }
    ScanRegister INST6_ADD_REG_A_EQUALS_B_HW[0:1] {
       ScanInSource INST6_OPERATION_SELECT_HW[5];
@@ -24341,8 +24792,11 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
    ScanRegister INST6_NEXT_CONDITIONS_HW[0:6] {
       ScanInSource INST6_BRANCH_INST_ADDRESS_HW[4];
    }
-   ScanRegister INST7_OPERATION_SELECT_HW[0:5] {
+   ScanRegister INST6_DISABLE_GWE[0:0] {
       ScanInSource INST6_NEXT_CONDITIONS_HW[6];
+   }
+   ScanRegister INST7_OPERATION_SELECT_HW[0:5] {
+      ScanInSource INST6_DISABLE_GWE[0];
    }
    ScanRegister INST7_ADD_REG_A_EQUALS_B_HW[0:1] {
       ScanInSource INST7_OPERATION_SELECT_HW[5];
@@ -24388,6 +24842,9 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
    }
    ScanRegister INST7_NEXT_CONDITIONS_HW[0:6] {
       ScanInSource INST7_BRANCH_INST_ADDRESS_HW[4];
+   }
+   ScanRegister INST7_DISABLE_GWE[0:0] {
+      ScanInSource INST7_NEXT_CONDITIONS_HW[6];
    }
    ScanRegister A_ADD_REG_Y_HW[0:2] {
       ScanInSource A_ADD_REG_Y_SI_MUX;
@@ -24509,11 +24966,11 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
    ScanRegister REPEATLOOP_B_CNTR_REG_HW[0:1] {
       ScanInSource REPEATLOOP_A_CNTR_REG_HW[1];
    }
-   ScanRegister COUNTERA_CNT_HW[0:3] {
+   ScanRegister COUNTERA_CNT_HW[0:27] {
       ScanInSource REPEATLOOP_B_CNTR_REG_HW[1];
    }
-   ScanRegister COUNTERA_REG_HW[0:3] {
-      ScanInSource COUNTERA_CNT_HW[3];
+   ScanRegister COUNTERA_REG_HW[0:27] {
+      ScanInSource COUNTERA_CNT_HW[27];
    }
    ScanRegister PRESERVE_BIRA_FUSE_REG[0:0] {
       ScanInSource MEM0_BIST_COLLAR_SO;
@@ -24533,10 +24990,10 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
    }
    ScanMux A_ADD_REG_Y_SI_MUX SelectedBy LONG_SETUP, SHORT_SETUP {
       2'b01 : INST_POINTER_REG_HW[4];
-      2'b10 : INST7_NEXT_CONDITIONS_HW[6];
+      2'b10 : INST7_DISABLE_GWE[0];
    }
    ScanMux MEM39_TO_COLLAR_SI_MUX SelectedBy BIRA_SETUP {
-      1'b0 : COUNTERA_REG_HW[3];
+      1'b0 : COUNTERA_REG_HW[27];
       1'b1 : BIST_SI_Pipeline;
    }
    ScanMux MEM39_GOID_SI_MUX SelectedBy GOID_SETUP {
@@ -24771,7 +25228,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_controller {
 
 // instanced as firebird7_in.ph0_i_firebird7_in_gate1_tessent_tdr_array_pwrmgmt_ctrl_hdspsr_inst
 Module firebird7_in_gate1_tessent_tdr_array_pwrmgmt_ctrl_hdspsr {
-   // ICL module read from source on or near line 24629 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 25086 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -24820,7 +25277,7 @@ Module firebird7_in_gate1_tessent_tdr_array_pwrmgmt_ctrl_hdspsr {
 
 // instanced as firebird7_in.ph0_i_firebird7_in_gate1_tessent_tdr_array_trim_fuse_override_ctrl_hdspsr_inst
 Module firebird7_in_gate1_tessent_tdr_array_trim_fuse_override_ctrl_hdspsr {
-   // ICL module read from source on or near line 24678 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 25135 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ResetPort ijtag_reset {
       ActivePolarity 0;
    }
@@ -24933,7 +25390,7 @@ Module firebird7_in_gate1_tessent_tdr_array_trim_fuse_override_ctrl_hdspsr {
 
 // instanced as firebird7_in.ph0_i_p_f_m_ram0_gen_100_pRam_firebird7_in_gate1_tessent_data_mux_35_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_36 {
-   // ICL module read from source on or near line 24791 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 25248 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -24951,7 +25408,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_36 {
 
 // instanced as firebird7_in.ph0_i_p_f_m_ram0_gen_100_pRam_firebird7_in_gate1_tessent_data_mux_75_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_36 {
-   // ICL module read from source on or near line 24809 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 25266 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -24972,7 +25429,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_36 {
 // instanced as firebird7_in.ph0_i_p_f_m_ram2_gen_100_pRam_mem0_i
 // instanced as firebird7_in.ph0_i_p_f_m_ram3_gen_100_pRam_mem0_i
 Module ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper {
-   // ICL module read from source on or near line 24830 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 25287 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort adr[9:0] {
       Attribute connection_rule_option = "allowed_no_source";
       Attribute tessent_memory_bist_function = "address";
@@ -24996,7 +25453,7 @@ Module ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper {
 Module 
     firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr1024x72m2b2s0c1r2p3d0a2_mem_wrapper 
     {
-   // ICL module read from source on or near line 24853 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 25310 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    CaptureEnPort CLK {
       Attribute function_modifier = "CaptureShiftClock";
       Attribute connection_rule_option = "allowed_tied_low";
@@ -25081,7 +25538,7 @@ Module
 
 // instanced as firebird7_in.ph0_i_p_f_m_ram0_gen_100_pRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m33 {
-   // ICL module read from source on or near line 24939 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 25396 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -25214,7 +25671,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m33 {
 
 // instanced as firebird7_in.ph0_i_p_f_m_ram1_gen_100_pRam_firebird7_in_gate1_tessent_data_mux_34_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_35 {
-   // ICL module read from source on or near line 25072 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 25529 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -25232,7 +25689,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_35 {
 
 // instanced as firebird7_in.ph0_i_p_f_m_ram1_gen_100_pRam_firebird7_in_gate1_tessent_data_mux_74_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_35 {
-   // ICL module read from source on or near line 25090 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 25547 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -25250,7 +25707,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_35 {
 
 // instanced as firebird7_in.ph0_i_p_f_m_ram1_gen_100_pRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m34 {
-   // ICL module read from source on or near line 25108 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 25565 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -25383,7 +25840,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m34 {
 
 // instanced as firebird7_in.ph0_i_p_f_m_ram2_gen_100_pRam_firebird7_in_gate1_tessent_data_mux_33_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_34 {
-   // ICL module read from source on or near line 25241 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 25698 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -25401,7 +25858,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_34 {
 
 // instanced as firebird7_in.ph0_i_p_f_m_ram2_gen_100_pRam_firebird7_in_gate1_tessent_data_mux_73_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_34 {
-   // ICL module read from source on or near line 25259 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 25716 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -25419,7 +25876,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_34 {
 
 // instanced as firebird7_in.ph0_i_p_f_m_ram2_gen_100_pRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m35 {
-   // ICL module read from source on or near line 25277 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 25734 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -25552,7 +26009,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m35 {
 
 // instanced as firebird7_in.ph0_i_p_f_m_ram3_gen_100_pRam_firebird7_in_gate1_tessent_data_mux_32_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_33 {
-   // ICL module read from source on or near line 25410 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 25867 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -25570,7 +26027,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_33 {
 
 // instanced as firebird7_in.ph0_i_p_f_m_ram3_gen_100_pRam_firebird7_in_gate1_tessent_data_mux_72_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_33 {
-   // ICL module read from source on or near line 25428 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 25885 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -25588,7 +26045,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_33 {
 
 // instanced as firebird7_in.ph0_i_p_f_m_ram3_gen_100_pRam_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m36 {
-   // ICL module read from source on or near line 25446 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 25903 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -25721,7 +26178,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m36 {
 
 // instanced as firebird7_in.ph0_i_p_gb1_b_m0_firebird7_in_gate1_tessent_data_mux_39_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_40 {
-   // ICL module read from source on or near line 25579 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 26036 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -25739,7 +26196,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_40 {
 
 // instanced as firebird7_in.ph0_i_p_gb1_b_m0_firebird7_in_gate1_tessent_data_mux_79_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_40 {
-   // ICL module read from source on or near line 25597 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 26054 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -25760,7 +26217,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_40 {
 // instanced as firebird7_in.ph0_i_p_gs1_s_m0_mem0_i
 // instanced as firebird7_in.ph0_i_p_gs1_s_m1_mem0_i
 Module ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper {
-   // ICL module read from source on or near line 25618 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 26075 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort adr[8:0] {
       Attribute connection_rule_option = "allowed_no_source";
       Attribute tessent_memory_bist_function = "address";
@@ -25784,7 +26241,7 @@ Module ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper {
 Module 
     firebird7_in_gate1_tessent_mbisr_register_ip783hdspsr512x32m4b1s0c1r2p3d0a2_mem_wrapper 
     {
-   // ICL module read from source on or near line 25641 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 26098 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    CaptureEnPort CLK {
       Attribute function_modifier = "CaptureShiftClock";
       Attribute connection_rule_option = "allowed_tied_low";
@@ -25869,7 +26326,7 @@ Module
 
 // instanced as firebird7_in.ph0_i_p_gb1_b_m0_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m37 {
-   // ICL module read from source on or near line 25727 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 26184 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -26002,7 +26459,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m37 {
 
 // instanced as firebird7_in.ph0_i_p_gb1_b_m1_firebird7_in_gate1_tessent_data_mux_38_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_39 {
-   // ICL module read from source on or near line 25860 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 26317 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -26020,7 +26477,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_39 {
 
 // instanced as firebird7_in.ph0_i_p_gb1_b_m1_firebird7_in_gate1_tessent_data_mux_78_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_39 {
-   // ICL module read from source on or near line 25878 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 26335 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -26038,7 +26495,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_39 {
 
 // instanced as firebird7_in.ph0_i_p_gb1_b_m1_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m38 {
-   // ICL module read from source on or near line 25896 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 26353 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -26171,7 +26628,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m38 {
 
 // instanced as firebird7_in.ph0_i_p_gs1_s_m0_firebird7_in_gate1_tessent_data_mux_37_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_38 {
-   // ICL module read from source on or near line 26029 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 26486 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -26189,7 +26646,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_38 {
 
 // instanced as firebird7_in.ph0_i_p_gs1_s_m0_firebird7_in_gate1_tessent_data_mux_77_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_38 {
-   // ICL module read from source on or near line 26047 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 26504 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -26207,7 +26664,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_38 {
 
 // instanced as firebird7_in.ph0_i_p_gs1_s_m0_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m39 {
-   // ICL module read from source on or near line 26065 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 26522 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -26340,7 +26797,7 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m39 {
 
 // instanced as firebird7_in.ph0_i_p_gs1_s_m1_firebird7_in_gate1_tessent_data_mux_36_inst
 Module firebird7_in_gate1_tessent_data_mux_w3_37 {
-   // ICL module read from source on or near line 26198 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 26655 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[2:0];
    DataOutPort data_out[2:0] {
@@ -26358,7 +26815,7 @@ Module firebird7_in_gate1_tessent_data_mux_w3_37 {
 
 // instanced as firebird7_in.ph0_i_p_gs1_s_m1_firebird7_in_gate1_tessent_data_mux_76_inst
 Module firebird7_in_gate1_tessent_data_mux_w19_37 {
-   // ICL module read from source on or near line 26216 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 26673 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    DataInPort ijtag_select;
    DataInPort ijtag_data_in[18:0];
    DataOutPort data_out[18:0] {
@@ -26376,7 +26833,7 @@ Module firebird7_in_gate1_tessent_data_mux_w19_37 {
 
 // instanced as firebird7_in.ph0_i_p_gs1_s_m1_mem0_i_interface_inst
 Module firebird7_in_gate1_tessent_mbist_c1_interface_m40 {
-   // ICL module read from source on or near line 26234 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   // ICL module read from source on or near line 26691 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
    ClockPort BIST_CLK;
    DataInPort BIST_COLLAR_EN;
    DataInPort BIST_ASYNC_RESETN;
@@ -26504,5 +26961,362 @@ Module firebird7_in_gate1_tessent_mbist_c1_interface_m40 {
    }
    LogicSignal BIRA_SETUP {
       (BIST_SETUP2, BIST_SETUP1), BIST_SETUP0 == 3'b100;
+   }
+}
+
+// instanced as firebird7_in.u_upm_0
+// instanced as firebird7_in.u_upm_1
+// instanced as firebird7_in.u_upm_2
+// instanced as firebird7_in.u_upm_3
+Module dteg_upm_top {
+   // ICL module read from source on or near line 26827 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   TCKPort dfx_upm_tck;
+   ResetPort dfx_upm_trstb {
+      ActivePolarity 0;
+   }
+   ResetPort dfx_upm_fdfx_powergood {
+      ActivePolarity 0;
+   }
+   CaptureEnPort dfx_upm_capture;
+   ShiftEnPort dfx_upm_shift;
+   UpdateEnPort dfx_upm_update;
+   ScanInPort dfx_upm_si;
+   ScanOutPort dfx_upm_so {
+      Source upm_inst.so;
+   }
+   SelectPort dfx_upm_sel;
+   DataInPort dfx_upm_iso_n {
+      DefaultLoadValue 1'b1;
+      Attribute connection_rule_option = "allowed_no_source";
+   }
+   ScanInterface c_ip {
+      Port dfx_upm_si;
+      Port dfx_upm_so;
+      Port dfx_upm_sel;
+      Port dfx_upm_trstb;
+   }
+   LocalParameter upm_inst_DR_SIZE = "VARIABLE";
+   Attribute intel_instrument_subtype = "upm";
+   Attribute intel_instrument_type = "debug";
+   Attribute intel_desc = "UPM";
+   Instance upm_inst Of ip_rtdr_ijtag_def_dteg_upm_top_upm_ijtag_chain_def {
+      InputPort si = dfx_upm_si;
+      InputPort ijtag_reset_b = dfx_upm_trstb;
+      InputPort rstn = dfx_upm_fdfx_powergood;
+   }
+}
+
+// instanced as dteg_upm_top.upm_inst
+Module ip_rtdr_ijtag_def_dteg_upm_top_upm_ijtag_chain_def {
+   // ICL module read from source on or near line 26866 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   ScanInPort si;
+   ScanOutPort so {
+      Source SIB_UPM_STATUS.so;
+   }
+   SelectPort sel;
+   ResetPort ijtag_reset_b {
+      ActivePolarity 0;
+   }
+   ResetPort rstn {
+      ActivePolarity 0;
+   }
+   LocalParameter CBB_reg_DR_SIZE = 28;
+   LocalParameter COUNTER_CTRL_reg_DR_SIZE = 26;
+   LocalParameter COUNTER_RESULT_reg_DR_SIZE = 21;
+   LocalParameter UPM_STATUS_reg_DR_SIZE = 25;
+   Attribute intel_desc = "UPM IJTAG chain description";
+   Alias CBB_reg[$CBB_reg_DR_SIZE-1:0] = CBB_reg.DR {
+   }
+   Alias COUNTER_CTRL_reg[$COUNTER_CTRL_reg_DR_SIZE-1:0] = COUNTER_CTRL_reg.DR {
+   }
+   Alias COUNTER_RESULT_reg[$COUNTER_RESULT_reg_DR_SIZE-1:0] = 
+       COUNTER_RESULT_reg.DR {
+   }
+   Alias UPM_STATUS_reg[$UPM_STATUS_reg_DR_SIZE-1:0] = UPM_STATUS_reg.DR {
+   }
+   Instance SIB_CBB Of iclgen_intel_ijtag_sib {
+      InputPort si = si;
+      InputPort inst_so = CBB_reg.so;
+      InputPort rstn = ijtag_reset_b;
+   }
+   Instance SIB_COUNTER_CTRL Of iclgen_intel_ijtag_sib {
+      InputPort si = SIB_CBB.so;
+      InputPort inst_so = COUNTER_CTRL_reg.so;
+      InputPort rstn = ijtag_reset_b;
+   }
+   Instance SIB_COUNTER_RESULT Of iclgen_intel_ijtag_sib {
+      InputPort si = SIB_COUNTER_CTRL.so;
+      InputPort inst_so = COUNTER_RESULT_reg.so;
+      InputPort rstn = ijtag_reset_b;
+   }
+   Instance SIB_UPM_STATUS Of iclgen_intel_ijtag_sib {
+      InputPort si = SIB_COUNTER_RESULT.so;
+      InputPort inst_so = UPM_STATUS_reg.so;
+      InputPort rstn = ijtag_reset_b;
+   }
+   Instance CBB_reg Of ip_rtdr_ijtag_def_dteg_upm_top_CBB_reg_def {
+      InputPort si = SIB_CBB.inst_si;
+      InputPort reset_b = rstn;
+   }
+   Instance COUNTER_CTRL_reg Of 
+       ip_rtdr_ijtag_def_dteg_upm_top_COUNTER_CTRL_reg_def {
+      InputPort si = SIB_COUNTER_CTRL.inst_si;
+      InputPort reset_b = rstn;
+   }
+   Instance COUNTER_RESULT_reg Of 
+       ip_rtdr_ijtag_def_dteg_upm_top_COUNTER_RESULT_reg_def {
+      InputPort si = SIB_COUNTER_RESULT.inst_si;
+      InputPort reset_b = rstn;
+   }
+   Instance UPM_STATUS_reg Of ip_rtdr_ijtag_def_dteg_upm_top_UPM_STATUS_reg_def 
+       {
+      InputPort si = SIB_UPM_STATUS.inst_si;
+      InputPort reset_b = rstn;
+   }
+}
+
+// instanced as ip_rtdr_ijtag_def_dteg_upm_top_upm_ijtag_chain_def.SIB_CBB
+// instanced as ip_rtdr_ijtag_def_dteg_upm_top_upm_ijtag_chain_def.SIB_COUNTER_CTRL
+// instanced as ip_rtdr_ijtag_def_dteg_upm_top_upm_ijtag_chain_def.SIB_COUNTER_RESULT
+// instanced as ip_rtdr_ijtag_def_dteg_upm_top_upm_ijtag_chain_def.SIB_UPM_STATUS
+Module iclgen_intel_ijtag_sib {
+   // ICL module read from source on or near line 26938 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   ScanInPort si;
+   ScanOutPort so {
+      Source sib[0];
+   }
+   SelectPort sel;
+   ResetPort rstn {
+      ActivePolarity 0;
+   }
+   ToSelectPort inst_sel {
+      Source select_out;
+   }
+   ScanOutPort inst_si {
+      Source si;
+   }
+   ScanInPort inst_so;
+   ScanInterface c {
+      Port si;
+      Port so;
+      Port sel;
+   }
+   ScanInterface host {
+      Port inst_si;
+      Port inst_so;
+      Port inst_sel;
+   }
+   ScanRegister sib[0:0] {
+      ScanInSource scan_in_mux;
+      CaptureSource sib[0:0];
+      DefaultLoadValue 1'b0;
+      ResetValue 1'b0;
+   }
+   ScanMux scan_in_mux SelectedBy sib {
+      1'b0 : si;
+      1'b1 : inst_so;
+   }
+   LogicSignal select_out {
+      sel, sib == 2'b11;
+   }
+}
+
+// instanced as ip_rtdr_ijtag_def_dteg_upm_top_upm_ijtag_chain_def.CBB_reg
+Module ip_rtdr_ijtag_def_dteg_upm_top_CBB_reg_def {
+   // ICL module read from source on or near line 26981 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   ScanInPort si;
+   ScanOutPort so {
+      Source DR[0];
+   }
+   ResetPort reset_b {
+      ActivePolarity 0;
+   }
+   SelectPort sel;
+   ScanInterface client {
+      Port si;
+      Port so;
+      Port sel;
+   }
+   Attribute intel_desc = "CBB_reg description";
+   Attribute intel_TapRegResetType = "PWRGOOD";
+   Attribute tessent_use_in_dft_specification = "false";
+   Alias IJTAG_UPM1_CBB_CBB0_POWER_ENABLE[0:0] = DR[0:0] {
+      Attribute intel_desc = "cbb0_pwr_enable";
+      Attribute intel_AccessType = "RW";
+   }
+   Alias IJTAG_UPM1_CBB_CBB0_UPM_ADDR[5:0] = DR[6:1] {
+      Attribute intel_desc = "cbb0_addr";
+      Attribute intel_AccessType = "RW";
+   }
+   Alias IJTAG_UPM1_CBB_CBB1_POWER_ENABLE[0:0] = DR[7:7] {
+      Attribute intel_desc = "cbb1_pwr_enable";
+      Attribute intel_AccessType = "RW";
+   }
+   Alias IJTAG_UPM1_CBB_CBB1_UPM_ADDR[5:0] = DR[13:8] {
+      Attribute intel_desc = "cbb1_addr";
+      Attribute intel_AccessType = "RW";
+   }
+   Alias IJTAG_UPM1_CBB_CBB2_POWER_ENABLE[0:0] = DR[14:14] {
+      Attribute intel_desc = "cbb2_pwr_enable";
+      Attribute intel_AccessType = "RW";
+   }
+   Alias IJTAG_UPM1_CBB_CBB2_UPM_ADDR[5:0] = DR[20:15] {
+      Attribute intel_desc = "cbb2_addr";
+      Attribute intel_AccessType = "RW";
+   }
+   Alias IJTAG_UPM1_CBB_CBB3_POWER_ENABLE[0:0] = DR[21:21] {
+      Attribute intel_desc = "cbb3_pwr_enable";
+      Attribute intel_AccessType = "RW";
+   }
+   Alias IJTAG_UPM1_CBB_CBB3_UPM_ADDR[5:0] = DR[27:22] {
+      Attribute intel_desc = "cbb3_addr";
+      Attribute intel_AccessType = "RW";
+   }
+   ScanRegister DR[27:0] {
+      ScanInSource si;
+      CaptureSource DR[27:0];
+      ResetValue 28'b0;
+      Attribute intel_TapRegSecurity = "SECURE_RED";
+   }
+}
+
+// instanced as ip_rtdr_ijtag_def_dteg_upm_top_upm_ijtag_chain_def.COUNTER_CTRL_reg
+Module ip_rtdr_ijtag_def_dteg_upm_top_COUNTER_CTRL_reg_def {
+   // ICL module read from source on or near line 27040 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   ScanInPort si;
+   ScanOutPort so {
+      Source DR[0];
+   }
+   ResetPort reset_b {
+      ActivePolarity 0;
+   }
+   SelectPort sel;
+   ScanInterface client {
+      Port si;
+      Port so;
+      Port sel;
+   }
+   Attribute intel_desc = "COUNTER_CTRL_reg description";
+   Attribute intel_TapRegResetType = "PWRGOOD";
+   Attribute tessent_use_in_dft_specification = "false";
+   Alias IJTAG_COUNTER_CTRL_WINDOW_MODE[0:0] = DR[0:0] {
+      Attribute intel_desc = "window_mode";
+      Attribute intel_AccessType = "RW";
+   }
+   Alias IJTAG_COUNTER_CTRL_START_MODE[0:0] = DR[1:1] {
+      Attribute intel_desc = "start_mode";
+      Attribute intel_AccessType = "RW";
+   }
+   Alias IJTAG_COUNTER_CTRL_STOP_MODE[0:0] = DR[2:2] {
+      Attribute intel_desc = "stop_mode";
+      Attribute intel_AccessType = "RW";
+   }
+   Alias IJTAG_COUNTER_CTRL_CLOCK_DIVDER_SELECT[4:0] = DR[7:3] {
+      Attribute intel_desc = "divider_value_select";
+      Attribute intel_AccessType = "RW";
+   }
+   Alias IJTAG_COUNTER_CTRL_UPM_WINDOW_SIZE[15:0] = DR[23:8] {
+      Attribute intel_desc = "counter_window_size";
+      Attribute intel_AccessType = "RW";
+   }
+   Alias IJTAG_COUNTER_CTRL_UPM_DEBUG_CLK_EN[0:0] = DR[24:24] {
+      Attribute intel_desc = "debug_clk_enable";
+      Attribute intel_AccessType = "RW";
+   }
+   Alias IJTAG_COUNTER_CTRL_UPM_TAP_MASTER_MODE[0:0] = DR[25:25] {
+      Attribute intel_desc = "tap_master_mode_bit";
+      Attribute intel_AccessType = "RW";
+   }
+   ScanRegister DR[25:0] {
+      ScanInSource si;
+      CaptureSource DR[25:0];
+      ResetValue 26'b0;
+      Attribute intel_TapRegSecurity = "SECURE_RED";
+   }
+}
+
+// instanced as ip_rtdr_ijtag_def_dteg_upm_top_upm_ijtag_chain_def.COUNTER_RESULT_reg
+Module ip_rtdr_ijtag_def_dteg_upm_top_COUNTER_RESULT_reg_def {
+   // ICL module read from source on or near line 27095 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   ScanInPort si;
+   ScanOutPort so {
+      Source DR[0];
+   }
+   ResetPort reset_b {
+      ActivePolarity 0;
+   }
+   SelectPort sel;
+   ScanInterface client {
+      Port si;
+      Port so;
+      Port sel;
+   }
+   Attribute intel_desc = "COUNTER_RESULT_reg description";
+   Attribute intel_TapRegResetType = "PWRGOOD";
+   Attribute tessent_use_in_dft_specification = "false";
+   Alias IJTAG_COUNTER_RESULT_OVERFLOW[0:0] = DR[0:0] {
+      Attribute intel_desc = "counter_overflow";
+      Attribute intel_AccessType = "RO/V";
+   }
+   Alias IJTAG_COUNTER_RESULT_COUNTER_VALUE[19:0] = DR[20:1] {
+      Attribute intel_desc = "counter_current_value_result";
+      Attribute intel_AccessType = "RO/V";
+   }
+   ScanRegister DR[20:0] {
+      ScanInSource si;
+      CaptureSource 21'bx;
+      ResetValue 21'b0;
+      Attribute intel_TapRegSecurity = "SECURE_RED";
+   }
+}
+
+// instanced as ip_rtdr_ijtag_def_dteg_upm_top_upm_ijtag_chain_def.UPM_STATUS_reg
+Module ip_rtdr_ijtag_def_dteg_upm_top_UPM_STATUS_reg_def {
+   // ICL module read from source on or near line 27130 of file './tsdb_outdir/dft_inserted_designs/firebird7_in_gate2.dft_inserted_design/firebird7_in.icl'
+   ScanInPort si;
+   ScanOutPort so {
+      Source DR[0];
+   }
+   ResetPort reset_b {
+      ActivePolarity 0;
+   }
+   SelectPort sel;
+   ScanInterface client {
+      Port si;
+      Port so;
+      Port sel;
+   }
+   Attribute intel_desc = "UPM_STATUS_reg description";
+   Attribute intel_TapRegResetType = "PWRGOOD";
+   Attribute tessent_use_in_dft_specification = "false";
+   Alias IJTAG_UPM_STATUS_FSM_STATE[4:0] = DR[4:0] {
+      Attribute intel_desc = "fsm_state";
+      Attribute intel_AccessType = "RO/V";
+   }
+   Alias IJTAG_UPM_STATUS_FSM_ENABLE[0:0] = DR[5:5] {
+      Attribute intel_desc = "fsm_enable";
+      Attribute intel_AccessType = "RO/V";
+   }
+   Alias IJTAG_UPM_STATUS_WINDOW_COUNTER_ACTIVE[0:0] = DR[6:6] {
+      Attribute intel_desc = "window_counter_active_status";
+      Attribute intel_AccessType = "RO/V";
+   }
+   Alias IJTAG_UPM_STATUS_COUNTER_CURRENT_VALUE[15:0] = DR[22:7] {
+      Attribute intel_desc = "counter_current_value_status";
+      Attribute intel_AccessType = "RO/V";
+   }
+   Alias IJTAG_UPM_STATUS_CBB_CFG_ERROR[0:0] = DR[23:23] {
+      Attribute intel_desc = "cbb_cfg_error_status";
+      Attribute intel_AccessType = "RO/V";
+   }
+   Alias IJTAG_UPM_STATUS_COUNTER_STATUS[0:0] = DR[24:24] {
+      Attribute intel_desc = "counter status";
+      Attribute intel_AccessType = "RO/V";
+   }
+   ScanRegister DR[24:0] {
+      ScanInSource si;
+      CaptureSource 25'bx;
+      ResetValue 25'b1;
+      Attribute intel_TapRegSecurity = "SECURE_RED";
    }
 }

@@ -1,7 +1,7 @@
 //-------------------------------------------------
 //  File created by: Tessent Shell
 //          Version: 2022.4
-//       Created on: Sun Oct 29 15:06:03 PDT 2023
+//       Created on: Sun Nov  5 09:30:49 PST 2023
 //-------------------------------------------------
 
 
@@ -17,7 +17,7 @@ Core(firebird7_in) {
         type : async_source;
         base_period : 783.00ps;
         period : 0.783;
-        posedge_scannable_flop_count : 90314;
+        posedge_scannable_flop_count : 90401;
         negedge_scannable_flop_count : 0;
         posedge_non_scannable_flop_count : 0;
         negedge_non_scannable_flop_count : 0;

@@ -1,0 +1,21 @@
++-----------------------------------------------------------------------------+
+| Logfile        : netbatch_synthesis_upm.log                                 |
+| Job id         : 919387804352548            Class: (SLES12&&22G&&1C) && (!HIGHMEM) Qslot: /XNE/IRW|
+| User           : khiremat                   Full Id: zsc14_tiers2_vp.919387804352548|
+| Class Reservation : cores=1,general_ramp=1:duration=60s,memory=22           |
+| Executed on    : sced190716                 Pool : zsc14_nb2_ppm            |
+| Queueing time  : Sun Nov  5 08:13:06 2023                                   |
+| Starting time  : Sun Nov  5 08:13:07 2023          Qwait:   0h:00m:01s      |
+| Command        : dc_shell -f ./scripts/dc/synthesis_upm.tcl                 |
++-----------------------------------------------------------------------------+
++-----------------------------------------------------------------------------+
+| Exit Status    : 1                                                          |
+| Finishing time : Sun Nov  5 08:15:09 2023                                   |
+| CPU time       : Usr 17.982s Sys 0.883s  WC  0h:02m:02s                     |
+| Rusage Stats   : Mem:2454   PF:  641976/353CSv/f:  0/0     Swaps:0          |
+|                :           Msg:    0/0     IOops:  1055552/4880Sigs :0          |
+| User Groups    : soc, socenv, ipx_general_user, arborcrest_soc, ncsg76,     |
+|                : i1278proc, i1278, intelall, ncsg78, irw, powdermill,       |
+|                : soc73, gdlusers, srvr10nm                                  |
+| Actual Class Reservation : cores=1,general_ramp=1:duration=60s,memory=22    |
++-----------------------------------------------------------------------------+

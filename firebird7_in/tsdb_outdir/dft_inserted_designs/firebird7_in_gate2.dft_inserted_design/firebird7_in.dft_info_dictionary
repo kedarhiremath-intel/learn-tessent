@@ -1,7 +1,7 @@
 #-------------------------------------------------
 #  File created by: Tessent Shell
 #          Version: 2022.4
-#       Created on: Sun Oct 29 14:40:27 PDT 2023
+#       Created on: Sun Nov  5 09:01:07 PST 2023
 #-------------------------------------------------
 
  
@@ -178,6 +178,7 @@ set tessent_dft_info_dict {
     firebird7_in_gate1_tessent_scanmux_spare_insysbist_secure_mux_inst
     firebird7_in_gate1_tessent_scanmux_spare_orange_secure_mux_inst
     firebird7_in_gate1_tessent_scanmux_spare_red_secure_mux_inst
+    firebird7_in_gate1_tessent_scanmux_upm_secure_mux_inst
     firebird7_in_gate1_tessent_sib_array_pwrmgmt_inst
     firebird7_in_gate1_tessent_sib_array_trim_fuse_override_inst
     firebird7_in_gate1_tessent_sib_spare_green_inst
@@ -185,6 +186,7 @@ set tessent_dft_info_dict {
     firebird7_in_gate1_tessent_sib_spare_insysbist_inst
     firebird7_in_gate1_tessent_sib_spare_orange_inst
     firebird7_in_gate1_tessent_sib_spare_red_inst
+    firebird7_in_gate1_tessent_sib_upm_inst
     firebird7_in_gate1_tessent_tdr_spare_green_tdr_inst
     firebird7_in_gate1_tessent_tdr_spare_insysbist_tdr_inst
     firebird7_in_gate1_tessent_tdr_spare_orange_tdr_inst
@@ -202,6 +204,7 @@ set tessent_dft_info_dict {
     firebird7_in_gate2_tessent_sib_occ_inst
     firebird7_in_gate2_tessent_sib_sri_ctrl_inst
     firebird7_in_gate2_tessent_sib_sri_inst
+    firebird7_in_gate2_tessent_sib_sri_local_inst
     firebird7_in_gate2_tessent_sib_ssn_inst
     firebird7_in_gate2_tessent_ssn_pipe_ssn_output_pipe_inst
     firebird7_in_gate2_tessent_ssn_receiver_1x_pipe_ssn_input_pipe_inst
@@ -211,6 +214,10 @@ set tessent_dft_info_dict {
     firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_control_inst
     firebird7_in_gate2_tessent_tdr_intest_edt_scan_bi_sol_status_inst
     firebird7_in_gate2_tessent_tdr_sri_ctrl_inst
+    firebird7_in_gate2_tessent_tdr_sri_tdr1_inst
+    firebird7_in_gate2_tessent_tdr_sri_tdr2_inst
+    firebird7_in_gate2_tessent_tdr_sri_tdr3_inst
+    firebird7_in_gate2_tessent_tdr_sri_tdr4_inst
     ph0/i/d/m/g0_b0/db/gen_100_dRam/mem0_i
     ph0/i/d/m/g0_b0/db/gen_100_dRam/mem0_i_bisr_inst
     ph0/i/d/m/g10_b10/db/gen_100_dRam/mem0_i
@@ -295,6 +302,10 @@ set tessent_dft_info_dict {
     ph0/i/p/gs1_s/m1/mem0_i_bisr_inst
     u_extest_edt_scan_bi_sol_0
     u_intest_edt_scan_bi_sol_0
+    u_upm_0
+    u_upm_1
+    u_upm_2
+    u_upm_3
   }
   edt_instances {
     firebird7_in_gate2_tessent_edt_extest_edt_inst {

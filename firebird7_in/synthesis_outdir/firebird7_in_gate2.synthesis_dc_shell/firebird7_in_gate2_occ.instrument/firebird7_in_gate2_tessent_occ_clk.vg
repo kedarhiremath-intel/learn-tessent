@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys DC Expert(TM) in wire load mode
 // Version   : Q-2019.12-SP5-1
-// Date      : Sun Oct 29 14:41:25 2023
+// Date      : Sun Nov  5 09:02:57 2023
 /////////////////////////////////////////////////////////////
 
 
@@ -15,13 +15,13 @@ module firebird7_in_gate2_tessent_occ_clk_sib ( clock, reset, enable,
          SYNOPSYS_UNCONNECTED_1, SYNOPSYS_UNCONNECTED_2,
          SYNOPSYS_UNCONNECTED_3, SYNOPSYS_UNCONNECTED_4;
 
-  i0sfvz003ab1d03x6 sib_reg ( .si(n15), .d(n16), .ssb(n14), .clk(clock), .rb(
+  i0sfag003ab1d02x5 sib_reg ( .si(n15), .d(n16), .ssb(n14), .clk(clock), .rb(
         reset), .o(sib), .so(SYNOPSYS_UNCONNECTED_1) );
   i0sfuz080ab1d03x5 so_retime_reg ( .si(n15), .d(sib), .ssb(n14), .clkb(clock), 
         .o(scan_out), .so(SYNOPSYS_UNCONNECTED_2) );
   i0sfuz080ab1d03x5 to_enable_int_reg ( .si(n15), .d(sib_latch), .ssb(n14), 
         .clkb(clock), .o(to_enable_int), .so(SYNOPSYS_UNCONNECTED_3) );
-  i0sfvz08bab1d03x6 sib_latch_reg ( .si(n15), .d(n4), .ssb(n14), .clkb(clock), 
+  i0sfvz08bab1d02x6 sib_latch_reg ( .si(n15), .d(n4), .ssb(n14), .clkb(clock), 
         .rb(reset), .s(n15), .o(sib_latch), .so(SYNOPSYS_UNCONNECTED_4) );
   i0stihi00ab1n02x5 U3 ( .o(n14) );
   i0stilo00ab1n02x5 U4 ( .o(n15) );
@@ -60,7 +60,7 @@ module firebird7_in_gate2_tessent_occ_clk_shift_reg ( clk, scan_en,
   i0snor002ab1n02x5 U6 ( .a(n4), .b(n5), .o1(N29) );
   i0sobai22ab1n02x5 U7 ( .a(capture_cycle_width[0]), .b(n6), .c(n5), .d(n1), 
         .out0(N28) );
-  i0sinv000ab1n02x5 U8 ( .a(FF_4_), .o1(n1) );
+  i0sinv000tb1n02x5 U8 ( .a(FF_4_), .o1(n1) );
   i0sobai22ab1n02x5 U9 ( .a(FF_3_), .b(n7), .c(capture_cycle_width[0]), .d(n6), 
         .out0(N27) );
   i0snand03ab1n02x5 U10 ( .a(n8), .b(n5), .c(capture_cycle_width[1]), .o1(n6)
@@ -68,15 +68,15 @@ module firebird7_in_gate2_tessent_occ_clk_shift_reg ( clk, scan_en,
   i0saoi012ab1n02x5 U11 ( .b(capture_cycle_width[0]), .c(
         capture_cycle_width[1]), .a(capture_cycle_width[2]), .o1(n7) );
   i0smdn022ab1n02x4 U12 ( .b(n11), .a(n3), .sa(n12), .o1(N26) );
-  i0sinv000ab1n02x5 U13 ( .a(FF_2_), .o1(n3) );
+  i0sinv000tb1n02x5 U13 ( .a(FF_2_), .o1(n3) );
   i0snand02ab1n02x5 U14 ( .a(capture_cycle_width[0]), .b(n8), .o1(n11) );
-  i0sinv000ab1n02x5 U15 ( .a(n4), .o1(n8) );
+  i0sinv000tb1n02x5 U15 ( .a(n4), .o1(n8) );
   i0smdn022ab1n02x4 U16 ( .b(n2), .a(n4), .sa(n13), .o1(N25) );
   i0snor002ab1n02x5 U17 ( .a(capture_cycle_width[0]), .b(n12), .o1(n13) );
   i0snanb02ab1n02x5 U18 ( .a(capture_cycle_width[1]), .b(n5), .out0(n12) );
-  i0sinv000ab1n02x5 U19 ( .a(capture_cycle_width[2]), .o1(n5) );
+  i0sinv000tb1n02x5 U19 ( .a(capture_cycle_width[2]), .o1(n5) );
   i0snand02ab1n02x5 U20 ( .a(scan_in), .b(scan_en), .o1(n4) );
-  i0sinv000ab1n02x5 U21 ( .a(FF_1_), .o1(n2) );
+  i0sinv000tb1n02x5 U21 ( .a(FF_1_), .o1(n2) );
 endmodule
 
 
@@ -117,6 +117,27 @@ module firebird7_in_gate2_tessent_occ_clk_control ( fast_clock, slow_clock,
         .clkb(ijtag_tck), .o(tdr_so_retime), .so(SYNOPSYS_UNCONNECTED_1) );
   i0sfuz080ab1d03x5 scan_out_reg ( .si(n68), .d(N8), .ssb(n67), .clkb(
         bypass_clock), .o(scan_out), .so(SYNOPSYS_UNCONNECTED_2) );
+  i0sfvz08bab1d02x6 test_mode_reg ( .si(n68), .d(n50), .ssb(n67), .clkb(
+        ijtag_tck), .rb(ijtag_reset), .s(n68), .o(test_mode), .so(
+        SYNOPSYS_UNCONNECTED_3) );
+  i0sfvz08bab1d02x6 SE_SLOW_CLK_inv_reg ( .si(n68), .d(n17), .ssb(n67), .clkb(
+        slow_clock), .rb(test_mode), .s(n68), .o(SE_SLOW_CLK_inv), .so(
+        SYNOPSYS_UNCONNECTED_4) );
+  i0sfvz08bab1d02x6 fast_capture_mode_reg ( .si(n68), .d(n43), .ssb(n67), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n68), .o(fast_capture_mode), 
+        .so(SYNOPSYS_UNCONNECTED_5) );
+  i0sfvz08bab1d02x6 active_upstream_parent_occ_reg ( .si(n68), .d(n39), .ssb(
+        n67), .clkb(ijtag_tck), .rb(ijtag_reset), .s(n68), .o(
+        active_upstream_parent_occ), .so(SYNOPSYS_UNCONNECTED_6) );
+  i0sfvz08bab1d02x6 capture_cycle_width_reg_2 ( .si(n68), .d(n35), .ssb(n67), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n68), .o(capture_cycle_width_2_), .so(SYNOPSYS_UNCONNECTED_7) );
+  i0sfvz08bab1d02x6 capture_cycle_width_reg_1 ( .si(n68), .d(n31), .ssb(n67), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n68), .o(capture_cycle_width_1_), .so(SYNOPSYS_UNCONNECTED_8) );
+  i0sfvz08bab1d02x6 capture_cycle_width_reg_0 ( .si(n68), .d(n27), .ssb(n67), 
+        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n68), .o(capture_cycle_width_0_), .so(SYNOPSYS_UNCONNECTED_9) );
+  i0sfvz08bab1d02x6 inject_tck_reg ( .si(n68), .d(n21), .ssb(n67), .clkb(
+        ijtag_tck), .rb(ijtag_reset), .s(n68), .o(inject_tck), .so(
+        SYNOPSYS_UNCONNECTED_10) );
   firebird7_in_gate2_tessent_occ_clk_sib tdr_sib ( .clock(ijtag_tck), .reset(
         ijtag_reset), .enable(ijtag_sel), .capture_en(ijtag_ce), .shift_en(
         ijtag_se), .update_en(ijtag_ue), .scan_in(ijtag_si), .from_scan_out(
@@ -125,6 +146,9 @@ module firebird7_in_gate2_tessent_occ_clk_control ( fast_clock, slow_clock,
         .scan_en(scan_en), .capture_cycle_width({capture_cycle_width_2_, 
         capture_cycle_width_1_, capture_cycle_width_0_}), .some_ones_left(
         ShiftReg_EN), .scan_in(scan_in), .scan_out(ShiftReg_SCAN_OUT) );
+  i0sfuz003ab1d03x5 BYPASS_SHIFT_FF_reg ( .si(n68), .rb(scan_en), .d(scan_in), 
+        .ssb(n67), .clk(bypass_clock), .o(BYPASS_SHIFT_FF), .so(
+        SYNOPSYS_UNCONNECTED_11) );
   i0sfuq000ab1d02x5 tdr_reg_6 ( .si(n68), .d(n70), .ssb(n67), .clk(ijtag_tck), 
         .o(tdr_6_) );
   i0sfuq000ab1d02x5 tdr_reg_5 ( .si(n68), .d(n71), .ssb(n67), .clk(ijtag_tck), 
@@ -139,30 +163,6 @@ module firebird7_in_gate2_tessent_occ_clk_control ( fast_clock, slow_clock,
         .o(tdr_1_) );
   i0sfuq000ab1d02x5 tdr_reg_0 ( .si(n68), .d(n75), .ssb(n67), .clk(ijtag_tck), 
         .o(tdr_0_) );
-  i0sfuz003ab1d03x5 BYPASS_SHIFT_FF_reg ( .si(n68), .rb(scan_en), .d(scan_in), 
-        .ssb(n67), .clk(bypass_clock), .o(BYPASS_SHIFT_FF), .so(
-        SYNOPSYS_UNCONNECTED_3) );
-  i0sfvz08bab1d03x6 active_upstream_parent_occ_reg ( .si(n68), .d(n39), .ssb(
-        n67), .clkb(ijtag_tck), .rb(ijtag_reset), .s(n68), .o(
-        active_upstream_parent_occ), .so(SYNOPSYS_UNCONNECTED_4) );
-  i0sfvz08bab1d03x6 capture_cycle_width_reg_2 ( .si(n68), .d(n35), .ssb(n67), 
-        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n68), .o(capture_cycle_width_2_), .so(SYNOPSYS_UNCONNECTED_5) );
-  i0sfvz08bab1d03x6 fast_capture_mode_reg ( .si(n68), .d(n43), .ssb(n67), 
-        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n68), .o(fast_capture_mode), 
-        .so(SYNOPSYS_UNCONNECTED_6) );
-  i0sfvz08bab1d03x6 capture_cycle_width_reg_1 ( .si(n68), .d(n31), .ssb(n67), 
-        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n68), .o(capture_cycle_width_1_), .so(SYNOPSYS_UNCONNECTED_7) );
-  i0sfvz08bab1d03x6 inject_tck_reg ( .si(n68), .d(n21), .ssb(n67), .clkb(
-        ijtag_tck), .rb(ijtag_reset), .s(n68), .o(inject_tck), .so(
-        SYNOPSYS_UNCONNECTED_8) );
-  i0sfvz08bab1d03x6 capture_cycle_width_reg_0 ( .si(n68), .d(n27), .ssb(n67), 
-        .clkb(ijtag_tck), .rb(ijtag_reset), .s(n68), .o(capture_cycle_width_0_), .so(SYNOPSYS_UNCONNECTED_9) );
-  i0sfvz08bab1d03x6 test_mode_reg ( .si(n68), .d(n50), .ssb(n67), .clkb(
-        ijtag_tck), .rb(ijtag_reset), .s(n68), .o(test_mode), .so(
-        SYNOPSYS_UNCONNECTED_10) );
-  i0sfvz08bab1d03x6 SE_SLOW_CLK_inv_reg ( .si(n68), .d(n17), .ssb(n67), .clkb(
-        slow_clock), .rb(test_mode), .s(n68), .o(SE_SLOW_CLK_inv), .so(
-        SYNOPSYS_UNCONNECTED_11) );
   i0stilo00ab1n02x5 U3 ( .o(n68) );
   i0stihi00ab1n02x5 U4 ( .o(n67) );
   i0soai112ab1n02x5 U5 ( .c(n17), .d(n1), .a(n2), .b(n3), .o1(slow_clock_en)
@@ -170,22 +170,22 @@ module firebird7_in_gate2_tessent_occ_clk_control ( fast_clock, slow_clock,
   i0snor002ab1n02x5 U6 ( .a(scan_en), .b(n1), .o1(n77) );
   i0soai022ab1n02x5 U7 ( .a(n4), .b(n5), .c(n6), .d(n7), .o1(n76) );
   i0soai022ab1n02x5 U8 ( .a(n7), .b(n4), .c(n6), .d(n80), .o1(n75) );
-  i0sinv000ab1n02x5 U9 ( .a(tdr_1_), .o1(n7) );
+  i0sinv000tb1n02x5 U9 ( .a(tdr_1_), .o1(n7) );
   i0soai022ab1n02x5 U10 ( .a(n4), .b(n9), .c(n6), .d(n5), .o1(n74) );
-  i0sinv000ab1n02x5 U11 ( .a(tdr_2_), .o1(n5) );
+  i0sinv000tb1n02x5 U11 ( .a(tdr_2_), .o1(n5) );
   i0soai022ab1n02x5 U12 ( .a(n4), .b(n10), .c(n6), .d(n9), .o1(n73) );
-  i0sinv000ab1n02x5 U13 ( .a(tdr_3_), .o1(n9) );
+  i0sinv000tb1n02x5 U13 ( .a(tdr_3_), .o1(n9) );
   i0soai022ab1n02x5 U14 ( .a(n4), .b(n11), .c(n6), .d(n10), .o1(n72) );
-  i0sinv000ab1n02x5 U15 ( .a(tdr_4_), .o1(n10) );
+  i0sinv000tb1n02x5 U15 ( .a(tdr_4_), .o1(n10) );
   i0soai022ab1n02x5 U16 ( .a(n4), .b(n12), .c(n6), .d(n11), .o1(n71) );
-  i0sinv000ab1n02x5 U17 ( .a(tdr_5_), .o1(n11) );
+  i0sinv000tb1n02x5 U17 ( .a(tdr_5_), .o1(n11) );
   i0sobai22ab1n02x5 U18 ( .a(ijtag_si), .b(n4), .c(n6), .d(n12), .out0(n70) );
-  i0sinv000ab1n02x5 U19 ( .a(tdr_6_), .o1(n12) );
+  i0sinv000tb1n02x5 U19 ( .a(tdr_6_), .o1(n12) );
   i0saob012ab1n02x5 U20 ( .b(ijtag_ce), .c(tdr_en), .a(n4), .out0(n6) );
   i0snanb03ab1n02x5 U21 ( .a(ijtag_ce), .b(tdr_en), .c(ijtag_se), .out0(n4) );
   i0smdn022ab1n02x4 U22 ( .b(n1), .a(n80), .sa(n13), .o1(n50) );
-  i0sinv000ab1n02x5 U23 ( .a(tdr_0_), .o1(n80) );
-  i0sinv000ab1n02x5 U24 ( .a(test_mode), .o1(n1) );
+  i0sinv000tb1n02x5 U23 ( .a(tdr_0_), .o1(n80) );
+  i0sinv000tb1n02x5 U24 ( .a(test_mode), .o1(n1) );
   i0smbn022ab1n02x5 U25 ( .b(fast_capture_mode), .a(tdr_1_), .sa(n13), .o(n43)
          );
   i0smbn022ab1n02x5 U26 ( .b(active_upstream_parent_occ), .a(tdr_2_), .sa(n13), 
@@ -212,9 +212,9 @@ module firebird7_in_gate2_tessent_occ_clk_control ( fast_clock, slow_clock,
   i0snor002ab1n02x5 U38 ( .a(SCAN_EN_inv_sync), .b(active_upstream_parent_occ), 
         .o1(n15) );
   i0soaoi13ab1n02x5 U39 ( .c(n16), .d(test_mode), .b(n2), .a(n17), .o1(N8) );
-  i0sinv000ab1n02x5 U40 ( .a(scan_en), .o1(n17) );
+  i0sinv000tb1n02x5 U40 ( .a(scan_en), .o1(n17) );
   i0snand02ab1n02x5 U41 ( .a(test_mode), .b(ShiftReg_SCAN_OUT), .o1(n2) );
-  i0sinv000ab1n02x5 U42 ( .a(BYPASS_SHIFT_FF), .o1(n16) );
+  i0sinv000tb1n02x5 U42 ( .a(BYPASS_SHIFT_FF), .o1(n16) );
 endmodule
 
 

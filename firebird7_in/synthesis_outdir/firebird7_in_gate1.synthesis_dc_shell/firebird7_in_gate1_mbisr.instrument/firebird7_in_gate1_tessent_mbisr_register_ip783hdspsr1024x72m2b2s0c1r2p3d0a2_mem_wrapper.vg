@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys DC Expert(TM) in wire load mode
 // Version   : Q-2019.12-SP5-1
-// Date      : Sun Oct 29 23:55:53 2023
+// Date      : Sun Nov  5 08:35:04 2023
 /////////////////////////////////////////////////////////////
 
 
@@ -29,59 +29,59 @@
          SYNOPSYS_UNCONNECTED_25, SYNOPSYS_UNCONNECTED_26,
          SYNOPSYS_UNCONNECTED_27;
 
-  i0sfvz003ab1d03x6 ShiftReg_reg_25 ( .si(n55), .d(N31), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_25 ( .si(n55), .d(N31), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[25]), .so(SYNOPSYS_UNCONNECTED_1) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_24 ( .si(n55), .d(N30), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_24 ( .si(n55), .d(N30), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[24]), .so(SYNOPSYS_UNCONNECTED_2) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_23 ( .si(n55), .d(N29), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_23 ( .si(n55), .d(N29), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[23]), .so(SYNOPSYS_UNCONNECTED_3) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_22 ( .si(n55), .d(N28), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_22 ( .si(n55), .d(N28), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[22]), .so(SYNOPSYS_UNCONNECTED_4) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_21 ( .si(n55), .d(N27), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_21 ( .si(n55), .d(N27), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[21]), .so(SYNOPSYS_UNCONNECTED_5) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_20 ( .si(n55), .d(N26), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_20 ( .si(n55), .d(N26), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[20]), .so(SYNOPSYS_UNCONNECTED_6) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_19 ( .si(n55), .d(N25), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_19 ( .si(n55), .d(N25), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[19]), .so(SYNOPSYS_UNCONNECTED_7) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_18 ( .si(n55), .d(N24), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_18 ( .si(n55), .d(N24), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[18]), .so(SYNOPSYS_UNCONNECTED_8) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_17 ( .si(n55), .d(N23), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_17 ( .si(n55), .d(N23), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[17]), .so(SYNOPSYS_UNCONNECTED_9) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_16 ( .si(n55), .d(N22), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_16 ( .si(n55), .d(N22), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[16]), .so(SYNOPSYS_UNCONNECTED_10) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_15 ( .si(n55), .d(N21), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_15 ( .si(n55), .d(N21), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[15]), .so(SYNOPSYS_UNCONNECTED_11) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_14 ( .si(n55), .d(N20), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_14 ( .si(n55), .d(N20), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[14]), .so(SYNOPSYS_UNCONNECTED_12) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_13 ( .si(n55), .d(N19), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_13 ( .si(n55), .d(N19), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[13]), .so(SYNOPSYS_UNCONNECTED_13) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_12 ( .si(n55), .d(N18), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_12 ( .si(n55), .d(N18), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[12]), .so(SYNOPSYS_UNCONNECTED_14) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_11 ( .si(n55), .d(N17), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_11 ( .si(n55), .d(N17), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[11]), .so(SYNOPSYS_UNCONNECTED_15) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_10 ( .si(n55), .d(N16), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_10 ( .si(n55), .d(N16), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[10]), .so(SYNOPSYS_UNCONNECTED_16) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_9 ( .si(n55), .d(N15), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_9 ( .si(n55), .d(N15), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[9]), .so(SYNOPSYS_UNCONNECTED_17) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_8 ( .si(n55), .d(N14), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_8 ( .si(n55), .d(N14), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[8]), .so(SYNOPSYS_UNCONNECTED_18) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_7 ( .si(n55), .d(N13), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_7 ( .si(n55), .d(N13), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[7]), .so(SYNOPSYS_UNCONNECTED_19) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_6 ( .si(n55), .d(N12), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_6 ( .si(n55), .d(N12), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[6]), .so(SYNOPSYS_UNCONNECTED_20) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_5 ( .si(n55), .d(N11), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_5 ( .si(n55), .d(N11), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[5]), .so(SYNOPSYS_UNCONNECTED_21) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_4 ( .si(n55), .d(N10), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_4 ( .si(n55), .d(N10), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[4]), .so(SYNOPSYS_UNCONNECTED_22) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_3 ( .si(n55), .d(N9), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_3 ( .si(n55), .d(N9), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[3]), .so(SYNOPSYS_UNCONNECTED_23) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_2 ( .si(n55), .d(N8), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_2 ( .si(n55), .d(N8), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[2]), .so(SYNOPSYS_UNCONNECTED_24) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_1 ( .si(n55), .d(N7), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_1 ( .si(n55), .d(N7), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[1]), .so(SYNOPSYS_UNCONNECTED_25) );
-  i0sfvz003ab1d03x6 ShiftReg_reg_0 ( .si(n55), .d(N6), .ssb(n54), .clk(CLK), 
+  i0sfag003ab1d02x5 ShiftReg_reg_0 ( .si(n55), .d(N6), .ssb(n54), .clk(CLK), 
         .rb(RSTB), .o(Q[0]), .so(SYNOPSYS_UNCONNECTED_26) );
-  i0sfvz08bab1d03x6 retime_reg ( .si(n55), .d(n56), .ssb(n54), .clkb(CLK), 
+  i0sfvz08bab1d02x5 retime_reg ( .si(n55), .d(n56), .ssb(n54), .clkb(CLK), 
         .rb(RSTB), .s(n55), .o(SO), .so(SYNOPSYS_UNCONNECTED_27) );
   i0stilo00ab1n02x5 U87 ( .o(n55) );
   i0stihi00ab1n02x5 U88 ( .o(n54) );

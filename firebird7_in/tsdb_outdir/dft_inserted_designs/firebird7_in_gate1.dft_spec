@@ -1,7 +1,7 @@
 //-------------------------------------------------
 //  File created by: Tessent Shell
 //          Version: 2022.4
-//       Created on: Sun Oct 29 23:51:47 PDT 2023
+//       Created on: Sun Nov  5 08:29:31 PST 2023
 //-------------------------------------------------
 
 
@@ -75,6 +75,25 @@ DftSpecification(firebird7_in,gate1) {
           Tdr(spare_green_tdr) {
             length : 8;
             extra_bits_capture_value : self;
+          }
+        }
+      }
+      Sib(upm) {
+        ScanMux(upm_secure_mux) {
+          select : DataIn(2);
+          Input(1) {
+            DesignInstance(u_upm_0) {
+              scan_interface : c_ip;
+            }
+            DesignInstance(u_upm_1) {
+              scan_interface : c_ip;
+            }
+            DesignInstance(u_upm_2) {
+              scan_interface : c_ip;
+            }
+            DesignInstance(u_upm_3) {
+              scan_interface : c_ip;
+            }
           }
         }
       }

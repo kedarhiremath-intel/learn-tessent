@@ -1,0 +1,70 @@
+
+if {$system} {
+
+set ivar(WAIVE_INPUT_PORT_FLOPPED)  "dfx_upm_sys_en dfx_upm_sys_rstn dfx_upm_sys_cbb_ctrl dfx_upm_sys_cbb_pwr dfx_upm_sys_ctl dfx_upm_trstb dfx_upm_shift dfx_upm_capture dfx_upm_si dfx_upm_fdfx_powergood dfx_upm_sel"
+
+if {$decen} {
+set ivar(WAIVE_OUTPUT_PORT_FLOPPED)  "dfx_upm_result dfx_upm_status dfx_upm_dcm_out"
+} else {
+set ivar(WAIVE_OUTPUT_PORT_FLOPPED)  "dfx_upm_result dfx_upm_status"
+}
+
+if {$apm_en} {
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_xtor_sel[0]"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_xtor_sel[0]"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_mux_sel[0]"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_mux_sel[1]"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_mux_sel[2]"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_mux_sel[3]"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_vdac_sel[0]"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_vdac_sel[1]"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_vdac_sel[2]"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_vdac_sel[3]"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_en_sensor"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_en_cal"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_en_osc"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_en_step"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_osc_sel"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_debug_out"
+lappend ivar(WAIVE_INPUT_PORT_FLOPPED) "apm_osc_out"
+lappend ivar(WAIVE_INPUT_PORT_FLOPPED) "apm_debug_in"
+}
+
+
+
+} else {
+
+set ivar(WAIVE_INPUT_PORT_FLOPPED)  "dfx_upm_trstb dfx_upm_shift dfx_upm_capture dfx_upm_si dfx_upm_fdfx_powergood dfx_upm_sel"
+
+if {$decen} {
+set ivar(WAIVE_OUTPUT_PORT_FLOPPED)  "dfx_upm_dcm_out"
+
+} else {
+puts "prasadss : nothing to waive in output"
+}
+
+if {$apm_en} {
+set ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_xtor_sel[0]"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_xtor_sel[0]"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_mux_sel[0]"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_mux_sel[1]"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_mux_sel[2]"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_mux_sel[3]"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_vdac_sel[0]"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_vdac_sel[1]"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_vdac_sel[2]"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_vdac_sel[3]"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_en_sensor"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_en_cal"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_en_osc"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_en_step"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_osc_sel"
+lappend ivar(WAIVE_OUTPUT_PORT_FLOPPED) "apm_debug_out"
+lappend ivar(WAIVE_INPUT_PORT_FLOPPED) "apm_osc_out"
+lappend ivar(WAIVE_INPUT_PORT_FLOPPED) "apm_debug_in"
+}
+
+
+
+#
+}
